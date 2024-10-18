@@ -38,13 +38,8 @@ namespace Practise1
         {
             Collider[] colliders = Physics.OverlapSphere(firePoint.position, _radius);
             foreach (Collider collider in colliders)
-            {
-                if (collider.TryGetComponent(out HealthComponent healthComponent))
-                {
-                    healthComponent.TakeDamage(_damage);
+                if (DamageComponent.DealDamage(collider, _damage))
                     return;
-                }
-            }
         }
     }
 
@@ -63,12 +58,19 @@ namespace Practise1
         {
             Ray ray = new Ray(firePoint.position, firePoint.forward);
             if (Physics.Raycast(ray, out RaycastHit hit, _distance))
-            {
-                if (hit.collider.TryGetComponent(out HealthComponent healthComponent))
-                {
-                    healthComponent.TakeDamage(_damage);
-                }
-            }
+                DamageComponent.DealDamage(hit.collider, _damage);
+        }
+    }
+
+    public static class DamageComponent
+    {
+        public static bool DealDamage(Collider collider, int damage)
+        {
+            if (!collider.TryGetComponent(out HealthComponent healthComponent))
+                return false;
+
+            healthComponent.TakeDamage(damage);
+            return true;
         }
     }
 

@@ -5,82 +5,63 @@ using UnityEngine;
 namespace Practise1
 {
     /// Упражнение №5
-    public interface IResource
+    public interface IEntity
     {
         string Tag { get; }
-        int Amount { get; }
         Vector3 Position { get; }
     }
 
-    public sealed class ResourceService
+    public interface IResource : IEntity
     {
-        public event Action<IResource> OnAdded;
-        public event Action<IResource> OnRemoved;
+        int Amount { get; }
+    }
 
-        private readonly HashSet<IResource> resources = new();
+    public interface IEnemy : IEntity
+    {
+        bool IsAlive { get; }
+    }
 
-        public bool Add(IResource resource)
+    public sealed class EntityService<T> where T : IEntity
+    {
+        private readonly HashSet<T> _entities = new();
+
+        public event Action<T> OnAdded;
+        public event Action<T> OnRemoved;
+
+        public bool Add(T entity)
         {
-            if (!this.resources.Add(resource))
+            if (!_entities.Add(entity))
                 return false;
-
-            this.OnAdded?.Invoke(resource);
+            OnAdded?.Invoke(entity);
             return true;
         }
 
-        public bool Remove(IResource resource)
+        public bool Remove(T entity)
         {
-            if (!this.resources.Remove(resource))
+            if (!_entities.Remove(entity))
                 return false;
-
-            this.OnRemoved?.Invoke(resource);
+            OnRemoved?.Invoke(entity);
             return true;
         }
 
-        public bool FindClosest(Vector3 position, out IResource result)
+        public bool FindClosest(Vector3 position, out T result)
         {
             float minDistance = float.MaxValue;
-            result = null;
+            result = default;
 
-            foreach (IResource resource in this.resources)
+            foreach (T entity in _entities)
             {
-                if (resource.Amount == 0)
-                    continue;
-
-                Vector3 vector = position - resource.Position;
+                Vector3 vector = position - entity.Position;
                 float distance = vector.sqrMagnitude;
 
                 if (distance < minDistance)
                 {
-                    result = resource;
+                    result = entity;
                     minDistance = distance;
                 }
             }
 
             return result != null;
-        }
-    }
-
-    public interface IEnemy
-    {
-        string Tag { get; }
-        bool IsAlive { get; }
-        Vector3 Position { get; }
-    }
-
-    public sealed class EnemyService
-    {
-        private readonly HashSet<IEnemy> enemies = new();
-
-        public bool Add(IEnemy enemy) => this.enemies.Add(enemy);
-        public bool Remove(IEnemy enemy) => this.enemies.Remove(enemy);
-        public bool Contains(IEnemy enemy) => this.enemies.Contains(enemy);
-
-        public IEnumerable<IEnemy> FindAllWithTag(string tag)
-        {
-            foreach (IEnemy enemy in enemies)
-                if (enemy.IsAlive && enemy.Tag == tag)
-                    yield return enemy;
         }
     }
 }

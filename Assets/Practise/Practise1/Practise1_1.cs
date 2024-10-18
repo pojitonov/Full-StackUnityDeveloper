@@ -4,13 +4,13 @@ using UnityEngine;
 namespace Practise1
 {
     /// Упражнение №1
-    public sealed class ScoreManager
+    public sealed class Score
     {
-        public int Score { get; private set; }
+        public int Value { get; private set; }
 
         public void AddScore(int amount)
         {
-            this.Score += amount;
+            this.Value += amount;
         }
     }
 
