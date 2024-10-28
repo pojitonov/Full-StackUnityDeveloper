@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.timurproko.mytools": {
+      "version": "file:D:/Github/MyTools",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.burst": {
       "version": "1.8.17",
       "depth": 1,
