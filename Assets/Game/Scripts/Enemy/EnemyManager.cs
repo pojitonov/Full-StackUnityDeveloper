@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -27,19 +29,14 @@ namespace ShootEmUp
         [SerializeField]
         private BulletManager bulletManager;
 
-        private readonly int enemyToSpawn = 5;
-        private IEnemySpawner enemySpawner;
-        private IEnemyFireHandler enemyFireHandler;
-        private IEnemyPositioning enemyPositioning;
-        private IEnemyLifecycleHandler _enemyLifecycleHandler;
+        private readonly int objToSpawn = 5;
+        private Spawner<Enemy> spawner;
+        private readonly HashSet<Enemy> activeEnemies = new();
 
         private void Awake()
         {
-            enemySpawner = new EnemySpawner(prefab, container, worldTransform);
-            enemySpawner.CreateInstances(enemyToSpawn);
-            enemyFireHandler = new EnemyFireHandler(bulletManager);
-            enemyPositioning = new EnemyPositioning();
-            _enemyLifecycleHandler = new EnemyLifecycleHandler(enemySpawner, enemyFireHandler);
+            spawner = new Spawner<Enemy>(prefab, container, worldTransform);
+            spawner.CreateInstances(objToSpawn);
         }
 
         private IEnumerator Start()
@@ -48,21 +45,43 @@ namespace ShootEmUp
             {
                 yield return new WaitForSeconds(Random.Range(1, 2));
 
-                Enemy enemy = enemySpawner.GetEnemy();
+                if (activeEnemies.Count >= objToSpawn) continue;
 
-                Transform spawnPosition = enemyPositioning.GetRandomPoints(spawnPositions);
+                Transform spawnPosition = GetRandomPoint(spawnPositions);
+                Enemy enemy = spawner.Spawn();
                 enemy.transform.position = spawnPosition.position;
-
-                Transform attackPosition = enemyPositioning.GetRandomPoints(attackPositions);
-                enemy.SetDestination(attackPosition.position);
-                
-                _enemyLifecycleHandler.AddEnemy(enemy, player);
+                enemy.SetRandomDestination(attackPositions);
+                AddEnemyToActive(enemy, player);
             }
         }
 
         private void FixedUpdate()
         {
-            _enemyLifecycleHandler.UpdateEnemies();
+            UpdateActiveEnemies();
+        }
+
+        private Transform GetRandomPoint(Transform[] points)
+        {
+            int index = Random.Range(0, points.Length);
+            return points[index];
+        }
+        
+        private void AddEnemyToActive(Enemy enemy, Player player)
+        {
+            enemy.Target = player;
+            activeEnemies.Add(enemy);
+        }
+
+        private void UpdateActiveEnemies()
+        {
+            foreach (Enemy enemy in activeEnemies.ToArray())
+            {
+                if (enemy.Health <= 0)
+                {
+                    spawner.Recycle(enemy);
+                    activeEnemies.Remove(enemy);
+                }
+            }
         }
     }
 }

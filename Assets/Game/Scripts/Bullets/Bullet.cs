@@ -5,7 +5,7 @@ namespace ShootEmUp
 {
     public sealed class Bullet : MonoBehaviour
     {
-        public event Action<Bullet> OnWorkCompleted;
+        public event Action<Bullet> OnCompleted;
 
         private bool isPlayer;
         private int damage;
@@ -20,7 +20,7 @@ namespace ShootEmUp
         
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            HandleCollision(collision);
+            HandleDamage(collision);
         }
         
         public void Initialize(Vector2 position, Color color, int physicsLayer, int damage, bool isPlayer, Vector2 velocity)
@@ -33,7 +33,7 @@ namespace ShootEmUp
             rigidbody2D.velocity = velocity;
         }
         
-        private void HandleCollision(Collision2D collision)
+        private void HandleDamage(Collision2D collision)
         {
             GameObject other = collision.gameObject;
             
@@ -64,7 +64,7 @@ namespace ShootEmUp
                     }
                 }
             }
-            OnWorkCompleted?.Invoke(this);
+            OnCompleted?.Invoke(this);
         }
     }
 }

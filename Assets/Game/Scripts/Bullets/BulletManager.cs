@@ -17,15 +17,15 @@ namespace ShootEmUp
         [SerializeField]
         private Transform container;
 
-        private readonly int bulletsToSpawn = 10;
-        private IBulletSpawner bulletSpawner;
+        private readonly int objToSpawn = 10;
+        private Spawner<Bullet> spawner;
         private readonly HashSet<Bullet> activeBullets = new();
         private readonly List<Bullet> cache = new();
 
         private void Awake()
         {
-            bulletSpawner = new BulletSpawner(prefab, container, worldTransform);
-            bulletSpawner.CreateInstances(bulletsToSpawn);
+            spawner = new Spawner<Bullet>(prefab, container, worldTransform);
+            spawner.CreateInstances(objToSpawn);
         }
 
         private void FixedUpdate()
@@ -43,13 +43,15 @@ namespace ShootEmUp
             }
         }
 
-        public void SpawnBullet(Vector2 position, Color color, int physicsLayer, int damage, bool isPlayer, Vector2 velocity)
+        public void SpawnBullet(Vector2 position, Color color, int physicsLayer, int damage, bool isPlayer,
+            Vector2 velocity)
         {
-            Bullet bullet = bulletSpawner.Spawn(position, color, physicsLayer, damage, isPlayer, velocity);
+            Bullet bullet = spawner.Spawn();
+            bullet.Initialize(position, color, physicsLayer, damage, isPlayer, velocity);
 
             if (activeBullets.Add(bullet))
             {
-                bullet.OnWorkCompleted += RecycleBullet;
+                bullet.OnCompleted += RecycleBullet;
             }
         }
 
@@ -57,8 +59,8 @@ namespace ShootEmUp
         {
             if (activeBullets.Remove(bullet))
             {
-                bullet.OnWorkCompleted -= RecycleBullet;
-                bulletSpawner.Recycle(bullet);
+                bullet.OnCompleted -= RecycleBullet;
+                spawner.Recycle(bullet);
             }
         }
     }

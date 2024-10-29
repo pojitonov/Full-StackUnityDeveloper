@@ -1,83 +1,63 @@
-using System;
 using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class Enemy : MonoBehaviour
+    public sealed class Enemy : Character
     {
-        [SerializeField]
-        private bool isPlayer;
-
-        [SerializeField]
-        private Transform firePoint;
-
-        [SerializeField]
-        private int health;
-
-        [SerializeField]
-        private float speed = 5.0f;
-
         [SerializeField]
         private float countdown;
 
-        private IEnemyMovement enemyMovement;
-        private IEnemyAttack enemyAttack;
-
-        public bool IsPlayer => isPlayer;
-        public Transform FirePoint => firePoint;
-
-        public int Health
-        {
-            get => health;
-            set => health = value;
-        }
-
-        public float Speed => speed;
-        public float Countdown => countdown;
-        public float CurrentTime { get; set; }
-        public bool IsPointReached { get; set; }
+        private bool isPointReached;
+        private Vector2 destination;
+        private float currentTime;
         public Player Target { get; set; }
-        public Vector2 Destination { get; private set; }
-        public Rigidbody2D Rigidbody2D { get; private set; }
-
-        private void Awake()
-        {
-            Rigidbody2D = GetComponent<Rigidbody2D>();
-            enemyMovement = new EnemyMovement(this);
-            enemyAttack = new EnemyAttack(this);
-        }
 
         private void FixedUpdate()
         {
-            if (IsPointReached)
+            Move();
+
+            if (isPointReached)
             {
-                enemyAttack.Attack();
-            }
-            else
-            {
-                enemyMovement.Move();
+                Attack();
             }
         }
 
-        public void Reset()
+        public void SetRandomDestination(Transform[] attackPositions)
         {
-            CurrentTime = countdown;
+            int index = Random.Range(0, attackPositions.Length);
+            destination = attackPositions[index].position;
+            isPointReached = false;
         }
 
-        public void SetDestination(Vector2 endPoint)
+        private void Move()
         {
-            Destination = endPoint;
-            IsPointReached = false;
+            Vector2 vector = destination - (Vector2)transform.position;
+            if (vector.magnitude <= 0.25f)
+            {
+                isPointReached = true;
+                return;
+            }
+
+            Vector2 direction = vector.normalized * Time.fixedDeltaTime;
+            Vector2 nextPosition = rigidbody2D.position + direction * speed;
+            rigidbody2D.MovePosition(nextPosition);
         }
 
-        public void SubscribeToOnFire(Action<Vector2, Vector2> handler)
+        private void Attack()
         {
-            enemyAttack.OnFire += handler;
-        }
+            if (Target.Health <= 0) return;
+            
+            currentTime -= Time.fixedDeltaTime;
 
-        public void UnsubscribeFromOnFire(Action<Vector2, Vector2> handler)
-        {
-            enemyAttack.OnFire -= handler;
+            if (currentTime <= 0)
+            {
+                Vector2 startPosition = firePoint.position;
+                Vector2 vector = (Vector2)Target.transform.position - startPosition;
+                Vector2 direction = vector.normalized;
+                currentTime += countdown;
+
+                SpawnBullet(startPosition, direction * 2, Color.red, (int)PhysicsLayer.ENEMY_BULLET);
+            }
         }
     }
 }

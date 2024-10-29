@@ -7,42 +7,26 @@ namespace ShootEmUp
         [SerializeField]
         private Player player;
 
-        [SerializeField]
-        private BulletManager bulletManager;
-
-        private bool isFiring;
-        private int moveDirection;
-        private IPlayerMovement playerMovement;
-        private IPlayerShooting playerShooting;
-
         private void Awake()
         {
-            playerMovement = new PlayerMovement(player);
-            playerShooting = new PlayerShooting(player, bulletManager);
-            player.OnHealthEmpty += _ => Time.timeScale = 0;
+            HandleGameOver();
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                isFiring = true;
+                player.SetFiring(true);
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-                moveDirection = -1;
+                player.SetMoveDirection(-1);
             else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-                moveDirection = 1;
+                player.SetMoveDirection(1);
             else
-                moveDirection = 0;
+                player.SetMoveDirection(0);
         }
 
-        private void FixedUpdate()
+        private void HandleGameOver()
         {
-            playerMovement.Move(moveDirection);
-
-            if (isFiring)
-            {
-                playerShooting.Shoot();
-                isFiring = false;
-            }
+            player.OnHealthEmpty += _ => Time.timeScale = 0;
         }
     }
 }

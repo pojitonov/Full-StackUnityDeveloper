@@ -3,39 +3,48 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class Player : MonoBehaviour
+    public sealed class Player : Character
     {
         public Action<Player, int> OnHealthChanged;
         public Action<Player> OnHealthEmpty;
-
-        [SerializeField]
-        private bool isPlayer;
-
-        [SerializeField]
-        private Transform firePoint;
-
-        [SerializeField]
-        private int health;
-
-        [SerializeField]
-        private float speed = 5.0f;
-
-        public bool IsPlayer => isPlayer;
-        public Transform FirePoint => firePoint;
-
-        public int Health
+        private bool isFiring;
+        private int moveDirection;
+        
+        private void FixedUpdate()
         {
-            get => health;
-            set => health = value;
+            Move(moveDirection);
+
+            if (isFiring)
+            {
+                Attack();
+                isFiring = false;
+            }
         }
 
-        public float Speed => speed;
-
-        public Rigidbody2D Rigidbody2D { get; private set; }
-
-        private void Awake()
+        public void SetMoveDirection(int direction)
         {
-            Rigidbody2D = GetComponent<Rigidbody2D>();
+            moveDirection = direction;
+        }
+
+        public void SetFiring(bool firing)
+        {
+            isFiring = firing;
+        }
+        
+        private void Move(float direction)
+        {
+            Vector2 moveDirection = new Vector2(direction, 0);
+            Vector2 moveStep = moveDirection * (Time.fixedDeltaTime * speed);
+            Vector2 targetPosition = rigidbody2D.position + moveStep;
+            rigidbody2D.MovePosition(targetPosition);
+        }
+
+        private void Attack()
+        {
+            Vector2 startPosition = firePoint.position;
+            Vector2 direction = firePoint.rotation * Vector3.up;
+            
+            SpawnBullet(startPosition, direction * 3, Color.blue, (int)PhysicsLayer.PLAYER_BULLET);
         }
     }
 }
