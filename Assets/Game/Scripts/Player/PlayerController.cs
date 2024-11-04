@@ -4,11 +4,11 @@ namespace ShootEmUp
 {
     public sealed class PlayerController : MonoBehaviour
     {
-        [SerializeField]
         private Ship player;
 
         private void Awake()
         {
+            player = GetComponent<Ship>();
             HandleGameOver();
         }
 

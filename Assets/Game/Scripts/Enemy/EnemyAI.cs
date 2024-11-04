@@ -6,10 +6,11 @@ namespace ShootEmUp
     {
         [SerializeField]
         private float countdown;
+        public Ship Target { get; set; }
+        
         private bool isPointReached;
         private Vector2 destination;
         private float currentTime;
-        public Ship Target { get; set; }
         private new Rigidbody2D rigidbody2D;
         private Ship ship;
 

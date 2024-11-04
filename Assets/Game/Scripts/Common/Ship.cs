@@ -7,6 +7,7 @@ namespace ShootEmUp
     {
         public Action<Ship, int> OnHealthChanged;
         public Action<Ship> OnHealthEmpty;
+        public int Health => health;
 
         private BulletManager bulletManager;
         private bool isFiring;
@@ -26,7 +27,6 @@ namespace ShootEmUp
 
         private new Rigidbody2D rigidbody2D;
 
-        public int Health => health;
 
         private void Awake()
         {
@@ -44,7 +44,7 @@ namespace ShootEmUp
                 isFiring = false;
             }
         }
-        
+
         public void TakeDamage(int damage)
         {
             if (health <= 0)
@@ -60,13 +60,17 @@ namespace ShootEmUp
         {
             moveDirection = direction;
         }
-        
 
         public void SetFiring(bool firing)
         {
             isFiring = firing;
         }
-        
+
+        public void Fire(Vector2 position, Vector2 direction, Color color, int layer)
+        {
+            bulletManager.SpawnBullet(position, color, layer, 1, isPlayer, direction);
+        }
+
         private void Move(float direction)
         {
             Vector2 moveDirection = new Vector2(direction, 0);
@@ -79,13 +83,8 @@ namespace ShootEmUp
         {
             Vector2 startPosition = firePoint.position;
             Vector2 direction = firePoint.rotation * Vector3.up;
-            
-            Fire(startPosition, direction * 3, Color.blue, (int)PhysicsLayer.PLAYER_BULLET);
-        }
 
-        public void Fire(Vector2 position, Vector2 direction, Color color, int layer)
-        {
-            bulletManager.SpawnBullet(position, color, layer, 1, isPlayer, direction);
+            Fire(startPosition, direction * 3, Color.blue, (int)PhysicsLayer.PLAYER_BULLET);
         }
     }
 }

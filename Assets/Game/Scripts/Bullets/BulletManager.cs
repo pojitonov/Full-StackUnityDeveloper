@@ -55,6 +55,7 @@ namespace ShootEmUp
             }
         }
 
+        
         private void RecycleBullet(Bullet bullet)
         {
             if (activeBullets.Remove(bullet))
