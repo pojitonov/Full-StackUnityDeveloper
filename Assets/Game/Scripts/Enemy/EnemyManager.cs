@@ -15,8 +15,11 @@ namespace ShootEmUp
         private Transform[] attackPositions;
 
         [SerializeField]
-        private Player player;
+        private Ship playerPrefab;
 
+        [SerializeField]
+        private Ship enemyPrefab;
+        
         [SerializeField]
         private Transform worldTransform;
 
@@ -24,18 +27,15 @@ namespace ShootEmUp
         private Transform container;
 
         [SerializeField]
-        private Enemy prefab;
-
-        [SerializeField]
         private BulletManager bulletManager;
 
         private readonly int objToSpawn = 5;
-        private Spawner<Enemy> spawner;
-        private readonly HashSet<Enemy> activeEnemies = new();
+        private Spawner<Ship> spawner;
+        private readonly HashSet<Ship> activeEnemies = new();
 
         private void Awake()
         {
-            spawner = new Spawner<Enemy>(prefab, container, worldTransform);
+            spawner = new Spawner<Ship>(enemyPrefab, container, worldTransform);
             spawner.CreateInstances(objToSpawn);
         }
 
@@ -48,10 +48,10 @@ namespace ShootEmUp
                 if (activeEnemies.Count >= objToSpawn) continue;
 
                 Transform spawnPosition = GetRandomPoint(spawnPositions);
-                Enemy enemy = spawner.Spawn();
+                Ship enemy = spawner.Spawn();
                 enemy.transform.position = spawnPosition.position;
-                enemy.SetRandomDestination(attackPositions);
-                AddEnemyToActive(enemy, player);
+                enemy.GetComponent<EnemyAI>().SetRandomDestination(attackPositions);
+                AddEnemyToActive(enemy, playerPrefab);
             }
         }
 
@@ -66,15 +66,15 @@ namespace ShootEmUp
             return points[index];
         }
         
-        private void AddEnemyToActive(Enemy enemy, Player player)
+        private void AddEnemyToActive(Ship enemy, Ship player)
         {
-            enemy.Target = player;
+            enemy.GetComponent<EnemyAI>().Target = player;
             activeEnemies.Add(enemy);
         }
 
         private void UpdateActiveEnemies()
         {
-            foreach (Enemy enemy in activeEnemies.ToArray())
+            foreach (Ship enemy in activeEnemies.ToArray())
             {
                 if (enemy.Health <= 0)
                 {

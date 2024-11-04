@@ -11,19 +11,20 @@ namespace ShootEmUp
         private int damage;
         private new Rigidbody2D rigidbody2D;
         private SpriteRenderer spriteRenderer;
-        
+
         private void Awake()
         {
             rigidbody2D = GetComponent<Rigidbody2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
-        
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             HandleDamage(collision);
         }
-        
-        public void Initialize(Vector2 position, Color color, int physicsLayer, int damage, bool isPlayer, Vector2 velocity)
+
+        public void Initialize(Vector2 position, Color color, int physicsLayer, int damage, bool isPlayer,
+            Vector2 velocity)
         {
             this.isPlayer = isPlayer;
             this.damage = damage;
@@ -32,38 +33,19 @@ namespace ShootEmUp
             spriteRenderer.color = color;
             rigidbody2D.velocity = velocity;
         }
-        
+
         private void HandleDamage(Collision2D collision)
         {
             GameObject other = collision.gameObject;
-            
+
             if (damage <= 0)
                 return;
 
-            if (other.TryGetComponent(out Player player))
+            if (other.TryGetComponent(out Ship ship))
             {
-                if (isPlayer != player.IsPlayer)
-                {
-                    if (player.Health <= 0)
-                        return;
-
-                    player.Health = Mathf.Max(0, player.Health - damage);
-                    player.OnHealthChanged?.Invoke(player, player.Health);
-
-                    if (player.Health <= 0)
-                        player.OnHealthEmpty?.Invoke(player);
-                }
+                ship.TakeDamage(damage);
             }
-            else if (other.TryGetComponent(out Enemy enemy))
-            {
-                if (isPlayer != enemy.IsPlayer)
-                {
-                    if (enemy.Health > 0)
-                    {
-                        enemy.Health = Mathf.Max(0, enemy.Health - damage);
-                    }
-                }
-            }
+
             OnCompleted?.Invoke(this);
         }
     }

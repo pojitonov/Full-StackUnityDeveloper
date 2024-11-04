@@ -5,7 +5,7 @@ namespace ShootEmUp
     public sealed class PlayerController : MonoBehaviour
     {
         [SerializeField]
-        private Player player;
+        private Ship player;
 
         private void Awake()
         {
