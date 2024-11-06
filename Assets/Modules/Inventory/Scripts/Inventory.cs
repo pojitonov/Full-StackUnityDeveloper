@@ -10,41 +10,120 @@ namespace Inventories
 {
     public sealed class Inventory : IEnumerable<Item>
     {
+        private int width;
+        private int height;
+        private int count;
+        
+        private bool[,] grid;
+        private KeyValuePair<Item, Vector2Int>[] items;
+        
         public event Action<Item, Vector2Int> OnAdded;
         public event Action<Item, Vector2Int> OnRemoved;
         public event Action<Item, Vector2Int> OnMoved;
         public event Action OnCleared;
 
-        public int Width => throw new NotImplementedException();
-        public int Height => throw new NotImplementedException();
-        public int Count => throw new NotImplementedException();
+        public int Width => width;
+        public int Height => height;
+        public int Count => count;
 
         public Inventory(in int width, in int height)
-            => throw new NotImplementedException();
+        {
+            ValidateSize(width, height);
+            
+            this.width = width;
+            this.height = height;
+            grid = new bool[width, height];
+        }
 
         public Inventory(
             in int width,
             in int height,
             params KeyValuePair<Item, Vector2Int>[] items
-        ) : this(width, height) => throw new NotImplementedException();
+        ) : this(width, height)
+        {
+            ValidateItems(items);
+        }
 
         public Inventory(
             in int width,
             in int height,
             params Item[] items
-        ) : this(width, height) => throw new NotImplementedException();
+        ) : this(width, height)
+        {
+            ValidateItems(items);
+        }
 
         public Inventory(
             in int width,
             in int height,
             in IEnumerable<KeyValuePair<Item, Vector2Int>> items
-        ) : this(width, height) => throw new NotImplementedException();
+        ) : this(width, height)
+        {
+            ValidateItems(items?.ToArray());
+        }
 
         public Inventory(
             in int width,
             in int height,
             in IEnumerable<Item> items
-        ) : this(width, height) => throw new NotImplementedException();
+        ) : this(width, height)
+        {
+            ValidateItems(items?.ToArray());
+        }
+        
+        private static void ValidateItems<T>(T[] items)
+        {
+            if (items == null)
+            {
+                throw new ArgumentNullException(nameof(items), "Items array cannot be null.");
+            }
+
+            foreach (var item in items)
+            {
+                if (item is KeyValuePair<Item, Vector2Int> { Key: null } pair)
+                {
+                    throw new ArgumentNullException(nameof(pair.Key), "Item in the items array cannot be null.");
+                }
+
+                if (item == null)
+                {
+                    throw new ArgumentNullException(nameof(item), "Item in the items array cannot be null.");
+                }
+            }
+        }
+        
+        private static void ValidateSize(int width, int height)
+        {
+            if (width < 1 || height < 1)
+                throw new ArgumentOutOfRangeException(width < 1 ? nameof(width) : nameof(height), 
+                    "Width and height must be greater than zero.");
+        }
+
+        
+        // private void FillGridWithValues(int width, int height)
+        // {
+        //     for (int x = 0; x < width; x++)
+        //     {
+        //         for (int y = 0; y < height; y++)
+        //         {
+        //             grid[x, y] = false;
+        //         }
+        //     }
+        // }
+
+        // private void PlaceItemInGrid(Item item, Vector2Int position)
+        // {
+        //     int endX = position.x + item.Size.x;
+        //     int endY = position.y + item.Size.y;
+        //
+        //     for (int x = position.x; x < endX; x++)
+        //     {
+        //         for (int y = position.y; y < endY; y++)
+        //         {
+        //             grid[x, y] = true;
+        //         }
+        //     }
+        // }
 
         /// <summary>
         /// Checks for adding an item on a specified position
@@ -104,7 +183,9 @@ namespace Inventories
             => throw new NotImplementedException();
 
         public bool IsFree(in int x, in int y)
-            => throw new NotImplementedException();
+        {
+            return !grid[x, y];
+        }
 
         /// <summary>
         /// Removes a specified item if exists
