@@ -182,106 +182,106 @@ namespace Inventories
             ).SetName("Without name");
         }
         
-        // [Test]
-        // public void WhenAddNullItemOnSpecifiedPositionThenFalse()
-        // {
-        //     //Arrange:
-        //     var inventory = new Inventory(5, 5);
-        //
-        //     Item addedItem = null;
-        //     Vector2Int addedPosition = Vector2Int.zero;
-        //
-        //     inventory.OnAdded += (i, p) =>
-        //     {
-        //         addedItem = i;
-        //         addedPosition = p;
-        //     };
-        //
-        //     //Act:
-        //     bool success = inventory.AddItem(null, 0, 0);
-        //
-        //     //Assert:
-        //     Assert.IsFalse(success);
-        //     Assert.AreEqual(0, inventory.Count);
-        //     Assert.IsNull(addedItem);
-        //     Assert.AreEqual(Vector2Int.zero, addedPosition);
-        //     Assert.IsTrue(inventory.IsFree(0, 0));
-        // }
-        //
-        // [TestCaseSource(nameof(WhenAddItemOnOutOfBoundsPositionThenExceptionCases))]
-        // public void WhenAddItemOutOfRangePositionThenFalse(Inventory inventory, Item item,
-        //     Vector2Int position)
-        // {
-        //     //Arrange:
-        //     Item addedItem = null;
-        //     Vector2Int addedPosition = Vector2Int.zero;
-        //
-        //     inventory.OnAdded += (i, p) =>
-        //     {
-        //         addedItem = i;
-        //         addedPosition = p;
-        //     };
-        //
-        //     //Act:
-        //     bool success = inventory.AddItem(item, position);
-        //
-        //     //Assert:
-        //     Assert.IsFalse(success);
-        //     Assert.AreEqual(Vector2Int.zero, addedPosition);
-        //     Assert.IsNull(addedItem);
-        // }
-        //
-        // private static IEnumerable<TestCaseData> WhenAddItemOnOutOfBoundsPositionThenExceptionCases()
-        // {
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         new Item("A", 1, 1),
-        //         new Vector2Int(-1, 0)
-        //     ).SetName("Inventory (5, 5); Item: (1, 1); Position: (-1, 0)");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         new Item("A", 1, 1),
-        //         new Vector2Int(-1, -1)
-        //     ).SetName("Inventory (5, 5); Item: (1, 1); Position: (-1, -1)");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         new Item("A", 1, 1),
-        //         new Vector2Int(0, -1)
-        //     ).SetName("Inventory (5, 5); Item: (1, 1); Position: (0, -1)");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         new Item("A", 1, 1),
-        //         new Vector2Int(5, 5)
-        //     ).SetName("Inventory (5, 5); Item: (1, 1); Position: (5, 5)");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         new Item("A", 1, 1),
-        //         new Vector2Int(5, 0)
-        //     ).SetName("Inventory (5, 5); Item: (1, 1); Position: (5, 0)");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         new Item("A", 1, 1),
-        //         new Vector2Int(0, 5)
-        //     ).SetName("Inventory (5, 5); Item: (1, 1); Position: (0, 5)");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         new Item("A", 1, 2),
-        //         new Vector2Int(0, 4)
-        //     ).SetName("Inventory (5, 5); Item: (1, 2); Position: (0, 4)");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         new Item(2, 3),
-        //         new Vector2Int(3, 3)
-        //     ).SetName("Inventory (5, 5); Item: (2, 3); Position: (3, 3)");
-        // }
-        //
+        [Test]
+        public void WhenAddNullItemOnSpecifiedPositionThenFalse()
+        {
+            //Arrange:
+            var inventory = new Inventory(5, 5);
+        
+            Item addedItem = null;
+            Vector2Int addedPosition = Vector2Int.zero;
+        
+            inventory.OnAdded += (i, p) =>
+            {
+                addedItem = i;
+                addedPosition = p;
+            };
+        
+            //Act:
+            bool success = inventory.AddItem(null, 0, 0);
+        
+            //Assert:
+            Assert.IsFalse(success);
+            Assert.AreEqual(0, inventory.Count);
+            Assert.IsNull(addedItem);
+            Assert.AreEqual(Vector2Int.zero, addedPosition);
+            Assert.IsTrue(inventory.IsFree(0, 0));
+        }
+        
+        [TestCaseSource(nameof(WhenAddItemOnOutOfBoundsPositionThenExceptionCases))]
+        public void WhenAddItemOutOfRangePositionThenFalse(Inventory inventory, Item item,
+            Vector2Int position)
+        {
+            //Arrange:
+            Item addedItem = null;
+            Vector2Int addedPosition = Vector2Int.zero;
+        
+            inventory.OnAdded += (i, p) =>
+            {
+                addedItem = i;
+                addedPosition = p;
+            };
+        
+            //Act:
+            bool success = inventory.AddItem(item, position);
+        
+            //Assert:
+            Assert.IsFalse(success);
+            Assert.AreEqual(Vector2Int.zero, addedPosition);
+            Assert.IsNull(addedItem);
+        }
+        
+        private static IEnumerable<TestCaseData> WhenAddItemOnOutOfBoundsPositionThenExceptionCases()
+        {
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                new Item("A", 1, 1),
+                new Vector2Int(-1, 0)
+            ).SetName("Inventory (5, 5); Item: (1, 1); Position: (-1, 0)");
+        
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                new Item("A", 1, 1),
+                new Vector2Int(-1, -1)
+            ).SetName("Inventory (5, 5); Item: (1, 1); Position: (-1, -1)");
+        
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                new Item("A", 1, 1),
+                new Vector2Int(0, -1)
+            ).SetName("Inventory (5, 5); Item: (1, 1); Position: (0, -1)");
+        
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                new Item("A", 1, 1),
+                new Vector2Int(5, 5)
+            ).SetName("Inventory (5, 5); Item: (1, 1); Position: (5, 5)");
+        
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                new Item("A", 1, 1),
+                new Vector2Int(5, 0)
+            ).SetName("Inventory (5, 5); Item: (1, 1); Position: (5, 0)");
+        
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                new Item("A", 1, 1),
+                new Vector2Int(0, 5)
+            ).SetName("Inventory (5, 5); Item: (1, 1); Position: (0, 5)");
+        
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                new Item("A", 1, 2),
+                new Vector2Int(0, 4)
+            ).SetName("Inventory (5, 5); Item: (1, 2); Position: (0, 4)");
+        
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                new Item(2, 3),
+                new Vector2Int(3, 3)
+            ).SetName("Inventory (5, 5); Item: (2, 3); Position: (3, 3)");
+        }
+        
         // [Test]
         // public void WhenAddItemOnSpecifiedPositionThatAlreadyExistsThenException()
         // {
