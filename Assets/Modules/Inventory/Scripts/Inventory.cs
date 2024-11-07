@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 // ReSharper disable NotResolvedInText
@@ -10,135 +11,185 @@ namespace Inventories
 {
     public sealed class Inventory : IEnumerable<Item>
     {
-        private int width;
-        private int height;
-        private int count;
-        
         private bool[,] grid;
-        private KeyValuePair<Item, Vector2Int>[] items;
-        
+        private Dictionary<Item, Vector2Int> inventory;
+
         public event Action<Item, Vector2Int> OnAdded;
         public event Action<Item, Vector2Int> OnRemoved;
         public event Action<Item, Vector2Int> OnMoved;
         public event Action OnCleared;
 
-        public int Width => width;
-        public int Height => height;
-        public int Count => count;
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+        public int Count { get; private set; }
 
         public Inventory(in int width, in int height)
         {
-            ValidateSize(width, height);
-            
-            this.width = width;
-            this.height = height;
+            ValidateInventorySize(width, height);
+            InitializeInventory(width, height);
+        }
+
+        public Inventory(in int width, in int height, params KeyValuePair<Item, Vector2Int>[] items
+        ) : this(width, height)
+        {
+            ValidateItemsForNull(items);
+            AddItemsToInventory(items);
+        }
+
+        public Inventory(in int width, in int height, params Item[] items
+        ) : this(width, height)
+        {
+            ValidateItemsForNull(items);
+            AddItemsToInventory(items);
+        }
+
+        public Inventory(in int width, in int height, in IEnumerable<KeyValuePair<Item, Vector2Int>> items
+        ) : this(width, height)
+        {
+            ValidateItemsForNull(items);
+            AddItemsToInventory(items);
+        }
+
+        public Inventory(in int width, in int height, in IEnumerable<Item> items
+        ) : this(width, height)
+        {
+            ValidateItemsForNull(items);
+            AddItemsToInventory(items);
+        }
+
+        /// <summary>
+        /// Checks for adding an item on a specified position
+        /// </summary>
+        public bool CanAddItem(Item item, Vector2Int position)
+        {
+            if (item == null)
+                return false;
+
+            if (Contains(item))
+                return false;
+
+            int endX = position.x + item.Size.x;
+            int endY = position.y + item.Size.y;
+
+            for (int x = position.x; x < endX; x++)
+            {
+                for (int y = position.y; y < endY; y++)
+                {
+                    if (grid[x, y])
+                        return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool CanAddItem(in Item item, in int x, in int y) => CanAddItem(item, new Vector2Int(x, y));
+
+        /// <summary>
+        /// Checks if a specified position is occupied
+        /// </summary>
+        private static void ValidateInventorySize(int width, int height)
+        {
+            if (width < 1 || height < 1)
+                throw new ArgumentOutOfRangeException(width < 1 ? nameof(width) : nameof(height),
+                    "Width and height must be greater than zero.");
+        }
+
+        private void InitializeInventory(in int width, in int height)
+        {
+            Width = width;
+            Height = height;
+            Count = 0;
             grid = new bool[width, height];
+            inventory = new();
         }
 
-        public Inventory(
-            in int width,
-            in int height,
-            params KeyValuePair<Item, Vector2Int>[] items
-        ) : this(width, height)
-        {
-            ValidateItems(items);
-        }
-
-        public Inventory(
-            in int width,
-            in int height,
-            params Item[] items
-        ) : this(width, height)
-        {
-            ValidateItems(items);
-        }
-
-        public Inventory(
-            in int width,
-            in int height,
-            in IEnumerable<KeyValuePair<Item, Vector2Int>> items
-        ) : this(width, height)
-        {
-            ValidateItems(items?.ToArray());
-        }
-
-        public Inventory(
-            in int width,
-            in int height,
-            in IEnumerable<Item> items
-        ) : this(width, height)
-        {
-            ValidateItems(items?.ToArray());
-        }
-        
-        private static void ValidateItems<T>(T[] items)
+        private static void ValidateItemsForNull<T>(IEnumerable<T> items)
         {
             if (items == null)
             {
                 throw new ArgumentNullException(nameof(items), "Items array cannot be null.");
             }
+        }
 
+        private void AddItemsToInventory(IEnumerable<KeyValuePair<Item, Vector2Int>> items)
+        {
             foreach (var item in items)
             {
-                if (item is KeyValuePair<Item, Vector2Int> { Key: null } pair)
-                {
-                    throw new ArgumentNullException(nameof(pair.Key), "Item in the items array cannot be null.");
-                }
+                AddSingleItemToGrid(item.Key, item.Value);
+                AddSingleItemToInventory(item);
+            }
+        }
 
-                if (item == null)
+        private void AddItemsToInventory(IEnumerable<Item> items)
+        {
+            foreach (var item in items)
+            {
+                var position = Vector2Int.zero;
+                AddSingleItemToGrid(item, position);
+                AddSingleItemToInventory(new KeyValuePair<Item, Vector2Int>(item, position));
+            }
+        }
+
+        private void AddSingleItemToInventory(KeyValuePair<Item, Vector2Int> item)
+        {
+            inventory.Add(item.Key, item.Value);
+            Count++;
+        }
+
+        private void AddSingleItemToGrid(Item item, Vector2Int position)
+        {
+            int endX = position.x + item.Size.x;
+            int endY = position.y + item.Size.y;
+
+            for (int x = position.x; x < endX; x++)
+            {
+                for (int y = position.y; y < endY; y++)
                 {
-                    throw new ArgumentNullException(nameof(item), "Item in the items array cannot be null.");
+                    grid[x, y] = true;
                 }
             }
         }
-        
-        private static void ValidateSize(int width, int height)
+
+        private bool CheckIsOutOfInventoryBoundary(Item item, Vector2Int position)
         {
-            if (width < 1 || height < 1)
-                throw new ArgumentOutOfRangeException(width < 1 ? nameof(width) : nameof(height), 
-                    "Width and height must be greater than zero.");
+            int endX = position.x + item.Size.x;
+            int endY = position.y + item.Size.y;
+
+            if (endX > grid.GetLength(0) || endY > grid.GetLength(1))
+                return false;
+
+            return true;
         }
 
-        
-        // private void FillGridWithValues(int width, int height)
-        // {
-        //     for (int x = 0; x < width; x++)
-        //     {
-        //         for (int y = 0; y < height; y++)
-        //         {
-        //             grid[x, y] = false;
-        //         }
-        //     }
-        // }
+        private void PrintGridState(string title)
+        {
+            Debug.Log(title);
+            for (int y = 0; y < grid.GetLength(1); y++)
+            {
+                string row = "";
 
-        // private void PlaceItemInGrid(Item item, Vector2Int position)
-        // {
-        //     int endX = position.x + item.Size.x;
-        //     int endY = position.y + item.Size.y;
-        //
-        //     for (int x = position.x; x < endX; x++)
-        //     {
-        //         for (int y = position.y; y < endY; y++)
-        //         {
-        //             grid[x, y] = true;
-        //         }
-        //     }
-        // }
+                for (int x = 0; x < grid.GetLength(0); x++)
+                {
+                    row += grid[x, y] ? "1 " : "0 ";
+                }
 
-        /// <summary>
-        /// Checks for adding an item on a specified position
-        /// </summary>
-        public bool CanAddItem(in Item item, in Vector2Int position)
-            => throw new NotImplementedException();
+                Debug.Log(row);
+            }
 
-        public bool CanAddItem(in Item item, in int posX, in int posY)
-            => throw new NotImplementedException();
+            Debug.Log("----------------------------------------");
+        }
 
         /// <summary>
         /// Adds an item on a specified position if not exists
         /// </summary>
         public bool AddItem(in Item item, in Vector2Int position)
-            => throw new NotImplementedException();
+        {
+            var newItem = new KeyValuePair<Item, Vector2Int>(item, position);
+            AddSingleItemToInventory(newItem);
+            OnAdded?.Invoke(item, position);
+            return true;
+        }
 
         public bool AddItem(in Item item, in int posX, in int posY)
             => throw new NotImplementedException();
@@ -160,31 +211,45 @@ namespace Inventories
         /// </summary>
         public bool FindFreePosition(in Vector2Int size, out Vector2Int freePosition)
             => throw new NotImplementedException();
-        
+
         /// <summary>
         /// Checks if a specified item exists
         /// </summary>
-        public bool Contains(in Item item)
-            => throw new NotImplementedException();
+        public bool Contains(in Item item) => inventory.ContainsKey(item);
 
-        /// <summary>
-        /// Checks if a specified position is occupied
-        /// </summary>
         public bool IsOccupied(in Vector2Int position)
-            => throw new NotImplementedException();
+        {
+            for (int posX = position.x; posX < grid.GetLength(0); posX++)
+            {
+                for (int posY = position.y; posY < grid.GetLength(1); posY++)
+                {
+                    if (grid[posX, posY])
+                        return false;
+                }
+            }
 
-        public bool IsOccupied(in int x, in int y)
-            => throw new NotImplementedException();
+            return true;
+        }
+
+        public bool IsOccupied(in int x, in int y) => IsOccupied(new Vector2Int(x, y));
+
 
         /// <summary>
         /// Checks if a position is free
         /// </summary>
-        public bool IsFree(in Vector2Int position)
-            => throw new NotImplementedException();
+        public bool IsFree(in int x = 0, in int y = 0) => IsFree(new Vector2Int(x, y));
 
-        public bool IsFree(in int x, in int y)
+        private bool IsFree(in Vector2Int position)
         {
-            return !grid[x, y];
+            for (int i = position.x; i < grid.GetLength(0); i++)
+            {
+                for (int j = position.y; j < grid.GetLength(1); j++)
+                {
+                    if (grid[i, j]) return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -219,13 +284,13 @@ namespace Inventories
 
         public bool TryGetPositions(in Item item, out Vector2Int[] positions)
             => throw new NotImplementedException();
-        
+
         /// <summary>
         /// Clears all inventory items
         /// </summary>
         public void Clear()
             => throw new NotImplementedException();
-        
+
         /// <summary>
         /// Returns a count of items with a specified name
         /// </summary>
@@ -237,7 +302,7 @@ namespace Inventories
         /// </summary>
         public bool MoveItem(in Item item, in Vector2Int newPosition)
             => throw new NotImplementedException();
-        
+
         /// <summary>
         /// Reorganizes inventory space to make the free area uniform
         /// </summary>
