@@ -282,83 +282,83 @@ namespace Inventories
             ).SetName("Inventory (5, 5); Item: (2, 3); Position: (3, 3)");
         }
         
-        // [Test]
-        // public void WhenAddItemOnSpecifiedPositionThatAlreadyExistsThenException()
-        // {
-        //     //Arrange:
-        //     Item item = new Item(1, 1);
-        //     Inventory inventory = new Inventory(5, 5);
-        //     inventory.AddItem(item, 3, 3);
-        //
-        //     Item addedItem = null;
-        //     Vector2Int addedPosition = Vector2Int.zero;
-        //
-        //     inventory.OnAdded += (i, p) =>
-        //     {
-        //         addedItem = i;
-        //         addedPosition = p;
-        //     };
-        //
-        //     //Pre-assert:
-        //     Assert.IsTrue(inventory.Contains(item));
-        //     Assert.IsTrue(inventory.IsFree(0, 0));
-        //
-        //     //Act:
-        //     bool success = inventory.AddItem(item, 0, 0);
-        //
-        //     Assert.IsFalse(success);
-        //     Assert.IsNull(addedItem);
-        //     Assert.AreEqual(Vector2Int.zero, addedPosition);
-        //
-        //     Assert.AreEqual(1, inventory.Count);
-        //     Assert.IsTrue(inventory.IsFree(0, 0));
-        // }
-        //
-        // [TestCaseSource(nameof(WhenAddItemOnSpecifiedPositionThatIntersectsCases))]
-        // public void WhenAddItemOnSpecifiedPositionThatIntersectsWithAnotherThenFalse(
-        //     Inventory inventory,
-        //     Item item,
-        //     Vector2Int position
-        // )
-        // {
-        //     //Arrange:
-        //     Item addedItem = null;
-        //     Vector2Int addedPosition = Vector2Int.zero;
-        //
-        //     inventory.OnAdded += (i, p) =>
-        //     {
-        //         addedItem = i;
-        //         addedPosition = p;
-        //     };
-        //
-        //     //Act:
-        //     bool success = inventory.AddItem(new Item(2, 2), 2, 2);
-        //
-        //     Assert.IsFalse(success);
-        //     Assert.IsNull(addedItem);
-        //     Assert.AreEqual(Vector2Int.zero, addedPosition);
-        //     Assert.IsFalse(inventory.Contains(item));
-        // }
-        //
-        // private static IEnumerable<TestCaseData> WhenAddItemOnSpecifiedPositionThatIntersectsCases()
-        // {
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5,
-        //             new KeyValuePair<Item, Vector2Int>(new Item("X", 1, 1), new Vector2Int(3, 3))
-        //         ),
-        //         new Item("Y", 2, 2),
-        //         new Vector2Int(2, 2)
-        //     ).SetName("Side Intersect");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 3, height: 3,
-        //             new KeyValuePair<Item, Vector2Int>(new Item("X", 2, 2), new Vector2Int(1, 1))
-        //         ),
-        //         new Item("Y", 2, 2),
-        //         new Vector2Int(1, 1)
-        //     ).SetName("Full Intersect");
-        // }
-        //
+        [Test]
+        public void WhenAddItemOnSpecifiedPositionThatAlreadyExistsThenException()
+        {
+            //Arrange:
+            Item item = new Item(1, 1);
+            Inventory inventory = new Inventory(5, 5);
+            inventory.AddItem(item, 3, 3);
+        
+            Item addedItem = null;
+            Vector2Int addedPosition = Vector2Int.zero;
+        
+            inventory.OnAdded += (i, p) =>
+            {
+                addedItem = i;
+                addedPosition = p;
+            };
+        
+            //Pre-assert:
+            Assert.IsTrue(inventory.Contains(item));
+            Assert.IsTrue(inventory.IsFree(0, 0));
+        
+            //Act:
+            bool success = inventory.AddItem(item, 0, 0);
+        
+            Assert.IsFalse(success);
+            Assert.IsNull(addedItem);
+            Assert.AreEqual(Vector2Int.zero, addedPosition);
+        
+            Assert.AreEqual(1, inventory.Count);
+            Assert.IsTrue(inventory.IsFree(0, 0));
+        }
+        
+        [TestCaseSource(nameof(WhenAddItemOnSpecifiedPositionThatIntersectsCases))]
+        public void WhenAddItemOnSpecifiedPositionThatIntersectsWithAnotherThenFalse(
+            Inventory inventory,
+            Item item,
+            Vector2Int position
+        )
+        {
+            //Arrange:
+            Item addedItem = null;
+            Vector2Int addedPosition = Vector2Int.zero;
+        
+            inventory.OnAdded += (i, p) =>
+            {
+                addedItem = i;
+                addedPosition = p;
+            };
+        
+            //Act:
+            bool success = inventory.AddItem(new Item(2, 2), 2, 2);
+        
+            Assert.IsFalse(success);
+            Assert.IsNull(addedItem);
+            Assert.AreEqual(Vector2Int.zero, addedPosition);
+            Assert.IsFalse(inventory.Contains(item));
+        }
+        
+        private static IEnumerable<TestCaseData> WhenAddItemOnSpecifiedPositionThatIntersectsCases()
+        {
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5,
+                    new KeyValuePair<Item, Vector2Int>(new Item("X", 1, 1), new Vector2Int(3, 3))
+                ),
+                new Item("Y", 2, 2),
+                new Vector2Int(2, 2)
+            ).SetName("Side Intersect");
+        
+            yield return new TestCaseData(
+                new Inventory(width: 3, height: 3,
+                    new KeyValuePair<Item, Vector2Int>(new Item("X", 2, 2), new Vector2Int(1, 1))
+                ),
+                new Item("Y", 2, 2),
+                new Vector2Int(1, 1)
+            ).SetName("Full Intersect");
+        }
+        
         // [TestCaseSource(nameof(InstantiateWithItemsCases))]
         // public void InstantiateWithItems(int width, int height, KeyValuePair<Item, Vector2Int>[] items)
         // {
