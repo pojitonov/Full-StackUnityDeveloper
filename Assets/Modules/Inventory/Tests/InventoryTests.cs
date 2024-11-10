@@ -359,44 +359,44 @@ namespace Inventories
             ).SetName("Full Intersect");
         }
         
-        // [TestCaseSource(nameof(InstantiateWithItemsCases))]
-        // public void InstantiateWithItems(int width, int height, KeyValuePair<Item, Vector2Int>[] items)
-        // {
-        //     //Arrange:
-        //     var inventory = new Inventory(width, height, items);
-        //
-        //     //Assert:
-        //     Assert.AreEqual(width, inventory.Width);
-        //     Assert.AreEqual(height, inventory.Height);
-        //
-        //     Assert.AreEqual(items.Length, inventory.Count);
-        //     Assert.AreEqual(items.Select(it => it.Key).ToHashSet(), inventory.ToHashSet());
-        // }
-        //
-        // private static IEnumerable<TestCaseData> InstantiateWithItemsCases()
-        // {
-        //     yield return new TestCaseData(10, 10, new[]
-        //     {
-        //         new KeyValuePair<Item, Vector2Int>(new Item("A", 10, 10), new Vector2Int(0, 0)),
-        //     }).SetName("Full item");
-        //
-        //     yield return new TestCaseData(4, 4, new[]
-        //     {
-        //         new KeyValuePair<Item, Vector2Int>(new Item("A", 1, 2), new Vector2Int(0, 0)),
-        //         new KeyValuePair<Item, Vector2Int>(new Item("B", 1, 1), new Vector2Int(0, 3)),
-        //         new KeyValuePair<Item, Vector2Int>(new Item("C", 3, 2), new Vector2Int(1, 2)),
-        //         new KeyValuePair<Item, Vector2Int>(new Item("A", 2, 1), new Vector2Int(2, 0))
-        //     }).SetName("Half filling");
-        //
-        //     yield return new TestCaseData(4, 4, new[]
-        //     {
-        //         new KeyValuePair<Item, Vector2Int>(new Item("A", 2, 2), new Vector2Int(0, 0)),
-        //         new KeyValuePair<Item, Vector2Int>(new Item("B", 2, 2), new Vector2Int(2, 0)),
-        //         new KeyValuePair<Item, Vector2Int>(new Item("C", 2, 2), new Vector2Int(0, 2)),
-        //         new KeyValuePair<Item, Vector2Int>(new Item("D", 2, 2), new Vector2Int(2, 2))
-        //     }).SetName("Full dense");
-        // }
-        //
+        [TestCaseSource(nameof(InstantiateWithItemsCases))]
+        public void InstantiateWithItems(int width, int height, KeyValuePair<Item, Vector2Int>[] items)
+        {
+            //Arrange:
+            var inventory = new Inventory(width, height, items);
+        
+            //Assert:
+            Assert.AreEqual(width, inventory.Width);
+            Assert.AreEqual(height, inventory.Height);
+        
+            Assert.AreEqual(items.Length, inventory.Count);
+            Assert.AreEqual(items.Select(it => it.Key).ToHashSet(), inventory.ToHashSet());
+        }
+        
+        private static IEnumerable<TestCaseData> InstantiateWithItemsCases()
+        {
+            yield return new TestCaseData(10, 10, new[]
+            {
+                new KeyValuePair<Item, Vector2Int>(new Item("A", 10, 10), new Vector2Int(0, 0)),
+            }).SetName("Full item");
+        
+            yield return new TestCaseData(4, 4, new[]
+            {
+                new KeyValuePair<Item, Vector2Int>(new Item("A", 1, 2), new Vector2Int(0, 0)),
+                new KeyValuePair<Item, Vector2Int>(new Item("B", 1, 1), new Vector2Int(0, 3)),
+                new KeyValuePair<Item, Vector2Int>(new Item("C", 3, 2), new Vector2Int(1, 2)),
+                new KeyValuePair<Item, Vector2Int>(new Item("A", 2, 1), new Vector2Int(2, 0))
+            }).SetName("Half filling");
+        
+            yield return new TestCaseData(4, 4, new[]
+            {
+                new KeyValuePair<Item, Vector2Int>(new Item("A", 2, 2), new Vector2Int(0, 0)),
+                new KeyValuePair<Item, Vector2Int>(new Item("B", 2, 2), new Vector2Int(2, 0)),
+                new KeyValuePair<Item, Vector2Int>(new Item("C", 2, 2), new Vector2Int(0, 2)),
+                new KeyValuePair<Item, Vector2Int>(new Item("D", 2, 2), new Vector2Int(2, 2))
+            }).SetName("Full dense");
+        }
+        
         // [TestCaseSource(nameof(ContainsCases))]
         // public bool Contains(Inventory inventory, Item item)
         // {

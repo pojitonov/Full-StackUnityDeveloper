@@ -20,7 +20,9 @@ namespace Inventories
         public event Action OnCleared;
 
         public int Width { get; private set; }
+
         public int Height { get; private set; }
+
         public int Count { get; private set; }
 
         public Inventory(in int width, in int height)
@@ -57,6 +59,11 @@ namespace Inventories
             AddItemsOnCreation(items);
         }
 
+        public HashSet<Item> ToHashSet()
+        {
+            return _inventoryItems.Keys.ToHashSet();
+        }
+
         private void InitializeInventory(in int width, in int height)
         {
             Width = width;
@@ -86,6 +93,7 @@ namespace Inventories
         /// Checks for adding an item on a specified position
         /// </summary>
         public bool CanAddItem(in Item item, in int x, in int y) => CanAddItem(item, new Vector2Int(x, y));
+
         public bool CanAddItem(Item item, Vector2Int position)
         {
             if (item == null) return false;
@@ -197,6 +205,7 @@ namespace Inventories
         /// Checks if a specified position is occupied
         /// </summary>
         public bool IsOccupied(in int x, in int y) => IsOccupied(new Vector2Int(x, y));
+
         public bool IsOccupied(in Vector2Int position)
         {
             for (int posX = position.x; posX < _inventorySlots.GetLength(0); posX++)
@@ -216,6 +225,7 @@ namespace Inventories
         /// Checks if a position is free
         /// </summary>
         public bool IsFree(in int x = 0, in int y = 0) => IsFree(new Vector2Int(x, y));
+
         private bool IsFree(in Vector2Int position)
         {
             for (int i = position.x; i < _inventorySlots.GetLength(0); i++)
@@ -229,7 +239,7 @@ namespace Inventories
             return true;
         }
 
-        
+
         /// <summary>
         /// Removes a specified item if exists
         /// </summary>
