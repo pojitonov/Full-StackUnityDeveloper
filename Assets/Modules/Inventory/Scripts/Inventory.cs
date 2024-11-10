@@ -34,28 +34,24 @@ namespace Inventories
         public Inventory(in int width, in int height, params KeyValuePair<Item, Vector2Int>[] items
         ) : this(width, height)
         {
-            ValidateItemsForNull(items);
             AddItemsOnCreation(items);
         }
 
         public Inventory(in int width, in int height, params Item[] items
         ) : this(width, height)
         {
-            ValidateItemsForNull(items);
             AddItemsOnCreation(items);
         }
 
         public Inventory(in int width, in int height, in IEnumerable<KeyValuePair<Item, Vector2Int>> items
         ) : this(width, height)
         {
-            ValidateItemsForNull(items);
             AddItemsOnCreation(items);
         }
 
         public Inventory(in int width, in int height, in IEnumerable<Item> items
         ) : this(width, height)
         {
-            ValidateItemsForNull(items);
             AddItemsOnCreation(items);
         }
 
@@ -99,31 +95,15 @@ namespace Inventories
             if (item == null) return false;
             if (Contains(item)) return false;
             if (OutOfBounds(item, position)) return false;
-            return OccupiedSlots(item, position);
-        }
-
-        private bool OccupiedSlots(Item item, Vector2Int position)
-        {
-            int endX = position.x + item.Size.x;
-            int endY = position.y + item.Size.y;
-
-            for (int x = position.x; x < endX; x++)
-            {
-                for (int y = position.y; y < endY; y++)
-                {
-                    if (_inventorySlots[x, y])
-                        return false;
-                }
-            }
-
+            if (IsOccupied(item, position)) return false;
             return true;
         }
 
         private bool OutOfBounds(Item item, Vector2Int position)
         {
-            return !(position is { x: >= 0, y: >= 0 } &&
-                     position.x + item.Size.x <= Width &&
-                     position.y + item.Size.y <= Height);
+            return position.x < 0 || position.y < 0 ||
+                   position.x + item.Size.x > Width ||
+                   position.y + item.Size.y > Height;
         }
 
         /// <summary>
@@ -143,6 +123,7 @@ namespace Inventories
             if (!CanAddItem(item, position)) return false;
             _inventoryItems.Add(item, position);
             Count++;
+            ManageItemSlots(item, position);
             OnAdded?.Invoke(item, position);
             return true;
         }
@@ -156,20 +137,22 @@ namespace Inventories
 
         private void AddItemsOnCreation(IEnumerable<KeyValuePair<Item, Vector2Int>> items)
         {
+            ValidateItemsForNull(items);
+
             foreach (var item in items)
             {
                 AddItem(item.Key, item.Value);
-                ManageItemSlots(item.Key, item.Value);
             }
         }
 
         private void AddItemsOnCreation(IEnumerable<Item> items)
         {
+            ValidateItemsForNull(items);
+
             foreach (var item in items)
             {
                 var position = Vector2Int.zero;
                 AddItem(item, position);
-                ManageItemSlots(item, position);
             }
         }
 
@@ -192,13 +175,50 @@ namespace Inventories
         /// Returns a free position for a specified item
         /// </summary>
         public bool FindFreePosition(in Vector2Int size, out Vector2Int freePosition)
-            => throw new NotImplementedException();
+        {
+            if (size.x > Width || size.y > Height)
+            {
+                freePosition = Vector2Int.zero;
+                return false;
+            }
+
+            for (int y = 0; y <= Height - size.y; y++)
+            {
+                for (int x = 0; x <= Width - size.x; x++)
+                {
+                    bool positionIsFree = true;
+                    for (int i = 0; i < size.x && positionIsFree; i++)
+                    {
+                        for (int j = 0; j < size.y; j++)
+                        {
+                            if (!IsFree(x + i, y + j))
+                            {
+                                positionIsFree = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (positionIsFree)
+                    {
+                        freePosition = new Vector2Int(x, y);
+                        return true;
+                    }
+                }
+            }
+
+            freePosition = Vector2Int.zero;
+            return false;
+        }
 
 
         /// <summary>
         /// Checks if a specified item exists
         /// </summary>
-        public bool Contains(in Item item) => _inventoryItems.ContainsKey(item);
+        public bool Contains(in Item item)
+        {
+            return item != null && _inventoryItems.ContainsKey(item);
+        }
 
 
         /// <summary>
@@ -208,16 +228,24 @@ namespace Inventories
 
         public bool IsOccupied(in Vector2Int position)
         {
-            for (int posX = position.x; posX < _inventorySlots.GetLength(0); posX++)
+            return _inventorySlots[position.x, position.y];
+        }
+
+        private bool IsOccupied(Item item, Vector2Int position)
+        {
+            int endX = position.x + item.Size.x;
+            int endY = position.y + item.Size.y;
+
+            for (int posX = position.x; posX < endX; posX++)
             {
-                for (int posY = position.y; posY < _inventorySlots.GetLength(1); posY++)
+                for (int posY = position.y; posY < endY; posY++)
                 {
                     if (_inventorySlots[posX, posY])
-                        return false;
+                        return true;
                 }
             }
 
-            return true;
+            return false;
         }
 
 
@@ -228,15 +256,7 @@ namespace Inventories
 
         private bool IsFree(in Vector2Int position)
         {
-            for (int i = position.x; i < _inventorySlots.GetLength(0); i++)
-            {
-                for (int j = position.y; j < _inventorySlots.GetLength(1); j++)
-                {
-                    if (_inventorySlots[i, j]) return false;
-                }
-            }
-
-            return true;
+            return !_inventorySlots[position.x, position.y];
         }
 
 

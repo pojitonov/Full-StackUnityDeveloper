@@ -397,109 +397,109 @@ namespace Inventories
             }).SetName("Full dense");
         }
         
-        // [TestCaseSource(nameof(ContainsCases))]
-        // public bool Contains(Inventory inventory, Item item)
-        // {
-        //     return inventory.Contains(item);
-        // }
-        //
-        // private static IEnumerable<TestCaseData> ContainsCases()
-        // {
-        //     yield return ContainsTrueCase();
-        //     yield return ContainsFalseCase();
-        //     yield return ContainsWhenInventoryIsEmptyCase();
-        //     yield return ContainsWhenItemIsNullCase();
-        // }
-        //
-        // private static TestCaseData ContainsTrueCase()
-        // {
-        //     var item = new Item("X", width: 2, height: 2);
-        //     Inventory inventory = new Inventory(5, 5,
-        //         new KeyValuePair<Item, Vector2Int>(item,
-        //             Vector2Int.zero)
-        //     );
-        //     return new TestCaseData(inventory, item).Returns(true).SetName("True");
-        // }
-        //
-        // private static TestCaseData ContainsFalseCase()
-        // {
-        //     Inventory inventory = new Inventory(5, 5,
-        //         new KeyValuePair<Item, Vector2Int>(new Item("B", 2, 2), Vector2Int.zero)
-        //     );
-        //     return new TestCaseData(inventory, new Item("C", 2, 2)).Returns(false).SetName("False");
-        // }
-        //
-        // private static TestCaseData ContainsWhenInventoryIsEmptyCase()
-        // {
-        //     Inventory inventory = new Inventory(5, 5);
-        //     return new TestCaseData(inventory, new Item("B", 2, 2)).Returns(false)
-        //         .SetName("Inventory is empty");
-        // }
-        //
-        // private static TestCaseData ContainsWhenItemIsNullCase()
-        // {
-        //     Inventory inventory = new Inventory(5, 5);
-        //     return new TestCaseData(inventory, null).Returns(false).SetName("Item is null");
-        // }
-        //
-        // [TestCaseSource(nameof(GetFreePositionCases))]
-        // public bool GetFreePosition(Inventory inventory, Vector2Int size, Vector2Int expectedPosition)
-        // {
-        //     //Act:
-        //     bool success = inventory.FindFreePosition(size, out Vector2Int actualPosition);
-        //
-        //     //Assert:
-        //     Assert.AreEqual(expectedPosition, actualPosition);
-        //     return success;
-        // }
-        //
-        // private static IEnumerable<TestCaseData> GetFreePositionCases()
-        // {
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         new Vector2Int(2, 2),
-        //         new Vector2Int(0, 0)
-        //     ).Returns(true).SetName("Inventory is empty");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         new Vector2Int(5, 5),
-        //         new Vector2Int(0, 0)
-        //     ).Returns(true).SetName("Full item");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5,
-        //             new KeyValuePair<Item, Vector2Int>(new Item("X", 1, 1), new Vector2Int(1, 1))
-        //         ),
-        //         new Vector2Int(3, 3),
-        //         new Vector2Int(2, 0)
-        //     ).Returns(true).SetName("Right Ordering");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5,
-        //             new KeyValuePair<Item, Vector2Int>(new Item("X", 3, 3), new Vector2Int(1, 1))
-        //         ),
-        //         new Vector2Int(2, 2),
-        //         new Vector2Int()
-        //     ).Returns(false).SetName("Middle Item");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5,
-        //             new KeyValuePair<Item, Vector2Int>(new Item("X", 3, 5), new Vector2Int(0, 0)),
-        //             new KeyValuePair<Item, Vector2Int>(new Item("X", 2, 3), new Vector2Int(3, 0))
-        //         ),
-        //         new Vector2Int(2, 2),
-        //         new Vector2Int(3, 3)
-        //     ).Returns(true).SetName("Top Right Corner Space");
-        //
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         new Vector2Int(6, 6),
-        //         new Vector2Int(0, 0)
-        //     ).Returns(false).SetName("Item size is bigger than inventory");
-        // }
-        //
+        [TestCaseSource(nameof(ContainsCases))]
+        public bool Contains(Inventory inventory, Item item)
+        {
+            return inventory.Contains(item);
+        }
+        
+        private static IEnumerable<TestCaseData> ContainsCases()
+        {
+            yield return ContainsTrueCase();
+            yield return ContainsFalseCase();
+            yield return ContainsWhenInventoryIsEmptyCase();
+            yield return ContainsWhenItemIsNullCase();
+        }
+        
+        private static TestCaseData ContainsTrueCase()
+        {
+            var item = new Item("X", width: 2, height: 2);
+            Inventory inventory = new Inventory(5, 5,
+                new KeyValuePair<Item, Vector2Int>(item,
+                    Vector2Int.zero)
+            );
+            return new TestCaseData(inventory, item).Returns(true).SetName("True");
+        }
+        
+        private static TestCaseData ContainsFalseCase()
+        {
+            Inventory inventory = new Inventory(5, 5,
+                new KeyValuePair<Item, Vector2Int>(new Item("B", 2, 2), Vector2Int.zero)
+            );
+            return new TestCaseData(inventory, new Item("C", 2, 2)).Returns(false).SetName("False");
+        }
+        
+        private static TestCaseData ContainsWhenInventoryIsEmptyCase()
+        {
+            Inventory inventory = new Inventory(5, 5);
+            return new TestCaseData(inventory, new Item("B", 2, 2)).Returns(false)
+                .SetName("Inventory is empty");
+        }
+        
+        private static TestCaseData ContainsWhenItemIsNullCase()
+        {
+            Inventory inventory = new Inventory(5, 5);
+            return new TestCaseData(inventory, null).Returns(false).SetName("Item is null");
+        }
+        
+        [TestCaseSource(nameof(GetFreePositionCases))]
+        public bool GetFreePosition(Inventory inventory, Vector2Int size, Vector2Int expectedPosition)
+        {
+            //Act:
+            bool success = inventory.FindFreePosition(size, out Vector2Int actualPosition);
+        
+            //Assert:
+            Assert.AreEqual(expectedPosition, actualPosition);
+            return success;
+        }
+        
+        private static IEnumerable<TestCaseData> GetFreePositionCases()
+        {
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                new Vector2Int(2, 2),
+                new Vector2Int(0, 0)
+            ).Returns(true).SetName("Inventory is empty");
+        
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                new Vector2Int(5, 5),
+                new Vector2Int(0, 0)
+            ).Returns(true).SetName("Full item");
+        
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5,
+                    new KeyValuePair<Item, Vector2Int>(new Item("X", 1, 1), new Vector2Int(1, 1))
+                ),
+                new Vector2Int(3, 3),
+                new Vector2Int(2, 0)
+            ).Returns(true).SetName("Right Ordering");
+        
+            yield return new TestCaseData(
+                new Inventory(5, 5,
+                    new KeyValuePair<Item, Vector2Int>(new Item("X", 3, 3), new Vector2Int(1, 1))
+                ),
+                new Vector2Int(2, 2),
+                new Vector2Int()
+            ).Returns(false).SetName("Middle Item");
+        
+            yield return new TestCaseData(
+                new Inventory(5, 5,
+                    new KeyValuePair<Item, Vector2Int>(new Item("X", 3, 5), new Vector2Int(0, 0)),
+                    new KeyValuePair<Item, Vector2Int>(new Item("X", 2, 3), new Vector2Int(3, 0))
+                ),
+                new Vector2Int(2, 2),
+                new Vector2Int(3, 3)
+            ).Returns(true).SetName("Top Right Corner Space");
+        
+        
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                new Vector2Int(6, 6),
+                new Vector2Int(0, 0)
+            ).Returns(false).SetName("Item size is bigger than inventory");
+        }
+        
         // [TestCase(0, 0)]
         // [TestCase(-1, 10)]
         // [TestCase(10, -2)]
