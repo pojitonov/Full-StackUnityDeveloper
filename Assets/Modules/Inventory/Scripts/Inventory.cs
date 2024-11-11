@@ -93,10 +93,19 @@ namespace Inventories
         public bool CanAddItem(Item item, Vector2Int position)
         {
             if (item == null) return false;
+            ValidateSize(item.Size);
             if (Contains(item)) return false;
             if (OutOfBounds(item, position)) return false;
             if (IsOccupied(item, position)) return false;
             return true;
+        }
+
+        private static void ValidateSize(Vector2Int size)
+        {
+            if (size.x <= 0 || size.y <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
         }
 
         private bool OutOfBounds(Item item, Vector2Int position)
@@ -110,7 +119,13 @@ namespace Inventories
         /// Checks for adding an item on a free position
         /// </summary>
         public bool CanAddItem(in Item item)
-            => throw new NotImplementedException();
+        {
+            if (item == null) return false;
+            ValidateSize(item.Size);
+            if (Contains(item)) return false;
+            if (!FindFreePosition(item.Size, out _)) return false;
+            return true;
+        }
 
 
         /// <summary>
@@ -133,7 +148,12 @@ namespace Inventories
         /// Adds an item on a free position
         /// </summary>
         public bool AddItem(in Item item)
-            => throw new NotImplementedException();
+        {
+            if (!CanAddItem(item)) return false;
+            FindFreePosition(item.Size, out var freePosition);
+            Vector2Int position = freePosition;
+            return AddItem(item, position);
+        }
 
         private void AddItemsOnCreation(IEnumerable<KeyValuePair<Item, Vector2Int>> items)
         {
@@ -176,6 +196,8 @@ namespace Inventories
         /// </summary>
         public bool FindFreePosition(in Vector2Int size, out Vector2Int freePosition)
         {
+            ValidateSize(size);
+
             if (size.x > Width || size.y > Height)
             {
                 freePosition = Vector2Int.zero;

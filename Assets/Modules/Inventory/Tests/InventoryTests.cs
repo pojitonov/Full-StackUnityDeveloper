@@ -500,213 +500,213 @@ namespace Inventories
             ).Returns(false).SetName("Item size is bigger than inventory");
         }
         
-        // [TestCase(0, 0)]
-        // [TestCase(-1, 10)]
-        // [TestCase(10, -2)]
-        // [TestCase(-2, -2)]
-        // [TestCase(0, 10)]
-        // [TestCase(5, 0)]
-        // public void WhenGetFreePositionWithInvalidSizeThenException(int width, int height)
-        // {
-        //     //Arrange:
-        //     var inventory = new Inventory(5, 5);
+        [TestCase(0, 0)]
+        [TestCase(-1, 10)]
+        [TestCase(10, -2)]
+        [TestCase(-2, -2)]
+        [TestCase(0, 10)]
+        [TestCase(5, 0)]
+        public void WhenGetFreePositionWithInvalidSizeThenException(int width, int height)
+        {
+            //Arrange:
+            var inventory = new Inventory(5, 5);
+        
+            //Assert:
+            Assert.Catch<ArgumentOutOfRangeException>(() =>
+                inventory.FindFreePosition(new Vector2Int(width, height), out _));
+        }
         //
-        //     //Assert:
-        //     Assert.Catch<ArgumentOutOfRangeException>(() =>
-        //         inventory.FindFreePosition(new Vector2Int(width, height), out _));
-        // }
-        //
-        // [TestCaseSource(nameof(CanAddOnFreePositionCases))]
-        // public bool CanAddOnFreePosition(Inventory inventory, Item item)
-        // {
-        //     return inventory.CanAddItem(item);
-        // }
-        //
-        // private static IEnumerable<TestCaseData> CanAddOnFreePositionCases()
-        // {
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5),
-        //         new Item("A", new Vector2Int(2, 2))
-        //     ).Returns(true).SetName("Empty Inventory");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5,
-        //             new KeyValuePair<Item, Vector2Int>(new Item("X", 1, 1), new Vector2Int(3, 3))
-        //         ),
-        //         new Item("A", new Vector2Int(2, 2))
-        //     ).Returns(true).SetName("Free Slot");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5,
-        //             new KeyValuePair<Item, Vector2Int>(new Item("X", 2, 2), new Vector2Int(2, 2))
-        //         ),
-        //         new Item("A", new Vector2Int(3, 3))
-        //     ).Returns(false).SetName("Intersects");
-        //
-        //     var item = new Item("X", 1, 1);
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5,
-        //             new KeyValuePair<Item, Vector2Int>(item, new Vector2Int(3, 3))
-        //         ),
-        //         item
-        //     ).Returns(false).SetName("Already Exists");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5),
-        //         null
-        //     ).Returns(false).SetName("Item is null");
-        // }
-        //
-        // [TestCase(0, 0)]
-        // [TestCase(-1, 10)]
-        // [TestCase(10, -2)]
-        // [TestCase(-2, -2)]
-        // [TestCase(0, 10)]
-        // [TestCase(5, 0)]
-        // public void WhenCanAddItemOnFreePositionWithInvalidSizeThenException(int width, int height)
-        // {
-        //     //Arrange:
-        //     var inventory = new Inventory(5, 5);
-        //     var item = new Item(width, height);
-        //
-        //     //Assert:
-        //     Assert.Catch<ArgumentException>(() => inventory.CanAddItem(item));
-        // }
-        //
-        // [TestCase(0, 0)]
-        // [TestCase(-1, 10)]
-        // [TestCase(10, -2)]
-        // [TestCase(-2, -2)]
-        // [TestCase(0, 10)]
-        // [TestCase(5, 0)]
-        // public void WhenCanAddItemOnSpecifiedPositionWithInvalidSizeThenException(int width, int height)
-        // {
-        //     //Arrange:
-        //     var inventory = new Inventory(5, 5);
-        //     var item = new Item(width, height);
-        //
-        //     //Assert:
-        //     Assert.Catch<ArgumentException>(() => inventory.CanAddItem(item, Vector2Int.zero));
-        // }
-        //
-        // [TestCaseSource(nameof(AddOnFreePositionSuccessfulCases))]
-        // public void AddOnFreePositionSuccessful(
-        //     Inventory inventory,
-        //     Item item,
-        //     Vector2Int expectedPosition
-        // )
-        // {
-        //     //Arrange:
-        //     Item addedItem = null;
-        //     Vector2Int addedPosition = Vector2Int.zero;
-        //
-        //     inventory.OnAdded += (i, p) =>
-        //     {
-        //         addedItem = i;
-        //         addedPosition = p;
-        //     };
-        //     int count = inventory.Count;
-        //
-        //     //Pre-assert:
-        //     for (int x = expectedPosition.x; x < expectedPosition.x + item.Size.x; x++)
-        //     for (int y = expectedPosition.y; y < expectedPosition.y + item.Size.y; y++)
-        //     {
-        //         Assert.IsTrue(inventory.IsFree(x, y));
-        //     }
-        //
-        //     //Act:
-        //     bool success = inventory.AddItem(item);
-        //
-        //     //Assert:
-        //     Assert.IsTrue(success);
-        //     Assert.AreEqual(item, addedItem);
-        //     Assert.AreEqual(expectedPosition, addedPosition);
-        //
-        //     Assert.AreEqual(count + 1, inventory.Count);
-        //     Assert.IsTrue(inventory.Contains(item));
-        //
-        //     for (int x = expectedPosition.x; x < expectedPosition.x + item.Size.x; x++)
-        //     for (int y = expectedPosition.y; y < expectedPosition.y + item.Size.y; y++)
-        //     {
-        //         Assert.IsTrue(inventory.IsOccupied(x, y));
-        //     }
-        // }
-        //
-        // private static IEnumerable<TestCaseData> AddOnFreePositionSuccessfulCases()
-        // {
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5),
-        //         new Item("A", new Vector2Int(2, 2)),
-        //         new Vector2Int()
-        //     ).SetName("Empty Inventory");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5,
-        //             new KeyValuePair<Item, Vector2Int>(new Item("X", 1, 1), new Vector2Int(1, 1))
-        //         ),
-        //         new Item("A", new Vector2Int(3, 3)),
-        //         new Vector2Int(2, 0)
-        //     ).SetName("Free Slot");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5),
-        //         new Item("A", new Vector2Int(5, 5)),
-        //         new Vector2Int(0, 0)
-        //     ).SetName("Full Item");
-        //
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5),
-        //         new Item(new Vector2Int(5, 5)),
-        //         new Vector2Int(0, 0)
-        //     ).SetName("Without name");
-        // }
-        //
-        // [TestCaseSource(nameof(AddOnFreePositionFailedCases))]
-        // public void AddOnFreePositionFailed(Inventory inventory, Item item)
-        // {
-        //     //Arrange:
-        //     Item addedItem = null;
-        //     Vector2Int addedPosition = Vector2Int.zero;
-        //
-        //     inventory.OnAdded += (i, p) =>
-        //     {
-        //         addedItem = i;
-        //         addedPosition = p;
-        //     };
-        //
-        //     //Act:
-        //     bool success = inventory.AddItem(item);
-        //
-        //     //Assert:
-        //     Assert.IsFalse(success);
-        //     Assert.IsNull(addedItem);
-        //     Assert.AreEqual(Vector2Int.zero, addedPosition);
-        // }
-        //
-        // private static IEnumerable<TestCaseData> AddOnFreePositionFailedCases()
-        // {
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5,
-        //             new KeyValuePair<Item, Vector2Int>(new Item("X", 2, 2), new Vector2Int(2, 2))
-        //         ),
-        //         new Item("A", new Vector2Int(3, 3))
-        //     ).SetName("Intersects");
-        //
-        //     var item = new Item("X", 1, 1);
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5,
-        //             new KeyValuePair<Item, Vector2Int>(item, new Vector2Int(3, 3))
-        //         ),
-        //         item
-        //     ).SetName("Already Exists");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5),
-        //         null
-        //     ).SetName("Item is null");
-        // }
-        //
+        [TestCaseSource(nameof(CanAddOnFreePositionCases))]
+        public bool CanAddOnFreePosition(Inventory inventory, Item item)
+        {
+            return inventory.CanAddItem(item);
+        }
+        
+        private static IEnumerable<TestCaseData> CanAddOnFreePositionCases()
+        {
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5),
+                new Item("A", new Vector2Int(2, 2))
+            ).Returns(true).SetName("Empty Inventory");
+        
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5,
+                    new KeyValuePair<Item, Vector2Int>(new Item("X", 1, 1), new Vector2Int(3, 3))
+                ),
+                new Item("A", new Vector2Int(2, 2))
+            ).Returns(true).SetName("Free Slot");
+        
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5,
+                    new KeyValuePair<Item, Vector2Int>(new Item("X", 2, 2), new Vector2Int(2, 2))
+                ),
+                new Item("A", new Vector2Int(3, 3))
+            ).Returns(false).SetName("Intersects");
+        
+            var item = new Item("X", 1, 1);
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5,
+                    new KeyValuePair<Item, Vector2Int>(item, new Vector2Int(3, 3))
+                ),
+                item
+            ).Returns(false).SetName("Already Exists");
+        
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5),
+                null
+            ).Returns(false).SetName("Item is null");
+        }
+        
+        [TestCase(0, 0)]
+        [TestCase(-1, 10)]
+        [TestCase(10, -2)]
+        [TestCase(-2, -2)]
+        [TestCase(0, 10)]
+        [TestCase(5, 0)]
+        public void WhenCanAddItemOnFreePositionWithInvalidSizeThenException(int width, int height)
+        {
+            //Arrange:
+            var inventory = new Inventory(5, 5);
+            var item = new Item(width, height);
+        
+            //Assert:
+            Assert.Catch<ArgumentException>(() => inventory.CanAddItem(item));
+        }
+        
+        [TestCase(0, 0)]
+        [TestCase(-1, 10)]
+        [TestCase(10, -2)]
+        [TestCase(-2, -2)]
+        [TestCase(0, 10)]
+        [TestCase(5, 0)]
+        public void WhenCanAddItemOnSpecifiedPositionWithInvalidSizeThenException(int width, int height)
+        {
+            //Arrange:
+            var inventory = new Inventory(5, 5);
+            var item = new Item(width, height);
+        
+            //Assert:
+            Assert.Catch<ArgumentException>(() => inventory.CanAddItem(item, Vector2Int.zero));
+        }
+        
+        [TestCaseSource(nameof(AddOnFreePositionSuccessfulCases))]
+        public void AddOnFreePositionSuccessful(
+            Inventory inventory,
+            Item item,
+            Vector2Int expectedPosition
+        )
+        {
+            //Arrange:
+            Item addedItem = null;
+            Vector2Int addedPosition = Vector2Int.zero;
+        
+            inventory.OnAdded += (i, p) =>
+            {
+                addedItem = i;
+                addedPosition = p;
+            };
+            int count = inventory.Count;
+        
+            //Pre-assert:
+            for (int x = expectedPosition.x; x < expectedPosition.x + item.Size.x; x++)
+            for (int y = expectedPosition.y; y < expectedPosition.y + item.Size.y; y++)
+            {
+                Assert.IsTrue(inventory.IsFree(x, y));
+            }
+        
+            //Act:
+            bool success = inventory.AddItem(item);
+        
+            //Assert:
+            Assert.IsTrue(success);
+            Assert.AreEqual(item, addedItem);
+            Assert.AreEqual(expectedPosition, addedPosition);
+        
+            Assert.AreEqual(count + 1, inventory.Count);
+            Assert.IsTrue(inventory.Contains(item));
+        
+            for (int x = expectedPosition.x; x < expectedPosition.x + item.Size.x; x++)
+            for (int y = expectedPosition.y; y < expectedPosition.y + item.Size.y; y++)
+            {
+                Assert.IsTrue(inventory.IsOccupied(x, y));
+            }
+        }
+        
+        private static IEnumerable<TestCaseData> AddOnFreePositionSuccessfulCases()
+        {
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5),
+                new Item("A", new Vector2Int(2, 2)),
+                new Vector2Int()
+            ).SetName("Empty Inventory");
+        
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5,
+                    new KeyValuePair<Item, Vector2Int>(new Item("X", 1, 1), new Vector2Int(1, 1))
+                ),
+                new Item("A", new Vector2Int(3, 3)),
+                new Vector2Int(2, 0)
+            ).SetName("Free Slot");
+        
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5),
+                new Item("A", new Vector2Int(5, 5)),
+                new Vector2Int(0, 0)
+            ).SetName("Full Item");
+        
+        
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5),
+                new Item(new Vector2Int(5, 5)),
+                new Vector2Int(0, 0)
+            ).SetName("Without name");
+        }
+        
+        [TestCaseSource(nameof(AddOnFreePositionFailedCases))]
+        public void AddOnFreePositionFailed(Inventory inventory, Item item)
+        {
+            //Arrange:
+            Item addedItem = null;
+            Vector2Int addedPosition = Vector2Int.zero;
+        
+            inventory.OnAdded += (i, p) =>
+            {
+                addedItem = i;
+                addedPosition = p;
+            };
+        
+            //Act:
+            bool success = inventory.AddItem(item);
+        
+            //Assert:
+            Assert.IsFalse(success);
+            Assert.IsNull(addedItem);
+            Assert.AreEqual(Vector2Int.zero, addedPosition);
+        }
+        
+        private static IEnumerable<TestCaseData> AddOnFreePositionFailedCases()
+        {
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5,
+                    new KeyValuePair<Item, Vector2Int>(new Item("X", 2, 2), new Vector2Int(2, 2))
+                ),
+                new Item("A", new Vector2Int(3, 3))
+            ).SetName("Intersects");
+        
+            var item = new Item("X", 1, 1);
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5,
+                    new KeyValuePair<Item, Vector2Int>(item, new Vector2Int(3, 3))
+                ),
+                item
+            ).SetName("Already Exists");
+        
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5),
+                null
+            ).SetName("Item is null");
+        }
+        
         // [TestCase(0, 0)]
         // [TestCase(-1, 10)]
         // [TestCase(10, -2)]
