@@ -83,8 +83,7 @@ namespace Inventories
                 throw new ArgumentNullException(nameof(items), "Items array cannot be null.");
             }
         }
-
-
+        
         /// <summary>
         /// Checks for adding an item on a specified position
         /// </summary>
@@ -126,8 +125,7 @@ namespace Inventories
             if (!FindFreePosition(item.Size, out _)) return false;
             return true;
         }
-
-
+        
         /// <summary>
         /// Adds an item on a specified position if not exists
         /// </summary>
@@ -138,21 +136,20 @@ namespace Inventories
             if (!CanAddItem(item, position)) return false;
             _inventoryItems.Add(item, position);
             Count++;
-            ManageItemSlots(item, position);
+            OccupyItemSlots(item, position);
             OnAdded?.Invoke(item, position);
             return true;
         }
-
-
+        
         /// <summary>
         /// Adds an item on a free position
         /// </summary>
         public bool AddItem(in Item item)
         {
             if (!CanAddItem(item)) return false;
-            FindFreePosition(item.Size, out var freePosition);
-            Vector2Int position = freePosition;
-            return AddItem(item, position);
+            FindFreePosition(item.Size, out var position);
+            AddItem(item, position);
+            return true;
         }
 
         private void AddItemsOnCreation(IEnumerable<KeyValuePair<Item, Vector2Int>> items)
@@ -176,7 +173,7 @@ namespace Inventories
             }
         }
 
-        private void ManageItemSlots(Item item, Vector2Int position)
+        private void OccupyItemSlots(Item item, Vector2Int position)
         {
             int endX = position.x + item.Size.x;
             int endY = position.y + item.Size.y;
@@ -189,7 +186,20 @@ namespace Inventories
                 }
             }
         }
+        
+        private void FreeItemSlots(Item item, Vector2Int position)
+        {
+            int endX = position.x + item.Size.x;
+            int endY = position.y + item.Size.y;
 
+            for (int x = position.x; x < endX; x++)
+            {
+                for (int y = position.y; y < endY; y++)
+                {
+                    _inventorySlots[x, y] = false;
+                }
+            }
+        }
 
         /// <summary>
         /// Returns a free position for a specified item
@@ -232,8 +242,7 @@ namespace Inventories
             freePosition = Vector2Int.zero;
             return false;
         }
-
-
+        
         /// <summary>
         /// Checks if a specified item exists
         /// </summary>
@@ -241,8 +250,7 @@ namespace Inventories
         {
             return item != null && _inventoryItems.ContainsKey(item);
         }
-
-
+        
         /// <summary>
         /// Checks if a specified position is occupied
         /// </summary>
@@ -269,8 +277,7 @@ namespace Inventories
 
             return false;
         }
-
-
+        
         /// <summary>
         /// Checks if a position is free
         /// </summary>
@@ -280,8 +287,7 @@ namespace Inventories
         {
             return !_inventorySlots[position.x, position.y];
         }
-
-
+        
         /// <summary>
         /// Removes a specified item if exists
         /// </summary>
@@ -289,9 +295,21 @@ namespace Inventories
             => throw new NotImplementedException();
 
         public bool RemoveItem(in Item item, out Vector2Int position)
-            => throw new NotImplementedException();
+        {
+            if (item == null || !_inventoryItems.ContainsKey(item))
+            {
+                position = Vector2Int.zero;
+                return false;
+            }
+            position = _inventoryItems[item];
+            _inventoryItems.Remove(item);
+            FreeItemSlots(item, position);
+            Count--;
+            OnRemoved?.Invoke(item, position);
 
-
+            return true;
+        }
+        
         /// <summary>
         /// Returns an item at specified position 
         /// </summary>

@@ -707,148 +707,148 @@ namespace Inventories
             ).SetName("Item is null");
         }
         
-        // [TestCase(0, 0)]
-        // [TestCase(-1, 10)]
-        // [TestCase(10, -2)]
-        // [TestCase(-2, -2)]
-        // [TestCase(0, 10)]
-        // [TestCase(5, 0)]
-        // public void WhenAddOnFreePositionItemWithInvalidSizeThenException(int width, int height)
-        // {
-        //     //Arrange:
-        //     var inventory = new Inventory(5, 5);
-        //     var item = new Item(width, height);
-        //
-        //     //Assert:
-        //     Assert.Catch<ArgumentException>(() => inventory.AddItem(item));
-        // }
-        //
-        //
-        // [TestCase(0, 0)]
-        // [TestCase(-1, 10)]
-        // [TestCase(10, -2)]
-        // [TestCase(-2, -2)]
-        // [TestCase(0, 10)]
-        // [TestCase(5, 0)]
-        // public void WhenAddOnSpecifiedPositionItemWithInvalidSizeThenException(int width, int height)
-        // {
-        //     //Arrange:
-        //     var inventory = new Inventory(5, 5);
-        //     var item = new Item(width, height);
-        //
-        //     //Assert:
-        //     Assert.Catch<ArgumentException>(() => inventory.AddItem(item, Vector2Int.zero));
-        // }
-        //
-        // [TestCaseSource(nameof(RemoveFailedCases))]
-        // public void RemoveFailed(Inventory inventory, Item item)
-        // {
-        //     //Arrange:
-        //     Item removedItem = null;
-        //     Vector2Int removedPosition = Vector2Int.zero;
-        //
-        //     inventory.OnRemoved += (i, p) =>
-        //     {
-        //         removedItem = i;
-        //         removedPosition = p;
-        //     };
-        //
-        //     //Act:
-        //     bool success = inventory.RemoveItem(item, out Vector2Int actualPosition);
-        //
-        //     //Assert:
-        //     Assert.IsFalse(success);
-        //     Assert.IsNull(removedItem);
-        //     Assert.AreEqual(Vector2Int.zero, removedPosition);
-        //     Assert.AreEqual(Vector2Int.zero, actualPosition);
-        // }
-        //
-        // private static IEnumerable<TestCaseData> RemoveFailedCases()
-        // {
-        //     yield return new TestCaseData(
-        //         new Inventory(5, 5),
-        //         null
-        //     ).SetName("Item is null");
-        //
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5,
-        //             new KeyValuePair<Item, Vector2Int>(new Item("X", 2, 2), new Vector2Int(2, 2))
-        //         ),
-        //         new Item("Y", 5, 5)
-        //     ).SetName("Item is absent!");
-        // }
-        //
-        // [TestCaseSource(nameof(RemoveSuccessfulCases))]
-        // public void RemoveSuccessful(
-        //     Inventory inventory,
-        //     Item item,
-        //     Vector2Int expectedPosition
-        // )
-        // {
-        //     //Arrange:
-        //     Item removedItem = null;
-        //     Vector2Int removedPosition = Vector2Int.zero;
-        //
-        //     inventory.OnRemoved += (i, p) =>
-        //     {
-        //         removedItem = i;
-        //         removedPosition = p;
-        //     };
-        //     int count = inventory.Count;
-        //
-        //     //Pre-assert:
-        //     Assert.IsTrue(inventory.Contains(item));
-        //
-        //     for (int x = expectedPosition.x; x < expectedPosition.x + item.Size.x; x++)
-        //     for (int y = expectedPosition.y; y < expectedPosition.y + item.Size.y; y++)
-        //     {
-        //         Assert.IsTrue(inventory.IsOccupied(x, y));
-        //     }
-        //
-        //     //Act:
-        //     bool success = inventory.RemoveItem(item, out Vector2Int actualPosition);
-        //
-        //     //Assert:
-        //     Assert.IsTrue(success);
-        //     Assert.AreEqual(item, removedItem);
-        //     Assert.AreEqual(expectedPosition, removedPosition);
-        //     Assert.AreEqual(expectedPosition, actualPosition);
-        //
-        //     Assert.AreEqual(count - 1, inventory.Count);
-        //     Assert.IsFalse(inventory.Contains(item));
-        //
-        //     for (int x = expectedPosition.x; x < expectedPosition.x + item.Size.x; x++)
-        //     for (int y = expectedPosition.y; y < expectedPosition.y + item.Size.y; y++)
-        //     {
-        //         Assert.IsTrue(inventory.IsFree(x, y));
-        //     }
-        // }
-        //
-        // private static IEnumerable<TestCaseData> RemoveSuccessfulCases()
-        // {
-        //     Item item1 = new Item("X", width: 2, height: 2);
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5,
-        //             new KeyValuePair<Item, Vector2Int>(item1,
-        //                 new Vector2Int(2, 2))
-        //         ),
-        //         item1,
-        //         new Vector2Int(2, 2)
-        //     ).SetName("Case 1");
-        //
-        //     Item item2 = new Item("X", width: 3, height: 2);
-        //     yield return new TestCaseData(
-        //         new Inventory(width: 5, height: 5,
-        //             new KeyValuePair<Item, Vector2Int>(item2,
-        //                 new Vector2Int(1, 2)),
-        //             new KeyValuePair<Item, Vector2Int>(new Item("D", width: 1, height: 2),
-        //                 new Vector2Int(4, 0))
-        //         ),
-        //         item2,
-        //         new Vector2Int(1, 2)
-        //     ).SetName("Case 2");
-        // }
-        //
+        [TestCase(0, 0)]
+        [TestCase(-1, 10)]
+        [TestCase(10, -2)]
+        [TestCase(-2, -2)]
+        [TestCase(0, 10)]
+        [TestCase(5, 0)]
+        public void WhenAddOnFreePositionItemWithInvalidSizeThenException(int width, int height)
+        {
+            //Arrange:
+            var inventory = new Inventory(5, 5);
+            var item = new Item(width, height);
+        
+            //Assert:
+            Assert.Catch<ArgumentException>(() => inventory.AddItem(item));
+        }
+        
+        
+        [TestCase(0, 0)]
+        [TestCase(-1, 10)]
+        [TestCase(10, -2)]
+        [TestCase(-2, -2)]
+        [TestCase(0, 10)]
+        [TestCase(5, 0)]
+        public void WhenAddOnSpecifiedPositionItemWithInvalidSizeThenException(int width, int height)
+        {
+            //Arrange:
+            var inventory = new Inventory(5, 5);
+            var item = new Item(width, height);
+        
+            //Assert:
+            Assert.Catch<ArgumentException>(() => inventory.AddItem(item, Vector2Int.zero));
+        }
+        
+        [TestCaseSource(nameof(RemoveFailedCases))]
+        public void RemoveFailed(Inventory inventory, Item item)
+        {
+            //Arrange:
+            Item removedItem = null;
+            Vector2Int removedPosition = Vector2Int.zero;
+        
+            inventory.OnRemoved += (i, p) =>
+            {
+                removedItem = i;
+                removedPosition = p;
+            };
+        
+            //Act:
+            bool success = inventory.RemoveItem(item, out Vector2Int actualPosition);
+        
+            //Assert:
+            Assert.IsFalse(success);
+            Assert.IsNull(removedItem);
+            Assert.AreEqual(Vector2Int.zero, removedPosition);
+            Assert.AreEqual(Vector2Int.zero, actualPosition);
+        }
+        
+        private static IEnumerable<TestCaseData> RemoveFailedCases()
+        {
+            yield return new TestCaseData(
+                new Inventory(5, 5),
+                null
+            ).SetName("Item is null");
+        
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5,
+                    new KeyValuePair<Item, Vector2Int>(new Item("X", 2, 2), new Vector2Int(2, 2))
+                ),
+                new Item("Y", 5, 5)
+            ).SetName("Item is absent!");
+        }
+        
+        [TestCaseSource(nameof(RemoveSuccessfulCases))]
+        public void RemoveSuccessful(
+            Inventory inventory,
+            Item item,
+            Vector2Int expectedPosition
+        )
+        {
+            //Arrange:
+            Item removedItem = null;
+            Vector2Int removedPosition = Vector2Int.zero;
+        
+            inventory.OnRemoved += (i, p) =>
+            {
+                removedItem = i;
+                removedPosition = p;
+            };
+            int count = inventory.Count;
+        
+            //Pre-assert:
+            Assert.IsTrue(inventory.Contains(item));
+        
+            for (int x = expectedPosition.x; x < expectedPosition.x + item.Size.x; x++)
+            for (int y = expectedPosition.y; y < expectedPosition.y + item.Size.y; y++)
+            {
+                Assert.IsTrue(inventory.IsOccupied(x, y));
+            }
+        
+            //Act:
+            bool success = inventory.RemoveItem(item, out Vector2Int actualPosition);
+        
+            //Assert:
+            Assert.IsTrue(success);
+            Assert.AreEqual(item, removedItem);
+            Assert.AreEqual(expectedPosition, removedPosition);
+            Assert.AreEqual(expectedPosition, actualPosition);
+        
+            Assert.AreEqual(count - 1, inventory.Count);
+            Assert.IsFalse(inventory.Contains(item));
+        
+            for (int x = expectedPosition.x; x < expectedPosition.x + item.Size.x; x++)
+            for (int y = expectedPosition.y; y < expectedPosition.y + item.Size.y; y++)
+            {
+                Assert.IsTrue(inventory.IsFree(x, y));
+            }
+        }
+        
+        private static IEnumerable<TestCaseData> RemoveSuccessfulCases()
+        {
+            Item item1 = new Item("X", width: 2, height: 2);
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5,
+                    new KeyValuePair<Item, Vector2Int>(item1,
+                        new Vector2Int(2, 2))
+                ),
+                item1,
+                new Vector2Int(2, 2)
+            ).SetName("Case 1");
+        
+            Item item2 = new Item("X", width: 3, height: 2);
+            yield return new TestCaseData(
+                new Inventory(width: 5, height: 5,
+                    new KeyValuePair<Item, Vector2Int>(item2,
+                        new Vector2Int(1, 2)),
+                    new KeyValuePair<Item, Vector2Int>(new Item("D", width: 1, height: 2),
+                        new Vector2Int(4, 0))
+                ),
+                item2,
+                new Vector2Int(1, 2)
+            ).SetName("Case 2");
+        }
+        
         // [TestCaseSource(nameof(GetCases))]
         // public Item Get(Inventory inventory, Vector2Int position)
         // {
