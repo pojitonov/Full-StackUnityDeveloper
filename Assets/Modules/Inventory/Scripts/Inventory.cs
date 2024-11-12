@@ -83,7 +83,7 @@ namespace Inventories
                 throw new ArgumentNullException(nameof(items), "Items array cannot be null.");
             }
         }
-        
+
         /// <summary>
         /// Checks for adding an item on a specified position
         /// </summary>
@@ -99,9 +99,11 @@ namespace Inventories
             return true;
         }
 
-        private static void ValidateSize(Vector2Int size)
+        private void ValidateSize(Vector2Int size) => ValidateSize(size.x, size.y);
+
+        private void ValidateSize(int width, int height)
         {
-            if (size.x <= 0 || size.y <= 0)
+            if (width <= 0 || height <= 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
@@ -125,7 +127,7 @@ namespace Inventories
             if (!FindFreePosition(item.Size, out _)) return false;
             return true;
         }
-        
+
         /// <summary>
         /// Adds an item on a specified position if not exists
         /// </summary>
@@ -140,7 +142,7 @@ namespace Inventories
             OnAdded?.Invoke(item, position);
             return true;
         }
-        
+
         /// <summary>
         /// Adds an item on a free position
         /// </summary>
@@ -186,7 +188,7 @@ namespace Inventories
                 }
             }
         }
-        
+
         private void FreeItemSlots(Item item, Vector2Int position)
         {
             int endX = position.x + item.Size.x;
@@ -242,7 +244,7 @@ namespace Inventories
             freePosition = Vector2Int.zero;
             return false;
         }
-        
+
         /// <summary>
         /// Checks if a specified item exists
         /// </summary>
@@ -250,7 +252,7 @@ namespace Inventories
         {
             return item != null && _inventoryItems.ContainsKey(item);
         }
-        
+
         /// <summary>
         /// Checks if a specified position is occupied
         /// </summary>
@@ -277,7 +279,7 @@ namespace Inventories
 
             return false;
         }
-        
+
         /// <summary>
         /// Checks if a position is free
         /// </summary>
@@ -287,7 +289,7 @@ namespace Inventories
         {
             return !_inventorySlots[position.x, position.y];
         }
-        
+
         /// <summary>
         /// Removes a specified item if exists
         /// </summary>
@@ -301,6 +303,7 @@ namespace Inventories
                 position = Vector2Int.zero;
                 return false;
             }
+
             position = _inventoryItems[item];
             _inventoryItems.Remove(item);
             FreeItemSlots(item, position);
@@ -309,15 +312,41 @@ namespace Inventories
 
             return true;
         }
-        
+
         /// <summary>
         /// Returns an item at specified position 
         /// </summary>
-        public Item GetItem(in Vector2Int position)
-            => throw new NotImplementedException();
+        public Item GetItem(in int x, in int y) => GetItem(new Vector2Int(x, y));
 
-        public Item GetItem(in int x, in int y)
-            => throw new NotImplementedException();
+        public Item GetItem(in Vector2Int position)
+        {
+            ValidatePosition(position);
+
+            foreach (var (item, value) in _inventoryItems)
+            {
+                Vector2Int itemSize = item.Size;
+                int startX = value.x;
+                int startY = value.y;
+                int endX = startX + itemSize.x;
+                int endY = startY + itemSize.y;
+
+                if (position.x >= startX && position.x < endX &&
+                    position.y >= startY && position.y < endY)
+                {
+                    return item;
+                }
+            }
+
+            throw new NullReferenceException();
+        }
+
+        private void ValidatePosition(Vector2Int position)
+        {
+            if (position.x < 0 || position.y < 0 || position.x >= Width || position.y >= Height)
+            {
+                throw new IndexOutOfRangeException();
+            }
+        }
 
         public bool TryGetItem(in Vector2Int position, out Item item)
             => throw new NotImplementedException();
