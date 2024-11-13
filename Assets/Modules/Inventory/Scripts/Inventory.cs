@@ -258,7 +258,7 @@ namespace Inventories
         /// </summary>
         public bool IsOccupied(in int x, in int y) => IsOccupied(new Vector2Int(x, y));
 
-        public bool IsOccupied(in Vector2Int position)
+        private bool IsOccupied(in Vector2Int position)
         {
             return _inventorySlots[position.x, position.y];
         }
@@ -348,17 +348,51 @@ namespace Inventories
             }
         }
 
-        public bool TryGetItem(in Vector2Int position, out Item item)
-            => throw new NotImplementedException();
+        public bool TryGetItem(in int x, in int y, out Item item) => TryGetItem(new Vector2Int(x, y), out item);
 
-        public bool TryGetItem(in int x, in int y, out Item item)
-            => throw new NotImplementedException();
+        public bool TryGetItem(in Vector2Int position, out Item item)
+        {
+            foreach (var (currentItem, startPosition) in _inventoryItems)
+            {
+                Vector2Int itemSize = currentItem.Size;
+                int endX = startPosition.x + itemSize.x;
+                int endY = startPosition.y + itemSize.y;
+
+                if (position.x >= startPosition.x && position.x < endX &&
+                    position.y >= startPosition.y && position.y < endY)
+                {
+                    item = currentItem;
+                    return true;
+                }
+            }
+
+            item = null;
+            return false;
+        }
+
 
         /// <summary>
         /// Returns matrix positions of a specified item 
         /// </summary>
         public Vector2Int[] GetPositions(in Item item)
-            => throw new NotImplementedException();
+        {
+            if(item == null)
+                throw new NullReferenceException(nameof(item));
+            
+            if (!_inventoryItems.TryGetValue(item, out Vector2Int startPosition))
+                throw new KeyNotFoundException(nameof(item));
+
+            var positions = new List<Vector2Int>();
+            for (int x = startPosition.x; x < startPosition.x + item.Size.x; x++)
+            {
+                for (int y = startPosition.y; y < startPosition.y + item.Size.y; y++)
+                {
+                    positions.Add(new Vector2Int(x, y));
+                }
+            }
+
+            return positions.ToArray();
+        }
 
         public bool TryGetPositions(in Item item, out Vector2Int[] positions)
             => throw new NotImplementedException();
