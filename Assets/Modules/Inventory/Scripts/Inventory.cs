@@ -439,7 +439,9 @@ namespace Inventories
         /// Returns a count of items with a specified name
         /// </summary>
         public int GetItemCount(string name)
-            => throw new NotImplementedException();
+        {
+            return _inventoryItems.Keys.Count(item => item.Name == name);
+        }
 
         /// <summary>
         /// Moves a specified item to a target position if it exists
