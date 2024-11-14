@@ -418,18 +418,21 @@ namespace Inventories
         /// </summary>
         public void Clear()
         {
-            _inventoryItems.Clear();
-            Count = 0;
-
-            for (int x = 0; x < Width; x++)
+            if (_inventoryItems.Count > 0)
             {
-                for (int y = 0; y < Height; y++)
-                {
-                    _inventorySlots[x, y] = false;
-                }
-            }
+                _inventoryItems.Clear();
+                Count = 0;
 
-            OnCleared?.Invoke();
+                for (int x = 0; x < Width; x++)
+                {
+                    for (int y = 0; y < Height; y++)
+                    {
+                        _inventorySlots[x, y] = false;
+                    }
+                }
+
+                OnCleared?.Invoke();
+            }
         }
 
         /// <summary>
