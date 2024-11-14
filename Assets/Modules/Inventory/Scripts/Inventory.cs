@@ -399,7 +399,7 @@ namespace Inventories
             if (item == null) return false;
             if (!_inventoryItems.TryGetValue(item, out Vector2Int startPosition))
                 return false;
-            
+
             var resultPositions = new List<Vector2Int>();
             for (int x = startPosition.x; x < startPosition.x + item.Size.x; x++)
             {
@@ -417,7 +417,20 @@ namespace Inventories
         /// Clears all inventory items
         /// </summary>
         public void Clear()
-            => throw new NotImplementedException();
+        {
+            _inventoryItems.Clear();
+            Count = 0;
+
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    _inventorySlots[x, y] = false;
+                }
+            }
+
+            OnCleared?.Invoke();
+        }
 
         /// <summary>
         /// Returns a count of items with a specified name
@@ -444,9 +457,13 @@ namespace Inventories
             => throw new NotImplementedException();
 
         public IEnumerator<Item> GetEnumerator()
-            => throw new NotImplementedException();
+        {
+            return _inventoryItems.Keys.GetEnumerator();
+        }
 
         IEnumerator IEnumerable.GetEnumerator()
-            => throw new NotImplementedException();
+        {
+            return GetEnumerator();
+        }
     }
 }

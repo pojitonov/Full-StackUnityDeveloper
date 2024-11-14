@@ -1047,38 +1047,38 @@ namespace Inventories
         }
         
         
-        // [Test]
-        // public void Clear()
-        // {
-        //     //Arrange:
-        //     var itemD = new Item("D", 1, 2);
-        //     var itemX = new Item("X", 3, 2);
-        //     var inventory = new Inventory(5, 5,
-        //         new KeyValuePair<Item, Vector2Int>(itemD, new Vector2Int(4, 0)),
-        //         new KeyValuePair<Item, Vector2Int>(itemX, new Vector2Int(1, 2))
-        //     );
-        //
-        //     bool wasEvent = false;
-        //     inventory.OnCleared += () => wasEvent = true;
-        //
-        //     //Act:
-        //     inventory.Clear();
-        //
-        //     //Assert:
-        //     Assert.AreEqual(0, inventory.Count);
-        //     Assert.IsTrue(wasEvent);
-        //     Assert.IsFalse(inventory.Contains(itemD));
-        //     Assert.IsFalse(inventory.Contains(itemX));
-        //
-        //     Assert.AreEqual(Array.Empty<Item>(), inventory.ToArray());
-        //
-        //     for (int x = 0; x < inventory.Width; x++)
-        //     for (int y = 0; y < inventory.Height; y++)
-        //     {
-        //         Assert.IsTrue(inventory.IsFree(x, y));
-        //     }
-        // }
-        //
+        [Test]
+        public void Clear()
+        {
+            //Arrange:
+            var itemD = new Item("D", 1, 2);
+            var itemX = new Item("X", 3, 2);
+            var inventory = new Inventory(5, 5,
+                new KeyValuePair<Item, Vector2Int>(itemD, new Vector2Int(4, 0)),
+                new KeyValuePair<Item, Vector2Int>(itemX, new Vector2Int(1, 2))
+            );
+        
+            bool wasEvent = false;
+            inventory.OnCleared += () => wasEvent = true;
+        
+            //Act:
+            inventory.Clear();
+        
+            //Assert:
+            Assert.AreEqual(0, inventory.Count);
+            Assert.IsTrue(wasEvent);
+            Assert.IsFalse(inventory.Contains(itemD));
+            Assert.IsFalse(inventory.Contains(itemX));
+        
+            Assert.AreEqual(Array.Empty<Item>(), inventory.ToArray());
+        
+            for (int x = 0; x < inventory.Width; x++)
+            for (int y = 0; y < inventory.Height; y++)
+            {
+                Assert.IsTrue(inventory.IsFree(x, y));
+            }
+        }
+        
         // [Test]
         // public void WhenClearEmptyInventoryThenEventNotRisen()
         // {
