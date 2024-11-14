@@ -376,9 +376,8 @@ namespace Inventories
         /// </summary>
         public Vector2Int[] GetPositions(in Item item)
         {
-            if(item == null)
-                throw new NullReferenceException(nameof(item));
-            
+            if (item == null) throw new NullReferenceException(nameof(item));
+
             if (!_inventoryItems.TryGetValue(item, out Vector2Int startPosition))
                 throw new KeyNotFoundException(nameof(item));
 
@@ -395,7 +394,24 @@ namespace Inventories
         }
 
         public bool TryGetPositions(in Item item, out Vector2Int[] positions)
-            => throw new NotImplementedException();
+        {
+            positions = null;
+            if (item == null) return false;
+            if (!_inventoryItems.TryGetValue(item, out Vector2Int startPosition))
+                return false;
+            
+            var resultPositions = new List<Vector2Int>();
+            for (int x = startPosition.x; x < startPosition.x + item.Size.x; x++)
+            {
+                for (int y = startPosition.y; y < startPosition.y + item.Size.y; y++)
+                {
+                    resultPositions.Add(new Vector2Int(x, y));
+                }
+            }
+
+            positions = resultPositions.ToArray();
+            return true;
+        }
 
         /// <summary>
         /// Clears all inventory items
