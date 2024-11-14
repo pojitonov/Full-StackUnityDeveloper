@@ -447,7 +447,34 @@ namespace Inventories
         /// Moves a specified item to a target position if it exists
         /// </summary>
         public bool MoveItem(in Item item, in Vector2Int newPosition)
-            => throw new NotImplementedException();
+        {
+            if (item == null || !_inventoryItems.ContainsKey(item))
+            {
+                return false;
+            }
+
+            Vector2Int currentPosition = _inventoryItems[item];
+
+            if (currentPosition == newPosition)
+            {
+                return true;
+            }
+
+            FreeItemSlots(item, currentPosition);
+
+            if (OutOfBounds(item, newPosition) || IsOccupied(item, newPosition))
+            {
+                OccupyItemSlots(item, currentPosition);
+                return false;
+            }
+
+            _inventoryItems[item] = newPosition;
+            OccupyItemSlots(item, newPosition);
+
+            OnMoved?.Invoke(item, newPosition);
+
+            return true;
+        }
 
         /// <summary>
         /// Reorganizes inventory space to make the free area uniform
@@ -474,7 +501,7 @@ namespace Inventories
                 }
             }
         }
-        
+
         public IEnumerator<Item> GetEnumerator()
         {
             return _inventoryItems.Keys.GetEnumerator();
