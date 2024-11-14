@@ -1123,35 +1123,35 @@ namespace Inventories
             yield return new TestCaseData(inventory, "F").Returns(0).SetName("Absent items");
         }
         
-        // [TestCaseSource(nameof(CopyToCases))]
-        // public void CopyTo(Inventory inventory, Item[,] expected, Item[,] actual)
-        // {
-        //     inventory.CopyTo(actual);
-        //     Assert.AreEqual(expected, actual);
-        // }
-        //
-        // private static IEnumerable<TestCaseData> CopyToCases()
-        // {
-        //     var x = new Item("X", 2, 2);
-        //     var y = new Item("Y", 1, 3);
-        //     var z = new Item("Z", 2, 1);
-        //
-        //     var inventory = new Inventory(3, 3,
-        //         new KeyValuePair<Item, Vector2Int>(x, new Vector2Int(0, 0)),
-        //         new KeyValuePair<Item, Vector2Int>(y, new Vector2Int(2, 0)),
-        //         new KeyValuePair<Item, Vector2Int>(z, new Vector2Int(0, 2))
-        //     );
-        //
-        //     var expected = new[,]
-        //     {
-        //         {x, x, z},
-        //         {x, x, z},
-        //         {y, y, y}
-        //     };
-        //     var actual = new Item[3, 3];
-        //     yield return new TestCaseData(inventory, expected, actual).SetName("Sample");
-        // }
-        //
+        [TestCaseSource(nameof(CopyToCases))]
+        public void CopyTo(Inventory inventory, Item[,] expected, Item[,] actual)
+        {
+            inventory.CopyTo(actual);
+            Assert.AreEqual(expected, actual);
+        }
+        
+        private static IEnumerable<TestCaseData> CopyToCases()
+        {
+            var x = new Item("X", 2, 2);
+            var y = new Item("Y", 1, 3);
+            var z = new Item("Z", 2, 1);
+        
+            var inventory = new Inventory(3, 3,
+                new KeyValuePair<Item, Vector2Int>(x, new Vector2Int(0, 0)),
+                new KeyValuePair<Item, Vector2Int>(y, new Vector2Int(2, 0)),
+                new KeyValuePair<Item, Vector2Int>(z, new Vector2Int(0, 2))
+            );
+        
+            var expected = new[,]
+            {
+                {x, x, z},
+                {x, x, z},
+                {y, y, y}
+            };
+            var actual = new Item[3, 3];
+            yield return new TestCaseData(inventory, expected, actual).SetName("Sample");
+        }
+        
         // [TestCaseSource(nameof(MoveItemSuccessfulCases))]
         // public void MoveItemSuccessful(Inventory inventory, Item item, Vector2Int position)
         // {

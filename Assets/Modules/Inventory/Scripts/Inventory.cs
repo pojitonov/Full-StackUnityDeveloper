@@ -459,8 +459,22 @@ namespace Inventories
         /// Copies inventory items to a specified matrix
         /// </summary>
         public void CopyTo(in Item[,] matrix)
-            => throw new NotImplementedException();
+        {
+            foreach (var kvp in _inventoryItems)
+            {
+                var item = kvp.Key;
+                var position = kvp.Value;
 
+                for (int x = position.x; x < position.x + item.Size.x; x++)
+                {
+                    for (int y = position.y; y < position.y + item.Size.y; y++)
+                    {
+                        matrix[x, y] = item;
+                    }
+                }
+            }
+        }
+        
         public IEnumerator<Item> GetEnumerator()
         {
             return _inventoryItems.Keys.GetEnumerator();
