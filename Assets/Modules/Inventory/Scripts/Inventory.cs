@@ -448,7 +448,12 @@ namespace Inventories
         /// </summary>
         public bool MoveItem(in Item item, in Vector2Int newPosition)
         {
-            if (item == null || !_inventoryItems.ContainsKey(item))
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+            }
+            
+            if (!_inventoryItems.ContainsKey(item))
             {
                 return false;
             }
@@ -480,7 +485,20 @@ namespace Inventories
         /// Reorganizes inventory space to make the free area uniform
         /// </summary>
         public void ReorganizeSpace()
-            => throw new NotImplementedException();
+        {
+            var items = _inventoryItems.Keys.ToList();
+            Clear();
+    
+            items.Sort((a, b) => b.Size.y * b.Size.x - a.Size.y * a.Size.x);
+    
+            foreach (var item in items)
+            {
+                if (FindFreePosition(item.Size, out Vector2Int position))
+                {
+                    AddItem(item, position);
+                }
+            }
+        }
 
         /// <summary>
         /// Copies inventory items to a specified matrix

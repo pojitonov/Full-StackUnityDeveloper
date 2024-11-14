@@ -1202,18 +1202,8 @@ namespace Inventories
                 new Vector2Int(1, 1)
             ).SetName("Intersects with itself");
         }
-        
-        [Test]
-        public void WhenMoveNullItemThenException()
-        {
-            //Arrange:
-            var inventory = new Inventory(5, 5);
-        
-            //Assert:
-            Assert.Catch<ArgumentNullException>(() => inventory.MoveItem(null, new Vector2Int(1, 1)));
-        }
-        
-        
+
+
         [TestCaseSource(nameof(MoveItemFailedCases))]
         public void MoveItemFailed(Inventory inventory, Item item, Vector2Int position)
         {
@@ -1237,7 +1227,7 @@ namespace Inventories
             inventory.TryGetItem(position, out Item actualItem);
             Assert.AreNotEqual(item, actualItem);
         }
-        
+
         public static IEnumerable<TestCaseData> MoveItemFailedCases()
         {
             yield return MoveAbsentItemCase();
@@ -1250,7 +1240,17 @@ namespace Inventories
         
             yield return MoveFailedWhenIntersectsWithAnother();
         }
+
+        [Test]
+        public void WhenMoveNullItemThenException()
+        {
+            //Arrange:
+            var inventory = new Inventory(5, 5);
         
+            //Assert:
+            Assert.Catch<ArgumentNullException>(() => inventory.MoveItem(null, new Vector2Int(1, 1)));
+        }
+
         private static TestCaseData MoveFailedWhenIntersectsWithAnother()
         {
             var x = new Item("X", 2, 2);
