@@ -12,7 +12,7 @@ namespace Inventories
     public sealed class Inventory : IEnumerable<Item>
     {
         private Dictionary<Item, Vector2Int> _inventoryItems;
-        private bool[,] _inventorySlots;
+        private bool[,] _inventoryGrid;
 
         public event Action<Item, Vector2Int> OnAdded;
         public event Action<Item, Vector2Int> OnRemoved;
@@ -55,18 +55,15 @@ namespace Inventories
             AddItemsOnCreation(items);
         }
 
-        public HashSet<Item> ToHashSet()
-        {
-            return _inventoryItems.Keys.ToHashSet();
-        }
+        public HashSet<Item> ToHashSet() => _inventoryItems.Keys.ToHashSet();
 
         private void InitializeInventory(in int width, in int height)
         {
             Width = width;
             Height = height;
             Count = 0;
-            _inventorySlots = new bool[width, height];
-            _inventoryItems = new();
+            _inventoryGrid = new bool[width, height];
+            _inventoryItems = new Dictionary<Item, Vector2Int>();
         }
 
         private static void ValidateInventorySize(int width, int height)
@@ -78,10 +75,7 @@ namespace Inventories
 
         private static void ValidateItemsForNull<T>(IEnumerable<T> items)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items), "Items array cannot be null.");
-            }
+            if (items == null) throw new ArgumentNullException(nameof(items), "Items array cannot be null.");
         }
 
         /// <summary>
@@ -109,12 +103,9 @@ namespace Inventories
             }
         }
 
-        private bool OutOfBounds(Item item, Vector2Int position)
-        {
-            return position.x < 0 || position.y < 0 ||
-                   position.x + item.Size.x > Width ||
-                   position.y + item.Size.y > Height;
-        }
+        private bool OutOfBounds(Item item, Vector2Int position) =>
+            position.x < 0 || position.y < 0 ||
+            position.x + item.Size.x > Width || position.y + item.Size.y > Height;
 
         /// <summary>
         /// Checks for adding an item on a free position
@@ -184,7 +175,7 @@ namespace Inventories
             {
                 for (int y = position.y; y < endY; y++)
                 {
-                    _inventorySlots[x, y] = true;
+                    _inventoryGrid[x, y] = true;
                 }
             }
         }
@@ -198,7 +189,7 @@ namespace Inventories
             {
                 for (int y = position.y; y < endY; y++)
                 {
-                    _inventorySlots[x, y] = false;
+                    _inventoryGrid[x, y] = false;
                 }
             }
         }
@@ -260,7 +251,7 @@ namespace Inventories
 
         private bool IsOccupied(in Vector2Int position)
         {
-            return _inventorySlots[position.x, position.y];
+            return _inventoryGrid[position.x, position.y];
         }
 
         private bool IsOccupied(Item item, Vector2Int position)
@@ -272,7 +263,7 @@ namespace Inventories
             {
                 for (int posY = position.y; posY < endY; posY++)
                 {
-                    if (_inventorySlots[posX, posY])
+                    if (_inventoryGrid[posX, posY])
                         return true;
                 }
             }
@@ -287,14 +278,26 @@ namespace Inventories
 
         private bool IsFree(in Vector2Int position)
         {
-            return !_inventorySlots[position.x, position.y];
+            return !_inventoryGrid[position.x, position.y];
         }
 
         /// <summary>
         /// Removes a specified item if exists
         /// </summary>
         public bool RemoveItem(in Item item)
-            => throw new NotImplementedException();
+        {
+            if (item == null || !_inventoryItems.ContainsKey(item))
+            {
+                return false;
+            }
+
+            if (RemoveItem(item, out Vector2Int position))
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         public bool RemoveItem(in Item item, out Vector2Int position)
         {
@@ -370,7 +373,6 @@ namespace Inventories
             return false;
         }
 
-
         /// <summary>
         /// Returns matrix positions of a specified item 
         /// </summary>
@@ -427,7 +429,7 @@ namespace Inventories
                 {
                     for (int y = 0; y < Height; y++)
                     {
-                        _inventorySlots[x, y] = false;
+                        _inventoryGrid[x, y] = false;
                     }
                 }
 
@@ -452,7 +454,7 @@ namespace Inventories
             {
                 throw new ArgumentNullException(nameof(item), "Item cannot be null.");
             }
-            
+
             if (!_inventoryItems.ContainsKey(item))
             {
                 return false;
@@ -488,9 +490,9 @@ namespace Inventories
         {
             var items = _inventoryItems.Keys.ToList();
             Clear();
-    
+
             items.Sort((a, b) => b.Size.y * b.Size.x - a.Size.y * a.Size.x);
-    
+
             foreach (var item in items)
             {
                 if (FindFreePosition(item.Size, out Vector2Int position))
