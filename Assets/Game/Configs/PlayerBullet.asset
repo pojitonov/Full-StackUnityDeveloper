@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71486abdfa04241af0ac43e366987c9, type: 3}
   m_Name: PlayerBullet
   m_EditorClassIdentifier: 
-  bulletColor: {r: 0, g: 1, b: 0.089986324, a: 1}
+  color: {r: 0.59845734, g: 0, b: 1, a: 1}
   layer: 14
+  speed: 3

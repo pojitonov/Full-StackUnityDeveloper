@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace ShootEmUp
 {
@@ -14,63 +12,24 @@ namespace ShootEmUp
         [SerializeField]
         private Transform[] attackPositions;
 
-        [SerializeField]
-        private Ship player;
-
-        [SerializeField]
-        private Ship enemyPrefab;
-
-        [SerializeField]
-        private Transform worldTransform;
-
-        [SerializeField]
-        private Transform container;
-
-        [SerializeField]
-        private int ActiveEnemies = 7;
-
-        [SerializeField]
-        private int MaxEnemies = 25;
-
         private Spawner<Ship> spawner;
         private readonly HashSet<Ship> activeEnemies = new();
-
-        private void Awake()
-        {
-            spawner = new Spawner<Ship>(enemyPrefab, container, worldTransform);
-            spawner.CreateInstances(MaxEnemies);
-        }
-
-        private void Start()
-        {
-            StartCoroutine(ManageEnemySpawning());
-        }
+        private readonly EnemySpawnController enemySpawnController;
+        private Ship player;
 
         private void FixedUpdate()
         {
             UpdateActiveEnemies();
         }
 
-        private IEnumerator ManageEnemySpawning()
+        public void Initialize(Ship enemyPrefab, Ship player, Transform container, Transform worldTransform, int maxEnemies)
         {
-            while (true)
-            {
-                if (activeEnemies.Count < ActiveEnemies)
-                {
-                    int enemiesToSpawn = ActiveEnemies - activeEnemies.Count;
-
-                    for (int i = 0; i < enemiesToSpawn; i++)
-                    {
-                        SpawnEnemy();
-                        yield return new WaitForSeconds(Random.Range(1, 2));
-                    }
-                }
-
-                yield return null;
-            }
+            spawner = new Spawner<Ship>(enemyPrefab, container, worldTransform);
+            spawner.CreateInstances(maxEnemies);
+            this.player = player;
         }
 
-        private void SpawnEnemy()
+        public void SpawnEnemy()
         {
             Ship enemy = spawner.Spawn();
             Transform spawnPosition = GetRandomPoint(spawnPositions);
@@ -78,6 +37,11 @@ namespace ShootEmUp
             enemy.transform.position = spawnPosition.position;
             enemy.GetComponent<EnemyAI>().SetRandomDestination(attackPositions);
             AddEnemyToActive(enemy, player);
+        }
+
+        public int GetActiveEnemiesCount()
+        {
+            return activeEnemies.Count;
         }
 
         private Transform GetRandomPoint(Transform[] points)
