@@ -6,6 +6,10 @@ namespace ShootEmUp
     {
         [SerializeField]
         private float countdown;
+        
+        [SerializeField]
+        private BulletConfig bulletConfig;
+        
         public Ship Target { get; set; }
         
         private bool isPointReached;
@@ -58,12 +62,10 @@ namespace ShootEmUp
         
             if (currentTime <= 0)
             {
-                Vector2 startPosition = ship.firePoint.position;
-                Vector2 vector = (Vector2)Target.transform.position - startPosition;
-                Vector2 direction = vector.normalized;
+                Vector2 targetPosition = Target.transform.position;
                 currentTime += countdown;
-                
-                ship.Fire(startPosition, direction * 2, Color.red, (int)PhysicsLayer.ENEMY_BULLET);
+                Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+                ship.Fire(direction, bulletConfig);
             }
         }
     }

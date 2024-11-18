@@ -17,7 +17,7 @@ namespace ShootEmUp
         [SerializeField]
         private Transform container;
 
-        private readonly int objToSpawn = 10;
+        private const int objToSpawn = 10;
         private Spawner<Bullet> spawner;
         private readonly HashSet<Bullet> activeBullets = new();
         private readonly List<Bullet> cache = new();
@@ -43,8 +43,7 @@ namespace ShootEmUp
             }
         }
 
-        public void SpawnBullet(Vector2 position, Color color, int physicsLayer, int damage, bool isPlayer,
-            Vector2 velocity)
+        public void SpawnBullet(Vector2 position, int damage, bool isPlayer, Vector2 velocity, Color color, int physicsLayer)
         {
             Bullet bullet = spawner.Spawn();
             bullet.Initialize(position, color, physicsLayer, damage, isPlayer, velocity);

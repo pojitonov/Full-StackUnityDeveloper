@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class Spawner<T> where T : MonoBehaviour
+    public sealed class Spawner<T> where T : MonoBehaviour
     {
-        private Transform worldTransform;
-        private Transform container;
-        private T prefab;
-        private Queue<T> objPool = new();
+        private readonly Transform worldTransform;
+        private readonly Transform container;
+        private readonly T prefab;
+        private readonly Queue<T> objPool = new();
 
         public Spawner(T prefab, Transform container, Transform worldTransform)
         {

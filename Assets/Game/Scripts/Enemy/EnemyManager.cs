@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace ShootEmUp
@@ -26,9 +25,6 @@ namespace ShootEmUp
 
         [SerializeField]
         private Transform container;
-
-        [SerializeField]
-        private BulletManager bulletManager;
 
         [SerializeField]
         private int ActiveEnemies = 7;

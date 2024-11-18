@@ -4,6 +4,9 @@ namespace ShootEmUp
 {
     public sealed class PlayerController : MonoBehaviour
     {
+        [SerializeField]
+        private BulletConfig bulletConfig;
+        
         private Ship player;
 
         private void Awake()
@@ -15,13 +18,13 @@ namespace ShootEmUp
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                player.SetFiring(true);
+                player.Fire(Vector3.up , bulletConfig);
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-                player.SetMoveDirection(-1);
+                player.SetDirection(-1);
             else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-                player.SetMoveDirection(1);
+                player.SetDirection(1);
             else
-                player.SetMoveDirection(0);
+                player.SetDirection(0);
         }
 
         private void HandleGameOver()
