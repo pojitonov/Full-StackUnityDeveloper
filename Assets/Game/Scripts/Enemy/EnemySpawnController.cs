@@ -10,33 +10,16 @@ namespace ShootEmUp
         
         [SerializeField]
         private EnemyManager enemyManager;
-
-        [SerializeField]
-        private int MaxEnemies = 25;
         
         [SerializeField]
         private int ActiveEnemies = 7;
         
-        [SerializeField]
-        private Ship enemyPrefab;
-
-        [SerializeField]
-        private Ship player;
-        
-        [SerializeField]
-        private Transform worldTransform;
-
-        [SerializeField]
-        private Transform container;
-
-
         private void Start()
         {
-            enemyManager.Initialize(enemyPrefab, player, container, worldTransform, MaxEnemies);
-            StartCoroutine(ManageEnemySpawning());
+            StartCoroutine(ControlEnemySpawning());
         }
 
-        public IEnumerator ManageEnemySpawning()
+        public IEnumerator ControlEnemySpawning()
         {
             while (true)
             {
