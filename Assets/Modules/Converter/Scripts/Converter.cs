@@ -27,19 +27,21 @@ namespace Homework
         public int LoadInputResources(int count)
         {
             int availableSpace = _inputCapacity - InputResourcesCount;
+            if (availableSpace <= 0)
+            {
+                BurnExcessResources();
+                return count;
+            }
+
             int toAdd = Math.Min(availableSpace, count);
             InputResourcesCount += toAdd;
+
             return count - toAdd;
         }
 
         public void Start()
         {
             IsRunning = true;
-        }
-
-        public void Shutdown()
-        {
-            IsRunning = false;
         }
 
         public void Update(float time)
@@ -56,6 +58,15 @@ namespace Homework
             }
         }
 
+        public void Shutdown()
+        {
+            IsRunning = false;
+
+            InputResourcesCount += OutputResourcesCount;
+            OutputResourcesCount = 0;
+            BurnExcessResources();
+        }
+
         private void ProcessResources()
         {
             if (InputResourcesCount < _resourcesPerCycle)
@@ -65,6 +76,14 @@ namespace Homework
                 return;
             InputResourcesCount -= _resourcesPerCycle;
             OutputResourcesCount += _conversionOutput;
+        }
+
+        private void BurnExcessResources()
+        {
+            if (InputResourcesCount > _inputCapacity)
+            {
+                InputResourcesCount = _inputCapacity;
+            }
         }
     }
 }

@@ -21,19 +21,34 @@ namespace Homework
         }
 
         [Test]
-        public void WhenShutdown_ThenDoNothing()
+        public void WhenShutdown_ThenNotRunning()
         {
             //Arrange:
             _converter.LoadInputResources(10);
-            _converter.Update(2f);
+            _converter.Update(5f);
 
             //Act:
             _converter.Shutdown();
 
             //Assert:
             Assert.IsFalse(_converter.IsRunning);
+        }
+        
+        [Test]
+        public void WhenShutdown_ThenResourcesShouldReturnToLoadingZone()
+        {
+            //Arrange:
+            _converter.LoadInputResources(10);
+            _converter.Update(5f);
+
+            //Act:
+            _converter.Shutdown();
+            int excess = _converter.LoadInputResources(5);
+
+            //Assert:
             Assert.AreEqual(10, _converter.InputResourcesCount);
             Assert.AreEqual(0, _converter.OutputResourcesCount);
+            Assert.AreEqual(2, excess);
         }
 
         [Test]
