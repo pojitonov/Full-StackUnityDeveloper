@@ -3,28 +3,6 @@ using UnityEngine;
 
 namespace Homework
 {
-    /**
-       Конвертер представляет собой преобразователь ресурсов, который берет ресурсы
-       из зоны погрузки (справа) и через несколько секунд преобразовывает его в
-       ресурсы другого типа (слева).
-
-       Конвертер работает автоматически. Когда заканчивается цикл переработки
-       ресурсов, то конвертер берет следующую партию и начинает цикл по новой, пока
-       можно брать ресурсы из зоны загрузки или пока есть место для ресурсов выгрузки.
-
-       Также конвертер можно выключать. Если конвертер во время работы был
-       выключен, то он возвращает обратно ресурсы в зону загрузки. Если в это время
-       были добавлены еще ресурсы, то при переполнении возвращаемые ресурсы
-       «сгорают».
-
-       Характеристики конвертера:
-       - Зона погрузки: вместимость бревен
-       - Зона выгрузки: вместимость досок
-       - Кол-во ресурсов, которое берется с зоны погрузки
-       - Кол-во ресурсов, которое поставляется в зону выгрузки
-       - Время преобразования ресурсов
-       - Состояние: вкл/выкл
-     */
     public sealed class Converter
     {
         private readonly int _inputCapacity;
@@ -32,19 +10,19 @@ namespace Homework
         private readonly int _resourcesPerCycle;
         private readonly int _conversionOutput;
         private readonly float _conversionTime;
-        private readonly bool _isRunning;
         private float _currentTime;
         public int InputResourcesCount { get; private set; }
         public int OutputResourcesCount { get; private set; }
+        public bool IsRunning { get; private set; }
 
-        public Converter(int inputCapacity, int outputCapacity, int resourcesPerCycle, int conversionOutput, float conversionTime)
+        public Converter(int inputCapacity, int outputCapacity, int resourcesPerCycle, int conversionOutput,
+            float conversionTime)
         {
             _inputCapacity = inputCapacity;
             _outputCapacity = outputCapacity;
             _resourcesPerCycle = resourcesPerCycle;
             _conversionOutput = conversionOutput;
             _conversionTime = conversionTime;
-            _isRunning = true;
         }
 
         public int LoadInputResources(int count)
@@ -55,14 +33,26 @@ namespace Homework
             return count - toAdd;
         }
 
+        public void Start()
+        {
+            IsRunning = true;
+        }
+
+        public void Shutdown()
+        {
+            IsRunning = false;
+        }
+
         public void Update(float time)
         {
-            if (!_isRunning)
+            if (time <= 0)
+                throw new ArgumentOutOfRangeException(nameof(time), "Time must be greater than 0.");
+            if (!IsRunning)
                 return;
             _currentTime += time;
-            if (_currentTime >= _conversionTime)
+            while (_currentTime >= _conversionTime)
             {
-                _currentTime = 0;
+                _currentTime -= _conversionTime;
                 ProcessResources();
             }
         }

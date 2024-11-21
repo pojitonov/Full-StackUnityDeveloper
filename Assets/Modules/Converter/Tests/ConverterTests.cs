@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 
 namespace Homework
@@ -16,6 +17,23 @@ namespace Homework
                 conversionOutput: 2,
                 conversionTime: 5f
             );
+            _converter.Start();
+        }
+
+        [Test]
+        public void WhenShutdown_ThenDoNothing()
+        {
+            //Arrange:
+            _converter.LoadInputResources(10);
+            _converter.Update(2f);
+
+            //Act:
+            _converter.Shutdown();
+
+            //Assert:
+            Assert.IsFalse(_converter.IsRunning);
+            Assert.AreEqual(10, _converter.InputResourcesCount);
+            Assert.AreEqual(0, _converter.OutputResourcesCount);
         }
 
         [Test]
@@ -57,6 +75,17 @@ namespace Homework
             Assert.AreEqual(2, _converter.OutputResourcesCount);
         }
 
+        [Test]
+        public void NegativeUpdateTimeThrowException()
+        {
+            //Arrange:
+            _converter.LoadInputResources(10);
+
+            //Assert:
+            Assert.Catch<ArgumentOutOfRangeException>(() => _converter.Update(-2f));
+
+        }
+
         [TestCase(10, 0f, 10, 0)]
         [TestCase(5, 5f, 0, 2)]
         [TestCase(4, 5f, 4, 0)]
@@ -72,7 +101,5 @@ namespace Homework
             Assert.AreEqual(expectedInput, _converter.InputResourcesCount);
             Assert.AreEqual(expectedOutput, _converter.OutputResourcesCount);
         }
-        
-        
     }
 }
