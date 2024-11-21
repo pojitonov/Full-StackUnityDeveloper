@@ -17,7 +17,40 @@ namespace Homework
                 conversionOutput: 2,
                 conversionTime: 5f
             );
-            _converter.Start();
+        }
+
+        [TestCase(10, 2f, 10, 0)]
+        [TestCase(5, 5f, 0, 2)]
+        [TestCase(4, 5f, 4, 0)]
+        public void Test_ConversionCycle(int inputResources, float updateTime, int expectedInput, int expectedOutput)
+        {
+            //Arrange:
+            _converter.LoadInputResources(inputResources);
+
+            //Act:
+            _converter.Update(updateTime);
+
+            //Assert:
+            Assert.AreEqual(expectedInput, _converter.InputResourcesCount);
+            Assert.AreEqual(expectedOutput, _converter.OutputResourcesCount);
+        }
+
+        [TestCase(20, 5, 10, 4, 4f, 10, 4)]
+        [TestCase(5, 10, 3, 1, 4f, 2, 1)]
+        public void Test_ConverterWithDifferentSettings(
+            int inputCapacity, int outputCapacity, int resourcesPerCycle, int conversionOutput, float conversionTime,
+            int expectedInput, int expectedOutput)
+        {
+            // Arrange:
+            _converter = new Converter(inputCapacity, outputCapacity, resourcesPerCycle, conversionOutput, conversionTime);
+            _converter.LoadInputResources(inputCapacity);
+
+            // Act:
+            _converter.Update(conversionTime);
+
+            // Assert:
+            Assert.AreEqual(expectedInput, _converter.InputResourcesCount);
+            Assert.AreEqual(expectedOutput, _converter.OutputResourcesCount);
         }
 
         [Test]
@@ -113,41 +146,6 @@ namespace Homework
             Assert.AreEqual(2, _converter.OutputResourcesCount);
         }
 
-        [TestCase(0f)]
-        [TestCase(-1f)]
-        public void NegativeUpdateTimeThrowException(float time)
-        {
-            //Arrange:
-            _converter.LoadInputResources(10);
-
-            //Assert:
-            Assert.Catch<ArgumentOutOfRangeException>(() => _converter.Update(time));
-        }
-
-        [TestCase(0)]
-        [TestCase(-1)]
-        public void NegativeResourcesAmountThrowException(int count)
-        {
-            //Assert:
-            Assert.Catch<ArgumentOutOfRangeException>(() => _converter.LoadInputResources(count));
-        }
-
-        [TestCase(10, 2f, 10, 0)]
-        [TestCase(5, 5f, 0, 2)]
-        [TestCase(4, 5f, 4, 0)]
-        public void Test_ConversionCycle(int inputResources, float updateTime, int expectedInput, int expectedOutput)
-        {
-            //Arrange:
-            _converter.LoadInputResources(inputResources);
-
-            //Act:
-            _converter.Update(updateTime);
-
-            //Assert:
-            Assert.AreEqual(expectedInput, _converter.InputResourcesCount);
-            Assert.AreEqual(expectedOutput, _converter.OutputResourcesCount);
-        }
-
         [Test]
         public void WhenConverterIsOff_ThenCanLoadResources()
         {
@@ -204,7 +202,6 @@ namespace Homework
                 conversionOutput: 2,
                 conversionTime: 5f
             );
-            _converter.Start();
 
             // Act:
             _converter.LoadInputResources(30);
@@ -213,6 +210,25 @@ namespace Homework
             // Assert:
             Assert.AreEqual(5, _converter.InputResourcesCount);
             Assert.AreEqual(10, _converter.OutputResourcesCount);
+        }
+
+        [TestCase(0f)]
+        [TestCase(-1f)]
+        public void NegativeUpdateTimeThrowException(float time)
+        {
+            //Arrange:
+            _converter.LoadInputResources(10);
+
+            //Assert:
+            Assert.Catch<ArgumentOutOfRangeException>(() => _converter.Update(time));
+        }
+
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void NegativeResourcesAmountThrowException(int count)
+        {
+            //Assert:
+            Assert.Catch<ArgumentOutOfRangeException>(() => _converter.LoadInputResources(count));
         }
     }
 }
