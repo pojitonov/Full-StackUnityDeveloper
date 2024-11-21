@@ -33,9 +33,9 @@ namespace Homework
             //Assert:
             Assert.IsFalse(_converter.IsRunning);
         }
-        
+
         [Test]
-        public void WhenShutdown_ThenResourcesShouldReturnToLoadingZone()
+        public void WhenShutdownAfterFullCycle_ThenResourcesShouldReturnToLoadingZone()
         {
             //Arrange:
             _converter.LoadInputResources(10);
@@ -52,14 +52,37 @@ namespace Homework
         }
 
         [Test]
-        public void WhenLoadResourcesWithExceedCapacity_ThenReturnExceededItems()
+        public void WhenShutdownDuringProcessing_ThenResourcesReturnBackAndHandleOverflow()
         {
-            //Arrange:
-            var excess = _converter.LoadInputResources(12);
+            // Arrange:
+            _converter.LoadInputResources(10);
+            _converter.Update(2.5f);
 
-            //Assert:
+
+            // Act:
+            _converter.Shutdown();
+            int excess = _converter.LoadInputResources(10);
+
+            // Assert:
             Assert.AreEqual(10, _converter.InputResourcesCount);
-            Assert.AreEqual(2, excess);
+            Assert.AreEqual(0, _converter.OutputResourcesCount);
+            Assert.AreEqual(10, excess);
+        }
+
+        [Test]
+        public void WhenOverflowInLoadingZone_ExcessResourcesAreBurned()
+        {
+            // Arrange:
+            _converter.LoadInputResources(10);
+
+            // Act:
+            _converter.Update(5f);
+            int excess = _converter.LoadInputResources(12);
+
+            // Assert:
+            Assert.AreEqual(10, _converter.InputResourcesCount);
+            Assert.AreEqual(2, _converter.OutputResourcesCount);
+            Assert.AreEqual(7, excess);
         }
 
         [Test]
@@ -90,15 +113,23 @@ namespace Homework
             Assert.AreEqual(2, _converter.OutputResourcesCount);
         }
 
-        [Test]
-        public void NegativeUpdateTimeThrowException()
+        [TestCase(0f)]
+        [TestCase(-1f)]
+        public void NegativeUpdateTimeThrowException(float time)
         {
             //Arrange:
             _converter.LoadInputResources(10);
 
             //Assert:
-            Assert.Catch<ArgumentOutOfRangeException>(() => _converter.Update(-2f));
+            Assert.Catch<ArgumentOutOfRangeException>(() => _converter.Update(time));
+        }
 
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void NegativeResourcesAmountThrowException(int count)
+        {
+            //Assert:
+            Assert.Catch<ArgumentOutOfRangeException>(() => _converter.LoadInputResources(count));
         }
 
         [TestCase(10, 2f, 10, 0)]
@@ -115,6 +146,73 @@ namespace Homework
             //Assert:
             Assert.AreEqual(expectedInput, _converter.InputResourcesCount);
             Assert.AreEqual(expectedOutput, _converter.OutputResourcesCount);
+        }
+
+        [Test]
+        public void WhenConverterIsOff_ThenCanLoadResources()
+        {
+            // Arrange:
+            _converter.Shutdown();
+
+            // Act:
+            int excess = _converter.LoadInputResources(12);
+
+            // Assert:
+            Assert.AreEqual(10, _converter.InputResourcesCount);
+            Assert.AreEqual(2, excess);
+            Assert.IsFalse(_converter.IsRunning);
+        }
+
+        [Test]
+        public void WhenConverterIsOff_ThenUpdateDoesNothing()
+        {
+            // Arrange:
+            _converter.LoadInputResources(10);
+
+            // Act:
+            _converter.Shutdown();
+            _converter.Update(10f);
+
+            // Assert:
+            Assert.AreEqual(10, _converter.InputResourcesCount);
+            Assert.AreEqual(0, _converter.OutputResourcesCount);
+            Assert.IsFalse(_converter.IsRunning);
+        }
+
+        [Test]
+        public void WhenNotEnoughResourcesForCycle_ThenDoNotProcess()
+        {
+            // Arrange:
+            _converter.LoadInputResources(3);
+
+            // Act:
+            _converter.Update(10f);
+
+            // Assert:
+            Assert.AreEqual(3, _converter.InputResourcesCount);
+            Assert.AreEqual(0, _converter.OutputResourcesCount);
+        }
+
+        [Test]
+        public void WhenOutputZoneFull_ThenStopProcessing()
+        {
+            // Arrange:
+            _converter = new Converter(
+                inputCapacity: 30,
+                outputCapacity: 10,
+                resourcesPerCycle: 5,
+                conversionOutput: 2,
+                conversionTime: 5f
+            );
+            _converter.Start();
+
+            // Act:
+            _converter.LoadInputResources(30);
+            _converter.Update(30f);
+
+            // Assert:
+            Assert.AreEqual(5, _converter.InputResourcesCount);
+            Assert.AreEqual(10, _converter.OutputResourcesCount);
         }
     }
 }

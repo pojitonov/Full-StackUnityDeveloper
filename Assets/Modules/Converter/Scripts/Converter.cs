@@ -26,6 +26,9 @@ namespace Homework
 
         public int LoadInputResources(int count)
         {
+            if(count <= 0)
+                throw new ArgumentOutOfRangeException(nameof(count), "Count must be greater than 0.");
+                
             int availableSpace = _inputCapacity - InputResourcesCount;
             if (availableSpace <= 0)
             {
