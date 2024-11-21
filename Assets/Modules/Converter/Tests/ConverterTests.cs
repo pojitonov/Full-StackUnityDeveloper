@@ -86,7 +86,7 @@ namespace Homework
 
         }
 
-        [TestCase(10, 0f, 10, 0)]
+        [TestCase(10, 2f, 10, 0)]
         [TestCase(5, 5f, 0, 2)]
         [TestCase(4, 5f, 4, 0)]
         public void Test_ConversionCycle(int inputResources, float updateTime, int expectedInput, int expectedOutput)
