@@ -12,8 +12,7 @@ namespace Inventories
     public sealed class Inventory : IEnumerable<Item>
     {
         private Dictionary<Item, Vector2Int> _inventoryItems;
-        private bool[,] _inventoryGrid;
-
+        private Item[,] _inventoryGrid;
         public event Action<Item, Vector2Int> OnAdded;
         public event Action<Item, Vector2Int> OnRemoved;
         public event Action<Item, Vector2Int> OnMoved;
@@ -62,7 +61,7 @@ namespace Inventories
             Width = width;
             Height = height;
             Count = 0;
-            _inventoryGrid = new bool[width, height];
+            _inventoryGrid = new Item[width, height];
             _inventoryItems = new Dictionary<Item, Vector2Int>();
         }
 
@@ -175,7 +174,7 @@ namespace Inventories
             {
                 for (int y = position.y; y < endY; y++)
                 {
-                    _inventoryGrid[x, y] = true;
+                    _inventoryGrid[x, y] = item;
                 }
             }
         }
@@ -189,7 +188,7 @@ namespace Inventories
             {
                 for (int y = position.y; y < endY; y++)
                 {
-                    _inventoryGrid[x, y] = false;
+                    _inventoryGrid[x, y] = null;
                 }
             }
         }
@@ -208,28 +207,17 @@ namespace Inventories
             }
 
             for (int y = 0; y <= Height - size.y; y++)
+            for (int x = 0; x <= Width - size.x; x++)
             {
-                for (int x = 0; x <= Width - size.x; x++)
-                {
-                    bool positionIsFree = true;
-                    for (int i = 0; i < size.x && positionIsFree; i++)
-                    {
-                        for (int j = 0; j < size.y; j++)
-                        {
-                            if (!IsFree(x + i, y + j))
-                            {
-                                positionIsFree = false;
-                                break;
-                            }
-                        }
-                    }
+                for (int i = 0; i < size.x; i++)
+                for (int j = 0; j < size.y; j++)
+                    if (!IsFree(x + i, y + j))
+                        goto NextCell;
 
-                    if (positionIsFree)
-                    {
-                        freePosition = new Vector2Int(x, y);
-                        return true;
-                    }
-                }
+                freePosition = new Vector2Int(x, y);
+                return true;
+
+                NextCell: ;
             }
 
             freePosition = Vector2Int.zero;
@@ -251,7 +239,7 @@ namespace Inventories
 
         private bool IsOccupied(in Vector2Int position)
         {
-            return _inventoryGrid[position.x, position.y];
+            return _inventoryGrid[position.x, position.y] != null;
         }
 
         private bool IsOccupied(Item item, Vector2Int position)
@@ -263,7 +251,7 @@ namespace Inventories
             {
                 for (int posY = position.y; posY < endY; posY++)
                 {
-                    if (_inventoryGrid[posX, posY])
+                    if (_inventoryGrid[posX, posY] != null)
                         return true;
                 }
             }
@@ -278,7 +266,7 @@ namespace Inventories
 
         private bool IsFree(in Vector2Int position)
         {
-            return !_inventoryGrid[position.x, position.y];
+            return _inventoryGrid[position.x, position.y] == null;
         }
 
         /// <summary>
@@ -301,14 +289,12 @@ namespace Inventories
 
         public bool RemoveItem(in Item item, out Vector2Int position)
         {
-            if (item == null || !_inventoryItems.ContainsKey(item))
+            if (item == null || !_inventoryItems.Remove(item, out position))
             {
                 position = Vector2Int.zero;
                 return false;
             }
 
-            position = _inventoryItems[item];
-            _inventoryItems.Remove(item);
             FreeItemSlots(item, position);
             Count--;
             OnRemoved?.Invoke(item, position);
@@ -324,23 +310,10 @@ namespace Inventories
         public Item GetItem(in Vector2Int position)
         {
             ValidatePosition(position);
-
-            foreach (var (item, value) in _inventoryItems)
-            {
-                Vector2Int itemSize = item.Size;
-                int startX = value.x;
-                int startY = value.y;
-                int endX = startX + itemSize.x;
-                int endY = startY + itemSize.y;
-
-                if (position.x >= startX && position.x < endX &&
-                    position.y >= startY && position.y < endY)
-                {
-                    return item;
-                }
-            }
-
-            throw new NullReferenceException();
+            var item = _inventoryGrid[position.x, position.y];
+            if (item == null)
+                throw new NullReferenceException();
+            return item;
         }
 
         private void ValidatePosition(Vector2Int position)
@@ -383,16 +356,19 @@ namespace Inventories
             if (!_inventoryItems.TryGetValue(item, out Vector2Int startPosition))
                 throw new KeyNotFoundException(nameof(item));
 
-            var positions = new List<Vector2Int>();
+            int totalPositions = item.Size.x * item.Size.y;
+            var positions = new Vector2Int[totalPositions];
+
+            int index = 0;
             for (int x = startPosition.x; x < startPosition.x + item.Size.x; x++)
             {
                 for (int y = startPosition.y; y < startPosition.y + item.Size.y; y++)
                 {
-                    positions.Add(new Vector2Int(x, y));
+                    positions[index++] = new Vector2Int(x, y);
                 }
             }
 
-            return positions.ToArray();
+            return positions;
         }
 
         public bool TryGetPositions(in Item item, out Vector2Int[] positions)
@@ -402,16 +378,18 @@ namespace Inventories
             if (!_inventoryItems.TryGetValue(item, out Vector2Int startPosition))
                 return false;
 
-            var resultPositions = new List<Vector2Int>();
+            int totalPositions = item.Size.x * item.Size.y;
+            positions = new Vector2Int[totalPositions];
+
+            int index = 0;
             for (int x = startPosition.x; x < startPosition.x + item.Size.x; x++)
             {
                 for (int y = startPosition.y; y < startPosition.y + item.Size.y; y++)
                 {
-                    resultPositions.Add(new Vector2Int(x, y));
+                    positions[index++] = new Vector2Int(x, y);
                 }
             }
 
-            positions = resultPositions.ToArray();
             return true;
         }
 
@@ -425,13 +403,7 @@ namespace Inventories
                 _inventoryItems.Clear();
                 Count = 0;
 
-                for (int x = 0; x < Width; x++)
-                {
-                    for (int y = 0; y < Height; y++)
-                    {
-                        _inventoryGrid[x, y] = false;
-                    }
-                }
+                Array.Clear(_inventoryGrid, 0, _inventoryGrid.Length);
 
                 OnCleared?.Invoke();
             }
@@ -442,7 +414,16 @@ namespace Inventories
         /// </summary>
         public int GetItemCount(string name)
         {
-            return _inventoryItems.Keys.Count(item => item.Name == name);
+            int count = 0;
+            foreach (var item in _inventoryItems.Keys)
+            {
+                if (item.Name == name)
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
 
         /// <summary>
@@ -488,16 +469,30 @@ namespace Inventories
         /// </summary>
         public void ReorganizeSpace()
         {
-            var items = _inventoryItems.Keys.ToList();
-            Clear();
-
-            items.Sort((a, b) => b.Size.y * b.Size.x - a.Size.y * a.Size.x);
+            var items = _inventoryItems.ToList();
+            items.Sort((a, b) => b.Key.Size.y * b.Key.Size.x - a.Key.Size.y * a.Key.Size.x);
 
             foreach (var item in items)
             {
-                if (FindFreePosition(item.Size, out Vector2Int position))
+                var currentPosition = item.Value;
+                FreeItemSlots(item.Key, currentPosition);
+            }
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                var item = items[i].Key;
+                var currentPosition = items[i].Value;
+
+                if (FindFreePosition(item.Size, out Vector2Int newPosition))
                 {
-                    AddItem(item, position);
+                    _inventoryItems[item] = newPosition;
+                    OccupyItemSlots(item, newPosition);
+                    OnMoved?.Invoke(item, newPosition);
+                }
+                else
+                {
+                    _inventoryItems[item] = currentPosition;
+                    OccupyItemSlots(item, currentPosition);
                 }
             }
         }
@@ -507,19 +502,7 @@ namespace Inventories
         /// </summary>
         public void CopyTo(in Item[,] matrix)
         {
-            foreach (var kvp in _inventoryItems)
-            {
-                var item = kvp.Key;
-                var position = kvp.Value;
-
-                for (int x = position.x; x < position.x + item.Size.x; x++)
-                {
-                    for (int y = position.y; y < position.y + item.Size.y; y++)
-                    {
-                        matrix[x, y] = item;
-                    }
-                }
-            }
+            Array.Copy(_inventoryGrid, matrix, _inventoryGrid.Length);
         }
 
         public IEnumerator<Item> GetEnumerator()
