@@ -11,7 +11,7 @@ namespace ShootEmUp
 
         [SerializeField]
         private Transform[] attackPositions;
-        
+
         [SerializeField]
         private Ship enemyPrefab;
 
@@ -23,23 +23,23 @@ namespace ShootEmUp
 
         [SerializeField]
         private Transform container;
-        
+
         [SerializeField]
         private int MaxEnemies = 25;
-        
+
         private Spawner<Ship> spawner;
         private readonly HashSet<Ship> activeEnemies = new();
         private readonly EnemySpawnController enemySpawnController;
-
-        private void FixedUpdate()
-        {
-            UpdateActiveEnemies();
-        }
 
         public void Awake()
         {
             spawner = new Spawner<Ship>(enemyPrefab, container, worldTransform);
             spawner.CreateInstances(MaxEnemies);
+        }
+
+        private void FixedUpdate()
+        {
+            UpdateActiveEnemies();
         }
 
         public void SpawnEnemy()
@@ -48,7 +48,7 @@ namespace ShootEmUp
             Transform spawnPosition = GetRandomPoint(spawnPositions);
 
             enemy.transform.position = spawnPosition.position;
-            enemy.GetComponent<EnemyMovement>().SetDestination(attackPositions);
+            enemy.GetComponent<EnemyController>().SetDestination(attackPositions);
             AddEnemyToActive(enemy, player);
         }
 
@@ -65,7 +65,7 @@ namespace ShootEmUp
 
         private void AddEnemyToActive(Ship enemy, Ship player)
         {
-            enemy.GetComponent<EnemyAttack>().Target = player;
+            enemy.GetComponent<EnemyController>().SetTarget(player);
             activeEnemies.Add(enemy);
         }
 

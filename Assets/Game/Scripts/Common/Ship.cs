@@ -7,6 +7,7 @@ namespace ShootEmUp
     {
         public Action<Ship, int> OnHealthChanged;
         public Action<Ship> OnHealthEmpty;
+
         [SerializeField]
         private int health;
 
@@ -21,7 +22,7 @@ namespace ShootEmUp
 
         private ShipMovement movement;
         private ShipAttack attack;
-        
+
         public int Health => health;
 
         private void Awake()
@@ -50,7 +51,7 @@ namespace ShootEmUp
         {
             attack.Fire(direction, bulletConfig);
         }
-        
+
         public void SetDirection(int direction)
         {
             movement.SetDirection(direction);

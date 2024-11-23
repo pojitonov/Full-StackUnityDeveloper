@@ -8,6 +8,5 @@ namespace ShootEmUp
         public Color color = Color.white;
         public int layer;
         public float speed = 10f;
-
     }
 }

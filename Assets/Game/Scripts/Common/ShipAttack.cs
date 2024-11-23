@@ -19,10 +19,10 @@ namespace ShootEmUp
         {
             Vector2 firePosition = firePoint.position;
             bulletManager.SpawnBullet(
-                firePosition, 
+                firePosition,
                 damage: 1,
-                isPlayer, 
-                velocity: direction * bulletConfig.speed, 
+                isPlayer,
+                velocity: direction * bulletConfig.speed,
                 bulletConfig.color,
                 bulletConfig.layer);
         }

@@ -1,30 +1,24 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyMovement : MonoBehaviour
+    public sealed class EnemyMovement
     {
-        [SerializeField]
-        private new Rigidbody2D rigidbody2D;
+        private readonly Rigidbody2D rigidbody2D;
         private Vector2 destination;
 
-        public bool IsPointReached { get; set; }
-        
-        private void FixedUpdate()
+        public bool IsPointReached { get; private set; }
+
+        public EnemyMovement(Rigidbody2D rigidbody2D)
         {
-            Move();
+            this.rigidbody2D = rigidbody2D;
         }
 
-        public void SetDestination(Transform[] attackPositions)
+        public void Move()
         {
-            int index = Random.Range(0, attackPositions.Length);
-            destination = attackPositions[index].position;
-            IsPointReached = false;
-        }
-
-        private void Move()
-        {
-            Vector2 vector = destination - (Vector2)transform.position;
+            Vector2 vector = destination - rigidbody2D.position;
             if (vector.magnitude <= 0.25f)
             {
                 IsPointReached = true;
@@ -34,6 +28,13 @@ namespace ShootEmUp
             Vector2 direction = vector.normalized * Time.fixedDeltaTime;
             Vector2 nextPosition = rigidbody2D.position + direction * 5.0f;
             rigidbody2D.MovePosition(nextPosition);
+        }
+
+        public void SetDestination(Transform[] attackPositions)
+        {
+            int index = Random.Range(0, attackPositions.Length);
+            destination = attackPositions[index].position;
+            IsPointReached = false;
         }
     }
 }

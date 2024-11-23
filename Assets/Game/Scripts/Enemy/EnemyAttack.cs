@@ -2,39 +2,33 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyAttack : MonoBehaviour
+    public sealed class EnemyAttack
     {
-        [SerializeField]
-        private float countdown;
-        [SerializeField]
-        private BulletConfig bulletConfig;
-        [SerializeField]
-        private Ship ship;
-        [SerializeField]
-        private EnemyMovement enemyMovement;
+        private readonly float countdown;
+        private readonly BulletConfig bulletConfig;
+        private readonly Ship ship;
         private float currentTime;
 
         public Ship Target { get; set; }
-        
-        private void FixedUpdate()
+
+        public EnemyAttack(float countdown, BulletConfig bulletConfig, Ship ship)
         {
-            if (enemyMovement.IsPointReached)
-            {
-                Attack();
-            }
+            this.countdown = countdown;
+            this.bulletConfig = bulletConfig;
+            this.ship = ship;
         }
 
-        private void Attack()
+        public void Attack()
         {
             if (Target.Health <= 0) return;
-        
+
             currentTime -= Time.fixedDeltaTime;
-        
+
             if (currentTime <= 0)
             {
                 Vector2 targetPosition = Target.transform.position;
                 currentTime += countdown;
-                Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+                Vector2 direction = (targetPosition - (Vector2)ship.transform.position).normalized;
                 ship.Fire(direction, bulletConfig);
             }
         }

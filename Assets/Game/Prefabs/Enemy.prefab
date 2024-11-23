@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 5568771391735819375}
   - component: {fileID: 659620479434099170}
   - component: {fileID: 6678307561083733196}
-  - component: {fileID: 1160550302777924803}
-  - component: {fileID: 7749358247321972301}
+  - component: {fileID: 7440391792267291906}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
@@ -164,11 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465594f845a448ad886bc379d2728580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
   isPlayer: 0
   firePoint: {fileID: 3195880656587174614}
-  health: 3
   speed: 3
---- !u!114 &1160550302777924803
+--- !u!114 &7440391792267291906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,26 +176,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 559606060570185700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef10db0e2bba4087b0faefaf4310a617, type: 3}
+  m_Script: {fileID: 11500000, guid: d89f682977364bb8bde77438fdccb5ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdown: 1
   bulletConfig: {fileID: 11400000, guid: f54d84140f305b844912fee1d766d263, type: 2}
   ship: {fileID: 6678307561083733196}
-  enemyMovement: {fileID: 7749358247321972301}
---- !u!114 &7749358247321972301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 559606060570185700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 399f6c056a6e4a1e9f6b00536a7c7cf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody2D: {fileID: 659620479434099170}
+  countdown: 1
 --- !u!1 &2239154907127902911
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,10 +13,15 @@ namespace ShootEmUp
             this.rigidbody2D = rigidbody2D;
             this.speed = speed;
         }
-        
+
         public void FixedUpdate()
         {
             Move(moveDirection);
+        }
+
+        public void SetDirection(int direction)
+        {
+            moveDirection = direction;
         }
 
         private void Move(float direction)
@@ -25,11 +30,6 @@ namespace ShootEmUp
             Vector2 moveStep = moveDirection * (Time.fixedDeltaTime * speed);
             Vector2 targetPosition = rigidbody2D.position + moveStep;
             rigidbody2D.MovePosition(targetPosition);
-        }
-
-        public void SetDirection(int direction)
-        {
-            moveDirection = direction;
         }
     }
 }
