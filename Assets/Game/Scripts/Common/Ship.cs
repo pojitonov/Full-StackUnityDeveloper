@@ -7,10 +7,8 @@ namespace ShootEmUp
     {
         public Action<Ship, int> OnHealthChanged;
         public Action<Ship> OnHealthEmpty;
-        public int Health => health;
-
-        private BulletManager bulletManager;
-        private int moveDirection;
+        [SerializeField]
+        private int health;
 
         [SerializeField]
         private bool isPlayer;
@@ -19,22 +17,22 @@ namespace ShootEmUp
         private Transform firePoint;
 
         [SerializeField]
-        private int health;
-
-        [SerializeField]
         private float speed = 5.0f;
 
-        private new Rigidbody2D rigidbody2D;
+        private ShipMovement movement;
+        private ShipAttack attack;
+        
+        public int Health => health;
 
         private void Awake()
         {
-            rigidbody2D = GetComponent<Rigidbody2D>();
-            bulletManager = FindAnyObjectByType<BulletManager>();
+            movement = new ShipMovement(GetComponent<Rigidbody2D>(), speed);
+            attack = new ShipAttack(firePoint, isPlayer, FindAnyObjectByType<BulletManager>());
         }
 
         private void FixedUpdate()
         {
-            Move(moveDirection);
+            movement.FixedUpdate();
         }
 
         public void TakeDamage(int damage)
@@ -48,23 +46,14 @@ namespace ShootEmUp
                 OnHealthEmpty?.Invoke(this);
         }
 
-        public void SetDirection(int direction)
-        {
-            moveDirection = direction;
-        }
-
         public void Fire(Vector2 direction, BulletConfig bulletConfig)
         {
-            Vector2 firePosition = firePoint.position;
-            bulletManager.SpawnBullet(firePosition, 1, isPlayer, direction * bulletConfig.speed, bulletConfig.color, bulletConfig.layer);
+            attack.Fire(direction, bulletConfig);
         }
-
-        private void Move(float direction)
+        
+        public void SetDirection(int direction)
         {
-            Vector2 moveDirection = new Vector2(direction, 0);
-            Vector2 moveStep = moveDirection * (Time.fixedDeltaTime * speed);
-            Vector2 targetPosition = rigidbody2D.position + moveStep;
-            rigidbody2D.MovePosition(targetPosition);
+            movement.SetDirection(direction);
         }
     }
 }
