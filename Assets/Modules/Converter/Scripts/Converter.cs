@@ -83,13 +83,16 @@ namespace Homework
         {
             IsRunning = false;
 
-            int partialInputUsed = (int)(_resourcesPerCycle * _processingProgress);
-            if (partialInputUsed >= _resourcesPerCycle)
-                InputResourcesCount += partialInputUsed;
+            int resourcesUsed = (int)(_resourcesPerCycle * _processingProgress);
+
+            if (resourcesUsed >= _resourcesPerCycle)
+                InputResourcesCount += resourcesUsed;
+            else
+                BurnExcessInputResources();
 
             _processingProgress = 0;
-            BurnExcessInputResources();
         }
+
 
         public void Start()
         {
@@ -105,6 +108,7 @@ namespace Homework
             int spaceLeft = _outputCapacity - OutputResourcesCount;
             if (spaceLeft < _conversionOutput)
                 return;
+
             InputResourcesCount -= _resourcesPerCycle;
             OutputResourcesCount += _conversionOutput;
         }
