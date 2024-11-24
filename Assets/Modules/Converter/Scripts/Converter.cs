@@ -84,8 +84,10 @@ namespace Homework
             IsRunning = false;
 
             int partialInputUsed = (int)(_resourcesPerCycle * _processingProgress);
-            InputResourcesCount += partialInputUsed;
-            _processingProgress = 0f;
+            if (partialInputUsed >= _resourcesPerCycle)
+                InputResourcesCount += partialInputUsed;
+
+            _processingProgress = 0;
             BurnExcessInputResources();
         }
 

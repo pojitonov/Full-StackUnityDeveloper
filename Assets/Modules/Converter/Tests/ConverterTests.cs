@@ -155,6 +155,40 @@ namespace Homework
         }
 
         [Test]
+        public void WhenShutdownDuringProcessingAndOverflowOccurs_ThenExcessInputIsBurned()
+        {
+            //Arrange:
+            _converter.LoadInputResources(10);
+            
+            //Act:
+            _converter.Update(2.5f);
+            _converter.Shutdown();
+            int excess = _converter.LoadInputResources(5);
+            
+            //Assert:
+            Assert.AreEqual(10, _converter.InputResourcesCount);
+            Assert.AreEqual(0, _converter.OutputResourcesCount);
+            Assert.AreEqual(5, excess);
+        }
+        
+        [TestCase(10, 1f, 10)]
+        [TestCase(10, 2.5f, 10)]
+        [TestCase(10, 5f, 5)]
+        [TestCase(10, 6f, 5)]
+        public void WhenShutdown_ThenReturnsCorrectPartialResourcesToInput(int initialInput, float updateTime, int expectedInput)
+        {
+            // Arrange:
+            _converter.LoadInputResources(initialInput);
+
+            // Act:
+            _converter.Update(updateTime);
+            _converter.Shutdown();
+
+            // Assert:
+            Assert.AreEqual(expectedInput, _converter.InputResourcesCount);
+        }
+
+        [Test]
         public void WhenOverflowInLoadingZone_ExcessResourcesAreBurned()
         {
             // Arrange:
