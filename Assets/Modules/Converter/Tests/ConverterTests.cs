@@ -17,8 +17,25 @@ namespace Homework
                 conversionOutput: 2,
                 conversionTime: 5f
             );
+            _converter.Start();
         }
 
+        [Test]
+        public void WhenConverterCreated_ThenItNotStartedAutomatically()
+        {
+            //Arrange:
+            _converter = new Converter(
+                inputCapacity: 10,
+                outputCapacity: 10,
+                resourcesPerCycle: 5,
+                conversionOutput: 2,
+                conversionTime: 5f
+            );
+
+            //Assert:
+            Assert.AreEqual(_converter.IsRunning, false);
+        }
+        
         [TestCase(10, 2f, 10, 0)]
         [TestCase(5, 5f, 0, 2)]
         [TestCase(4, 5f, 4, 0)]
@@ -44,6 +61,7 @@ namespace Homework
             // Arrange:
             _converter = new Converter(inputCapacity, outputCapacity, resourcesPerCycle, conversionOutput, conversionTime);
             _converter.LoadInputResources(inputCapacity);
+            _converter.Start();
 
             // Act:
             _converter.Update(conversionTime);
@@ -202,6 +220,7 @@ namespace Homework
                 conversionOutput: 2,
                 conversionTime: 5f
             );
+            _converter.Start();
 
             // Act:
             _converter.LoadInputResources(30);
@@ -229,6 +248,18 @@ namespace Homework
         {
             //Assert:
             Assert.Catch<ArgumentOutOfRangeException>(() => _converter.LoadInputResources(count));
+        }
+        
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void NegativeInputOnCreationThrowException(int inputValue)
+        {
+            //Assert:
+            Assert.Catch<ArgumentOutOfRangeException>(() => _converter = new Converter(inputValue, 1, 1, 1, 1));
+            Assert.Catch<ArgumentOutOfRangeException>(() => _converter = new Converter(1, inputValue, 1, 1, 1));
+            Assert.Catch<ArgumentOutOfRangeException>(() => _converter = new Converter(1, 1, inputValue, 1, 1));
+            Assert.Catch<ArgumentOutOfRangeException>(() => _converter = new Converter(1, 1, 1, inputValue, 1));
+            Assert.Catch<ArgumentOutOfRangeException>(() => _converter = new Converter(1, 1, 1, 1, inputValue));
         }
     }
 }

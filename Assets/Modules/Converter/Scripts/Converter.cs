@@ -17,19 +17,35 @@ namespace Homework
         public Converter(int inputCapacity, int outputCapacity, int resourcesPerCycle, int conversionOutput,
             float conversionTime)
         {
+            ValidateInputs(inputCapacity, outputCapacity, resourcesPerCycle, conversionOutput, conversionTime);
             _inputCapacity = inputCapacity;
             _outputCapacity = outputCapacity;
             _resourcesPerCycle = resourcesPerCycle;
             _conversionOutput = conversionOutput;
             _conversionTime = conversionTime;
-            Start();
         }
 
+        private static void ValidateInputs(int inputCapacity, int outputCapacity, int resourcesPerCycle, int conversionOutput,
+            float conversionTime)
+        {
+            ValidatePositive(inputCapacity, nameof(inputCapacity));
+            ValidatePositive(outputCapacity, nameof(outputCapacity));
+            ValidatePositive(resourcesPerCycle, nameof(resourcesPerCycle));
+            ValidatePositive(conversionOutput, nameof(conversionOutput));
+            ValidatePositive(conversionTime, nameof(conversionTime));
+        }
+        
+        private static void ValidatePositive<T>(T value, string paramName) where T : IComparable<T>
+        {
+            if (value.CompareTo(default) <= 0)
+                throw new ArgumentOutOfRangeException(paramName, "Value must be greater than 0.");
+        }
+        
         public int LoadInputResources(int count)
         {
-            if(count <= 0)
-                throw new ArgumentOutOfRangeException(nameof(count), "Count must be greater than 0.");
-                
+            if (count <= 0)
+                ValidatePositive(count, nameof(count));
+
             int availableSpace = _inputCapacity - InputResourcesCount;
             if (availableSpace <= 0)
             {
@@ -46,7 +62,7 @@ namespace Homework
         public void Update(float time)
         {
             if (time <= 0)
-                throw new ArgumentOutOfRangeException(nameof(time), "Time must be greater than 0.");
+                ValidatePositive(time, nameof(time));
             if (!IsRunning)
                 return;
             _currentTime += time;
@@ -66,7 +82,7 @@ namespace Homework
             BurnExcessInputResources();
         }
 
-        private void Start()
+        public void Start()
         {
             _currentTime = 0;
             IsRunning = true;
