@@ -9,6 +9,7 @@ namespace Homework
         private readonly int _resourcesPerCycle;
         private readonly int _conversionOutput;
         private readonly float _conversionTime;
+        private float _processingProgress;
         private float _currentTime;
         public int InputResourcesCount { get; private set; }
         public int OutputResourcesCount { get; private set; }
@@ -25,7 +26,8 @@ namespace Homework
             _conversionTime = conversionTime;
         }
 
-        private static void ValidateInputs(int inputCapacity, int outputCapacity, int resourcesPerCycle, int conversionOutput,
+        private static void ValidateInputs(int inputCapacity, int outputCapacity, int resourcesPerCycle,
+            int conversionOutput,
             float conversionTime)
         {
             ValidatePositive(inputCapacity, nameof(inputCapacity));
@@ -34,13 +36,13 @@ namespace Homework
             ValidatePositive(conversionOutput, nameof(conversionOutput));
             ValidatePositive(conversionTime, nameof(conversionTime));
         }
-        
+
         private static void ValidatePositive<T>(T value, string paramName) where T : IComparable<T>
         {
             if (value.CompareTo(default) <= 0)
                 throw new ArgumentOutOfRangeException(paramName, "Value must be greater than 0.");
         }
-        
+
         public int LoadInputResources(int count)
         {
             if (count <= 0)
@@ -67,24 +69,30 @@ namespace Homework
                 return;
             _currentTime += time;
             int cycles = (int)(_currentTime / _conversionTime);
+            _currentTime %= _conversionTime;
+
             for (int i = 0; i < cycles; i++)
             {
                 ProcessResources();
             }
+
+            _processingProgress = _currentTime / _conversionTime;
         }
 
         public void Shutdown()
         {
             IsRunning = false;
 
-            InputResourcesCount += OutputResourcesCount;
-            OutputResourcesCount = 0;
+            int partialInputUsed = (int)(_resourcesPerCycle * _processingProgress);
+            InputResourcesCount += partialInputUsed;
+            _processingProgress = 0f;
             BurnExcessInputResources();
         }
 
         public void Start()
         {
             _currentTime = 0;
+            _processingProgress = 0;
             IsRunning = true;
         }
 

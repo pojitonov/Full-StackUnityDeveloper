@@ -35,7 +35,8 @@ namespace Homework
             //Assert:
             Assert.AreEqual(_converter.IsRunning, false);
         }
-        
+
+        [TestCase(20, 2f, 10, 0)]
         [TestCase(10, 2f, 10, 0)]
         [TestCase(5, 5f, 0, 2)]
         [TestCase(4, 5f, 4, 0)]
@@ -59,7 +60,8 @@ namespace Homework
             int expectedInput, int expectedOutput)
         {
             // Arrange:
-            _converter = new Converter(inputCapacity, outputCapacity, resourcesPerCycle, conversionOutput, conversionTime);
+            _converter = new Converter(inputCapacity, outputCapacity, resourcesPerCycle, conversionOutput,
+                conversionTime);
             _converter.LoadInputResources(inputCapacity);
             _converter.Start();
 
@@ -86,7 +88,7 @@ namespace Homework
         }
 
         [Test]
-        public void WhenShutdownAfterFullCycle_ThenResourcesShouldReturnToLoadingZone()
+        public void WhenShutdownAfterFullCycle_ThenResourcesShouldNotReturnToLoadingZone()
         {
             //Arrange:
             _converter.LoadInputResources(10);
@@ -98,8 +100,8 @@ namespace Homework
 
             //Assert:
             Assert.AreEqual(10, _converter.InputResourcesCount);
-            Assert.AreEqual(0, _converter.OutputResourcesCount);
-            Assert.AreEqual(2, excess);
+            Assert.AreEqual(2, _converter.OutputResourcesCount);
+            Assert.AreEqual(0, excess);
         }
 
         [Test]
@@ -118,6 +120,38 @@ namespace Homework
             Assert.AreEqual(10, _converter.InputResourcesCount);
             Assert.AreEqual(0, _converter.OutputResourcesCount);
             Assert.AreEqual(10, excess);
+        }
+
+        [Test]
+        public void WhenShutdownDuringPartialProcessing_ThenPartiallyProcessedResourcesReturnToInput()
+        {
+            //Arrange:
+            _converter.LoadInputResources(10);
+
+            //Act:
+            _converter.Update(2.5f);
+            _converter.Shutdown();
+            
+            //Assert:
+            Assert.AreEqual(10, _converter.InputResourcesCount);
+            Assert.AreEqual(0, _converter.OutputResourcesCount);
+        }
+        
+        [Test]
+        public void WhenShutdownDuringPartialProcessingAfterOneCycle_ThenPartiallyProcessedResourcesReturnToInput()
+        {
+            //Arrange:
+            _converter.LoadInputResources(10);
+
+            //Act:
+            _converter.Update(5.5f);
+            _converter.Shutdown();
+            _converter.LoadInputResources(5);
+
+            
+            //Assert:
+            Assert.AreEqual(10, _converter.InputResourcesCount);
+            Assert.AreEqual(2, _converter.OutputResourcesCount);
         }
 
         [Test]
@@ -249,7 +283,7 @@ namespace Homework
             //Assert:
             Assert.Catch<ArgumentOutOfRangeException>(() => _converter.LoadInputResources(count));
         }
-        
+
         [TestCase(0)]
         [TestCase(-1)]
         public void NegativeInputOnCreationThrowException(int inputValue)
