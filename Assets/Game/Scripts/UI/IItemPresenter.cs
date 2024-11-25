@@ -1,7 +1,15 @@
+using UnityEngine;
+
 namespace SampleGame
 {
     public interface IItemPresenter
     {
-        //TODO:
+        string Title { get; }
+        string Description { get; }
+        string Count { get; }
+        Sprite Icon { get; }
+        bool IsConsumable { get; }
+        
+        void Consume();
     }
 }

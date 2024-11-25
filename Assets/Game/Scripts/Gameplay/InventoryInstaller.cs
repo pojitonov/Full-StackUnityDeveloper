@@ -25,6 +25,11 @@ namespace SampleGame
                 .BindInterfacesAndSelfTo<InventoryItemConsumer>()
                 .AsSingle()
                 .NonLazy();
+            
+            this.Container.BindInterfacesTo<PresenterMock>()
+                .AsSingle()
+                .WithArguments(initialItems[0].Item, "5")
+                .NonLazy();
         }
     }
 }
