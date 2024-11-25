@@ -61,6 +61,13 @@ namespace Homework
             return count - toAdd;
         }
 
+        public void Start()
+        {
+            _currentTime = 0;
+            _processingProgress = 0;
+            IsRunning = true;
+        }
+
         public void Update(float time)
         {
             if (time <= 0)
@@ -79,6 +86,24 @@ namespace Homework
             _processingProgress = _currentTime / _conversionTime;
         }
 
+        private void ProcessResources()
+        {
+            if (InputResourcesCount >= _resourcesPerCycle)
+            {
+                InputResourcesCount -= _resourcesPerCycle;
+
+                int spaceLeft = _outputCapacity - OutputResourcesCount;
+                if (spaceLeft >= _conversionOutput)
+                {
+                    OutputResourcesCount += _conversionOutput;
+                }
+                else
+                {
+                    InputResourcesCount += _resourcesPerCycle;
+                }
+            }
+        }
+
         public void Shutdown()
         {
             IsRunning = false;
@@ -91,26 +116,6 @@ namespace Homework
                 BurnExcessInputResources();
 
             _processingProgress = 0;
-        }
-
-
-        public void Start()
-        {
-            _currentTime = 0;
-            _processingProgress = 0;
-            IsRunning = true;
-        }
-
-        private void ProcessResources()
-        {
-            if (InputResourcesCount < _resourcesPerCycle)
-                return;
-            int spaceLeft = _outputCapacity - OutputResourcesCount;
-            if (spaceLeft < _conversionOutput)
-                return;
-
-            InputResourcesCount -= _resourcesPerCycle;
-            OutputResourcesCount += _conversionOutput;
         }
 
         private void BurnExcessInputResources()
