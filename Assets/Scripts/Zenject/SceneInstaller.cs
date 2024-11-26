@@ -7,23 +7,26 @@ namespace SnakeGame
     public class SceneInstaller : MonoInstaller
     {
         [SerializeField]
-        private Snake _snake;
+        private Coin _coinPrefab;
 
         [SerializeField]
-        private Coin _coinPrefab;
-        
+        private Snake _snake;
+
+        const int maxDifficulty = 10;
+
         public override void InstallBindings()
         {
-            Container.Bind<ISnake>().FromInstance(_snake).AsSingle();
             Container.Bind<Coin>().FromInstance(_coinPrefab).AsCached();
-            
-            Container.Bind<IWorldBounds>().To<WorldBounds>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<IGameUI>().To<GameUI>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<ISnake>().FromInstance(_snake).AsSingle();
+
+            Container.BindInterfacesAndSelfTo<Difficulty>().AsSingle().WithArguments(maxDifficulty);
             Container.Bind<IScore>().To<Score>().AsSingle();
-            
+            Container.Bind<IGameUI>().To<GameUI>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IWorldBounds>().To<WorldBounds>().FromComponentInHierarchy().AsSingle();
+
             Container.BindInterfacesTo<PlayerController>().AsSingle();
-            Container.BindInterfacesAndSelfTo<CoinController>().AsSingle();
-            Container.BindInterfacesTo<GameCycle>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CoinManager>().AsSingle();
+            Container.BindInterfacesTo<GameManager>().AsSingle();
         }
     }
 }
