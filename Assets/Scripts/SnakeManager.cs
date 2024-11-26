@@ -24,21 +24,28 @@ namespace SnakeGame
 
         public void Initialize()
         {
+            _snake.OnSelfCollided += HandleSelfCollision;
+            _snake.OnMoved += HandleOutOfBounds;
             _snake.OnMoved += _coinManager.CheckForCoinCollision;
-            _snake.OnMoved += OutOfBounds;
             _difficulty.OnStateChanged += UpdateSpeed;
             _coinManager.OnCoinCollected += UpdateSize;
         }
 
         public void Dispose()
         {
+            _snake.OnSelfCollided -= HandleSelfCollision;
+            _snake.OnMoved -= HandleOutOfBounds;
             _snake.OnMoved -= _coinManager.CheckForCoinCollision;
-            _snake.OnMoved -= OutOfBounds;
             _difficulty.OnStateChanged -= UpdateSpeed;
             _coinManager.OnCoinCollected -= UpdateSize;
         }
+        
+        private void HandleSelfCollision()
+        {
+            OnGameOver?.Invoke(false);
+        }
 
-        private void OutOfBounds(Vector2Int position)
+        private void HandleOutOfBounds(Vector2Int position)
         {
            if(!_worldBounds.IsInBounds(position))
            {
