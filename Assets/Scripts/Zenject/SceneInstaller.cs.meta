@@ -1,3 +1,13 @@
 fileFormatVersion: 2
 guid: 9f641961ab6a468492ef05acbed77630
-timeCreated: 1732532440
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _snake: {instanceID: 0}
+  - _coinPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -5,14 +5,15 @@ using Zenject;
 
 namespace SnakeGame
 {
-    public class CoinSpawner : IInitializable
+    public class CoinController : IInitializable
     {
-        private readonly Coin _coinPrefab;
-        private readonly WorldBounds _worldBounds;
         private const int numberOfCoins = 10;
         private readonly List<Coin> _spawnedCoins = new();
+        
+        private readonly Coin _coinPrefab;
+        private readonly IWorldBounds _worldBounds;
 
-        public CoinSpawner(WorldBounds worldBounds, Coin coinPrefab)
+        public CoinController(IWorldBounds worldBounds, Coin coinPrefab)
         {
             _worldBounds = worldBounds;
             _coinPrefab = coinPrefab;
@@ -38,11 +39,18 @@ namespace SnakeGame
                     coin.Generate();
                     _spawnedCoins.Add(coin);
                 }
-                else
-                {
-                    Debug.LogError("The prefab does not have a Coin component attached.");
-                }
             }
+        }
+
+        public void CollectCoins(Coin coin)
+        {
+            _spawnedCoins.Remove(coin);
+            GameObject.Destroy(coin.gameObject);
+        }
+
+        public List<Coin> GetCoins()
+        {
+            return new List<Coin>(_spawnedCoins);
         }
     }
 }

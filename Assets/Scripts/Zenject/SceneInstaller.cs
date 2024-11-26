@@ -15,11 +15,15 @@ namespace SnakeGame
         public override void InstallBindings()
         {
             Container.Bind<ISnake>().FromInstance(_snake).AsSingle();
-            Container.BindInterfacesTo<PlayerController>().AsCached();
-
-            Container.Bind<WorldBounds>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<Coin>().FromInstance(_coinPrefab).AsSingle();
-            Container.BindInterfacesTo<CoinSpawner>().AsSingle();
+            Container.Bind<Coin>().FromInstance(_coinPrefab).AsCached();
+            
+            Container.Bind<IWorldBounds>().To<WorldBounds>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IGameUI>().To<GameUI>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IScore>().To<Score>().AsSingle();
+            
+            Container.BindInterfacesTo<PlayerController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CoinController>().AsSingle();
+            Container.BindInterfacesTo<GameCycle>().AsSingle();
         }
     }
 }
