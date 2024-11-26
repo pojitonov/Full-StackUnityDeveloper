@@ -8,6 +8,8 @@ namespace SnakeGame
 {
     public class CoinManager : IInitializable, IDisposable
     {
+        public event Action OnCoinCollected;
+
         private readonly List<Coin> _spawnedCoins = new();
 
         private readonly Coin _coinPrefab;
@@ -68,6 +70,7 @@ namespace SnakeGame
             _score.Add(coin.Score);
             if(_spawnedCoins.Count == 0)
                 _difficulty.Next(out _);
+            OnCoinCollected.Invoke();
         }
     }
 }

@@ -26,6 +26,7 @@ namespace SnakeGame
 
             Container.BindInterfacesTo<PlayerController>().AsSingle();
             Container.BindInterfacesAndSelfTo<CoinManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SnakeManager>().AsSingle();
             Container.BindInterfacesTo<GameManager>().AsSingle();
         }
     }
