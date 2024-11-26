@@ -8,7 +8,7 @@ namespace SnakeGame
 {
     public class CoinManager : IInitializable, IDisposable
     {
-        public event Action OnCoinCollected;
+        public event Action<int> OnCoinCollected;
 
         private readonly List<Coin> _spawnedCoins = new();
 
@@ -68,9 +68,9 @@ namespace SnakeGame
             _spawnedCoins.Remove(coin);
             GameObject.Destroy(coin.gameObject);
             _score.Add(coin.Score);
-            if(_spawnedCoins.Count == 0)
+            if (_spawnedCoins.Count == 0)
                 _difficulty.Next(out _);
-            OnCoinCollected.Invoke();
+            OnCoinCollected?.Invoke(coin.Bones);
         }
     }
 }

@@ -31,9 +31,9 @@ namespace SnakeGame
             _coinManager.OnCoinCollected -= UpdateSize;
         }
 
-        private void UpdateSize()
+        private void UpdateSize(int bones)
         {
-            _snake.Expand(1);
+            _snake.Expand(bones);
         }
 
         private void UpdateSpeed()
