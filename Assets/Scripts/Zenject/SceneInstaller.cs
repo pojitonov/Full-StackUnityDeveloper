@@ -12,7 +12,7 @@ namespace SnakeGame
         [SerializeField]
         private Snake _snake;
  
-        const int maxDifficulty = 10;
+        const int maxDifficulty = 9;
 
         public override void InstallBindings()
         {
