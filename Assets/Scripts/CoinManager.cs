@@ -42,7 +42,6 @@ namespace SnakeGame
                 if (coin != null && coin.Position == position)
                 {
                     CollectCoin(coin);
-                    RemoveCoin(index);
                 }
             }
         }
@@ -54,29 +53,21 @@ namespace SnakeGame
             for (int i = 0; i < coinCount; i++)
             {
                 Vector2Int randomPosition = _worldBounds.GetRandomPosition();
-
                 Coin coinObject = GameObject.Instantiate(_coinPrefab, (Vector2)randomPosition, Quaternion.identity);
-
                 Coin coin = coinObject.GetComponent<Coin>();
-                if (coin != null)
-                {
-                    coin.Position = randomPosition;
-                    coin.Generate();
-                    _spawnedCoins.Add(coin);
-                }
+                coin.Position = randomPosition;
+                coin.Generate();
+                _spawnedCoins.Add(coin);
             }
         }
 
         private void CollectCoin(Coin coin)
         {
-            // _spawnedCoins.Remove(coin);
+            _spawnedCoins.Remove(coin);
             GameObject.Destroy(coin.gameObject);
             _score.Add(coin.Score);
-        }
-
-        private void RemoveCoin(int index)
-        {
-            _spawnedCoins.RemoveAt(index);
+            if(_spawnedCoins.Count == 0)
+                _difficulty.Next(out _);
         }
     }
 }
