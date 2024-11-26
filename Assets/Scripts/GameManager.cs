@@ -6,12 +6,14 @@ namespace SnakeGame
 {
     public class GameManager : IInitializable, IDisposable
     {
+        private readonly ISnake _snake;
         private readonly IScore _score;
         private readonly IDifficulty _difficulty;
         private readonly IGameUI _gameUI;
 
-        public GameManager(IScore score, IDifficulty difficulty, IGameUI gameUI)
+        public GameManager(ISnake snake, IScore score, IDifficulty difficulty, IGameUI gameUI)
         {
+            _snake = snake;
             _score = score;
             _difficulty = difficulty;
             _gameUI = gameUI;
@@ -19,21 +21,27 @@ namespace SnakeGame
 
         public void Initialize()
         {
+            _snake.OnSelfCollided += HandleGameOver;
             _score.OnStateChanged += OnScoreChanged;
             _difficulty.OnStateChanged += OnDifficultyChanged;
-            GameStart();
+            UpdateUI();
         }
 
         public void Dispose()
         {
+            _snake.OnSelfCollided -= HandleGameOver;
             _score.OnStateChanged -= OnScoreChanged;
             _difficulty.OnStateChanged -= OnDifficultyChanged;
-
         }
 
-        private void GameStart()
+        private void HandleGameOver()
         {
-            UpdateUI();
+            GameOver(false);
+        }
+
+        private void GameOver(bool isWin)
+        {
+            _gameUI.GameOver(isWin);
         }
 
         private void UpdateUI()

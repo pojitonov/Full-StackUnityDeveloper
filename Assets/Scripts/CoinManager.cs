@@ -27,8 +27,8 @@ namespace SnakeGame
 
         public void Initialize()
         {
-            SpawnCoins();
             _difficulty.OnStateChanged += SpawnCoins;
+            SpawnCoins();
         }
 
         public void Dispose()
