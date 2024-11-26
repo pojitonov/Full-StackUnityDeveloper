@@ -7,6 +7,8 @@ namespace SnakeGame
 {
     public class SnakeManager : IInitializable, IDisposable
     {
+        public event Action<bool> OnGameOver;
+        
         private readonly ISnake _snake;
         private readonly IDifficulty _difficulty;
         private readonly CoinManager _coinManager;
@@ -23,7 +25,7 @@ namespace SnakeGame
         public void Initialize()
         {
             _snake.OnMoved += _coinManager.CheckForCoinCollision;
-            _snake.OnMoved += CheckForSnakeCollision;
+            _snake.OnMoved += OutOfBounds;
             _difficulty.OnStateChanged += UpdateSpeed;
             _coinManager.OnCoinCollected += UpdateSize;
         }
@@ -31,16 +33,16 @@ namespace SnakeGame
         public void Dispose()
         {
             _snake.OnMoved -= _coinManager.CheckForCoinCollision;
-            _snake.OnMoved -= CheckForSnakeCollision;
+            _snake.OnMoved -= OutOfBounds;
             _difficulty.OnStateChanged -= UpdateSpeed;
             _coinManager.OnCoinCollected -= UpdateSize;
         }
 
-        private void CheckForSnakeCollision(Vector2Int position)
+        private void OutOfBounds(Vector2Int position)
         {
            if(!_worldBounds.IsInBounds(position))
            {
-               Debug.Log("Snake collision");
+               OnGameOver?.Invoke(false);
            }
         }
 
