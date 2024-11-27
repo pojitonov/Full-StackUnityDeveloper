@@ -39,6 +39,11 @@ namespace SnakeGame
             _difficulty.OnStateChanged -= UpdateSpeed;
             _coinManager.OnCoinCollected -= UpdateSize;
         }
+
+        public void DiactivateSnake()
+        {
+            _snake.SetActive(false);
+        }
         
         private void HandleSelfCollision()
         {
