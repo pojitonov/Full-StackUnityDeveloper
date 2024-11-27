@@ -34,21 +34,21 @@ namespace SnakeGame
             _difficulty.OnStateChanged -= OnDifficultyChanged;
         }
 
+        private void OnScoreChanged(int score)
+        {
+            UpdateUI();
+        }
+
         private void OnDifficultyChanged()
         {
             UpdateUI();
             HandleEndOfTheGame();
         }
 
-        private void OnScoreChanged(int score)
-        {
-            UpdateUI();
-        }
-
         private void HandleGameOver(bool isWin)
         {
             _gameUI.GameOver(isWin);
-            _snakeManager.DiactivateSnake();
+            _snakeManager.DeactivateSnake();
         }
 
         private void HandleEndOfTheGame()
@@ -56,7 +56,7 @@ namespace SnakeGame
             if (_difficulty.Current == _difficulty.Max)
             {
                 HandleGameOver(true);
-                _snakeManager.DiactivateSnake();
+                _snakeManager.DeactivateSnake();
             }
         }
 

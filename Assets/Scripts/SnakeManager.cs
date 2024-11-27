@@ -40,7 +40,7 @@ namespace SnakeGame
             _coinManager.OnCoinCollected -= UpdateSize;
         }
 
-        public void DiactivateSnake()
+        public void DeactivateSnake()
         {
             _snake.SetActive(false);
         }
