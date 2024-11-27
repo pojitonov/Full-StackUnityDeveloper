@@ -48,6 +48,10 @@ namespace SnakeGame
         private void OnDifficultyChanged()
         {
             _gameUI.SetDifficulty(_difficulty.Current + 1, _difficulty.Max);
+            if (_difficulty.Current == _difficulty.Max)
+            {
+                HandleGameOver(true);
+            }
         }
 
         private void OnScoreChanged(int score)

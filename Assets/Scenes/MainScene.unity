@@ -424,6 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _coinPrefab: {fileID: 1221131666036007499, guid: f37c023e6b8b06149a4215320dd7e482, type: 3}
   _snake: {fileID: 603291647516529739}
+  maxDifficulty: 9
 --- !u!114 &656615891
 MonoBehaviour:
   m_ObjectHideFlags: 0

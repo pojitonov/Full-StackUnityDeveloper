@@ -17,12 +17,12 @@ namespace SnakeGame
         private readonly IScore _score;
         private readonly IDifficulty _difficulty;
 
-        public CoinManager(Coin coinPrefab, IWorldBounds worldBounds, IScore score, IDifficulty difficulty)
+        public CoinManager(IScore score, IDifficulty difficulty, Coin coinPrefab, IWorldBounds worldBounds)
         {
-            _coinPrefab = coinPrefab;
-            _worldBounds = worldBounds;
             _score = score;
             _difficulty = difficulty;
+            _coinPrefab = coinPrefab;
+            _worldBounds = worldBounds;
         }
 
         public void Initialize()
