@@ -21,7 +21,10 @@ namespace Modules.Planets
 
         [field: SerializeField]
         public float IncomeDuration { get; private set; } = 20;
-        
+
+        [field: SerializeField]
+        public float PopulationPeriod { get; private set; } = 10;
+
         [SerializeField]
         private PriceTable _upgradePriceTable;
 
@@ -35,7 +38,7 @@ namespace Modules.Planets
         [SerializeField, PreviewField]
         private Sprite _unlockedIcon;
 
-        
+
         private void OnValidate()
         {
             _upgradePriceTable.OnValidate(MaxLevel);
@@ -64,15 +67,19 @@ namespace Modules.Planets
 
             public int startIncome;
             public int endIncome;
+
             public int incomeStep;
+            public float incomeDuration;
 
             public int upgradePrice;
             public int unlockPrice;
-            public float incomeDuration;
+
+            public int populationPeriod;
+
             public Sprite lockedIcon;
             public Sprite unlockedIcon;
         }
-        
+
         public static PlanetConfig New(CreateArgs args)
         {
             PlanetConfig config = CreateInstance<PlanetConfig>();
@@ -80,6 +87,8 @@ namespace Modules.Planets
             config.MaxLevel = args.maxLevel;
             config.PurchasePrice = args.unlockPrice;
             config.IncomeDuration = args.incomeDuration;
+            config.PopulationPeriod = args.populationPeriod;
+
             config._lockedIcon = args.lockedIcon;
             config._unlockedIcon = args.unlockedIcon;
             config._incomeTable = new StatTable(args.startIncome, args.endIncome, args.incomeStep, args.maxLevel);
