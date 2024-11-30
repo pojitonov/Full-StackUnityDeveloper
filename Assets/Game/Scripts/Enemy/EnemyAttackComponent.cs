@@ -20,7 +20,7 @@ namespace ShootEmUp
 
         public void Attack()
         {
-            if (Target.HealthComponent.Health <= 0) return;
+            if (Target.GetHealth() <= 0) return;
 
             currentTime -= Time.fixedDeltaTime;
 

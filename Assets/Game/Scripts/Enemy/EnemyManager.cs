@@ -73,7 +73,7 @@ namespace ShootEmUp
         {
             foreach (Ship enemy in activeEnemies.ToArray())
             {
-                if (enemy.HealthComponent.Health <= 0)
+                if (enemy.GetHealth() <= 0)
                 {
                     spawner.Recycle(enemy);
                     activeEnemies.Remove(enemy);

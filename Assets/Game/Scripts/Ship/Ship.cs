@@ -15,11 +15,12 @@ namespace ShootEmUp
         
         [SerializeField]
         private ShipHealthComponent _healthComponent;
-        public ShipHealthComponent HealthComponent { get; private set; }
+
+        public ShipHealthComponent HealthComponent  => _healthComponent;
 
         private void Awake()
         {
-            HealthComponent = new ShipHealthComponent(this, _healthComponent.Health);
+            _healthComponent = new ShipHealthComponent(this, _healthComponent.Health);
             _movementComponent = new ShipMovementComponent(GetComponent<Rigidbody2D>());
             _attackComponent = new ShipAttackComponent(_attackComponent.FirePoint, isPlayer, FindAnyObjectByType<BulletManager>());
         }
@@ -41,7 +42,12 @@ namespace ShootEmUp
 
         public void TakeDamage(int damage)
         {
-            HealthComponent.TakeDamage(damage);
+            _healthComponent.TakeDamage(damage);
+        }
+        
+        public int GetHealth()
+        {
+            return _healthComponent.Health;
         }
     }
 }
