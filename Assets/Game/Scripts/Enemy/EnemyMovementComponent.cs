@@ -1,17 +1,16 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyMovement
+    public sealed class EnemyMovementComponent
     {
         private readonly Rigidbody2D rigidbody2D;
         private Vector2 destination;
 
         public bool IsPointReached { get; private set; }
 
-        public EnemyMovement(Rigidbody2D rigidbody2D)
+        public EnemyMovementComponent(Rigidbody2D rigidbody2D)
         {
             this.rigidbody2D = rigidbody2D;
         }

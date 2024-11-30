@@ -2,17 +2,17 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class ShipAttack
+    public class ShipAttackComponent
     {
-        private readonly Transform firePoint;
         private readonly bool isPlayer;
+        private readonly Transform firePoint;
         private readonly BulletManager bulletManager;
 
-        public ShipAttack(Transform firePoint, bool isPlayer, BulletManager bulletManager)
+        public ShipAttackComponent(Transform firePoint, bool isPlayer, BulletManager bulletManager)
         {
-            this.firePoint = firePoint;
             this.isPlayer = isPlayer;
             this.bulletManager = bulletManager;
+            this.firePoint = firePoint;
         }
 
         public void Fire(Vector2 direction, BulletConfig bulletConfig)

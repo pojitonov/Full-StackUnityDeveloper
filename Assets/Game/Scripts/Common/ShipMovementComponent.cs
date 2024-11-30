@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class ShipMovement
+    public class ShipMovementComponent
     {
         private readonly Rigidbody2D rigidbody2D;
         private readonly float speed;
         private int moveDirection;
 
-        public ShipMovement(Rigidbody2D rigidbody2D, float speed)
+        public ShipMovementComponent(Rigidbody2D rigidbody2D, float speed)
         {
             this.rigidbody2D = rigidbody2D;
             this.speed = speed;

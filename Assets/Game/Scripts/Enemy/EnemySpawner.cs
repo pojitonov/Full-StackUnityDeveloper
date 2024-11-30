@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class EnemySpawnController : MonoBehaviour
+    public sealed class EnemySpawner : MonoBehaviour
     {
         [SerializeField]
         private FloatRange waitTimeRange;

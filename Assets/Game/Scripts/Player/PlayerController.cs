@@ -9,7 +9,7 @@ namespace ShootEmUp
         
         private Ship ship;
 
-        private void Awake()
+        private void Start()
         {
             ship = GetComponent<Ship>();
             HandleGameOver();
@@ -29,7 +29,7 @@ namespace ShootEmUp
 
         private void HandleGameOver()
         {
-            ship.OnHealthEmpty += _ => Time.timeScale = 0;
+            ship.HealthComponent.OnHealthEmpty += _ => Time.timeScale = 0;
         }
     }
 }

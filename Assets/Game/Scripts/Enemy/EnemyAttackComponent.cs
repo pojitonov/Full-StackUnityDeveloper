@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyAttack
+    public sealed class EnemyAttackComponent
     {
         private readonly float countdown;
         private readonly BulletConfig bulletConfig;
@@ -11,7 +11,7 @@ namespace ShootEmUp
 
         public Ship Target { get; set; }
 
-        public EnemyAttack(float countdown, BulletConfig bulletConfig, Ship ship)
+        public EnemyAttackComponent(float countdown, BulletConfig bulletConfig, Ship ship)
         {
             this.countdown = countdown;
             this.bulletConfig = bulletConfig;
@@ -20,7 +20,7 @@ namespace ShootEmUp
 
         public void Attack()
         {
-            if (Target.Health <= 0) return;
+            if (Target.HealthComponent.Health <= 0) return;
 
             currentTime -= Time.fixedDeltaTime;
 

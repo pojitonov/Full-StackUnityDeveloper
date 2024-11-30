@@ -29,7 +29,7 @@ namespace ShootEmUp
 
         private Spawner<Ship> spawner;
         private readonly HashSet<Ship> activeEnemies = new();
-        private readonly EnemySpawnController enemySpawnController;
+        private readonly EnemySpawner _enemySpawner;
 
         public void Awake()
         {
@@ -73,7 +73,7 @@ namespace ShootEmUp
         {
             foreach (Ship enemy in activeEnemies.ToArray())
             {
-                if (enemy.Health <= 0)
+                if (enemy.HealthComponent.Health <= 0)
                 {
                     spawner.Recycle(enemy);
                     activeEnemies.Remove(enemy);

@@ -1,60 +1,50 @@
-using System;
 using UnityEngine;
 
 namespace ShootEmUp
 {
     public sealed class Ship : MonoBehaviour
     {
-        public Action<Ship, int> OnHealthChanged;
-        public Action<Ship> OnHealthEmpty;
+        [SerializeField]
+        private bool isPlayer;
 
         [SerializeField]
         private int health;
 
         [SerializeField]
-        private bool isPlayer;
+        private float speed = 5.0f;
 
         [SerializeField]
         private Transform firePoint;
 
-        [SerializeField]
-        private float speed = 5.0f;
-
-        private ShipMovement movement;
-        private ShipAttack attack;
-
-        public int Health => health;
+        public ShipHealthComponent HealthComponent { get; private set; }
+        private ShipMovementComponent _movementComponent;
+        private ShipAttackComponent _attackComponent;
 
         private void Awake()
         {
-            movement = new ShipMovement(GetComponent<Rigidbody2D>(), speed);
-            attack = new ShipAttack(firePoint, isPlayer, FindAnyObjectByType<BulletManager>());
+            HealthComponent = new ShipHealthComponent(this, health);
+            _movementComponent = new ShipMovementComponent(GetComponent<Rigidbody2D>(), speed);
+            _attackComponent = new ShipAttackComponent(firePoint, isPlayer, FindAnyObjectByType<BulletManager>());
         }
-
+        
         private void FixedUpdate()
         {
-            movement.FixedUpdate();
-        }
-
-        public void TakeDamage(int damage)
-        {
-            if (health <= 0)
-                return;
-
-            health = Mathf.Max(0, health - damage);
-            OnHealthChanged?.Invoke(this, health);
-            if (health <= 0)
-                OnHealthEmpty?.Invoke(this);
-        }
-
-        public void Fire(Vector2 direction, BulletConfig bulletConfig)
-        {
-            attack.Fire(direction, bulletConfig);
+            _movementComponent.FixedUpdate();
         }
 
         public void SetDirection(int direction)
         {
-            movement.SetDirection(direction);
+            _movementComponent.SetDirection(direction);
+        }
+
+        public void Fire(Vector2 direction, BulletConfig bulletConfig)
+        {
+            _attackComponent.Fire(direction, bulletConfig);
+        }
+
+        public void TakeDamage(int damage)
+        {
+            HealthComponent.TakeDamage(damage);
         }
     }
 }
