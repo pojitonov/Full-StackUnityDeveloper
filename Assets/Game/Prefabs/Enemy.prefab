@@ -163,10 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465594f845a448ad886bc379d2728580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
   isPlayer: 0
+  health: 3
   firePoint: {fileID: 3195880656587174614}
-  speed: 3
+  _movementComponent:
+    speed: 10
 --- !u!114 &7440391792267291906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +181,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletConfig: {fileID: 11400000, guid: f54d84140f305b844912fee1d766d263, type: 2}
-  ship: {fileID: 6678307561083733196}
   countdown: 1
 --- !u!1 &2239154907127902911
 GameObject:

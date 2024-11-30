@@ -1,17 +1,20 @@
+using System;
 using UnityEngine;
 
 namespace ShootEmUp
 {
+    [Serializable]
     public class ShipMovementComponent
     {
+        [SerializeField]
+        private float speed = 5.0f;
+        
         private readonly Rigidbody2D rigidbody2D;
-        private readonly float speed;
         private int moveDirection;
 
-        public ShipMovementComponent(Rigidbody2D rigidbody2D, float speed)
+        public ShipMovementComponent(Rigidbody2D rigidbody2D)
         {
             this.rigidbody2D = rigidbody2D;
-            this.speed = speed;
         }
 
         public void FixedUpdate()
