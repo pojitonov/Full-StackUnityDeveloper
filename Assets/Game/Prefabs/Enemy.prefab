@@ -164,10 +164,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  health: 3
-  firePoint: {fileID: 3195880656587174614}
+  health: 5
   _movementComponent:
-    speed: 10
+    speed: 5
+  _attackComponent:
+    firePoint: {fileID: 3195880656587174614}
 --- !u!114 &7440391792267291906
 MonoBehaviour:
   m_ObjectHideFlags: 0

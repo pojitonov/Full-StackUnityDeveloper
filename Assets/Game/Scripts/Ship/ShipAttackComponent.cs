@@ -1,12 +1,22 @@
+using System;
 using UnityEngine;
 
 namespace ShootEmUp
 {
+    [Serializable]
     public class ShipAttackComponent
     {
+        [SerializeField]
+        private Transform firePoint;
+        
         private readonly bool isPlayer;
-        private readonly Transform firePoint;
         private readonly BulletManager bulletManager;
+
+        public Transform FirePoint
+        {
+            get => firePoint;
+            set => firePoint = value;
+        }
 
         public ShipAttackComponent(Transform firePoint, bool isPlayer, BulletManager bulletManager)
         {
@@ -17,7 +27,7 @@ namespace ShootEmUp
 
         public void Fire(Vector2 direction, BulletConfig bulletConfig)
         {
-            Vector2 firePosition = firePoint.position;
+            Vector2 firePosition = FirePoint.position;
             bulletManager.SpawnBullet(
                 firePosition,
                 damage: 1,
