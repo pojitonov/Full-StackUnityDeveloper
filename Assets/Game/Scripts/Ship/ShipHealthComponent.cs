@@ -3,15 +3,17 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
+    [Serializable]
     public class ShipHealthComponent
-    {
+    {   
+        [SerializeField]
+        private int _health;
+        
         public Action<Ship, int> OnHealthChanged;
         public Action<Ship> OnHealthEmpty;
         
         public int Health => _health;
-        
         private readonly Ship _ship;
-        private int _health;
 
         public ShipHealthComponent(Ship ship, int health)
         {
