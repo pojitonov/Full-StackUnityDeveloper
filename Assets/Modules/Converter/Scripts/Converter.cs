@@ -11,6 +11,8 @@ namespace Homework
         private readonly float _conversionTime;
         private float _processingProgress;
         private float _currentTime;
+        private bool _isCycleStarted;
+
         public int InputResourcesCount { get; private set; }
         public int OutputResourcesCount { get; private set; }
         public bool IsRunning { get; private set; }
@@ -63,59 +65,80 @@ namespace Homework
 
         public void Start()
         {
+            if (IsRunning) return;
             _currentTime = 0;
             _processingProgress = 0;
             IsRunning = true;
         }
 
-        public void Update(float time)
+        public void Update(float deltaTime)
         {
-            if (time <= 0)
-                ValidatePositive(time, nameof(time));
-            if (!IsRunning)
-                return;
-            _currentTime += time;
-            int cycles = (int)(_currentTime / _conversionTime);
-            _currentTime %= _conversionTime;
-
-            for (int i = 0; i < cycles; i++)
-            {
-                ProcessResources();
-            }
-
-            _processingProgress = _currentTime / _conversionTime;
+            if (deltaTime <= 0)
+                ValidatePositive(deltaTime, nameof(deltaTime));
+            if (!IsRunning) return;
+            _processingProgress += deltaTime;
+            if (!_isCycleStarted && _processingProgress >= _conversionTime)
+                StartCycle();
+            if (_isCycleStarted)
+                ProcessResources(deltaTime);
         }
 
-        private void ProcessResources()
+        private void StartCycle()
         {
-            if (InputResourcesCount >= _resourcesPerCycle)
+            if (!_isCycleStarted && InputResourcesCount >= _resourcesPerCycle)
             {
                 InputResourcesCount -= _resourcesPerCycle;
-
-                int spaceLeft = _outputCapacity - OutputResourcesCount;
-                if (spaceLeft >= _conversionOutput)
-                {
-                    OutputResourcesCount += _conversionOutput;
-                }
-                else
-                {
-                    InputResourcesCount += _resourcesPerCycle;
-                }
+                _isCycleStarted = true;
             }
+        }
+
+        private void ProcessResources(float deltaTime)
+        {
+            _currentTime += deltaTime;
+            if (_currentTime >= _conversionTime)
+            {
+                CompleteCycle();
+                _currentTime -= _conversionTime;
+            }
+        }
+
+        private void CompleteCycle()
+        {
+            int availableSpace = _outputCapacity - OutputResourcesCount;
+            if (availableSpace >= _conversionOutput)
+            {
+                OutputResourcesCount += _conversionOutput;
+            }
+            else
+            {
+                InputResourcesCount += _resourcesPerCycle;
+            }
+
+            _isCycleStarted = false;
         }
 
         public void Shutdown()
         {
+            if (!IsRunning) return;
+
             IsRunning = false;
 
-            int resourcesUsed = (int)(_resourcesPerCycle * _processingProgress);
+            if (_isCycleStarted)
+            {
+                int partialResourcesToReturn = (int)(_resourcesPerCycle * _processingProgress);
+                int availableSpace = _inputCapacity - InputResourcesCount;
 
-            if (resourcesUsed >= _resourcesPerCycle)
-                InputResourcesCount += resourcesUsed;
-            else
-                BurnExcessInputResources();
+                if (partialResourcesToReturn > 0)
+                {
+                    InputResourcesCount += Math.Min(partialResourcesToReturn, availableSpace);
+                    if (partialResourcesToReturn > availableSpace)
+                        BurnExcessInputResources();
+                }
+            }
 
+            _isCycleStarted = false;
             _processingProgress = 0;
+            _currentTime = 0;
         }
 
         private void BurnExcessInputResources()
