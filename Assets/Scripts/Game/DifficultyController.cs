@@ -8,7 +8,6 @@ namespace SnakeGame
     {
         private readonly IDifficulty _difficulty;
         private readonly IGameUI _gameUI;
-        private readonly SnakeManager _snakeManager;
 
         public Action<bool> OnGameOver;   
 

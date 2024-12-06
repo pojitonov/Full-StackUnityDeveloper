@@ -6,7 +6,8 @@ namespace SnakeGame
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<PlayerController>().AsSingle();
+            Container.BindInterfacesTo<PlayerController>()
+                .AsSingle();
         }
     }
 }
