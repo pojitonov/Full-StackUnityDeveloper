@@ -35,5 +35,4 @@ namespace Modules.UI
             targetColor = originalColor;
         }
     }
-
 }
