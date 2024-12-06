@@ -11,24 +11,32 @@ namespace SnakeGame
 
         [SerializeField]
         private Snake _snake;
- 
+
         [SerializeField]
-        private int maxDifficulty = 9;
+        private int _maxDifficulty = 9;
 
         public override void InstallBindings()
         {
-            Container.Bind<Coin>().FromInstance(_coinPrefab).AsCached();
-            Container.Bind<ISnake>().FromInstance(_snake).AsSingle();
+            GameInstaller.Install(Container, _maxDifficulty);
+            InputInstaller.Install(Container);
 
-            Container.BindInterfacesAndSelfTo<Difficulty>().AsSingle().WithArguments(maxDifficulty);
-            Container.Bind<IScore>().To<Score>().AsSingle();
-            Container.Bind<IGameUI>().To<GameUI>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<IWorldBounds>().To<WorldBounds>().FromComponentInHierarchy().AsSingle();
-
-            Container.BindInterfacesTo<PlayerController>().AsSingle();
-            Container.BindInterfacesAndSelfTo<CoinManager>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SnakeManager>().AsSingle();
-            Container.BindInterfacesTo<GameManager>().AsSingle();
+            
+              Container.Bind<Coin>()
+                .FromInstance(_coinPrefab)
+                .AsCached();
+            Container.Bind<ISnake>()
+                .FromInstance(_snake)
+                .AsSingle();
+            
+            Container.Bind<IWorldBounds>()
+                .To<WorldBounds>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<CoinManager>()
+                .AsSingle();
+            Container.BindInterfacesAndSelfTo<SnakeManager>()
+                .AsSingle();
         }
     }
 }
