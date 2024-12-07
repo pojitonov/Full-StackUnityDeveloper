@@ -10,16 +10,16 @@ namespace SnakeGame
     {
         private readonly IWorldBounds _worldBounds;
         private readonly IDifficulty _difficulty;
-        private readonly CoinFactory _coinFactory ;
+        private readonly Factory _coinFactory;
         public List<Coin> SpawnedCoins { get; } = new();
-        
-        public CoinSpawner(IWorldBounds worldBounds, IDifficulty difficulty, CoinFactory coinFactory)
+
+        public CoinSpawner(IWorldBounds worldBounds, IDifficulty difficulty, Factory coinFactory)
         {
             _worldBounds = worldBounds;
             _difficulty = difficulty;
             _coinFactory = coinFactory;
         }
-        
+
         public void Initialize()
         {
             _difficulty.OnStateChanged += SpawnCoins;
@@ -39,10 +39,14 @@ namespace SnakeGame
             {
                 Vector2Int randomPosition = _worldBounds.GetRandomPosition();
                 Coin coin = _coinFactory.Create();
-                coin.transform.SetPositionAndRotation((Vector2)randomPosition, Quaternion.identity); 
+                coin.transform.SetPositionAndRotation((Vector2)randomPosition, Quaternion.identity);
                 coin.Generate();
                 SpawnedCoins.Add(coin);
             }
         }
+    }
+
+    public sealed class Factory : PlaceholderFactory<Coin>
+    {
     }
 }
