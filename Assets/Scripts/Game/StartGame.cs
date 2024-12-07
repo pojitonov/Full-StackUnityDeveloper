@@ -2,12 +2,12 @@ using Zenject;
 
 namespace SnakeGame
 {
-    public class GameStartController : IInitializable
+    public class StartGame : IInitializable
     {
         private readonly ScoreController _scoreController;
         private readonly DifficultyController _difficultyController;
 
-        public GameStartController(ScoreController scoreController, DifficultyController difficultyController)
+        public StartGame(ScoreController scoreController, DifficultyController difficultyController)
         {
             _scoreController = scoreController;
             _difficultyController = difficultyController;

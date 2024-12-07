@@ -5,7 +5,7 @@ using Zenject;
 
 namespace SnakeGame
 {
-    public class CollisionManager : IInitializable, IDisposable
+    public class CollisionController : IInitializable, IDisposable
     {
         public event Action<bool> OnGameOver;
 
@@ -13,7 +13,7 @@ namespace SnakeGame
         private readonly ISnake _snake;
         private readonly CoinCollector _coinCollector;
 
-        public CollisionManager(IWorldBounds bounds, ISnake snake, CoinCollector coinCollector)
+        public CollisionController(IWorldBounds bounds, ISnake snake, CoinCollector coinCollector)
         {
             _bounds = bounds;
             _snake = snake;

@@ -23,7 +23,7 @@ namespace SnakeGame
                 .WithArguments(_maxLevels);
 
             //Game:
-            Container.BindInterfacesAndSelfTo<GameStartController>()
+            Container.BindInterfacesAndSelfTo<StartGame>()
                 .AsSingle();
             Container.BindInterfacesAndSelfTo<GameOverController>()
                 .AsSingle();

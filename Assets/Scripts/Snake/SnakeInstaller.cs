@@ -17,7 +17,7 @@ namespace SnakeGame
             Container.BindInterfacesAndSelfTo<SnakeManager>()
                 .AsSingle();
             
-            Container.BindInterfacesAndSelfTo<CollisionManager>()
+            Container.BindInterfacesAndSelfTo<CollisionController>()
                 .AsSingle();
         }
     }
