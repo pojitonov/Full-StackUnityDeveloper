@@ -8,15 +8,13 @@ namespace SnakeGame
 {
     public class CoinSpawner : IDisposable, IInitializable
     {
-        private readonly Coin _coinPrefab;
         private readonly IWorldBounds _worldBounds;
         private readonly IDifficulty _difficulty;
         private readonly CoinFactory _coinFactory ;
         public List<Coin> SpawnedCoins { get; } = new();
         
-        public CoinSpawner(Coin coinPrefab, IWorldBounds worldBounds, IDifficulty difficulty, CoinFactory coinFactory)
+        public CoinSpawner(IWorldBounds worldBounds, IDifficulty difficulty, CoinFactory coinFactory)
         {
-            _coinPrefab = coinPrefab;
             _worldBounds = worldBounds;
             _difficulty = difficulty;
             _coinFactory = coinFactory;
