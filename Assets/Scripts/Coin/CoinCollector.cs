@@ -10,20 +10,20 @@ namespace SnakeGame
 
         private readonly IScore _score;
         private readonly IDifficulty _difficulty;
-        private readonly CoinFactory _factory;
+        private readonly CoinSpawner _spawner;
 
-        public CoinCollector(IScore score, IDifficulty difficulty, CoinFactory factory)
+        public CoinCollector(IScore score, IDifficulty difficulty, CoinSpawner spawner)
         {
             _score = score;
             _difficulty = difficulty;
-            _factory = factory;
+            _spawner = spawner;
         }
 
         public void CheckForCoinCollision(Vector2Int position)
         {
-            for (int index = _factory.SpawnedCoins.Count - 1; index >= 0; index--)
+            for (int index = _spawner.SpawnedCoins.Count - 1; index >= 0; index--)
             {
-                var coin = _factory.SpawnedCoins[index];
+                var coin = _spawner.SpawnedCoins[index];
                 if (coin != null && coin.Position == position)
                 {
                     Collect(coin);
@@ -33,10 +33,10 @@ namespace SnakeGame
 
         private void Collect(Coin coin)
         {
-            _factory.SpawnedCoins.Remove(coin);
+            _spawner.SpawnedCoins.Remove(coin);
             GameObject.Destroy(coin.gameObject);
             _score.Add(coin.Score);
-            if (_factory.SpawnedCoins.Count == 0)
+            if (_spawner.SpawnedCoins.Count == 0)
                 _difficulty.Next(out _);
             OnCoinCollected?.Invoke(coin.Bones);
         }
