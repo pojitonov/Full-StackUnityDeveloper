@@ -1,12 +1,16 @@
 using Modules;
+using UnityEngine;
 using Zenject;
 
 namespace SnakeGame
 {
-    public class CoinInstaller : Installer<Coin, CoinInstaller>
+    public class CoinInstaller : Installer<Coin, Transform, CoinInstaller>
     {
         [Inject]
         private Coin _coinPrefab;
+
+        [Inject]
+        private Transform _worldTransform;
 
         public override void InstallBindings()
         {
@@ -16,6 +20,8 @@ namespace SnakeGame
             
             Container.BindFactory<Coin, CoinFactory>()
                 .FromComponentInNewPrefab(_coinPrefab)
+                .WithGameObjectName("Coin")
+                .UnderTransform(_worldTransform)
                 .AsSingle();
 
             Container.Bind<IWorldBounds>()

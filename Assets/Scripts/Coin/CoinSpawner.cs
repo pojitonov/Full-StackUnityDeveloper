@@ -40,11 +40,9 @@ namespace SnakeGame
             for (int i = 0; i < coinCount; i++)
             {
                 Vector2Int randomPosition = _worldBounds.GetRandomPosition();
-                Coin coinObject = _coinFactory.Create();
-                coinObject.transform.SetPositionAndRotation((Vector2)randomPosition, Quaternion.identity); 
-                Coin coin = coinObject.GetComponent<Coin>();
-                coin.Position = randomPosition;
-                coin.Generate();  
+                Coin coin = _coinFactory.Create();
+                coin.transform.SetPositionAndRotation((Vector2)randomPosition, Quaternion.identity); 
+                coin.Generate();
                 SpawnedCoins.Add(coin);
             }
         }
