@@ -6,32 +6,34 @@ namespace SnakeGame
     public class GameOverController : IInitializable, IDisposable
     {
         private readonly DifficultyController _difficultyController;
-        private readonly SnakeCollectCoinController _snakeCollectCoinController;
+        private readonly SnakeDeathController _snakeDeathController;
+        private readonly SnakeCollisionController _snakeCollisionController;
         private readonly IGameUI _gameUI;
 
-        public GameOverController(DifficultyController difficultyController, SnakeCollectCoinController snakeCollectCoinController, IGameUI gameUI)
+        public GameOverController(DifficultyController difficultyController, IGameUI gameUI, SnakeDeathController snakeDeathController, SnakeCollisionController snakeCollisionController)
         {
             _difficultyController = difficultyController;
             _gameUI = gameUI;
-            _snakeCollectCoinController = snakeCollectCoinController;
+            _snakeDeathController = snakeDeathController;
+            _snakeCollisionController = snakeCollisionController;
         }
 
         public void Initialize()
         {
-            _snakeCollectCoinController.OnGameOver += HandleGameOver;
+            _snakeDeathController.OnGameOver += HandleGameOver;
             _difficultyController.OnGameOver += HandleGameOver;
         }
 
         public void Dispose()
         {
-            _snakeCollectCoinController.OnGameOver -= HandleGameOver;
+            _snakeDeathController.OnGameOver -= HandleGameOver;
             _difficultyController.OnGameOver -= HandleGameOver;
         }
 
         private void HandleGameOver(bool isWin)
         {
             _gameUI.GameOver(isWin);
-            _snakeCollectCoinController.DeactivateSnake();
+            _snakeCollisionController.DeactivateSnake();
         }
     }
 }

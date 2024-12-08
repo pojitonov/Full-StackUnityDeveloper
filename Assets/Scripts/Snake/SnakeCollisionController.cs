@@ -1,17 +1,17 @@
 using System;
 using Modules;
+using UnityEngine;
 using Zenject;
 
 namespace SnakeGame
 {
-    public class SnakeCollectCoinController : IInitializable, IDisposable
+    public class SnakeCollisionController : IInitializable, IDisposable
     {
-        public event Action<bool> OnGameOver;
 
         private readonly ISnake _snake;
         private readonly CoinCollector _coinCollector;
 
-        public SnakeCollectCoinController(ISnake snake, CoinCollector coinCollector)
+        public SnakeCollisionController(ISnake snake, CoinCollector coinCollector)
         {
             _snake = snake;
             _coinCollector = coinCollector;
