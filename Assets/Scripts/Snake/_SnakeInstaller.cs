@@ -14,7 +14,7 @@ namespace SnakeGame
                 .FromInstance(_snake)
                 .AsSingle();
 
-            Container.BindInterfacesAndSelfTo<SnakeCollisionController>()
+            Container.BindInterfacesAndSelfTo<SnakeCoinCollectionController>()
                 .AsSingle();
 
             Container.BindInterfacesAndSelfTo<SnakeDeathController>()

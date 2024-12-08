@@ -1,4 +1,5 @@
 using System;
+using Modules;
 using Zenject;
 
 namespace SnakeGame
@@ -7,15 +8,15 @@ namespace SnakeGame
     {
         private readonly DifficultyController _difficultyController;
         private readonly SnakeDeathController _snakeDeathController;
-        private readonly SnakeCollisionController _snakeCollisionController;
         private readonly IGameUI _gameUI;
+        private readonly ISnake _snake;
 
-        public GameOverController(DifficultyController difficultyController, IGameUI gameUI, SnakeDeathController snakeDeathController, SnakeCollisionController snakeCollisionController)
+        public GameOverController(DifficultyController difficultyController, IGameUI gameUI, SnakeDeathController snakeDeathController, ISnake snake)
         {
             _difficultyController = difficultyController;
             _gameUI = gameUI;
             _snakeDeathController = snakeDeathController;
-            _snakeCollisionController = snakeCollisionController;
+            _snake = snake;
         }
 
         public void Initialize()
@@ -33,7 +34,7 @@ namespace SnakeGame
         private void HandleGameOver(bool isWin)
         {
             _gameUI.GameOver(isWin);
-            _snakeCollisionController.DeactivateSnake();
+            _snake.SetActive(false);
         }
     }
 }

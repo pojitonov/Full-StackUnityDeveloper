@@ -30,7 +30,6 @@ namespace SnakeGame
             _snake.OnMoved -= HandleBoundsCollision;
         }
         
-
         private void HandleSelfCollision()
         {
             OnGameOver?.Invoke(false);
