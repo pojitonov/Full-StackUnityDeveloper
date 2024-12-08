@@ -3,7 +3,7 @@ using Zenject;
 
 namespace SnakeGame
 {
-    public class SnakeInstaller : Installer<Snake, SnakeInstaller>
+    public class _SnakeInstaller : Installer<Snake, _SnakeInstaller>
     {
         [Inject]
         private Snake _snake;
@@ -13,11 +13,14 @@ namespace SnakeGame
             Container.Bind<ISnake>()
                 .FromInstance(_snake)
                 .AsSingle();
-            
-            Container.BindInterfacesAndSelfTo<SnakeManager>()
+
+            Container.BindInterfacesAndSelfTo<SnakeCollectCoinController>()
+                .AsSingle();
+
+            Container.BindInterfacesAndSelfTo<SnakeSizeController>()
                 .AsSingle();
             
-            Container.BindInterfacesAndSelfTo<CollisionController>()
+            Container.BindInterfacesAndSelfTo<SnakeSpeedController>()
                 .AsSingle();
         }
     }

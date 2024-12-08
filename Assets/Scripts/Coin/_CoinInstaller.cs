@@ -4,7 +4,7 @@ using Zenject;
 
 namespace SnakeGame
 {
-    public class CoinInstaller : Installer<Coin, Transform, CoinInstaller>
+    public class _CoinInstaller : Installer<Coin, Transform, _CoinInstaller>
     {
         [Inject]
         private Coin _coinPrefab;
