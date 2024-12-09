@@ -12,7 +12,7 @@ namespace SnakeGame
             _coinManager = coinManager;
         }
 
-        public Coin CheckForCoinCollision(Vector2Int position)
+        public Coin CheckCollision(Vector2Int position)
         {
             var spawnedCoins = _coinManager.GetSpawnedCoins();
             for (int index = spawnedCoins.Count - 1; index >= 0; index--)

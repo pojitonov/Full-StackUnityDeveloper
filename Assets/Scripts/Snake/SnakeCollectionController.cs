@@ -30,7 +30,7 @@ namespace SnakeGame
 
         private void HandleSnakeMovement(Vector2Int position)
         {
-            var coin = _coinCollisionController.CheckForCoinCollision(position);
+            var coin = _coinCollisionController.CheckCollision(position);
             if (coin != null)
             {
                 _coinCollector.Collect(coin);

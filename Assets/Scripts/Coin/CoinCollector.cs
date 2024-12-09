@@ -13,7 +13,8 @@ namespace SnakeGame
         private readonly DifficultyController _difficultyController;
         private readonly CoinManager _coinManager;
 
-        public CoinCollector(ScoreController scoreController, DifficultyController difficultyController, CoinManager coinManager)
+        public CoinCollector(ScoreController scoreController, DifficultyController difficultyController,
+            CoinManager coinManager)
         {
             _scoreController = scoreController;
             _difficultyController = difficultyController;
@@ -23,14 +24,13 @@ namespace SnakeGame
         public void Collect(Coin coin)
         {
             var spawnedCoins = _coinManager.GetSpawnedCoins();
-            spawnedCoins.Remove(coin);
             GameObject.Destroy(coin.gameObject);
-            
+            _coinManager.RemoveCoin(coin);
             _scoreController.AddScore(coin.Score);
-            
+
             if (spawnedCoins.Count == 0)
                 _difficultyController.ProgressDifficulty();
-            
+
             OnCoinCollected?.Invoke(coin.Bones);
         }
     }
