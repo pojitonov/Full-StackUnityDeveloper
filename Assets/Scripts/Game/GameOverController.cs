@@ -6,29 +6,25 @@ namespace SnakeGame
 {
     public class GameOverController : IInitializable, IDisposable
     {
-        private readonly DifficultyController _difficultyController;
-        private readonly SnakeDeathController _snakeDeathController;
         private readonly IGameUI _gameUI;
         private readonly ISnake _snake;
+        private readonly GameCycle _gameCycle;
 
-        public GameOverController(DifficultyController difficultyController, IGameUI gameUI, SnakeDeathController snakeDeathController, ISnake snake)
+        public GameOverController(GameCycle gameCycle, IGameUI gameUI, ISnake snake)
         {
-            _difficultyController = difficultyController;
+            _gameCycle = gameCycle;
             _gameUI = gameUI;
-            _snakeDeathController = snakeDeathController;
             _snake = snake;
         }
 
         public void Initialize()
         {
-            _snakeDeathController.OnGameOver += HandleGameOver;
-            _difficultyController.OnGameOver += HandleGameOver;
+            _gameCycle.OnFinished += HandleGameOver;
         }
-
+        
         public void Dispose()
         {
-            _snakeDeathController.OnGameOver -= HandleGameOver;
-            _difficultyController.OnGameOver -= HandleGameOver;
+            _gameCycle.OnFinished += HandleGameOver;
         }
 
         private void HandleGameOver(bool isWin)

@@ -1,28 +1,32 @@
 using System;
 using Modules;
+using UnityEngine;
 using Zenject;
 
 namespace SnakeGame
 {
     public class ScoreController : IInitializable, IDisposable
     {
-        private readonly IScore _score;
+        private readonly GameCycle _gameCycle;
         private readonly IGameUI _gameUI;
+        private readonly IScore _score;
 
-        public ScoreController(IScore score, IGameUI gameUI)
+        public ScoreController(GameCycle gameCycle, IGameUI gameUI, IScore score)
         {
-            _score = score;
+            _gameCycle = gameCycle;
             _gameUI = gameUI;
+            _score = score;
         }
-
+        
         public void Initialize()
         {
-            UpdateUI();
+            _gameCycle.OnStarted += UpdateUI;
             _score.OnStateChanged += OnScoreChanged;
         }
-
+        
         public void Dispose()
         {
+            _gameCycle.OnStarted -= UpdateUI;
             _score.OnStateChanged -= OnScoreChanged;
         }
 

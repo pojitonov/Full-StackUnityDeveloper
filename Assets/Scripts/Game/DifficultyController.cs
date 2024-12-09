@@ -1,30 +1,32 @@
 using System;
 using Modules;
+using UnityEngine;
 using Zenject;
 
 namespace SnakeGame
 {
     public class DifficultyController : IInitializable, IDisposable
     {
-        private readonly IDifficulty _difficulty;
+        private readonly GameCycle _gameCycle;
         private readonly IGameUI _gameUI;
+        private readonly IDifficulty _difficulty;
 
-        public Action<bool> OnGameOver;   
-
-        public DifficultyController(IDifficulty difficulty, IGameUI gameUI)
+        public DifficultyController(GameCycle gameCycle, IGameUI gameUI, IDifficulty difficulty)
         {
-            _difficulty = difficulty;
+            _gameCycle = gameCycle;
             _gameUI = gameUI;
+            _difficulty = difficulty;
         }
 
         public void Initialize()
         {
-            UpdateUI();
+            _gameCycle.OnStarted += UpdateUI;
             _difficulty.OnStateChanged += OnDifficultyChanged;
         }
 
         public void Dispose()
         {
+            _gameCycle.OnStarted -= UpdateUI;
             _difficulty.OnStateChanged -= OnDifficultyChanged;
         }
 
@@ -33,18 +35,13 @@ namespace SnakeGame
             UpdateUI();
             if (_difficulty.Current == _difficulty.Max)
             {
-                TriggerGameOver(true);
+                _gameCycle.WonGame();
             }
         }
 
         private void UpdateUI()
         {
             _gameUI.SetDifficulty(_difficulty.Current + 1, _difficulty.Max);
-        }
-        
-        private void TriggerGameOver(bool isWin)
-        {
-            OnGameOver?.Invoke(isWin);
         }
     }
 }

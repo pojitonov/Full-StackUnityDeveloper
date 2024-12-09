@@ -6,7 +6,6 @@ namespace SnakeGame
 {
     public class SnakeCoinCollectionController : IInitializable, IDisposable
     {
-
         private readonly ISnake _snake;
         private readonly CoinCollector _coinCollector;
 

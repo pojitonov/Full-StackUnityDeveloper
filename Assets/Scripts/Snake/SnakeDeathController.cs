@@ -9,13 +9,13 @@ namespace SnakeGame
     {
         private readonly ISnake _snake;
         private readonly IWorldBounds _bounds;
+        private readonly GameCycle _gameCycle;
 
-        public event Action<bool> OnGameOver;
-
-        public SnakeDeathController(ISnake snake, IWorldBounds bounds)
+        public SnakeDeathController(ISnake snake, IWorldBounds bounds, GameCycle gameCycle)
         {
             _snake = snake;
             _bounds = bounds;
+            _gameCycle = gameCycle;
         }
 
         public void Initialize()
@@ -29,17 +29,17 @@ namespace SnakeGame
             _snake.OnSelfCollided -= HandleSelfCollision;
             _snake.OnMoved -= HandleBoundsCollision;
         }
-        
+
         private void HandleSelfCollision()
         {
-            OnGameOver?.Invoke(false);
+            _gameCycle.LooseGame();
         }
 
         private void HandleBoundsCollision(Vector2Int position)
         {
             if (!_bounds.IsInBounds(position))
             {
-                OnGameOver?.Invoke(false);
+                _gameCycle.LooseGame();
             }
         }
     }

@@ -20,10 +20,10 @@ namespace SnakeGame
 
         public override void InstallBindings()
         {
-            _InputInstaller.Install(Container);
             _GameInstaller.Install(Container, _maxLevels);
-            _CoinInstaller.Install(Container, _coinPrefab, _worldTransform);
+            _InputInstaller.Install(Container);
             _SnakeInstaller.Install(Container, _snake);
+            _CoinInstaller.Install(Container, _coinPrefab, _worldTransform);
         }
     }
 }
