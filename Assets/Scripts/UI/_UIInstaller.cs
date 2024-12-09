@@ -1,4 +1,3 @@
-using Modules;
 using Zenject;
 
 namespace SnakeGame

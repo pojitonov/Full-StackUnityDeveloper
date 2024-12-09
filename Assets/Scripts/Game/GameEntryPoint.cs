@@ -15,7 +15,7 @@ namespace SnakeGame
         
         public void Start()
         {
-            _gameCycle.StartGame();
+            _gameCycle.Start();
         }
     }
 }

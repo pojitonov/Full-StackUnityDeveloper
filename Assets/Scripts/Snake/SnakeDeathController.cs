@@ -30,17 +30,22 @@ namespace SnakeGame
             _snake.OnMoved -= HandleBoundsCollision;
         }
 
-        private void HandleSelfCollision()
+        private void HandleDeath()
         {
-            _gameCycle.LooseGame();
+            _snake.SetActive(false);
+            _gameCycle.Finish(false);
         }
 
         private void HandleBoundsCollision(Vector2Int position)
         {
             if (!_bounds.IsInBounds(position))
             {
-                _gameCycle.LooseGame();
+                HandleDeath();
             }
+        }
+        private void HandleSelfCollision()
+        {
+            HandleDeath();
         }
     }
 }

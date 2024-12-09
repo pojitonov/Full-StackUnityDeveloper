@@ -8,19 +8,14 @@ namespace SnakeGame
         public event Action OnStarted;
         public event Action<bool> OnFinished;
 
-        public void StartGame()
+        public void Start()
         {
             OnStarted?.Invoke();
         }
 
-        public void WonGame()
+        public void Finish(bool isWin)
         {
-            OnFinished?.Invoke(true);
-        }
-        
-        public void LooseGame()
-        {
-            OnFinished?.Invoke(false);
+            OnFinished?.Invoke(isWin);
         }
     }
 }

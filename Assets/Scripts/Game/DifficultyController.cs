@@ -18,19 +18,19 @@ namespace SnakeGame
 
         public void Initialize()
         {
-            _difficulty.OnStateChanged += OnDifficultyChanged;
+            _difficulty.OnStateChanged += OnCoinsCollected;
         }
 
         public void Dispose()
         {
-            _difficulty.OnStateChanged -= OnDifficultyChanged;
+            _difficulty.OnStateChanged -= OnCoinsCollected;
         }
 
-        private void OnDifficultyChanged()
+        private void OnCoinsCollected()
         {
             if (_difficulty.Current == _difficulty.Max)
             {
-                _gameCycle.WonGame();
+                _gameCycle.Finish(true);
             }
         }
     }
