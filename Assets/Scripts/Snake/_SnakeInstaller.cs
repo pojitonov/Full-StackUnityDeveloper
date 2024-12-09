@@ -25,9 +25,6 @@ namespace SnakeGame
             
             Container.BindInterfacesAndSelfTo<SnakeSpeedController>()
                 .AsSingle();
-            
-            Container.Bind<CoinCollisionController>()
-                .AsSingle();
         }
     }
 }
