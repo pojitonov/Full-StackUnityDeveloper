@@ -18,7 +18,7 @@ namespace SnakeGame
                 .FromInstance(_coinPrefab)
                 .AsCached();
             
-            Container.BindFactory<Coin, Factory>()
+            Container.BindFactory<Coin, CoinFactory>()
                 .FromComponentInNewPrefab(_coinPrefab)
                 .WithGameObjectName("Coin")
                 .UnderTransform(_worldTransform)
@@ -29,6 +29,15 @@ namespace SnakeGame
                 .FromComponentInHierarchy()
                 .AsSingle();
 
+            Container.Bind<CoinCollector>()
+                .AsSingle();
+            
+            Container.Bind<CoinManager>()
+                .AsSingle();
+            
+            Container.Bind<CoinCollisionController>()
+                .AsSingle();
+            
             Container.BindInterfacesAndSelfTo<CoinSpawner>()
                 .AsSingle();
         }

@@ -33,5 +33,10 @@ namespace SnakeGame
                 _gameCycle.Finish(true);
             }
         }
+        
+        public void ProgressDifficulty()
+        {
+            _difficulty.Next(out _);
+        }
     }
 }
