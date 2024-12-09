@@ -7,22 +7,22 @@ namespace SnakeGame
     public class SnakeSizeController : IInitializable, IDisposable
     {
         private readonly ISnake _snake;
-        private readonly CoinCollector _coinCollector;
+        private readonly CoinSpawner _coinSpawner;
         
-        public SnakeSizeController(ISnake snake, CoinCollector coinCollector)
+        public SnakeSizeController(ISnake snake, CoinSpawner coinSpawner)
         {
             _snake = snake;
-            _coinCollector = coinCollector;
+            _coinSpawner = coinSpawner;
         }
 
         public void Initialize()
         {
-            _coinCollector.OnCoinCollected += UpdateSize;
+            _coinSpawner.OnCoinCollected += UpdateSize;
         }
 
         public void Dispose()
         {   
-            _coinCollector.OnCoinCollected -= UpdateSize;
+            _coinSpawner.OnCoinCollected -= UpdateSize;
         }
         
         private void UpdateSize(int bones)

@@ -31,9 +31,6 @@ namespace SnakeGame
 
             Container.BindInterfacesAndSelfTo<CoinSpawner>()
                 .AsSingle();
-            
-            Container.Bind<CoinCollector>()
-                .AsSingle();
         }
     }
 }
