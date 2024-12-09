@@ -5,13 +5,13 @@ using Zenject;
 
 namespace SnakeGame
 {
-    public class SnakeCoinCollectionController : IInitializable, IDisposable
+    public class SnakeCollectionController : IInitializable, IDisposable
     {
         private readonly ISnake _snake;
         private readonly CoinCollisionController _coinCollisionController;
         private readonly CoinCollector _coinCollector;
 
-        public SnakeCoinCollectionController(ISnake snake, CoinCollisionController coinCollisionController, CoinCollector coinCollector)
+        public SnakeCollectionController(ISnake snake, CoinCollisionController coinCollisionController, CoinCollector coinCollector)
         {
             _snake = snake;
             _coinCollisionController = coinCollisionController;
