@@ -6,14 +6,12 @@ namespace SnakeGame
 {
     public class GameOverController : IInitializable, IDisposable
     {
-        private readonly IGameUI _gameUI;
         private readonly ISnake _snake;
         private readonly GameCycle _gameCycle;
 
-        public GameOverController(GameCycle gameCycle, IGameUI gameUI, ISnake snake)
+        public GameOverController(GameCycle gameCycle, ISnake snake)
         {
             _gameCycle = gameCycle;
-            _gameUI = gameUI;
             _snake = snake;
         }
 
@@ -27,9 +25,8 @@ namespace SnakeGame
             _gameCycle.OnFinished += HandleGameOver;
         }
 
-        private void HandleGameOver(bool isWin)
+        private void HandleGameOver(bool _)
         {
-            _gameUI.GameOver(isWin);
             _snake.SetActive(false);
         }
     }

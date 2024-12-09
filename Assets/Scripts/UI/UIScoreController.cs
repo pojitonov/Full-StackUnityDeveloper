@@ -5,13 +5,13 @@ using Zenject;
 
 namespace SnakeGame
 {
-    public class ScoreController : IInitializable, IDisposable
+    public class UIScoreController : IInitializable, IDisposable
     {
         private readonly GameCycle _gameCycle;
         private readonly IGameUI _gameUI;
         private readonly IScore _score;
 
-        public ScoreController(GameCycle gameCycle, IGameUI gameUI, IScore score)
+        public UIScoreController(GameCycle gameCycle, IGameUI gameUI, IScore score)
         {
             _gameCycle = gameCycle;
             _gameUI = gameUI;

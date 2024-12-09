@@ -34,9 +34,6 @@ namespace SnakeGame
             
             Container.BindInterfacesAndSelfTo<GameOverController>()
                 .AsSingle();
-
-            Container.BindInterfacesAndSelfTo<ScoreController>()
-                .AsSingle();
         }
     }
 }

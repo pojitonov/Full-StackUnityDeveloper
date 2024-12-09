@@ -24,6 +24,7 @@ namespace SnakeGame
             _InputInstaller.Install(Container);
             _SnakeInstaller.Install(Container, _snake);
             _CoinInstaller.Install(Container, _coinPrefab, _worldTransform);
+            _UIInstaller.Install(Container);
         }
     }
 }
