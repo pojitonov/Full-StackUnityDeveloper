@@ -30,12 +30,6 @@ namespace SnakeGame
             _snake.OnMoved -= HandleBoundsCollision;
         }
 
-        private void HandleDeath()
-        {
-            _snake.SetActive(false);
-            _gameCycle.Finish(false);
-        }
-
         private void HandleBoundsCollision(Vector2Int position)
         {
             if (!_bounds.IsInBounds(position))
@@ -43,9 +37,15 @@ namespace SnakeGame
                 HandleDeath();
             }
         }
+
         private void HandleSelfCollision()
         {
             HandleDeath();
+        }
+
+        private void HandleDeath()
+        {
+            _gameCycle.Finish(false);
         }
     }
 }

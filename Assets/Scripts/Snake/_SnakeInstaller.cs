@@ -16,6 +16,9 @@ namespace SnakeGame
 
             Container.BindInterfacesAndSelfTo<SnakeCollectionController>()
                 .AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<SnakeDeactivationController>()
+                .AsSingle();
 
             Container.BindInterfacesAndSelfTo<SnakeDeathController>()
                 .AsSingle();
