@@ -23,7 +23,7 @@ namespace SnakeGame
             _GameInstaller.Install(Container, _maxLevels);
             _InputInstaller.Install(Container);
             _SnakeInstaller.Install(Container, _snake);
-            _CoinInstaller.Install(Container, _coinPrefab, _worldTransform);
+            _CoinInstaller.Install(Container, _coinPrefab, _worldTransform, _maxLevels);
             _UIInstaller.Install(Container);
         }
     }

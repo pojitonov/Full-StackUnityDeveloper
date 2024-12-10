@@ -1,6 +1,5 @@
 using System;
 using Modules;
-using UnityEngine;
 
 namespace SnakeGame
 {
@@ -11,17 +10,19 @@ namespace SnakeGame
 
         private readonly ScoreController _scoreController;
         private readonly CoinManager _coinManager;
+        private readonly CoinsPool _coinsPool;
 
-        public CoinCollector(ScoreController scoreController, CoinManager coinManager)
+        public CoinCollector(ScoreController scoreController, CoinManager coinManager, CoinsPool coinsPool)
         {
             _scoreController = scoreController;
             _coinManager = coinManager;
+            _coinsPool = coinsPool;
         }
 
         public void Collect(Coin coin)
         {
             var spawnedCoins = _coinManager.GetSpawnedCoins();
-            GameObject.Destroy(coin.gameObject);
+            _coinsPool.Despawn(coin);
             _coinManager.RemoveCoin(coin);
             _scoreController.AddScore(coin.Score);
 
