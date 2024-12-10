@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Modules;
 using UnityEngine;
 using Zenject;
@@ -23,8 +22,8 @@ namespace SnakeGame
 
         public void Initialize()
         {
-            _difficulty.OnStateChanged += SpawnCoins;
             SpawnCoins();
+            _difficulty.OnStateChanged += SpawnCoins;
         }
 
         public void Dispose()
@@ -34,7 +33,7 @@ namespace SnakeGame
 
         private void SpawnCoins()
         {
-            int coinCount = _difficulty.Current + 1;
+            int coinCount = _difficulty.Current;
 
             for (int i = 0; i < coinCount; i++)
             {

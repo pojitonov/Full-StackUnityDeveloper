@@ -1,40 +1,32 @@
 using System;
 using Modules;
-using UnityEngine;
 using Zenject;
 
 namespace SnakeGame
 {
     public class DifficultyController : IInitializable, IDisposable
     {
-        private readonly GameCycle _gameCycle;
         private readonly IDifficulty _difficulty;
+        private readonly CoinCollector _coinCollector;
 
-        public DifficultyController(GameCycle gameCycle, IDifficulty difficulty)
+        public DifficultyController(IDifficulty difficulty, CoinCollector coinCollector)
         {
-            _gameCycle = gameCycle;
             _difficulty = difficulty;
+            _coinCollector = coinCollector;
         }
 
         public void Initialize()
         {
-            _difficulty.OnStateChanged += OnCoinsCollected;
+            ProgressDifficulty();
+            _coinCollector.OnAllCoinCollected += ProgressDifficulty;
         }
 
         public void Dispose()
         {
-            _difficulty.OnStateChanged -= OnCoinsCollected;
-        }
-
-        private void OnCoinsCollected()
-        {
-            if (_difficulty.Current == _difficulty.Max)
-            {
-                _gameCycle.Finish(true);
-            }
+            _coinCollector.OnAllCoinCollected -= ProgressDifficulty;
         }
         
-        public void ProgressDifficulty()
+        private void ProgressDifficulty()
         {
             _difficulty.Next(out _);
         }

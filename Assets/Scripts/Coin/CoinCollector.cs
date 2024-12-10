@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Modules;
 using UnityEngine;
 
@@ -8,16 +7,14 @@ namespace SnakeGame
     public class CoinCollector
     {
         public event Action<int> OnCoinCollected;
+        public event Action OnAllCoinCollected;
 
         private readonly ScoreController _scoreController;
-        private readonly DifficultyController _difficultyController;
         private readonly CoinManager _coinManager;
 
-        public CoinCollector(ScoreController scoreController, DifficultyController difficultyController,
-            CoinManager coinManager)
+        public CoinCollector(ScoreController scoreController, CoinManager coinManager)
         {
             _scoreController = scoreController;
-            _difficultyController = difficultyController;
             _coinManager = coinManager;
         }
 
@@ -28,10 +25,9 @@ namespace SnakeGame
             _coinManager.RemoveCoin(coin);
             _scoreController.AddScore(coin.Score);
 
-            if (spawnedCoins.Count == 0)
-                _difficultyController.ProgressDifficulty();
-
             OnCoinCollected?.Invoke(coin.Bones);
+            if (spawnedCoins.Count == 0)
+                OnAllCoinCollected?.Invoke();
         }
     }
 }

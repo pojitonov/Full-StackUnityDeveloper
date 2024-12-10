@@ -31,7 +31,7 @@ namespace SnakeGame
 
         private void UpdateUI()
         {
-            _gameUI.SetDifficulty(_difficulty.Current + 1, _difficulty.Max);
+            _gameUI.SetDifficulty(_difficulty.Current, _difficulty.Max);
         }
     }
 }
