@@ -766,6 +766,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 615309293}
+  - {fileID: 873220072}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1221,20 +1222,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7207275897469232668, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
   m_PrefabInstance: {fileID: 6121086404576301247}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &813176137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813176134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcb2a6bc62714ed28299f509603240fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _duration: 1
-  _fps: 30
 --- !u!114 &813176138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1325,6 +1312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 873220071}
+  - component: {fileID: 873220072}
   m_Layer: 0
   m_Name: '[UI]'
   m_TagString: Untagged
@@ -1349,6 +1337,19 @@ Transform:
   - {fileID: 1886819932}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &873220072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873220070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c711a2d3bc3c4b75be17cf37c322fe97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moneyView: {fileID: 813176138}
 --- !u!1 &974007725
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,9 +2366,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7207275897469232668, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 813176138}
-    - targetCorrespondingSourceObject: {fileID: 7207275897469232668, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 813176137}
   m_SourcePrefab: {fileID: 100100000, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
 --- !u!224 &7237256081421283246 stripped
 RectTransform:
@@ -2524,8 +2522,8 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 519420032}
-  - {fileID: 615309291}
   - {fileID: 1797508642}
+  - {fileID: 615309291}
+  - {fileID: 519420032}
   - {fileID: 873220071}
   - {fileID: 1556955876}
