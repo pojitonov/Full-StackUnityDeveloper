@@ -1,3 +1,4 @@
+using Modules.UI;
 using Zenject;
 
 namespace Game.UI
@@ -10,9 +11,21 @@ namespace Game.UI
         public override void InstallBindings()
         {
             Container
+                .Bind<MoneyView>()
+                .FromComponentInHierarchy()
+                .AsCached()
+                .NonLazy();
+            
+            Container
                 .BindInterfacesTo<MoneyViewPresenter>()
                 .AsCached()
                 .WithArguments(_moneyView)
+                .NonLazy();
+
+            Container
+                .Bind<CounterAnimation>()
+                .FromComponentInHierarchy()
+                .AsCached()
                 .NonLazy();
         }
     }

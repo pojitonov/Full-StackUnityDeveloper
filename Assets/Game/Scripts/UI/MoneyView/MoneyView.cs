@@ -1,6 +1,7 @@
 using Modules.UI;
 using UnityEngine;
 using TMPro;
+using Zenject;
 
 namespace Game.UI
 {
@@ -10,12 +11,8 @@ namespace Game.UI
         [SerializeField]
         private TMP_Text moneyText;
 
+        [Inject]
         private CounterAnimation _counterAnimation;
-
-        private void Awake()
-        {
-            _counterAnimation = FindObjectOfType<CounterAnimation>();
-        }
 
         public void SetMoney(string money)
         {
