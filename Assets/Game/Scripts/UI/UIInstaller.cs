@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Game.UI
@@ -6,15 +7,11 @@ namespace Game.UI
     public sealed class UIInstaller : MonoInstaller
     {
         [SerializeField]
-        private MoneyView _moneyView;
-        
+        private MoneyView moneyView;
+
         public override void InstallBindings()
         {
-            Container
-                .BindInterfacesTo<MoneyPresenter>()
-                .AsCached()
-                .WithArguments(_moneyView)
-                .NonLazy();
+            MoneyViewInstaller.Install(Container, moneyView);
         }
     }
 }
