@@ -2,7 +2,7 @@ using Zenject;
 
 namespace SnakeGame
 {
-    public class _InputInstaller : Installer<_InputInstaller>
+    public class InputInstaller : Installer<InputInstaller>
     {
         public override void InstallBindings()
         {

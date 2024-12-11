@@ -3,7 +3,7 @@ using Zenject;
 
 namespace SnakeGame
 {
-    public class _SnakeInstaller : Installer<Snake, _SnakeInstaller>
+    public class SnakeInstaller : Installer<Snake, SnakeInstaller>
     {
         [Inject]
         private Snake _snake;

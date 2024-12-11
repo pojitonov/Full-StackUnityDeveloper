@@ -2,7 +2,7 @@ using Zenject;
 
 namespace SnakeGame
 {
-    public class _UIInstaller : Installer<_UIInstaller>
+    public class UIInstaller : Installer<UIInstaller>
     {
         public override void InstallBindings()
         {

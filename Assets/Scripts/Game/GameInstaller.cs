@@ -3,7 +3,7 @@ using Zenject;
 
 namespace SnakeGame
 {
-    public class _GameInstaller : Installer<int, _GameInstaller>
+    public class GameInstaller : Installer<int, GameInstaller>
     {
         [Inject]
         private int _maxLevels;
