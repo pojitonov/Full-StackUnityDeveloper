@@ -1,31 +1,40 @@
+using Modules.UI;
 using UnityEngine;
 using TMPro;
 
 namespace Game.UI
 {
+    [RequireComponent(typeof(CounterAnimation))]
     public class MoneyView : MonoBehaviour
     {
         [SerializeField]
         private TMP_Text moneyText;
 
+        private CounterAnimation _counterAnimation;
+
+        private void Awake()
+        {
+            _counterAnimation = FindObjectOfType<CounterAnimation>();
+        }
+
         public void SetMoney(string money)
         {
-            moneyText.text = money;
+            _counterAnimation.Initialize(moneyText, money);
         }
 
         public void AddMoney(string money)
         {
-            moneyText.text = money;
+            _counterAnimation.UpdateText(money);
         }
 
         public void RemoveMoney(string money)
         {
-            moneyText.text = money;
+            _counterAnimation.UpdateText(money);
         }
 
         public void ChangeMoney(string money)
         {
-            moneyText.text = money;
+            _counterAnimation.UpdateText(money);
         }
     }
 }

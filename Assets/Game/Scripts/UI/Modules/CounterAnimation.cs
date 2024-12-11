@@ -16,21 +16,23 @@ namespace Modules.UI
         private int _currentValue;
         private Coroutine _countingCoroutine;
 
-        public void Initialize(TMP_Text text, int startValue)
+        public void Initialize(TMP_Text text, string startValue)
         {
             _text = text;
-            _currentValue = startValue;
+            _currentValue = ConvertStringToInt(startValue);
             _text.text = _currentValue.ToString();
         }
 
-        public void UpdateText(int newValue)
+        public void UpdateText(string newValue)
         {
+            int targetValue = ConvertStringToInt(newValue);
+
             if (_countingCoroutine != null)
             {
                 StopCoroutine(_countingCoroutine);
             }
 
-            _countingCoroutine = StartCoroutine(CountText(newValue));
+            _countingCoroutine = StartCoroutine(CountText(targetValue));
         }
 
         private IEnumerator CountText(int targetValue)
@@ -55,6 +57,11 @@ namespace Modules.UI
                 _text.text = _currentValue.ToString();
                 yield return wait;
             }
+        }
+
+        private int ConvertStringToInt(string value)
+        {
+            return int.TryParse(value, out var result) ? result : 0;
         }
     }
 }
