@@ -9,5 +9,9 @@ public sealed class PlanetPopupInstaller : Installer<PlanetPopupInstaller>
             .BindInterfacesAndSelfTo<PlanetPopupPresenter>()
             .AsSingle()
             .NonLazy();
+
+        Container
+            .Bind<PlanetPopupShower>()
+            .AsSingle();
     }
 }

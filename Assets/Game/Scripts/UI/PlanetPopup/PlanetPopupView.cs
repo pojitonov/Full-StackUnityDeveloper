@@ -47,7 +47,7 @@ namespace Game.UI.Planets
             _price.text = _popupPresenter.Price;
             _avatar.sprite = _popupPresenter.Avatar;
             
-            _button.onClick.AddListener(_popupPresenter.OnButtonClicked);
+            _button.onClick.AddListener(_popupPresenter.OnButtonClick);
             _button.interactable = _popupPresenter.IsButtonEnabled;
             
             gameObject.SetActive(true);
@@ -56,7 +56,7 @@ namespace Game.UI.Planets
         [Button]
         public void Hide()
         {
-            _button.onClick.RemoveListener(_popupPresenter.OnButtonClicked);
+            _button.onClick.RemoveListener(_popupPresenter.OnButtonClick);
             
             gameObject.SetActive(false);
         }

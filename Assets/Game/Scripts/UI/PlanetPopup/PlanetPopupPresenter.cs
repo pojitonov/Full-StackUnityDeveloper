@@ -12,35 +12,35 @@ namespace Game.UI.Planets
         public string Price => _planet?.Price.ToString() ?? "9999";
         public Sprite Avatar => _planet?.GetIcon(true) ? _planet?.GetIcon(true) : null;
         public bool IsButtonEnabled => _moneyAdapter.IsEnough(_planet?.Price ?? 0);
-        
-        private readonly IMoneyAdapter _moneyAdapter;
-        private readonly IPlanet _planet;
 
-        public PlanetPopupPresenter(IMoneyAdapter moneyAdapter)
+        private readonly IMoneyAdapter _moneyAdapter;
+        private IPlanet _planet;
+
+        public PlanetPopupPresenter(IMoneyAdapter moneyAdapter, IPlanet planet)
         {
             _moneyAdapter = moneyAdapter;
-            // _planet = planet;
+            _planet = planet;
         }
 
-        public void OnButtonClicked()
+        public void OnButtonClick()
         {
             if (_planet?.CanUnlockOrUpgrade == true)
                 _moneyAdapter.Spend(_planet.Price);
         }
 
-        private static string FormatPopulation(int? population)
+        public void UpdateData(IPlanet planet)
         {
-            return $"Population: {population}";
+            if (planet != null)
+            {
+                _planet = planet;
+                // OnPlanetChanged?.Invoke();
+            }
         }
 
-        private string FormatLevel(int? level, int? maxLevel)
-        {
-            return $"Level: {level}/{maxLevel}";
-        }
-        
-        private static string FormatIncome(int? incomeMinute)
-        {
-            return $"Income: {incomeMinute}$";
-        }
+        private static string FormatPopulation(int? population) => $"Population: {population}";
+
+        private string FormatLevel(int? level, int? maxLevel) => $"Level: {level}/{maxLevel}";
+
+        private static string FormatIncome(int? incomeMinute) => $"Income: {incomeMinute}$";
     }
 }
