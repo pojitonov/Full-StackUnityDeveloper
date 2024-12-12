@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Game.UI
 {
-    public sealed class MoneyViewInstaller : Installer<MoneyView, MoneyViewInstaller>
+    public sealed class MoneyInstaller : Installer<MoneyView, MoneyInstaller>
     {
         [Inject]
         private MoneyView _moneyView;
@@ -17,7 +17,7 @@ namespace Game.UI
                 .NonLazy();
             
             Container
-                .BindInterfacesTo<MoneyViewPresenter>()
+                .BindInterfacesTo<MoneyPresenter>()
                 .AsCached()
                 .WithArguments(_moneyView)
                 .NonLazy();

@@ -11,27 +11,32 @@ namespace Game.UI
         [SerializeField]
         private TMP_Text moneyText;
 
+        private CounterAnimation _animation;
+
         [Inject]
-        private CounterAnimation _counterAnimation;
+        public void Construct(CounterAnimation animation)
+        {
+            _animation = animation;
+        }
 
         public void SetMoney(string money)
         {
-            _counterAnimation.Initialize(moneyText, money);
+            _animation.Initialize(moneyText, money);
         }
 
         public void AddMoney(string money)
         {
-            _counterAnimation.UpdateText(money);
+            _animation.UpdateText(money);
         }
 
         public void RemoveMoney(string money)
         {
-            _counterAnimation.UpdateText(money);
+            _animation.UpdateText(money);
         }
 
         public void ChangeMoney(string money)
         {
-            _counterAnimation.UpdateText(money);
+            _animation.UpdateText(money);
         }
     }
 }

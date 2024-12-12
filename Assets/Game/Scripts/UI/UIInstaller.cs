@@ -7,10 +7,11 @@ namespace Game.UI
     {
         [SerializeField]
         private MoneyView moneyView;
-
+        
         public override void InstallBindings()
         {
-            MoneyViewInstaller.Install(Container, moneyView);
+            MoneyInstaller.Install(Container, moneyView);
+            PlanetPopupInstaller.Install(Container);
         }
     }
 }
