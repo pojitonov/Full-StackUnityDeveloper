@@ -24,7 +24,7 @@ namespace Game.UI
             
             MoneyInstaller.Install(Container, moneyView);
             PlanetInstaller.Install(Container, catalog, planetViews);
-            // PlanetPopupInstaller.Install(Container);
+            PlanetPopupInstaller.Install(Container);
             
             Container
                 .BindInterfacesTo<PlanetPresenterInitializer>()
