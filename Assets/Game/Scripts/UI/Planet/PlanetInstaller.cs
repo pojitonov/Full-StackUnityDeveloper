@@ -1,26 +1,31 @@
 using Game.UI.Planet;
+using Modules.Planets;
 using Zenject;
 
 namespace Game.UI
 {
-    public sealed class PlanetInstaller : Installer<PlanetView, PlanetInstaller>
+    public sealed class PlanetInstaller : Installer<PlanetCatalog, PlanetView[], PlanetInstaller>
     {
         [Inject]
-        private PlanetView _planetView;
+        private PlanetCatalog _catalog;
+
+        [Inject]
+        private PlanetView[] _planetViews;
+        
+        [Inject]
+        private PlanetPresenterFactory _presenterFactory;
 
         public override void InstallBindings()
         {
-            Container
-                .Bind<PlanetView>()
-                .FromComponentInHierarchy()
-                .AsTransient()
-                .NonLazy();
-
-            Container
-                .BindInterfacesTo<PlanetPresenter>()
-                .AsTransient()
-                .WithArguments(_planetView)
-                .NonLazy();
+            foreach (PlanetConfig config in _catalog)
+            {
+                Container
+                    .Bind<IPlanet>()
+                    .To<Modules.Planets.Planet>()
+                    .AsCached()
+                    .WithArguments(config)
+                    .WhenInjectedInto<PlanetPresenterFactory>();
+            }
         }
     }
 }

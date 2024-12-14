@@ -1,6 +1,6 @@
 using System;
-using Game.UI.Planets;
 using Modules.Planets;
+using UnityEngine;
 using Zenject;
 
 namespace Game.UI.Planet
@@ -10,18 +10,20 @@ namespace Game.UI.Planet
         private readonly IMoneyAdapter _money;
         private readonly PlanetView _view;
         private readonly IPlanet _planet;
-        private readonly PlanetPopupShower _shower;
+        // private readonly PlanetPopupShower _shower;
 
-        public PlanetPresenter(IMoneyAdapter money, PlanetView view, IPlanet planet, PlanetPopupShower shower)
+        public PlanetPresenter(IMoneyAdapter money, PlanetView view, IPlanet planet)
         {
             _view = view;
             _money = money;
             _planet = planet;
-            _shower = shower;
+            // _shower = shower;
         }
 
         public void Initialize()
         {
+            // Debug.Log($"Initializing presenter for planet {_planet}");
+
             _view.SetIcon(_planet.GetIcon(_planet.IsUnlocked));
             _view.SetPrice(_planet.Price.ToString());
             _view.SetTimer(_planet.Price.ToString());
@@ -44,8 +46,8 @@ namespace Game.UI.Planet
         }
         private void OnPlanetHoldClick()
         {
-            if (_planet.IsUnlocked)
-                _shower.Show(_planet);
+            // if (_planet.IsUnlocked)
+            //     _shower.Show(_planet);
         }
     }
 }

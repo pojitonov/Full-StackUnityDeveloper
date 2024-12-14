@@ -1,24 +1,24 @@
-using Modules.Planets;
-using Sirenix.OdinInspector;
-
-namespace Game.UI.Planets
-{
-    public class PlanetPopupShower
-    {
-        private readonly PlanetPopupPresenter _presenter;
-        private readonly PlanetPopupView _view;
-
-        public PlanetPopupShower(PlanetPopupPresenter presenter, PlanetPopupView view)
-        {
-            _presenter = presenter;
-            _view = view;
-        }
-
-        [Button]
-        public void Show(IPlanet planet)
-        {
-            _presenter.UpdateData(planet);
-            _view.Show();
-        }
-    }
-}
+// using Modules.Planets;
+// using Sirenix.OdinInspector;
+//
+// namespace Game.UI.Planets
+// {
+//     public class PlanetPopupShower
+//     {
+//         private readonly PlanetPopupPresenter _presenter;
+//         private readonly PlanetPopupView _view;
+//
+//         public PlanetPopupShower(PlanetPopupPresenter presenter, PlanetPopupView view)
+//         {
+//             _presenter = presenter;
+//             _view = view;
+//         }
+//
+//         [Button]
+//         public void Show(IPlanet planet)
+//         {
+//             _presenter.UpdateData(planet);
+//             _view.Show();
+//         }
+//     }
+// }
