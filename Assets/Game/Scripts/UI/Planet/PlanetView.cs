@@ -35,9 +35,6 @@ namespace Game.UI.Planet
         [SerializeField]
         private SmartButton _button;
 
-        [SerializeField]
-        private Button _button2;
-
         public void Awake()
         {
             _button.OnClick += HandlePlanetClick;
