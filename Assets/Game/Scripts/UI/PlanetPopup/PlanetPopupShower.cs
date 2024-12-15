@@ -1,5 +1,4 @@
 using Modules.Planets;
-using Sirenix.OdinInspector;
 
 namespace Game.UI.Planets
 {
@@ -14,17 +13,10 @@ namespace Game.UI.Planets
             _view = view;
         }
 
-        [Button]
         public void Show(IPlanet planet)
         {
             _presenter.SetPlanet(planet);
             _view.Show();
-        }
-        
-        [Button]
-        public void Show()
-        {
-            _view.Hide();
         }
     }
 }
