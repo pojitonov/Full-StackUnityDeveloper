@@ -3,7 +3,6 @@ using System.Collections;
 using Modules.UI;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Game.UI.Planet
