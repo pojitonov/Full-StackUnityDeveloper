@@ -20,5 +20,11 @@ namespace Game.UI.Planets
             _presenter.SetPlanet(planet);
             _view.Show();
         }
+        
+        [Button]
+        public void Show()
+        {
+            _view.Hide();
+        }
     }
 }

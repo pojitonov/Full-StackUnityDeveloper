@@ -2053,7 +2053,8 @@ MonoBehaviour:
   _income: {fileID: 1537280041}
   _price: {fileID: 985570342}
   _avatar: {fileID: 1788811289}
-  _button: {fileID: 1197490563}
+  _upgradeButton: {fileID: 1197490563}
+  _closeButton: {fileID: 1052078977217180738}
 --- !u!1 &1886819928
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,6 +2488,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1802329538}
   m_SourcePrefab: {fileID: 100100000, guid: c6f3aabda10ed1841ba1c1a8999ef4ba, type: 3}
+--- !u!114 &1052078977217180738 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4860622370961867766, guid: c6f3aabda10ed1841ba1c1a8999ef4ba, type: 3}
+  m_PrefabInstance: {fileID: 1052078977217180737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6121086404576301247
 PrefabInstance:
   m_ObjectHideFlags: 0

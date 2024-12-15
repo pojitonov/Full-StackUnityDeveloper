@@ -21,7 +21,7 @@ namespace Game.UI.Planets
             _moneyAdapter = moneyAdapter;
         }
 
-        public void OnButtonClick()
+        public void OnUpgradeButtonClick()
         {
             if (_planet?.CanUnlockOrUpgrade == true)
                 _moneyAdapter.Spend(_planet.Price);

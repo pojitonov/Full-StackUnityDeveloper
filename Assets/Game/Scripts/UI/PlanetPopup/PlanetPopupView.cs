@@ -27,7 +27,10 @@ namespace Game.UI.Planets
         private Image _avatar;
 
         [SerializeField]
-        private Button _button;
+        private Button _upgradeButton;
+
+        [SerializeField]
+        private Button _closeButton;
 
         private IPlanetPopupPresenter _popupPresenter;
 
@@ -36,23 +39,24 @@ namespace Game.UI.Planets
         {
             _popupPresenter = popupPresenter;
         }
-        
+
         [Button]
         public void Show()
         {
             UpdateView();
 
-            _button.onClick.AddListener(_popupPresenter.OnButtonClick);
-            _button.interactable = _popupPresenter.IsButtonEnabled;
-            
+            _upgradeButton.onClick.AddListener(_popupPresenter.OnUpgradeButtonClick);
+            _closeButton.onClick.AddListener(Hide);
+            _upgradeButton.interactable = _popupPresenter.IsButtonEnabled;
+
             gameObject.SetActive(true);
         }
-
+        
         [Button]
         public void Hide()
         {
-            _button.onClick.RemoveListener(_popupPresenter.OnButtonClick);
-            
+            _upgradeButton.onClick.RemoveListener(_popupPresenter.OnUpgradeButtonClick);
+            _closeButton.onClick.RemoveListener(Hide);
             gameObject.SetActive(false);
         }
 

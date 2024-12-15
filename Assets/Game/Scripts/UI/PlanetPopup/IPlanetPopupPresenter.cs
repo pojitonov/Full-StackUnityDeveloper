@@ -11,6 +11,6 @@ namespace Game.UI.Planets
         string Price { get; }
         Sprite Avatar { get; }
         bool IsButtonEnabled { get; }
-        void OnButtonClick();
+        void OnUpgradeButtonClick();
     }
 }
