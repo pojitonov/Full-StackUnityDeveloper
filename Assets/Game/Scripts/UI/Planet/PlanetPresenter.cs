@@ -25,8 +25,8 @@ namespace Game.UI.Planet
         {
             _view.SetIcon(_planet.GetIcon(_planet.IsUnlocked));
             _view.SetPrice(_planet.Price.ToString());
-            _view.SetTimer(_planet.Price.ToString());
-            _view.SetState(_planet.IsUnlocked);
+            _view.SetTime(_planet.Price.ToString());
+            _view.ShowUnlockedState(_planet.IsUnlocked);
             _view.ShowCoin(_planet.GatherIncome());
             _view.OnPlanetClick += OnPlanetClick;
             _view.OnPlanetHoldClick += OnPlanetHoldClick;
@@ -41,7 +41,12 @@ namespace Game.UI.Planet
         private void OnPlanetClick()
         {
             if (_money.IsEnough(_planet.Price) && !_planet.IsUnlocked)
+            {
                 _planet.Unlock();
+                _view.SetPrice(_planet.Price.ToString());
+                _view.SetIcon(_planet.GetIcon(_planet.IsUnlocked));
+                _view.ShowUnlockedState(_planet.IsUnlocked);
+            }
         }
 
         private void OnPlanetHoldClick()

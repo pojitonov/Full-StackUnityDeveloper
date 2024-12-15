@@ -14,21 +14,21 @@ namespace Game.UI.Planets
         public string Income => FormatIncome(_planet?.MinuteIncome ?? 999);
         public string Price => _planet?.Price.ToString() ?? "9999";
         public Sprite Avatar => _planet?.GetIcon(true) ? _planet?.GetIcon(true) : null;
-        public bool IsUpgradeButtonEnabled => _moneyAdapter.IsEnough(_planet?.Price ?? 0);
+        public bool IsUpgradeButtonEnabled => _money.IsEnough(_planet?.Price ?? 0);
 
-        private readonly IMoneyAdapter _moneyAdapter;
+        private readonly IMoneyAdapter _money;
         private IPlanet _planet;
 
-        public PlanetPopupPresenter(IMoneyAdapter moneyAdapter)
+        public PlanetPopupPresenter(IMoneyAdapter money)
         {
-            _moneyAdapter = moneyAdapter;
+            _money = money;
         }
 
         public void OnUpgradeButtonClick()
         {
             if (_planet?.CanUnlockOrUpgrade == true)
             {
-                _moneyAdapter.Spend(_planet.Price);
+                _money.Spend(_planet.Price);
                 HandleStateChanged();
             }
         }

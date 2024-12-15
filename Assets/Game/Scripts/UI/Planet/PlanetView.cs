@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using Modules.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Game.UI.Planet
@@ -27,13 +29,19 @@ namespace Game.UI.Planet
         private Image _lock;
 
         [SerializeField]
-        private TMP_Text _time;
+        private TMP_Text _timerText;
+        
+        [SerializeField]
+        private Image _timerProgress;
 
         [SerializeField]
         private TMP_Text _price;
 
         [SerializeField]
         private SmartButton _button;
+
+        private Coroutine _timerCoroutine;
+
 
         public void Awake()
         {
@@ -51,7 +59,7 @@ namespace Game.UI.Planet
         {
             OnPlanetClick?.Invoke();
         }
-        
+
         private void HandlePlanetHoldClick()
         {
             OnPlanetHoldClick?.Invoke();
@@ -62,9 +70,9 @@ namespace Game.UI.Planet
             _icon.sprite = icon;
         }
 
-        public void SetTimer(string time)
+        public void SetTime(string time)
         {
-            _time.text = time;
+            _timerText.text = time;
         }
 
         public void SetPrice(string price)
@@ -72,16 +80,24 @@ namespace Game.UI.Planet
             _price.text = price;
         }
 
-        public void SetState(bool isUnlocked)
-        {
-            ShowLock(!isUnlocked);
-            ShowPrice(!isUnlocked);
-            ShowTimer(isUnlocked);
-        }
-
         public void ShowCoin(bool show)
         {
             _coinPrefab.gameObject.SetActive(show);
+        }
+
+        public void ShowUnlockedState(bool isUnlocked)
+        {
+            ShowLock(!isUnlocked);
+            ShowPrice(!isUnlocked);
+            if (isUnlocked)
+            {
+                StartTimerToShowCoin();
+            }
+            else
+            {
+                ShowTimer(false);
+                ShowCoin(false);
+            }
         }
 
         private void ShowLock(bool locked)
@@ -94,9 +110,46 @@ namespace Game.UI.Planet
             _incomePrefab.gameObject.SetActive(show);
         }
 
+        private void UpdateTimer(float progress)
+        {
+            SetTime(progress.ToString("0m:00s"));
+            _timerProgress.fillAmount = progress;
+        }
+
         private void ShowPrice(bool show)
         {
             _pricePrefab.gameObject.SetActive(show);
+        }
+
+        private void StartTimerToShowCoin()
+        {
+            if (_timerCoroutine != null)
+            {
+                StopCoroutine(_timerCoroutine);
+            }
+
+            _timerCoroutine = StartCoroutine(TimerToCoinRoutine());
+        }
+
+        private IEnumerator TimerToCoinRoutine()
+        {
+            ShowTimer(true);
+            ShowCoin(false);
+            UpdateTimer(0);
+
+            float duration = 1f;
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float progress = Mathf.Clamp01(elapsed / duration);
+                UpdateTimer(progress);
+                yield return null;
+            }
+
+            ShowTimer(false);
+            ShowCoin(true);
         }
     }
 }
