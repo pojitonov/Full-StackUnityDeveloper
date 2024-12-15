@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Game.UI.Planets
@@ -10,7 +11,9 @@ namespace Game.UI.Planets
         string Income { get; }
         string Price { get; }
         Sprite Avatar { get; }
-        bool IsButtonEnabled { get; }
+        bool IsUpgradeButtonEnabled { get; }
         void OnUpgradeButtonClick();
+        event Action OnStateChanged;
+
     }
 }

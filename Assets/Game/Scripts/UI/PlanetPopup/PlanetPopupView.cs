@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using Sirenix.OdinInspector;
 
 namespace Game.UI.Planets
 {
@@ -40,23 +39,24 @@ namespace Game.UI.Planets
             _popupPresenter = popupPresenter;
         }
 
-        [Button]
         public void Show()
         {
             UpdateView();
 
             _upgradeButton.onClick.AddListener(_popupPresenter.OnUpgradeButtonClick);
             _closeButton.onClick.AddListener(Hide);
-            _upgradeButton.interactable = _popupPresenter.IsButtonEnabled;
+            _upgradeButton.interactable = _popupPresenter.IsUpgradeButtonEnabled;
+            _popupPresenter.OnStateChanged += UpdateView;
 
             gameObject.SetActive(true);
         }
-        
-        [Button]
-        public void Hide()
+
+        private void Hide()
         {
             _upgradeButton.onClick.RemoveListener(_popupPresenter.OnUpgradeButtonClick);
             _closeButton.onClick.RemoveListener(Hide);
+            _popupPresenter.OnStateChanged -= UpdateView;
+            
             gameObject.SetActive(false);
         }
 
@@ -68,6 +68,7 @@ namespace Game.UI.Planets
             _income.text = _popupPresenter.Income;
             _price.text = _popupPresenter.Price;
             _avatar.sprite = _popupPresenter.Avatar;
+            _upgradeButton.interactable = _popupPresenter.IsUpgradeButtonEnabled;
         }
     }
 }
