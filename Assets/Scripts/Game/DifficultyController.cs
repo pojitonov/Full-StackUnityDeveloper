@@ -7,9 +7,9 @@ namespace SnakeGame
     public class DifficultyController : IInitializable, IDisposable
     {
         private readonly IDifficulty _difficulty;
-        private readonly CoinCollector _coinCollector;
+        private readonly CoinManager _coinCollector;
 
-        public DifficultyController(IDifficulty difficulty, CoinCollector coinCollector)
+        public DifficultyController(IDifficulty difficulty, CoinManager coinCollector)
         {
             _difficulty = difficulty;
             _coinCollector = coinCollector;

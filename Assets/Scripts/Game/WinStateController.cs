@@ -6,14 +6,12 @@ namespace SnakeGame
 {
     public class WinStateController : IInitializable, IDisposable
     {
-        private readonly CoinCollector _coinCollector;
         private readonly CoinManager _coinManager;
         private readonly Difficulty _difficulty;
         private readonly GameCycle _gameCycle;
 
-        public WinStateController(CoinCollector coinCollector, CoinManager coinManager, Difficulty difficulty, GameCycle gameCycle)
+        public WinStateController(CoinManager coinManager, Difficulty difficulty, GameCycle gameCycle)
         {
-            _coinCollector = coinCollector;
             _coinManager = coinManager;
             _difficulty = difficulty;
             _gameCycle = gameCycle;
@@ -21,12 +19,12 @@ namespace SnakeGame
 
         public void Initialize()
         {
-            _coinCollector.OnAllCoinCollected += CheckWinState;
+            _coinManager.OnAllCoinCollected += CheckWinState;
         }
 
         public void Dispose()
         {
-            _coinCollector.OnAllCoinCollected -= CheckWinState;
+            _coinManager.OnAllCoinCollected -= CheckWinState;
         }
 
         private void CheckWinState()

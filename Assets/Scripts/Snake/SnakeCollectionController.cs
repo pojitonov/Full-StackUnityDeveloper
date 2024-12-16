@@ -9,13 +9,13 @@ namespace SnakeGame
     {
         private readonly ISnake _snake;
         private readonly CoinCollisionController _coinCollisionController;
-        private readonly CoinCollector _coinCollector;
+        private readonly CoinManager _coinManager;
 
-        public SnakeCollectionController(ISnake snake, CoinCollisionController coinCollisionController, CoinCollector coinCollector)
+        public SnakeCollectionController(ISnake snake, CoinCollisionController coinCollisionController, CoinManager coinManager)
         {
             _snake = snake;
             _coinCollisionController = coinCollisionController;
-            _coinCollector = coinCollector;
+            _coinManager = coinManager;
         }
 
         public void Initialize()
@@ -33,7 +33,7 @@ namespace SnakeGame
             var coin = _coinCollisionController.CheckCollision(position);
             if (coin != null)
             {
-                _coinCollector.Collect(coin);
+                _coinManager.Collect(coin);
             }
         }
     }
