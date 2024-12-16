@@ -100,26 +100,25 @@ namespace Game.UI.Planet
             _pricePrefab.gameObject.SetActive(show);
         }
 
-        public void StartTimer(float progress)
+        public void StartTimer(float time, float progress)
         {
             if (_timerCoroutine != null)
             {
                 StopCoroutine(_timerCoroutine);
             }
 
-            _timerCoroutine = StartCoroutine(AnimateTimer(progress));
+            _timerCoroutine = StartCoroutine(AnimateTimer(time, progress));
         }
 
-        private IEnumerator AnimateTimer(float progress)
+        private IEnumerator AnimateTimer(float time, float progress)
         {
-            while (progress > 0)
+            while (time > 0)
             {
                 ShowTimer(true);
                 ShowCoin(false);
 
-                _timerText.text = progress.ToString("0m:00s");
-                _timerProgress.fillAmount = Mathf.Clamp01(1 - progress);
-
+                _timerText.text = time.ToString("0m:00s");
+                _timerProgress.fillAmount = progress;
                 yield return null;
             }
 

@@ -75,9 +75,9 @@ namespace Game.UI.Planet
             _view.ShowPrice(!_planet.IsUnlocked);
         }
 
-        private void ShowProgress(float duration)
+        private void ShowProgress(float time)
         {
-            _view.StartTimer(duration);
+            _view.StartTimer(time, _planet.IncomeProgress);
         }
     }
 }
