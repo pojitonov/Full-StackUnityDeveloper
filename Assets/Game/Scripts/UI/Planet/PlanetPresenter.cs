@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using Game.UI.Planets;
 using Modules.Planets;
 using Zenject;
@@ -25,9 +24,9 @@ namespace Game.UI.Planet
         {
             _view.OnPlanetClick += OnPlanetClick;
             _view.OnPlanetHoldClick += OnPlanetHoldClick;
-            _planet.OnIncomeTimeChanged += ShowProgress;
+            _planet.OnIncomeTimeChanged += OnIncomeTimeChanged;
             _planet.OnIncomeReady += OnIncomeReady;
-            _planet.OnUnlocked += Unlock;
+            _planet.OnUnlocked += OnUnlocked;
 
             UpdateView();
         }
@@ -36,12 +35,12 @@ namespace Game.UI.Planet
         {
             _view.OnPlanetClick -= OnPlanetClick;
             _view.OnPlanetHoldClick -= OnPlanetHoldClick;
-            _planet.OnIncomeTimeChanged -= ShowProgress;
+            _planet.OnIncomeTimeChanged -= OnIncomeTimeChanged;
             _planet.OnIncomeReady -= OnIncomeReady;
-            _planet.OnUnlocked -= Unlock;
+            _planet.OnUnlocked -= OnUnlocked;
         }
 
-        private void Unlock()
+        private void OnUnlocked()
         {
             _view.ShowLock(false);
         }
@@ -75,7 +74,7 @@ namespace Game.UI.Planet
             _view.ShowPrice(!_planet.IsUnlocked);
         }
 
-        private void ShowProgress(float time)
+        private void OnIncomeTimeChanged(float time)
         {
             _view.StartTimer(time, _planet.IncomeProgress);
         }
