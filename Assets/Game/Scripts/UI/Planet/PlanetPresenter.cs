@@ -57,6 +57,11 @@ namespace Game.UI.Planet
                 _planet.Unlock();
                 UpdateView();
             }
+
+            if (_planet.IsIncomeReady)
+            {
+                _planet.GatherIncome();
+            }
         }
 
         private void OnPlanetHoldClick()
