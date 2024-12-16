@@ -20,23 +20,20 @@ namespace SnakeGame
             Container.Bind<Coin>()
                 .FromInstance(_coinPrefab)
                 .AsCached();
-
-            Container.BindMemoryPool<Coin, CoinsPool>()
-                .WithInitialSize(_maxLevels)
-                .FromComponentInNewPrefab(_coinPrefab)
-                .WithGameObjectName("Coin")
-                .UnderTransform(_worldTransform)
-                .AsSingle();
-
+            
             Container.Bind<IWorldBounds>()
                 .To<WorldBounds>()
                 .FromComponentInHierarchy()
                 .AsSingle();
 
-            Container.Bind<CoinManager>()
+            Container.BindInterfacesAndSelfTo<CoinManager>()
                 .AsSingle();
-
-            Container.BindInterfacesAndSelfTo<CoinSpawner>()
+            
+            Container.BindMemoryPool<Coin, CoinsPool>()
+                .WithInitialSize(_maxLevels)
+                .FromComponentInNewPrefab(_coinPrefab)
+                .WithGameObjectName("Coin")
+                .UnderTransform(_worldTransform)
                 .AsSingle();
         }
     }

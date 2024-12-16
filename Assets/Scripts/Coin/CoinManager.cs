@@ -3,23 +3,34 @@ using System.Collections.Generic;
 using Modules;
 using SnakeGame;
 using UnityEngine;
+using Zenject;
 
-public class CoinManager
+public class CoinManager : IInitializable, IDisposable
 {
     public event Action<int> OnCoinCollected;
     public event Action OnAllCoinCollected;
-    
+
     public List<Coin> SpawnedCoins { get; } = new();
     private readonly CoinsPool _coinsPool;
+    private readonly IWorldBounds _worldBounds;
+    private readonly IDifficulty _difficulty;
 
-    public CoinManager(CoinsPool coinsPool)
+    public CoinManager(CoinsPool coinsPool, IWorldBounds worldBounds, IDifficulty difficulty)
     {
         _coinsPool = coinsPool;
+        _worldBounds = worldBounds;
+        _difficulty = difficulty;
     }
 
-    public void AddCoin(Coin coin)
+    public void Initialize()
     {
-        SpawnedCoins.Add(coin);
+        _difficulty.OnStateChanged += SpawnCoins;
+        SpawnCoins();
+    }
+
+    public void Dispose()
+    {
+        _difficulty.OnStateChanged += SpawnCoins;
     }
 
     public void Collect(Coin coin)
@@ -44,5 +55,24 @@ public class CoinManager
         }
 
         return null;
+    }
+
+    private void AddCoin(Coin coin)
+    {
+        SpawnedCoins.Add(coin);
+    }
+
+    private void SpawnCoins()
+    {
+        int coinCount = _difficulty.Current;
+
+        for (int i = 0; i < coinCount; i++)
+        {
+            Vector2Int randomPosition = _worldBounds.GetRandomPosition();
+            Coin coin = _coinsPool.Spawn();
+            coin.transform.SetPositionAndRotation((Vector2)randomPosition, Quaternion.identity);
+            coin.Generate();
+            AddCoin(coin);
+        }
     }
 }
