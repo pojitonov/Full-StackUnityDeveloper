@@ -34,6 +34,9 @@ namespace SnakeGame
             
             Container.BindInterfacesAndSelfTo<ScoreController>()
                 .AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<WinStateController>()
+                .AsSingle();
         }
     }
 }
