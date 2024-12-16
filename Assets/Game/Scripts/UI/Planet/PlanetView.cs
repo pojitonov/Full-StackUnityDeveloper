@@ -41,7 +41,6 @@ namespace Game.UI.Planet
 
         private Coroutine _timerCoroutine;
 
-
         public void Awake()
         {
             _button.OnClick += HandlePlanetClick;
