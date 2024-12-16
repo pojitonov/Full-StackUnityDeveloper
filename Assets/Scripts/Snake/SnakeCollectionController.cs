@@ -8,13 +8,11 @@ namespace SnakeGame
     public class SnakeCollectionController : IInitializable, IDisposable
     {
         private readonly ISnake _snake;
-        private readonly CoinCollisionController _coinCollisionController;
         private readonly CoinManager _coinManager;
 
-        public SnakeCollectionController(ISnake snake, CoinCollisionController coinCollisionController, CoinManager coinManager)
+        public SnakeCollectionController(ISnake snake, CoinManager coinManager)
         {
             _snake = snake;
-            _coinCollisionController = coinCollisionController;
             _coinManager = coinManager;
         }
 
@@ -30,7 +28,7 @@ namespace SnakeGame
 
         private void HandleSnakeMovement(Vector2Int position)
         {
-            var coin = _coinCollisionController.CheckCollision(position);
+            var coin = _coinManager.CheckCollision(position);
             if (coin != null)
             {
                 _coinManager.Collect(coin);

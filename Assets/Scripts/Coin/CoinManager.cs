@@ -2,24 +2,19 @@ using System;
 using System.Collections.Generic;
 using Modules;
 using SnakeGame;
+using UnityEngine;
 
 public class CoinManager
 {
     public event Action<int> OnCoinCollected;
     public event Action OnAllCoinCollected;
     
-    private List<Coin> SpawnedCoins { get; } = new();
-
+    public List<Coin> SpawnedCoins { get; } = new();
     private readonly CoinsPool _coinsPool;
 
     public CoinManager(CoinsPool coinsPool)
     {
         _coinsPool = coinsPool;
-    }
-
-    public List<Coin> GetSpawnedCoins()
-    {
-        return SpawnedCoins;
     }
 
     public void AddCoin(Coin coin)
@@ -29,17 +24,25 @@ public class CoinManager
 
     public void Collect(Coin coin)
     {
-        var spawnedCoins = GetSpawnedCoins();
         _coinsPool.Despawn(coin);
-        RemoveCoin(coin);
+        SpawnedCoins.Remove(coin);
 
         OnCoinCollected?.Invoke(coin.Bones);
-        if (spawnedCoins.Count == 0)
+        if (SpawnedCoins.Count == 0)
             OnAllCoinCollected?.Invoke();
     }
 
-    private void RemoveCoin(Coin coin)
+    public Coin CheckCollision(Vector2Int position)
     {
-        SpawnedCoins.Remove(coin);
+        for (int index = SpawnedCoins.Count - 1; index >= 0; index--)
+        {
+            var coin = SpawnedCoins[index];
+            if (coin != null && coin.Position == position)
+            {
+                return coin;
+            }
+        }
+
+        return null;
     }
 }

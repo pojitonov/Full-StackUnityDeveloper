@@ -29,7 +29,7 @@ namespace SnakeGame
 
         private void CheckWinState()
         {
-            if (_difficulty.Current == _difficulty.Max && _coinManager.GetSpawnedCoins().Count == 0)
+            if (_difficulty.Current == _difficulty.Max && _coinManager.SpawnedCoins.Count == 0)
             {
                 _gameCycle.Finish(true);
             }

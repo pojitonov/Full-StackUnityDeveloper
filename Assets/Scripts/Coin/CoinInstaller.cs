@@ -33,9 +33,6 @@ namespace SnakeGame
                 .FromComponentInHierarchy()
                 .AsSingle();
 
-            Container.Bind<CoinCollisionController>()
-                .AsSingle();
-
             Container.Bind<CoinManager>()
                 .AsSingle();
 
