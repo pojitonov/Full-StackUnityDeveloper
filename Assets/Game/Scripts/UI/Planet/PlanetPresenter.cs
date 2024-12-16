@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Game.UI.Planets;
 using Modules.Planets;
 using Zenject;
@@ -22,19 +23,32 @@ namespace Game.UI.Planet
 
         public void Initialize()
         {
-            _view.SetIcon(_planet.GetIcon(_planet.IsUnlocked));
-            _view.SetPrice(_planet.Price.ToString());
-            _view.SetTime(_planet.Price.ToString());
-            _view.ShowUnlockedState(_planet.IsUnlocked);
-            _view.ShowCoin(_planet.GatherIncome());
             _view.OnPlanetClick += OnPlanetClick;
             _view.OnPlanetHoldClick += OnPlanetHoldClick;
+            _planet.OnIncomeTimeChanged += ShowProgress;
+            _planet.OnIncomeReady += OnIncomeReady;
+            _planet.OnUnlocked += Unlock;
+
+            UpdateView();
         }
 
         public void Dispose()
         {
             _view.OnPlanetClick -= OnPlanetClick;
             _view.OnPlanetHoldClick -= OnPlanetHoldClick;
+            _planet.OnIncomeTimeChanged -= ShowProgress;
+            _planet.OnIncomeReady -= OnIncomeReady;
+            _planet.OnUnlocked -= Unlock;
+        }
+
+        private void Unlock()
+        {
+            _view.ShowLock(false);
+        }
+
+        private void OnIncomeReady(bool isReady)
+        {
+            _view.ShowCoin(isReady);
         }
 
         private void OnPlanetClick()
@@ -42,15 +56,28 @@ namespace Game.UI.Planet
             if (_money.IsEnough(_planet.Price) && !_planet.IsUnlocked)
             {
                 _planet.Unlock();
-                _view.SetPrice(_planet.Price.ToString());
-                _view.SetIcon(_planet.GetIcon(_planet.IsUnlocked));
-                _view.ShowUnlockedState(_planet.IsUnlocked);
+                UpdateView();
             }
         }
 
         private void OnPlanetHoldClick()
         {
             _shower.Show(_planet);
+        }
+
+        private void UpdateView()
+        {
+            _view.SetIcon(_planet.GetIcon(_planet.IsUnlocked));
+            _view.SetPrice(_planet.Price.ToString());
+            _view.SetTime(_planet.Price.ToString());
+            _view.ShowCoin(_planet.GatherIncome());
+            _view.ShowTimer(_planet.GatherIncome());
+            _view.ShowPrice(!_planet.IsUnlocked);
+        }
+
+        private void ShowProgress(float duration)
+        {
+            _view.StartTimer(duration);
         }
     }
 }

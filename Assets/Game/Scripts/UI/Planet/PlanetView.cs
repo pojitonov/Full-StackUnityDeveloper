@@ -29,7 +29,7 @@ namespace Game.UI.Planet
 
         [SerializeField]
         private TMP_Text _timerText;
-        
+
         [SerializeField]
         private Image _timerProgress;
 
@@ -84,68 +84,47 @@ namespace Game.UI.Planet
             _coinPrefab.gameObject.SetActive(show);
         }
 
-        public void ShowUnlockedState(bool isUnlocked)
-        {
-            ShowLock(!isUnlocked);
-            ShowPrice(!isUnlocked);
-            if (isUnlocked)
-            {
-                StartTimerToShowCoin();
-            }
-            else
-            {
-                ShowTimer(false);
-                ShowCoin(false);
-            }
-        }
-
-        private void ShowLock(bool locked)
+        public void ShowLock(bool locked)
         {
             _lock.enabled = locked;
         }
 
-        private void ShowTimer(bool show)
+        public void ShowTimer(bool show)
         {
             _incomePrefab.gameObject.SetActive(show);
         }
 
-        private void UpdateTimer(float progress)
-        {
-            SetTime(progress.ToString("0m:00s"));
-            _timerProgress.fillAmount = progress;
-        }
 
-        private void ShowPrice(bool show)
+        public void ShowPrice(bool show)
         {
             _pricePrefab.gameObject.SetActive(show);
         }
 
-        private void StartTimerToShowCoin()
+        public void StartTimer(float progress)
         {
             if (_timerCoroutine != null)
             {
                 StopCoroutine(_timerCoroutine);
             }
 
-            _timerCoroutine = StartCoroutine(TimerToCoinRoutine());
+            _timerCoroutine = StartCoroutine(AnimateTimer(progress));
         }
 
-        private IEnumerator TimerToCoinRoutine()
+        private IEnumerator AnimateTimer(float progress)
         {
-            ShowTimer(true);
-            ShowCoin(false);
-            UpdateTimer(0);
-
-            float duration = 1f;
-            float elapsed = 0f;
-
-            while (elapsed < duration)
+            while (progress > 0)
             {
-                elapsed += Time.deltaTime;
-                float progress = Mathf.Clamp01(elapsed / duration);
-                UpdateTimer(progress);
+                ShowTimer(true);
+                ShowCoin(false);
+
+                _timerText.text = progress.ToString("0m:00s");
+                _timerProgress.fillAmount = Mathf.Clamp01(1 - progress);
+
                 yield return null;
             }
+
+            _timerText.text = "0m:00s";
+            _timerProgress.fillAmount = 1f;
 
             ShowTimer(false);
             ShowCoin(true);
