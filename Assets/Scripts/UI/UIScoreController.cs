@@ -1,6 +1,5 @@
 using System;
 using Modules;
-using UnityEngine;
 using Zenject;
 
 namespace SnakeGame
