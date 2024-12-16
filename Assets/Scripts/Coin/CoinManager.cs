@@ -10,25 +10,16 @@ public class CoinManager
     
     private List<Coin> SpawnedCoins { get; } = new();
 
-    private readonly ScoreController _scoreController;
     private readonly CoinsPool _coinsPool;
 
-    public CoinManager(ScoreController scoreController, CoinsPool coinsPool)
+    public CoinManager(CoinsPool coinsPool)
     {
-        _scoreController = scoreController;
         _coinsPool = coinsPool;
     }
 
-    public void Collect(Coin coin)
+    public List<Coin> GetSpawnedCoins()
     {
-        var spawnedCoins = GetSpawnedCoins();
-        _coinsPool.Despawn(coin);
-        RemoveCoin(coin);
-        _scoreController.AddScore(coin.Score);
-
-        OnCoinCollected?.Invoke(coin.Bones);
-        if (spawnedCoins.Count == 0)
-            OnAllCoinCollected?.Invoke();
+        return SpawnedCoins;
     }
 
     public void AddCoin(Coin coin)
@@ -36,13 +27,19 @@ public class CoinManager
         SpawnedCoins.Add(coin);
     }
 
-    public void RemoveCoin(Coin coin)
+    public void Collect(Coin coin)
+    {
+        var spawnedCoins = GetSpawnedCoins();
+        _coinsPool.Despawn(coin);
+        RemoveCoin(coin);
+
+        OnCoinCollected?.Invoke(coin.Bones);
+        if (spawnedCoins.Count == 0)
+            OnAllCoinCollected?.Invoke();
+    }
+
+    private void RemoveCoin(Coin coin)
     {
         SpawnedCoins.Remove(coin);
-    }
-    
-    public List<Coin> GetSpawnedCoins()
-    {
-        return SpawnedCoins;
     }
 }
