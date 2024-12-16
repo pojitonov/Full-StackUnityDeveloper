@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using Modules;
 using SnakeGame;
 using UnityEngine;
-using Zenject;
 
-public class CoinManager : IInitializable, IDisposable
+public class CoinManager
 {
     public event Action<int> OnCoinCollected;
     public event Action OnAllCoinCollected;
@@ -20,17 +19,6 @@ public class CoinManager : IInitializable, IDisposable
         _coinsPool = coinsPool;
         _worldBounds = worldBounds;
         _difficulty = difficulty;
-    }
-
-    public void Initialize()
-    {
-        _difficulty.OnStateChanged += SpawnCoins;
-        SpawnCoins();
-    }
-
-    public void Dispose()
-    {
-        _difficulty.OnStateChanged += SpawnCoins;
     }
 
     public void Collect(Coin coin)
@@ -57,12 +45,7 @@ public class CoinManager : IInitializable, IDisposable
         return null;
     }
 
-    private void AddCoin(Coin coin)
-    {
-        SpawnedCoins.Add(coin);
-    }
-
-    private void SpawnCoins()
+    public void SpawnCoins()
     {
         int coinCount = _difficulty.Current;
 
@@ -74,5 +57,10 @@ public class CoinManager : IInitializable, IDisposable
             coin.Generate();
             AddCoin(coin);
         }
+    }
+
+    private void AddCoin(Coin coin)
+    {
+        SpawnedCoins.Add(coin);
     }
 }

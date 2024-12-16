@@ -29,6 +29,9 @@ namespace SnakeGame
             Container.BindInterfacesAndSelfTo<CoinManager>()
                 .AsSingle();
             
+            Container.BindInterfacesAndSelfTo<CoinSpawnController>()
+                .AsSingle();
+            
             Container.BindMemoryPool<Coin, CoinsPool>()
                 .WithInitialSize(_maxLevels)
                 .FromComponentInNewPrefab(_coinPrefab)
