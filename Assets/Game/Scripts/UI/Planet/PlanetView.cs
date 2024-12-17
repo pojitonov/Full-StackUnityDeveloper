@@ -120,9 +120,9 @@ namespace Game.UI.Planet
         }
 
         [Button]
-        public void StartCoinAnimation()
+        public void StartCoinAnimation(Action OnComplete)
         {
-            _animation.FlyCoinToWidget();
+            _animation.FlyCoinToWidget(OnComplete);
         }
 
         private IEnumerator AnimateTimer(float time, float progress)

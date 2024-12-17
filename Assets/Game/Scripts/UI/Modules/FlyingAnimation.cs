@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
 using Zenject;
@@ -24,7 +25,7 @@ namespace Modules.UI
             initialTransform = _coinStartPosition.transform.position;
         }
 
-        public void FlyCoinToWidget()
+        public void FlyCoinToWidget(Action OnComplete)
         {
             StopFloatingAnimation();
 
@@ -33,7 +34,11 @@ namespace Modules.UI
 
             _coinStartPosition.transform.DOMove(endPosition, _flyDuration)
                 .SetEase(Ease.OutQuad)
-                .OnComplete(ResetPosition);
+                .OnComplete(() =>
+                {
+                    ResetPosition();
+                    OnComplete?.Invoke();
+                });
         }
 
         private void ResetPosition()

@@ -60,8 +60,10 @@ namespace Game.UI.Planet
 
             if (_planet.IsIncomeReady)
             {
-                _view.StartCoinAnimation();
-                // _planet.GatherIncome();
+                _view.StartCoinAnimation(() =>
+                {
+                    _planet.GatherIncome();
+                });
             }
         }
 
