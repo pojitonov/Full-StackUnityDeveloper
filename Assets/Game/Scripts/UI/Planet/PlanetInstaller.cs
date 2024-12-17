@@ -1,7 +1,5 @@
 using Game.UI.Planet;
 using Modules.Planets;
-using Modules.UI;
-using UnityEngine;
 using Zenject;
 
 namespace Game.UI
