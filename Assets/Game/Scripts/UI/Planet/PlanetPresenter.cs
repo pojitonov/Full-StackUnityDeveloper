@@ -29,6 +29,7 @@ namespace Game.UI.Planet
             _planet.OnUnlocked += OnUnlocked;
             _planet.OnUpgraded += OnUpgraded;
 
+            _view.ShowTimer(false);
             UpdateView();
         }
 
@@ -85,8 +86,7 @@ namespace Game.UI.Planet
             _view.SetPrice(_planet.Price.ToString());
             _view.SetTime(_planet.Price.ToString());
             _view.ShowLock(!_planet.IsUnlocked);
-            _view.ShowCoin(_planet.GatherIncome());
-            _view.ShowTimer(_planet.GatherIncome());
+            _view.ShowCoin(_planet.IsIncomeReady);
             _view.ShowPrice(!_planet.IsUnlocked);
         }
 

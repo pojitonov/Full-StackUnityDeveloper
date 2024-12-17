@@ -51,8 +51,8 @@ namespace Game.UI.Planets
             _closeButton.onClick.AddListener(Hide);
             _popupPresenter.OnStateChanged += UpdateView;
 
-            UpdateView();
             gameObject.SetActive(true);
+            UpdateView();
         }
 
         private void Hide()
@@ -61,8 +61,8 @@ namespace Game.UI.Planets
             _closeButton.onClick.RemoveListener(Hide);
             _popupPresenter.OnStateChanged -= UpdateView;
             
-            _popupPresenter.Unsubscribe();
             gameObject.SetActive(false);
+            _popupPresenter.Unsubscribe();
         }
 
         private void UpdateView()
