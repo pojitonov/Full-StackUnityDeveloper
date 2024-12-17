@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Game.UI
 {
-    public sealed class PlanetInstaller : Installer<PlanetCatalog, PlanetInstaller>
+    public sealed class PlanetInstaller : Installer<PlanetCatalog, PlanetView[], PlanetInstaller>
     {
         [Inject]
         private PlanetCatalog catalog;
@@ -14,8 +14,16 @@ namespace Game.UI
         [Inject]
         private PlanetPresenterFactory presenterFactory;
 
+        [Inject]
+        private PlanetView[] planetViews;
+
         public override void InstallBindings()
         {
+            Container
+                .BindInterfacesTo<PlanetPresenterInitializer>()
+                .AsSingle()
+                .WithArguments(planetViews);
+
             foreach (PlanetConfig config in catalog)
             {
                 Container

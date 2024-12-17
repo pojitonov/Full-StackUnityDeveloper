@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using Zenject;
 
 namespace Modules.UI
 {
@@ -7,12 +8,12 @@ namespace Modules.UI
     {
         [SerializeField]
         private GameObject _coinStartPosition;
-
+        
+        [Inject(Id = "CoinEndPosition")]
+        private GameObject _coinEndPosition;
+        
         [SerializeField]
         private float _flyDuration = 1f;
-
-        [SerializeField]
-        private GameObject _coinEndPosition;
 
         public void FlyCoinToWidget()
         {

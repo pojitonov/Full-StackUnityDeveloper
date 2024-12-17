@@ -17,23 +17,18 @@ namespace Game.UI
         private PlanetCatalog catalog;
         
         [SerializeField]
-        private GameObject _coinEndPosition;
+        private GameObject coinEndPosition;
         
         public override void InstallBindings()
         {
             Container
                 .BindFactory<PlanetView, IPlanet, PlanetPresenter, PlanetPresenterFactory>()
                 .AsCached();
-
-            Container
-                .BindInterfacesTo<PlanetPresenterInitializer>()
-                .AsSingle()
-                .WithArguments(planetViews);
             
             MoneyInstaller.Install(Container, moneyView);
-            PlanetInstaller.Install(Container, catalog);
+            PlanetInstaller.Install(Container, catalog, planetViews);
             PlanetPopupInstaller.Install(Container);
-            ModulesInstaller.Install(Container);
+            ModulesInstaller.Install(Container, planetViews, coinEndPosition);
             
         }
     }   
