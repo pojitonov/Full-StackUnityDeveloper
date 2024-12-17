@@ -13,9 +13,32 @@ namespace Game.UI.Planets
         public string Level => FormatLevel(_planet?.Level ?? 1, _planet?.MaxLevel ?? 9);
         public string Income => FormatIncome(_planet?.MinuteIncome ?? 999);
         public string Price => _planet?.Price.ToString() ?? "9999";
-        public string Button => _planet?.IsUnlocked == true ? "Upgrade" : "Unlock";
         public Sprite Avatar => _planet?.GetIcon(true) ? _planet?.GetIcon(true) : null;
-        public bool IsUpgradeButtonEnabled => _money.IsEnough(_planet?.Price ?? 0);
+        public bool IsMaxLevel => _planet?.Level >= _planet?.MaxLevel;
+        public bool IsUpgradeButtonEnabled
+        {
+            get
+            {
+                if (_planet?.Level >= _planet.MaxLevel)
+                {
+                    return false;
+                }
+
+                return _money.IsEnough(_planet?.Price ?? 0);
+            }
+        }
+        public string Button 
+        {
+            get
+            {
+                if (_planet?.Level == _planet?.MaxLevel)
+                {
+                    return "Not Upgradable";
+                }
+                return _planet?.IsUnlocked == true ? "Upgrade" : "Unlock";
+            }
+        }
+
 
         private readonly IMoneyAdapter _money;
         private IPlanet _planet;

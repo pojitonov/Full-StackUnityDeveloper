@@ -15,6 +15,7 @@ namespace Game.UI.Planets
         string Button { get; }
         Sprite Avatar { get; }
         bool IsUpgradeButtonEnabled { get; }
+        bool IsMaxLevel { get; }
 
         void OnUpgradeButtonClick();
         void Unsubscribe();
