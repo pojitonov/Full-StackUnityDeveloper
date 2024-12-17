@@ -463,6 +463,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1226517422905731925, guid: 368c7b958afaee34caa5e1b9338e5e65, type: 3}
   m_PrefabInstance: {fileID: 249258343}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &410495275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4663555233349896707, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
+  m_PrefabInstance: {fileID: 6121086404576301247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &470088492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1055,17 +1060,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a487b7c47b4d1ba3c58ea271686309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &684118091 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3299675748291971791, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
-  m_PrefabInstance: {fileID: 6121086404576301247}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &734240810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1250,38 +1244,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a487b7c47b4d1ba3c58ea271686309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &813176134 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7207275897469232668, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
+--- !u!114 &813176138 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6067902669877963454, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
   m_PrefabInstance: {fileID: 6121086404576301247}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &813176138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813176134}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff183dc42bbd4a90bfa9f0a508f854ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyText: {fileID: 684118091}
---- !u!114 &813176144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813176134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcb2a6bc62714ed28299f509603240fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _duration: 1
-  _fps: 30
 --- !u!1 &859427043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,10 +2484,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MoneyView
       objectReference: {fileID: 0}
-    - target: {fileID: 7207275897469232668, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8460962601618271506, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2595,17 +2564,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7832056747382589570, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7207275897469232668, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 813176138}
-    - targetCorrespondingSourceObject: {fileID: 7207275897469232668, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 813176144}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
 --- !u!224 &7237256081421283246 stripped
 RectTransform:
@@ -2759,6 +2721,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5925086658015744704, guid: 368c7b958afaee34caa5e1b9338e5e65, type: 3}
+      propertyPath: _coinEndPosition
+      value: 
+      objectReference: {fileID: 410495275}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -61,6 +61,7 @@ namespace Game.UI.Planet
             if (_planet.IsIncomeReady)
             {
                 _planet.GatherIncome();
+                _view.StartCoinAnimation();
             }
         }
 
@@ -81,7 +82,7 @@ namespace Game.UI.Planet
 
         private void OnIncomeTimeChanged(float time)
         {
-            _view.StartTimer(time, _planet.IncomeProgress);
+            _view.StartTimerAnimation(time, _planet.IncomeProgress);
         }
     }
 }

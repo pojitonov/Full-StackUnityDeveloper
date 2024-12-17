@@ -1,23 +1,22 @@
 using Game.UI.Planet;
 using Modules.Planets;
+using Modules.UI;
+using UnityEngine;
 using Zenject;
 
 namespace Game.UI
 {
-    public sealed class PlanetInstaller : Installer<PlanetCatalog, PlanetView[], PlanetInstaller>
+    public sealed class PlanetInstaller : Installer<PlanetCatalog, PlanetInstaller>
     {
         [Inject]
-        private PlanetCatalog _catalog;
+        private PlanetCatalog catalog;
 
         [Inject]
-        private PlanetView[] _planetViews;
-        
-        [Inject]
-        private PlanetPresenterFactory _presenterFactory;
+        private PlanetPresenterFactory presenterFactory;
 
         public override void InstallBindings()
         {
-            foreach (PlanetConfig config in _catalog)
+            foreach (PlanetConfig config in catalog)
             {
                 Container
                     .Bind<IPlanet>()

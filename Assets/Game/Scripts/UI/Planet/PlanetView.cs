@@ -4,9 +4,11 @@ using Modules.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Game.UI.Planet
 {
+    [RequireComponent(typeof(FlyingAnimation))]
     public class PlanetView : MonoBehaviour
     {
         public event Action OnPlanetClick;
@@ -40,9 +42,17 @@ namespace Game.UI.Planet
         private SmartButton _button;
 
         private Coroutine _timerCoroutine;
+        private FlyingAnimation _animation;
 
+        // [Inject]
+        // public void Construct(FlyingAnimation animation)
+        // {
+        //     _animation = animation;
+        // }
+        
         public void Awake()
         {
+            _animation = GetComponent<FlyingAnimation>();
             _button.OnClick += HandlePlanetClick;
             _button.OnHold += HandlePlanetHoldClick;
         }
@@ -93,13 +103,12 @@ namespace Game.UI.Planet
             _incomePrefab.gameObject.SetActive(show);
         }
 
-
         public void ShowPrice(bool show)
         {
             _pricePrefab.gameObject.SetActive(show);
         }
 
-        public void StartTimer(float time, float progress)
+        public void StartTimerAnimation(float time, float progress)
         {
             if (_timerCoroutine != null)
             {
@@ -107,6 +116,11 @@ namespace Game.UI.Planet
             }
 
             _timerCoroutine = StartCoroutine(AnimateTimer(time, progress));
+        }
+
+        public void StartCoinAnimation()
+        {
+            _animation.FlyCoinToWidget();
         }
 
         private IEnumerator AnimateTimer(float time, float progress)

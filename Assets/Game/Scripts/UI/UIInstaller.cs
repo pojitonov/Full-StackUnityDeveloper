@@ -15,21 +15,26 @@ namespace Game.UI
 
         [SerializeField]
         private PlanetCatalog catalog;
-
+        
+        [SerializeField]
+        private GameObject _coinEndPosition;
+        
         public override void InstallBindings()
         {
             Container
                 .BindFactory<PlanetView, IPlanet, PlanetPresenter, PlanetPresenterFactory>()
                 .AsCached();
-            
-            MoneyInstaller.Install(Container, moneyView);
-            PlanetInstaller.Install(Container, catalog, planetViews);
-            PlanetPopupInstaller.Install(Container);
-            
+
             Container
                 .BindInterfacesTo<PlanetPresenterInitializer>()
                 .AsSingle()
                 .WithArguments(planetViews);
+            
+            MoneyInstaller.Install(Container, moneyView);
+            PlanetInstaller.Install(Container, catalog);
+            PlanetPopupInstaller.Install(Container);
+            ModulesInstaller.Install(Container);
+            
         }
     }   
 }

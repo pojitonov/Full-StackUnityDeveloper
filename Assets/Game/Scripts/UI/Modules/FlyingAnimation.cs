@@ -1,6 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-using Sirenix.OdinInspector;
 
 namespace Modules.UI
 {
@@ -10,12 +9,11 @@ namespace Modules.UI
         private GameObject _coinStartPosition;
 
         [SerializeField]
-        private GameObject _coinEndPosition;
-
-        [SerializeField]
         private float _flyDuration = 1f;
 
-        [Button]
+        [SerializeField]
+        private GameObject _coinEndPosition;
+
         public void FlyCoinToWidget()
         {
             StopFloatingAnimation();
