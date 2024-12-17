@@ -11,11 +11,11 @@ namespace Game.UI
         private MoneyView moneyView;
 
         [SerializeField]
-        private PlanetView[] planetViews;
-
-        [SerializeField]
         private PlanetCatalog catalog;
         
+        [SerializeField]
+        private PlanetView[] planetViews;
+
         [SerializeField]
         private GameObject coinEndPosition;
         
@@ -28,7 +28,7 @@ namespace Game.UI
             MoneyInstaller.Install(Container, moneyView);
             PlanetInstaller.Install(Container, catalog, planetViews);
             PlanetPopupInstaller.Install(Container);
-            ModulesInstaller.Install(Container, planetViews, coinEndPosition);
+            ModulesInstaller.Install(Container, coinEndPosition);
             
         }
     }   
