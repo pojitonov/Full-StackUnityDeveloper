@@ -4,6 +4,7 @@ using Modules.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 using Zenject;
 
 namespace Game.UI.Planet
@@ -49,7 +50,7 @@ namespace Game.UI.Planet
         // {
         //     _animation = animation;
         // }
-        
+
         public void Awake()
         {
             _animation = GetComponent<FlyingAnimation>();
@@ -118,6 +119,7 @@ namespace Game.UI.Planet
             _timerCoroutine = StartCoroutine(AnimateTimer(time, progress));
         }
 
+        [Button]
         public void StartCoinAnimation()
         {
             _animation.FlyCoinToWidget();

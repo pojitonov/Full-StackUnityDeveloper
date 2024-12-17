@@ -517,8 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660db686411846c482e930abb0f2512d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinStartPosition: {fileID: 246074102456822610}
-  _coinEndPosition: {fileID: 0}
+  _coinStartPosition: {fileID: 320550912344372757}
   _flyDuration: 1
 --- !u!1 &5564512366540979095
 GameObject:

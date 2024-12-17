@@ -8,12 +8,21 @@ namespace Modules.UI
     {
         [SerializeField]
         private GameObject _coinStartPosition;
-        
-        [Inject(Id = "CoinEndPosition")]
-        private GameObject _coinEndPosition;
-        
+
         [SerializeField]
         private float _flyDuration = 1f;
+
+        [Inject(Id = "CoinEndPosition")]
+        private GameObject _coinEndPosition;
+
+        private FloatingAnimation floatingComponent;
+        private Vector3 initialTransform;
+
+        private void Awake()
+        {
+            floatingComponent = _coinStartPosition.GetComponent<FloatingAnimation>();
+            initialTransform = _coinStartPosition.transform.position;
+        }
 
         public void FlyCoinToWidget()
         {
@@ -23,15 +32,30 @@ namespace Modules.UI
             Vector3 endPosition = _coinEndPosition.transform.position;
 
             _coinStartPosition.transform.DOMove(endPosition, _flyDuration)
-                .SetEase(Ease.OutQuad);
+                .SetEase(Ease.OutQuad)
+                .OnComplete(ResetPosition);
         }
-        
+
+        private void ResetPosition()
+        {
+            _coinStartPosition.gameObject.SetActive(false);
+            _coinStartPosition.transform.position = initialTransform;
+            StartFloatingAnimation();
+        }
+
         private void StopFloatingAnimation()
         {
-            FloatingAnimation floatingComponent = _coinStartPosition.GetComponent<FloatingAnimation>();
             if (floatingComponent != null)
             {
-                floatingComponent.DOKill();
+                floatingComponent.enabled = false;
+            }
+        }
+        
+        private void StartFloatingAnimation()
+        {
+            if (floatingComponent != null)
+            {
+                floatingComponent.enabled = true;
             }
         }
     }

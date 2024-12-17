@@ -26,15 +26,14 @@ namespace Game.UI
                 .FromInstance(coinEndPosition)
                 .AsSingle();
 
-            foreach (PlanetView view in planetsViews)
-            {
-                Container
-                    .Bind<FlyingAnimation>()
-                    .FromComponentInNewPrefab(view)
-                    .AsCached()
-                    .WithArguments(coinEndPosition)
-                    .NonLazy();
-            }
+            // foreach (PlanetView view in planetsViews)
+            // {
+            //     Container
+            //         .Bind<FlyingAnimation>()
+            //         .FromComponentInNewPrefab(view)
+            //         .AsTransient()
+            //         .NonLazy();
+            // }
         }
     }
 }
