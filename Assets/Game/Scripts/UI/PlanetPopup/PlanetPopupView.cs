@@ -41,13 +41,11 @@ namespace Game.UI.Planets
 
         public void Show()
         {
-            UpdateView();
-
             _upgradeButton.onClick.AddListener(_popupPresenter.OnUpgradeButtonClick);
             _closeButton.onClick.AddListener(Hide);
-            _upgradeButton.interactable = _popupPresenter.IsUpgradeButtonEnabled;
             _popupPresenter.OnStateChanged += UpdateView;
 
+            UpdateView();
             gameObject.SetActive(true);
         }
 
@@ -57,6 +55,7 @@ namespace Game.UI.Planets
             _closeButton.onClick.RemoveListener(Hide);
             _popupPresenter.OnStateChanged -= UpdateView;
             
+            _popupPresenter.UnsetPlanet();
             gameObject.SetActive(false);
         }
 

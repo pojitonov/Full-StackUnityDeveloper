@@ -38,11 +38,26 @@ namespace Game.UI.Planets
             if (planet != null)
             {
                 _planet = planet;
+                _planet.OnPopulationChanged += HandleStateChanged;
+                
                 HandleStateChanged();
+            }
+        }
+        
+        public void UnsetPlanet()
+        {
+            if (_planet != null)
+            {
+                _planet.OnPopulationChanged -= HandleStateChanged;
             }
         }
 
         private void HandleStateChanged()
+        {
+            OnStateChanged?.Invoke();
+        }
+
+        private void HandleStateChanged(int _)
         {
             OnStateChanged?.Invoke();
         }
@@ -52,5 +67,6 @@ namespace Game.UI.Planets
         private string FormatLevel(int? level, int? maxLevel) => $"Level: {level}/{maxLevel}";
 
         private static string FormatIncome(int? incomeMinute) => $"Income: {incomeMinute}$";
+        
     }
 }

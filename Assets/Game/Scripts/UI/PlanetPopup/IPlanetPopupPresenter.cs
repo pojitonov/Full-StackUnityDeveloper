@@ -1,10 +1,13 @@
 using System;
+using Modules.Planets;
 using UnityEngine;
 
 namespace Game.UI.Planets
 {
     public interface IPlanetPopupPresenter
     {
+        event Action OnStateChanged;
+        
         string Title { get; }
         string Population { get; }
         string Level { get; }
@@ -12,8 +15,9 @@ namespace Game.UI.Planets
         string Price { get; }
         Sprite Avatar { get; }
         bool IsUpgradeButtonEnabled { get; }
+        
         void OnUpgradeButtonClick();
-        event Action OnStateChanged;
-
+        void SetPlanet(IPlanet planet);
+        void UnsetPlanet();
     }
 }
