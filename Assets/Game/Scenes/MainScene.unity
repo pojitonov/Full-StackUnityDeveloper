@@ -284,6 +284,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1226517422905731925, guid: 368c7b958afaee34caa5e1b9338e5e65, type: 3}
   m_PrefabInstance: {fileID: 52783606}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &168268049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7285282909723352476, guid: c6f3aabda10ed1841ba1c1a8999ef4ba, type: 3}
+  m_PrefabInstance: {fileID: 1052078977217180737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &188265542 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8460962601618271506, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
@@ -1370,6 +1381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyView: {fileID: 813176138}
+  catalog: {fileID: 11400000, guid: 24135235a5c00425d9bcca105b41c4c4, type: 2}
   planetViews:
   - {fileID: 7237256081421283247}
   - {fileID: 808908706}
@@ -1380,7 +1392,7 @@ MonoBehaviour:
   - {fileID: 1247079643}
   - {fileID: 1000499689}
   - {fileID: 796504061}
-  catalog: {fileID: 11400000, guid: 24135235a5c00425d9bcca105b41c4c4, type: 2}
+  coinEndPosition: {fileID: 410495275}
 --- !u!1 &974007725
 GameObject:
   m_ObjectHideFlags: 0
@@ -2025,6 +2037,7 @@ MonoBehaviour:
   _level: {fileID: 1637344711}
   _income: {fileID: 1537280041}
   _price: {fileID: 985570342}
+  _buttonText: {fileID: 168268049}
   _avatar: {fileID: 1788811289}
   _upgradeButton: {fileID: 1197490563}
   _closeButton: {fileID: 1052078977217180738}
@@ -2721,10 +2734,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5925086658015744704, guid: 368c7b958afaee34caa5e1b9338e5e65, type: 3}
-      propertyPath: _coinEndPosition
-      value: 
-      objectReference: {fileID: 410495275}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

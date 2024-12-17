@@ -4,8 +4,6 @@ using Modules.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Sirenix.OdinInspector;
-using Zenject;
 
 namespace Game.UI.Planet
 {
@@ -45,6 +43,8 @@ namespace Game.UI.Planet
         private Coroutine _timerCoroutine;
         private FlyingAnimation _animation;
 
+        // По хорошему использовать Zenject но я не разобрался как каждой вьюхе заинжектить монобех с префаба
+        // Поэтому делаю в Awake() _animation = GetComponent<FlyingAnimation>();
         // [Inject]
         // public void Construct(FlyingAnimation animation)
         // {
@@ -119,7 +119,6 @@ namespace Game.UI.Planet
             _timerCoroutine = StartCoroutine(AnimateTimer(time, progress));
         }
 
-        [Button]
         public void StartCoinAnimation(Action OnComplete)
         {
             _animation.FlyCoinToWidget(OnComplete);

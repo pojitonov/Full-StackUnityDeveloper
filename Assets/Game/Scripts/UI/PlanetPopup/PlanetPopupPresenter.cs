@@ -25,27 +25,31 @@ namespace Game.UI.Planets
             _money = money;
         }
 
-        public void OnUpgradeButtonClick()
-        {
-            if (_planet?.CanUnlockOrUpgrade == true)
-            {
-                _money.Spend(_planet.Price);
-                _planet.Upgrade();
-                HandleStateChanged();
-            }
-        }
-
         public void SetPlanet(IPlanet planet)
         {
             if (planet != null)
             {
                 _planet = planet;
                 _planet.OnPopulationChanged += HandleStateChanged;
-                
+
                 HandleStateChanged();
             }
         }
-        
+
+        public void OnUpgradeButtonClick()
+        {
+            if (_planet?.CanUnlockOrUpgrade == true)
+            {
+                if (!_planet.IsUnlocked) 
+                    _planet.Unlock();
+
+                if (_planet.IsUnlocked) 
+                    _planet.Upgrade();
+
+                HandleStateChanged();
+            }
+        }
+
         public void Unsubscribe()
         {
             if (_planet != null)
@@ -69,6 +73,5 @@ namespace Game.UI.Planets
         private string FormatLevel(int? level, int? maxLevel) => $"Level: {level}/{maxLevel}";
 
         private static string FormatIncome(int? incomeMinute) => $"Income: {incomeMinute}$";
-        
     }
 }
