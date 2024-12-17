@@ -1,4 +1,3 @@
-using Modules.UI;
 using Zenject;
 
 namespace Game.UI
