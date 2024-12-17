@@ -21,6 +21,9 @@ namespace Game.UI.Planets
 
         [SerializeField]
         private TMP_Text _price;
+        
+        [SerializeField]
+        private TMP_Text _buttonText;
 
         [SerializeField]
         private Image _avatar;
@@ -55,7 +58,7 @@ namespace Game.UI.Planets
             _closeButton.onClick.RemoveListener(Hide);
             _popupPresenter.OnStateChanged -= UpdateView;
             
-            _popupPresenter.UnsetPlanet();
+            _popupPresenter.Unsubscribe();
             gameObject.SetActive(false);
         }
 
@@ -66,6 +69,7 @@ namespace Game.UI.Planets
             _level.text = _popupPresenter.Level;
             _income.text = _popupPresenter.Income;
             _price.text = _popupPresenter.Price;
+            _buttonText.text = _popupPresenter.Button;
             _avatar.sprite = _popupPresenter.Avatar;
             _upgradeButton.interactable = _popupPresenter.IsUpgradeButtonEnabled;
         }
