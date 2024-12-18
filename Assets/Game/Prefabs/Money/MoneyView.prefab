@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 4035766591218761423}
   - component: {fileID: 4556502046767129200}
   - component: {fileID: 6067902669877963454}
-  - component: {fileID: 3261827463856995568}
+  - component: {fileID: 3872237494042436149}
   m_Layer: 5
   m_Name: MoneyView
   m_TagString: Untagged
@@ -301,7 +301,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 3299675748291971791}
---- !u!114 &3261827463856995568
+  _animation: {fileID: 3872237494042436149}
+--- !u!114 &3872237494042436149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

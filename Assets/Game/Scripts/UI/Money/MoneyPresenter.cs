@@ -32,12 +32,12 @@ namespace Game.UI
 
         private void OnMoneyEarned(int newvalue, int range)
         {
-            _moneyView.AddMoney(newvalue.ToString());
+            _moneyView.ChangeMoney(newvalue.ToString());
         }
 
         private void OnMoneySpent(int newvalue, int range)
         {
-            _moneyView.RemoveMoney(newvalue.ToString());
+            _moneyView.ChangeMoney(newvalue.ToString());
         }
 
         private void OnMoneyChanged(int newvalue, int prevvalue)
