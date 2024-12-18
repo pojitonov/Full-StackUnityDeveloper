@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 namespace Game.UI.Planet
 {
-    [RequireComponent(typeof(FlyingAnimation))]
     public class PlanetView : MonoBehaviour
     {
         public event Action OnPlanetClick;
@@ -40,20 +39,13 @@ namespace Game.UI.Planet
         [SerializeField]
         private SmartButton _button;
 
-        private Coroutine _timerCoroutine;
+        [SerializeField]
         private FlyingAnimation _animation;
 
-        // По хорошему использовать Zenject но я не разобрался как каждой вьюхе заинжектить монобех с префаба
-        // Поэтому делаю в Awake() _animation = GetComponent<FlyingAnimation>();
-        // [Inject]
-        // public void Construct(FlyingAnimation animation)
-        // {
-        //     _animation = animation;
-        // }
+        private Coroutine _timerCoroutine;
 
         public void Awake()
         {
-            _animation = GetComponent<FlyingAnimation>();
             _button.OnClick += HandlePlanetClick;
             _button.OnHold += HandlePlanetHoldClick;
         }
@@ -121,7 +113,9 @@ namespace Game.UI.Planet
 
         public void StartCoinAnimation(Action OnComplete)
         {
-            _animation.FlyCoinToWidget(OnComplete);
+            _animation?.FlyCoinToWidget(OnComplete);
+            if (_animation == null)
+                OnComplete?.Invoke();
         }
 
         private IEnumerator AnimateTimer(float time, float progress)

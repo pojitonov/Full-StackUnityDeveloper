@@ -505,6 +505,7 @@ MonoBehaviour:
   _timerProgress: {fileID: 6948507870913343312}
   _price: {fileID: 5444377921757551026}
   _button: {fileID: 5583372068559771244}
+  _animation: {fileID: 5925086658015744704}
 --- !u!114 &5925086658015744704
 MonoBehaviour:
   m_ObjectHideFlags: 0

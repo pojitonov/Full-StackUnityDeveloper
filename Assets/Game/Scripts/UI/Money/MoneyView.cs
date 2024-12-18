@@ -15,15 +15,13 @@ namespace Game.UI
         public void SetMoney(string money)
         {
             moneyText.text = money;
-            if (_animation != null)
-                _animation.Initialize(moneyText, money);
+            _animation?.Initialize(moneyText, money);
         }
 
         public void ChangeMoney(string money)
         {
             moneyText.text = money;
-            if (_animation != null) 
-                _animation.UpdateText(money);
+            _animation?.UpdateText(money);
         }
     }
 }
