@@ -14,7 +14,7 @@ namespace Game.App
             _uri = uri;
         }
 
-        public async UniTask<bool> SetState(Dictionary<string, object> gameState)
+        public async UniTask<bool> SetState(Dictionary<string, string> gameState)
         {
             string json = JsonConvert.SerializeObject(gameState);
             UnityWebRequest request = UnityWebRequest.Put($"{_uri}/save", json);
@@ -22,7 +22,7 @@ namespace Game.App
             return request.result == UnityWebRequest.Result.Success;
         }
 
-        public async UniTask<(bool, Dictionary<string, object>)> GetState()
+        public async UniTask<(bool, Dictionary<string, string>)> GetState()
         {
             UnityWebRequest request = UnityWebRequest.Get($"{_uri}/load");
             await request.SendWebRequest();
@@ -30,7 +30,7 @@ namespace Game.App
             if (request.result != UnityWebRequest.Result.Success)
                 return (false, null);
             string json = request.downloadHandler.text;
-            var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json) ?? new Dictionary<string, object>();
+            var dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json) ?? new Dictionary<string, string>();
             return (true, dictionary);
         }
     }

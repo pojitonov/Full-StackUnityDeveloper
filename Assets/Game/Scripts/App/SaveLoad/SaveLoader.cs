@@ -17,7 +17,8 @@ namespace Game.App
 
         public async UniTaskVoid Save()
         {
-            var gameState = new Dictionary<string, object>();
+            var gameState = new Dictionary<string, string>();
+            
             foreach (ISerializer serializer in _serializers)
             {
                 serializer.Serialize(gameState);
@@ -28,13 +29,14 @@ namespace Game.App
 
         public async UniTaskVoid Load()
         {
-            (bool success, Dictionary<string, object> gameState) = await _repository.GetState();
+            (bool success, Dictionary<string, string> gameState) = await _repository.GetState();
             Debug.Log($"Saved: {success}");
+            
             if (!success)
                 return;
             foreach (ISerializer serializer in _serializers)
             {
-                serializer.Dederialize(gameState);
+                serializer.Deserialize(gameState);
             }
         }
     }

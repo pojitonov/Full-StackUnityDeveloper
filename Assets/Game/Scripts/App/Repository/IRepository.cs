@@ -5,7 +5,7 @@ namespace Game.App
 {
     public interface IRepository
     {
-        UniTask<bool> SetState(Dictionary<string, object> gameState);
-        UniTask<(bool, Dictionary<string, object>)> GetState();
+        UniTask<bool> SetState(Dictionary<string, string> gameState);
+        UniTask<(bool, Dictionary<string, string>)> GetState();
     }
 } 

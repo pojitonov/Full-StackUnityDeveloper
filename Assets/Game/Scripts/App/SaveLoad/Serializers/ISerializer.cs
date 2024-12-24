@@ -4,7 +4,7 @@ namespace Game.App
 {
     public interface ISerializer
     {
-        void Serialize(Dictionary<string, object> gameState);
-        void Dederialize(Dictionary<string, object> gameState);
+        void Serialize(IDictionary<string, string> gameState);
+        void Deserialize(IDictionary<string, string> gameState);
     }
 }

@@ -13,6 +13,9 @@ namespace Game.App
         {
             Container.Bind<SaveLoader>()
                 .AsSingle();
+            
+            Container.BindInterfacesTo<CountdownSerializer>()
+                .AsSingle();
         }
     }
 }
