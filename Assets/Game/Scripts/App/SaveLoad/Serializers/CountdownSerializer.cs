@@ -14,12 +14,12 @@ namespace Game.App
 
         public void Serialize(IDictionary<string, string> gameState)
         {
-            gameState["countdown"] = _countdown.Current.ToString();
+            gameState["Countdown"] = _countdown.Current.ToString();
         }
 
         public void Deserialize(IDictionary<string, string> gameState)
         {
-            if (gameState.TryGetValue("countdown", out string value))
+            if (gameState.TryGetValue("Countdown", out string value))
             {
                 int countdown = int.Parse(value);
                 _countdown.Current = countdown;

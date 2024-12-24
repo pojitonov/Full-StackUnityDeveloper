@@ -1,3 +1,4 @@
+using SampleGame.Gameplay;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,10 @@ namespace Game.App
                 .AsSingle();
             
             Container.BindInterfacesTo<CountdownSerializer>()
+                .AsSingle();
+            
+            Container.Bind<Countdown>()
+                .FromComponentInHierarchy()
                 .AsSingle();
         }
     }

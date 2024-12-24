@@ -30,7 +30,7 @@ namespace Game.App
         public async UniTaskVoid Load()
         {
             (bool success, Dictionary<string, string> gameState) = await _repository.GetState();
-            Debug.Log($"Saved: {success}");
+            Debug.Log($"Loaded: {success}");
             
             if (!success)
                 return;
