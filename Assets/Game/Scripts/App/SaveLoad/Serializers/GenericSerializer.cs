@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game.App
 {
-    public abstract class GenericSerializer<TService, TData> : ISerializer
+    public abstract class GenericSerializer<TService, TData> : IGenericSerializer
     {
         protected virtual string Key => typeof(TData).Name;
 

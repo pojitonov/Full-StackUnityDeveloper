@@ -17,8 +17,23 @@ namespace Game.App
             
             Container.BindInterfacesTo<CountdownSerializer>()
                 .AsSingle();
+            Container.BindInterfacesTo<DestinationPointSerializer>()
+                .AsSingle();
+            Container.BindInterfacesTo<HealthSerializer>()
+                .AsSingle();
+            Container.BindInterfacesTo<ResourceBagSerializer>()
+                .AsSingle();
             
             Container.Bind<Countdown>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+            Container.Bind<DestinationPoint>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+            Container.Bind<Health>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+            Container.Bind<ResourceBag>()
                 .FromComponentInHierarchy()
                 .AsSingle();
         }
