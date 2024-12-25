@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using SampleGame.Gameplay;
 
 namespace Game.App
 {
-    public sealed class CountdownSerializer : ISerializer
+    public sealed class CountdownSerializer : GenericSerializer<Countdown, CountdownData>
     {
         private readonly Countdown _countdown;
 
@@ -12,18 +11,14 @@ namespace Game.App
             _countdown = countdown;
         }
 
-        public void Serialize(IDictionary<string, string> gameState)
+        protected override CountdownData Serialize(Countdown service)
         {
-            gameState["Countdown"] = _countdown.Current.ToString();
+            return new CountdownData{value = service.Current};
         }
 
-        public void Deserialize(IDictionary<string, string> gameState)
+        protected override void Deserialize(Countdown service, CountdownData data)
         {
-            if (gameState.TryGetValue("Countdown", out string value))
-            {
-                int countdown = int.Parse(value);
-                _countdown.Current = countdown;
-            }
+            _countdown.Current = data.value;
         }
     }
 }
