@@ -21,17 +21,20 @@ namespace Game.App
             foreach (ISerializer serializer in _serializers)
             {
                 serializer.Serialize(gameState);
-                await _repository.SetState(gameState);
             }
 
-            return _repository.SavedVersion;
+            await _repository.SetState(gameState);
+            return _repository.LastSavedVersion;
         }
 
         public async UniTask<bool> Load(int version)
         {
             (bool success, Dictionary<string, string> gameState) = await _repository.GetState(version);
             foreach (ISerializer serializer in _serializers)
+            {
                 serializer.Deserialize(gameState);
+            }
+
             return success;
         }
     }
