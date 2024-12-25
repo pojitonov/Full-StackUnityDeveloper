@@ -5,6 +5,6 @@ namespace Game.App
     [Serializable]
     public struct _TargetObjectData
     {
-        public EntityData? entityData;
+        public _EntityData? entityData;
     }
 }

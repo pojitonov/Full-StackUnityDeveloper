@@ -4,7 +4,7 @@ using Modules.Entities;
 namespace Game.App
 {
     [Serializable]
-    public struct EntityData
+    public struct _EntityData
     {
         public int id;
         public string name;
