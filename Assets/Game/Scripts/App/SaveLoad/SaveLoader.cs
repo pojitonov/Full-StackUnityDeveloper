@@ -15,29 +15,30 @@ namespace Game.App
             _serializers = serializers;
         }
 
-        public async UniTaskVoid Save()
+        public async UniTask<int> Save()
         {
             var gameState = new Dictionary<string, string>();
-            
+
             foreach (ISerializer serializer in _serializers)
             {
                 serializer.Serialize(gameState);
                 bool success = await _repository.SetState(gameState);
+                
                 Debug.Log($"Saved: {success}");
             }
+            return _repository.Version;
         }
 
         public async UniTaskVoid Load(int version)
         {
             (bool success, Dictionary<string, string> gameState) = await _repository.GetState(version);
-            Debug.Log($"Loaded: {success}");
-            
+
             if (!success)
                 return;
-            foreach (ISerializer serializer in _serializers)
-            {
+            foreach (ISerializer serializer in _serializers) 
                 serializer.Deserialize(gameState);
-            }
+
+            Debug.Log($"Loaded: {success}");
         }
     }
 }

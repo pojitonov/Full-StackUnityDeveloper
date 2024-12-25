@@ -8,6 +8,8 @@ namespace Game.App
 {
     public sealed class Repository : IRepository
     {
+        public int Version => _version;
+        
         private readonly string _uri;
         private int _version;
 
@@ -16,6 +18,7 @@ namespace Game.App
             _uri = uri;
             _version = LoadVersion();
         }
+
 
         public async UniTask<bool> SetState(Dictionary<string, string> gameState)
         {
