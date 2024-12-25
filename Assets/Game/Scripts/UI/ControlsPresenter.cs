@@ -31,7 +31,7 @@ namespace Game.Gameplay
         {
             try
             {
-                _saveLoader.Load();
+                _saveLoader.Load(int.Parse(versionText));
                 callback.Invoke(true, 0);
             }
             catch (Exception ex)

@@ -27,9 +27,9 @@ namespace Game.App
             }
         }
 
-        public async UniTaskVoid Load()
+        public async UniTaskVoid Load(int version)
         {
-            (bool success, Dictionary<string, string> gameState) = await _repository.GetState();
+            (bool success, Dictionary<string, string> gameState) = await _repository.GetState(version);
             Debug.Log($"Loaded: {success}");
             
             if (!success)
