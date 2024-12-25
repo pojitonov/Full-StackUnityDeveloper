@@ -8,8 +8,8 @@ namespace Game.App
 {
     public sealed class Repository : IRepository
     {
-        public int Version => _version;
-        
+        public int SavedVersion { get; private set; }
+
         private readonly string _uri;
         private int _version;
 
@@ -27,7 +27,7 @@ namespace Game.App
             await request.SendWebRequest();
             if (request.result == UnityWebRequest.Result.Success)
             {
-                IncrementVersion();
+                SaveVersion(_version);
                 return true;
             }
 
@@ -41,26 +41,25 @@ namespace Game.App
 
             if (request.result != UnityWebRequest.Result.Success || request.responseCode != 200)
                 return (false, null);
-            
+
             string json = request.downloadHandler.text;
             var dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json) ??
                              new Dictionary<string, string>();
             return (true, dictionary);
         }
 
-        private void IncrementVersion()
-        {
-            _version++;
-            SaveVersion(_version);
-        }
-
         private int LoadVersion()
         {
-            return PlayerPrefs.GetInt("RepositoryVersion", 1);
+            if (!PlayerPrefs.HasKey("RepositoryVersion"))
+                return 1;
+
+            return PlayerPrefs.GetInt("RepositoryVersion");
         }
 
         private void SaveVersion(int version)
         {
+            SavedVersion = _version;
+            _version++;
             PlayerPrefs.SetInt("RepositoryVersion", version);
             PlayerPrefs.Save();
         }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Game.App
 {
@@ -25,7 +24,7 @@ namespace Game.App
                 await _repository.SetState(gameState);
             }
 
-            return _repository.Version;
+            return _repository.SavedVersion;
         }
 
         public async UniTask<bool> Load(int version)
