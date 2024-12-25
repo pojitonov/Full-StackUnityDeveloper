@@ -14,15 +14,29 @@ namespace Game.Gameplay
 
         public async void Save(Action<bool, int> callback)
         {
-            int version = await _saveLoader.Save();
-            callback.Invoke(true, version);
+            try
+            {
+                int version = await _saveLoader.Save();
+                callback.Invoke(true, version);
+            }
+            catch (Exception)
+            {
+                callback.Invoke(false, -1);
+            }
         }
 
-        public void Load(string versionText, Action<bool, int> callback)
+        public async void Load(string versionText, Action<bool, int> callback)
         {
-            int version = int.Parse(versionText);
-            _saveLoader.Load(version);
-            callback.Invoke(true, version);
+            try
+            {
+                int version = int.Parse(versionText);
+                await _saveLoader.Load(version);
+                callback.Invoke(true, version);
+            }
+            catch (Exception)
+            {
+                callback.Invoke(false, -1);
+            }
         }
     }
 }

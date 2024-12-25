@@ -39,8 +39,9 @@ namespace Game.App
             UnityWebRequest request = UnityWebRequest.Get($"{_uri}/load?version={version}");
             await request.SendWebRequest();
 
-            if (request.result != UnityWebRequest.Result.Success)
+            if (request.result != UnityWebRequest.Result.Success || request.responseCode != 200)
                 return (false, null);
+            
             string json = request.downloadHandler.text;
             var dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json) ??
                              new Dictionary<string, string>();

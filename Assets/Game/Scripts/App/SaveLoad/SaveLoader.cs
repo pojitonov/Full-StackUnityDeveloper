@@ -22,23 +22,18 @@ namespace Game.App
             foreach (ISerializer serializer in _serializers)
             {
                 serializer.Serialize(gameState);
-                bool success = await _repository.SetState(gameState);
-                
-                Debug.Log($"Saved: {success}");
+                await _repository.SetState(gameState);
             }
+
             return _repository.Version;
         }
 
-        public async UniTaskVoid Load(int version)
+        public async UniTask<bool> Load(int version)
         {
             (bool success, Dictionary<string, string> gameState) = await _repository.GetState(version);
-
-            if (!success)
-                return;
-            foreach (ISerializer serializer in _serializers) 
+            foreach (ISerializer serializer in _serializers)
                 serializer.Deserialize(gameState);
-
-            Debug.Log($"Loaded: {success}");
+            return success;
         }
     }
 }
