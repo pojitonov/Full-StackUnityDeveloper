@@ -1,3 +1,4 @@
+using Modules.UI;
 using Zenject;
 
 namespace Game.UI
@@ -24,8 +25,12 @@ namespace Game.UI
             Container
                 .BindInterfacesTo<MoneyAnimationController>()
                 .AsCached()
-                .WithArguments(_moneyView)
                 .NonLazy();
+
+            Container
+                .Bind<MoneyAnimation>()
+                .FromComponentInHierarchy()
+                .AsCached();
         }
     }
 }

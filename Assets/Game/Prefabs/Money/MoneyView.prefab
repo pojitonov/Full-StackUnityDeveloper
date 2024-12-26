@@ -300,9 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff183dc42bbd4a90bfa9f0a508f854ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyText: {fileID: 3299675748291971791}
+  _moneyText: {fileID: 3299675748291971791}
   _icon: {fileID: 4603339340333858954}
-  _animation: {fileID: 3872237494042436149}
 --- !u!114 &3872237494042436149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,5 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb2a6bc62714ed28299f509603240fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moneyText: {fileID: 3299675748291971791}
   _duration: 1
   _fps: 30

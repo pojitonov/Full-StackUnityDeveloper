@@ -1,26 +1,28 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 
 namespace Modules.UI
 {
     public class MoneyAnimation : MonoBehaviour
     {
         [SerializeField]
+        private TMP_Text _moneyText;
+        
+        [SerializeField]
         private float _duration = 1f;
 
         [SerializeField]
         private int _fps = 30;
 
-        private TMP_Text _text;
         private int _currentValue;
         private Coroutine _countingCoroutine;
 
-        public void Initialize(TMP_Text text, string startValue)
+        public void Initialize(string startValue)
         {
-            _text = text;
             _currentValue = ConvertStringToInt(startValue);
-            _text.text = _currentValue.ToString();
+            _moneyText.text = _currentValue.ToString();
         }
 
         public void UpdateText(string newValue)
@@ -54,7 +56,7 @@ namespace Modules.UI
                     _currentValue += stepAmount;
                 }
 
-                _text.text = _currentValue.ToString();
+                _moneyText.text = _currentValue.ToString();
                 yield return wait;
             }
         }

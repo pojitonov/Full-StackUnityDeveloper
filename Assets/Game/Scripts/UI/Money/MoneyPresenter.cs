@@ -17,7 +17,7 @@ namespace Game.UI
 
         public void Initialize()
         {
-            _moneyView.SetMoney(_moneyStorage.Money.ToString());
+            _moneyView.ChangeMoney(_moneyStorage.Money.ToString());
             _moneyStorage.OnMoneyEarned += ChangeMoney;
             _moneyStorage.OnMoneySpent += ChangeMoney;
         }

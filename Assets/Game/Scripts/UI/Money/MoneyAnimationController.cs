@@ -1,5 +1,6 @@
 using System;
 using Modules.Money;
+using Modules.UI;
 using Zenject;
 
 namespace Game.UI
@@ -7,16 +8,17 @@ namespace Game.UI
     public sealed class MoneyAnimationController : IInitializable, IDisposable
     {
         private readonly MoneyStorage _moneyStorage;
-        private readonly MoneyView _moneyView;
+        private readonly MoneyAnimation _moneyAnimation;
 
-        public MoneyAnimationController(MoneyStorage moneyStorage, MoneyView moneyView)
+        public MoneyAnimationController(MoneyStorage moneyStorage, MoneyAnimation moneyAnimation)
         {
             _moneyStorage = moneyStorage;
-            _moneyView = moneyView;
+            _moneyAnimation = moneyAnimation;
         }
 
         public void Initialize()
         {
+            _moneyAnimation.Initialize(_moneyStorage.Money.ToString());
             _moneyStorage.OnMoneyChanged += StartAnimation;
         }
 
@@ -27,7 +29,7 @@ namespace Game.UI
 
         private void StartAnimation(int newValue, int previousValue)
         {
-            _moneyView.StartAnimation(newValue.ToString());
+            _moneyAnimation.UpdateText(newValue.ToString());
         }
     }
 }
