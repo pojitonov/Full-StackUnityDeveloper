@@ -1,6 +1,7 @@
 using Modules.UI;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace Game.UI
 {
@@ -9,6 +10,9 @@ namespace Game.UI
         [SerializeField]
         private TMP_Text moneyText;
 
+        [SerializeField]
+        private Image _icon;
+        
         [SerializeField]
         private MoneyAnimation _animation;
 
@@ -26,6 +30,11 @@ namespace Game.UI
         public void StartAnimation(string money)
         {
             _animation?.UpdateText(money);
+        }
+
+        public Vector3 GetCoinPosition()
+        {
+            return _icon.transform.position;
         }
     }
 }

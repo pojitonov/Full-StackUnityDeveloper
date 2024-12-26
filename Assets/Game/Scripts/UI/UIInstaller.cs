@@ -28,8 +28,6 @@ namespace Game.UI
             MoneyInstaller.Install(Container, moneyView);
             PlanetInstaller.Install(Container,  planetViews);
             PlanetPopupInstaller.Install(Container);
-            ModulesInstaller.Install(Container, coinEndPosition);
-            
         }
     }   
 }

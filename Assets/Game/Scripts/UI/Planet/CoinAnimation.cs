@@ -1,20 +1,16 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
-using Zenject;
 
 namespace Modules.UI
 {
-    public class FlyingAnimation : MonoBehaviour
+    public class CoinAnimation : MonoBehaviour
     {
         [SerializeField]
         private GameObject _coinStartPosition;
 
         [SerializeField]
         private float _flyDuration = 1f;
-
-        [Inject(Id = "CoinEndPosition")]
-        private GameObject _coinEndPosition;
 
         private FloatingAnimation floatingComponent;
         private Vector3 initialTransform;
@@ -25,14 +21,12 @@ namespace Modules.UI
             initialTransform = _coinStartPosition.transform.position;
         }
 
-        public void FlyCoinToWidget(Action OnComplete)
+        public void FlyCoinToWidget(Vector3 position, Action OnComplete)
         {
             StopFloatingAnimation();
 
             _coinStartPosition.SetActive(true);
-            Vector3 endPosition = _coinEndPosition.transform.position;
-
-            _coinStartPosition.transform.DOMove(endPosition, _flyDuration)
+            _coinStartPosition.transform.DOMove(position, _flyDuration)
                 .SetEase(Ease.OutQuad)
                 .OnComplete(() =>
                 {

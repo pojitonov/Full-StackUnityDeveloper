@@ -13,6 +13,9 @@ namespace Game.UI.Planet
         public event Action OnPlanetHoldClick;
 
         [SerializeField]
+        private MoneyView _moneyView;
+        
+        [SerializeField]
         private GameObject _incomePrefab;
 
         [SerializeField]
@@ -40,7 +43,7 @@ namespace Game.UI.Planet
         private SmartButton _button;
 
         [SerializeField]
-        private FlyingAnimation _animation;
+        private CoinAnimation _animation;
 
         private Coroutine _timerCoroutine;
 
@@ -113,7 +116,7 @@ namespace Game.UI.Planet
 
         public void StartCoinAnimation(Action OnComplete)
         {
-            _animation?.FlyCoinToWidget(OnComplete);
+            _animation?.FlyCoinToWidget(_moneyView.GetCoinPosition(), OnComplete);
             if (_animation == null)
                 OnComplete?.Invoke();
         }
