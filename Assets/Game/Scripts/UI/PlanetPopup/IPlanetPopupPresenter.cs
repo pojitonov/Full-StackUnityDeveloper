@@ -18,6 +18,5 @@ namespace Game.UI.Planets
         bool IsMaxLevel { get; }
 
         void OnUpgradeButtonClick();
-        void Unsubscribe();
-    }
+     }
 }

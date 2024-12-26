@@ -62,7 +62,6 @@ namespace Game.UI.Planets
             _popupPresenter.OnStateChanged -= UpdateView;
             
             gameObject.SetActive(false);
-            _popupPresenter.Unsubscribe();
         }
 
         private void UpdateView()

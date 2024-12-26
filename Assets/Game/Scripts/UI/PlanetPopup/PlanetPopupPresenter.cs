@@ -15,31 +15,12 @@ namespace Game.UI.Planets
         public string Price => _planet?.Price.ToString() ?? "9999";
         public Sprite Avatar => _planet?.GetIcon(true) ? _planet?.GetIcon(true) : null;
         public bool IsMaxLevel => _planet?.Level >= _planet?.MaxLevel;
-        public bool IsUpgradeButtonEnabled
-        {
-            get
-            {
-                if (_planet?.Level >= _planet.MaxLevel)
-                {
-                    return false;
-                }
-
-                return _money.IsEnough(_planet?.Price ?? 0);
-            }
-        }
-        public string Button 
-        {
-            get
-            {
-                if (_planet?.Level == _planet?.MaxLevel)
-                {
-                    return "Not Upgradable";
-                }
-                return _planet?.IsUnlocked == true ? "Upgrade" : "Unlock";
-            }
-        }
-
-
+        public bool IsUpgradeButtonEnabled =>
+            !(_planet?.Level >= _planet.MaxLevel) && _money.IsEnough(_planet?.Price ?? 0);
+        public string Button =>
+            _planet?.Level == _planet?.MaxLevel ? "Not Upgradable" :
+            _planet?.IsUnlocked == true ? "Upgrade" : "Unlock";
+        
         private readonly IMoneyAdapter _money;
         private IPlanet _planet;
 
@@ -50,12 +31,19 @@ namespace Game.UI.Planets
 
         public void SetPlanet(IPlanet planet)
         {
+            if (_planet != null)
+            {
+                _planet.OnPopulationChanged -= HandleStateChanged;
+                _planet.OnUpgraded -= HandleStateChanged;
+                _planet.OnUnlocked -= HandleStateChanged;
+            }
+
             if (planet != null)
             {
                 _planet = planet;
                 _planet.OnPopulationChanged += HandleStateChanged;
-
-                HandleStateChanged();
+                _planet.OnUpgraded += HandleStateChanged;
+                _planet.OnUnlocked += HandleStateChanged;
             }
         }
 
@@ -63,21 +51,11 @@ namespace Game.UI.Planets
         {
             if (_planet?.CanUnlockOrUpgrade == true)
             {
-                if (!_planet.IsUnlocked) 
+                if (!_planet.IsUnlocked)
                     _planet.Unlock();
 
-                if (_planet.IsUnlocked) 
+                if (_planet.IsUnlocked)
                     _planet.Upgrade();
-
-                HandleStateChanged();
-            }
-        }
-
-        public void Unsubscribe()
-        {
-            if (_planet != null)
-            {
-                _planet.OnPopulationChanged -= HandleStateChanged;
             }
         }
 
