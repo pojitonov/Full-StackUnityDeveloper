@@ -63,7 +63,6 @@ namespace Game.UI.Planet
             if (_money.IsEnough(_planet.Price) && !_planet.IsUnlocked)
             {
                 _planet.Unlock();
-                UpdateView();
             }
 
             if (_planet.IsIncomeReady)

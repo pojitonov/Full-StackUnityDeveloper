@@ -26,7 +26,7 @@ namespace Game.UI
                 .AsCached();
             
             MoneyInstaller.Install(Container, moneyView);
-            PlanetInstaller.Install(Container, catalog, planetViews);
+            PlanetInstaller.Install(Container,  planetViews);
             PlanetPopupInstaller.Install(Container);
             ModulesInstaller.Install(Container, coinEndPosition);
             
