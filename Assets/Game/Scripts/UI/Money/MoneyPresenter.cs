@@ -18,31 +18,19 @@ namespace Game.UI
         public void Initialize()
         {
             _moneyView.SetMoney(_moneyStorage.Money.ToString());
-            _moneyStorage.OnMoneyEarned += OnMoneyEarned;
-            _moneyStorage.OnMoneySpent += OnMoneySpent;
-            _moneyStorage.OnMoneyChanged += OnMoneyChanged;
+            _moneyStorage.OnMoneyEarned += ChangeMoney;
+            _moneyStorage.OnMoneySpent += ChangeMoney;
         }
 
         public void Dispose()
         {
-            _moneyStorage.OnMoneyEarned -= OnMoneyEarned;
-            _moneyStorage.OnMoneySpent -= OnMoneySpent;
-            _moneyStorage.OnMoneyChanged -= OnMoneyChanged;
+            _moneyStorage.OnMoneyEarned -= ChangeMoney;
+            _moneyStorage.OnMoneySpent -= ChangeMoney;
         }
 
-        private void OnMoneyEarned(int newvalue, int range)
+        private void ChangeMoney(int newValue, int _)
         {
-            _moneyView.ChangeMoney(newvalue.ToString());
-        }
-
-        private void OnMoneySpent(int newvalue, int range)
-        {
-            _moneyView.ChangeMoney(newvalue.ToString());
-        }
-
-        private void OnMoneyChanged(int newvalue, int prevvalue)
-        {
-            _moneyView.ChangeMoney(newvalue.ToString());
+            _moneyView.ChangeMoney(newValue.ToString());
         }
     }
 }

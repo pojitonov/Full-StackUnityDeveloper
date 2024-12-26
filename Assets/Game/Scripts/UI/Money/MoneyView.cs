@@ -10,7 +10,7 @@ namespace Game.UI
         private TMP_Text moneyText;
 
         [SerializeField]
-        private CounterAnimation _animation;
+        private MoneyAnimation _animation;
 
         public void SetMoney(string money)
         {
@@ -21,6 +21,10 @@ namespace Game.UI
         public void ChangeMoney(string money)
         {
             moneyText.text = money;
+        }
+
+        public void StartAnimation(string money)
+        {
             _animation?.UpdateText(money);
         }
     }

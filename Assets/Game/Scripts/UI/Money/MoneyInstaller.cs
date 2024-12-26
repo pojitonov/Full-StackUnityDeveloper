@@ -20,6 +20,12 @@ namespace Game.UI
                 .AsCached()
                 .WithArguments(_moneyView)
                 .NonLazy();
+            
+            Container
+                .BindInterfacesTo<MoneyAnimationController>()
+                .AsCached()
+                .WithArguments(_moneyView)
+                .NonLazy();
         }
     }
 }
