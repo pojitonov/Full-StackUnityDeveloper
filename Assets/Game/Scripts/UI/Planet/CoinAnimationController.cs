@@ -1,36 +1,35 @@
 using System;
-using Modules.Planets;
+using Game.UI.Signals;
 using Zenject;
 
 namespace Game.UI.Planet
 {
-    public sealed class CoinAnimationController : IInitializable, IDisposable
+    public class CoinAnimationController : IInitializable, IDisposable
     {
-        private readonly IPlanet _planet;
-        private readonly PlanetView _view;
-        private readonly CoinAnimation _animation;
+        private readonly SignalBus _signalBus;
 
-        public CoinAnimationController(IPlanet planet, PlanetView view, CoinAnimation animation)
+        public CoinAnimationController(SignalBus signalBus)
         {
-            _planet = planet;
-            _view = view;
-            _animation = animation;
+            _signalBus = signalBus;
         }
 
         public void Initialize()
         {
-            _view.OnPlanetClick += StartAnimation;
+            _signalBus.Subscribe<CoinGatheredSignal>(StartAnimation);
         }
 
         public void Dispose()
         {
-            _view.OnPlanetClick -= StartAnimation;
+            _signalBus.Unsubscribe<CoinGatheredSignal>(StartAnimation);
         }
 
-        private void StartAnimation()
+        private void StartAnimation(CoinGatheredSignal signal)
         {
-            if (_planet.IsIncomeReady) 
-                _animation.StartAnimation();
+            var coinAnimation = signal.View.GetComponent<CoinAnimation>();
+            if (coinAnimation != null)
+            {
+                coinAnimation.StartAnimation();
+            }
         }
     }
 }

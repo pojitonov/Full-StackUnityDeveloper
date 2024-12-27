@@ -20,10 +20,8 @@ namespace Game.UI
             Container
                 .BindFactory<PlanetView, IPlanet, PlanetPresenter, PlanetPresenterFactory>()
                 .AsCached();
-            Container
-                .BindFactory<PlanetView, IPlanet, CoinAnimation, CoinAnimationController, CoinAnimationControllerFactory>()
-                .AsCached();
-            
+   
+            SignalBusInstaller.Install(Container);
             MoneyInstaller.Install(Container, moneyView);
             PlanetInstaller.Install(Container,  planetViews);
             PlanetPopupInstaller.Install(Container);

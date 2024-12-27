@@ -1,5 +1,6 @@
 using System;
 using Game.UI.PlanetPopup;
+using Game.UI.Signals;
 using Modules.Planets;
 using Zenject;
 
@@ -11,13 +12,15 @@ namespace Game.UI.Planet
         private readonly PlanetView _view;
         private readonly IPlanet _planet;
         private readonly PlanetPopupShower _shower;
+        private readonly SignalBus _signalBus;
 
-        public PlanetPresenter(IMoneyAdapter money, PlanetView view, IPlanet planet, PlanetPopupShower shower)
+        public PlanetPresenter(IMoneyAdapter money, PlanetView view, IPlanet planet, PlanetPopupShower shower, SignalBus signalBus)
         {
             _view = view;
             _money = money;
             _planet = planet;
             _shower = shower;
+            _signalBus = signalBus;
         }
 
         public void Initialize()
@@ -71,6 +74,8 @@ namespace Game.UI.Planet
                 _planet.Unlock();
             if (_planet.IsIncomeReady) 
                 _planet.GatherIncome();
+            
+            _signalBus.Fire(new CoinGatheredSignal(_view));
         }
 
         private void OnPlanetHoldClick()
