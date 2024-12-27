@@ -9,15 +9,9 @@ namespace Game.UI
     {
         [SerializeField]
         private MoneyView moneyView;
-
-        [SerializeField]
-        private PlanetCatalog catalog;
-        
+       
         [SerializeField]
         private PlanetView[] planetViews;
-
-        [SerializeField]
-        private GameObject coinEndPosition;
         
         public override void InstallBindings()
         {

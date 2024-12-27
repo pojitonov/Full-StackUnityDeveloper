@@ -12,6 +12,12 @@ namespace Game.UI.Planet
         public event Action OnPlanetHoldClick;
         
         [SerializeField]
+        private TMP_Text _price;
+
+        [SerializeField]
+        private SmartButton _button;
+        
+        [SerializeField]
         private GameObject _incomePrefab;
 
         [SerializeField]
@@ -31,12 +37,6 @@ namespace Game.UI.Planet
 
         [SerializeField]
         private Image _timerProgress;
-
-        [SerializeField]
-        private TMP_Text _price;
-
-        [SerializeField]
-        private SmartButton _button;
         
         public void Awake()
         {
@@ -68,6 +68,11 @@ namespace Game.UI.Planet
         public void SetTime(string time)
         {
             _timerText.text = time;
+        }
+        
+        public void SetProgress(float progress)
+        {
+            _timerProgress.fillAmount = progress;
         }
 
         public void SetPrice(string price)

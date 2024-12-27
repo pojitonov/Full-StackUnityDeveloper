@@ -1,5 +1,6 @@
 using Game.UI.Planet;
 using Modules.Planets;
+using Modules.UI;
 using Zenject;
 
 namespace Game.UI
@@ -15,6 +16,16 @@ namespace Game.UI
                 .BindInterfacesTo<PlanetPresenterInitializer>()
                 .AsSingle()
                 .WithArguments(planetViews);
+            
+            // Container
+            //     .BindInterfacesTo<PlanetAnimationController>()
+            //     .AsCached()
+            //     .NonLazy();
+            //
+            // Container
+            //     .Bind<PlanetAnimation>()
+            //     .FromComponentInHierarchy()
+            //     .AsCached();
         }
     }
 }

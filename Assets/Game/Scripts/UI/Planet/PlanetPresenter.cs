@@ -28,6 +28,7 @@ namespace Game.UI.Planet
             _planet.OnUnlocked += OnUnlocked;
             _planet.OnUpgraded += OnUpgraded;
             _planet.OnGathered += OnGathered;
+            _planet.OnIncomeTimeChanged += OnIncomeTimeChanged;
 
             UpdateView();
         }
@@ -40,6 +41,7 @@ namespace Game.UI.Planet
             _planet.OnUnlocked -= OnUnlocked;
             _planet.OnUpgraded -= OnUpgraded;
             _planet.OnGathered -= OnGathered;
+            _planet.OnIncomeTimeChanged -= OnIncomeTimeChanged;
         }
 
         private void OnUnlocked()
@@ -51,10 +53,16 @@ namespace Game.UI.Planet
         {
             UpdateView();
         }
-        
+
         private void OnGathered(int _)
         {
             UpdateView();
+        }
+
+        private void OnIncomeTimeChanged(float time)
+        {
+            _view.SetTime(time.ToString("0m:00s"));
+            _view.SetProgress(_planet.IncomeProgress);
         }
 
         private void OnPlanetClick()
@@ -81,7 +89,6 @@ namespace Game.UI.Planet
             _view.SetIcon(_planet.GetIcon(_planet.IsUnlocked));
             _view.ShowTimer(_planet.IsUnlocked && !_planet.IsIncomeReady);
             _view.SetPrice(_planet.Price.ToString());
-            _view.SetTime(_planet.Price.ToString());
             _view.ShowCoin(_planet.IsIncomeReady);
             _view.ShowLock(!_planet.IsUnlocked);
             _view.ShowPrice(!_planet.IsUnlocked);
