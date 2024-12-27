@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-namespace Modules.UI
+namespace Game.UI.Money
 {
     public class MoneyAnimation : MonoBehaviour
     {

@@ -1,22 +1,24 @@
-using Game.UI.Planets;
 using Zenject;
 
-public sealed class PlanetPopupInstaller : Installer<PlanetPopupInstaller>
+namespace Game.UI.PlanetPopup
 {
-    public override void InstallBindings()
+    public sealed class PlanetPopupInstaller : Installer<PlanetPopupInstaller>
     {
-        Container
-            .BindInterfacesAndSelfTo<PlanetPopupPresenter>()
-            .AsSingle()
-            .NonLazy();
+        public override void InstallBindings()
+        {
+            Container
+                .BindInterfacesAndSelfTo<PlanetPopupPresenter>()
+                .AsSingle()
+                .NonLazy();
 
-        Container
-            .Bind<PlanetPopupShower>()
-            .AsSingle();
-        
-        Container
-            .Bind<PlanetPopupView>()
-            .FromComponentInHierarchy()
-            .AsSingle();
+            Container
+                .Bind<PlanetPopupShower>()
+                .AsSingle();
+
+            Container
+                .Bind<PlanetPopupView>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+        }
     }
 }

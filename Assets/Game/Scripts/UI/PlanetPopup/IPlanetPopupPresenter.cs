@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game.UI.Planets
+namespace Game.UI.PlanetPopup
 {
     public interface IPlanetPopupPresenter
     {

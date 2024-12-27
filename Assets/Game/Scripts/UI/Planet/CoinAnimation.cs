@@ -1,10 +1,11 @@
 using DG.Tweening;
-using Game.UI;
+using Game.UI.Money;
+using Modules.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
-namespace Modules.UI
+namespace Game.UI.Planet
 {
     public class CoinAnimation : MonoBehaviour
     {

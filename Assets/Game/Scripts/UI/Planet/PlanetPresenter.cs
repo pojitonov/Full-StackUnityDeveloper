@@ -1,5 +1,5 @@
 using System;
-using Game.UI.Planets;
+using Game.UI.PlanetPopup;
 using Modules.Planets;
 using Zenject;
 

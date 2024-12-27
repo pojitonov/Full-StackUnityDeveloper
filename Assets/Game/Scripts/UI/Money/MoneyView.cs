@@ -1,10 +1,8 @@
-using Modules.UI;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Game.UI
+namespace Game.UI.Money
 {
     public class MoneyView : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using Modules.UI;
 using Zenject;
 
-namespace Game.UI
+namespace Game.UI.Money
 {
     public sealed class MoneyInstaller : Installer<MoneyView, MoneyInstaller>
     {

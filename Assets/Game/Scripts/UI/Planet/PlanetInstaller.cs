@@ -1,7 +1,6 @@
-using Game.UI.Planet;
 using Zenject;
 
-namespace Game.UI
+namespace Game.UI.Planet
 {
     public sealed class PlanetInstaller : Installer<PlanetView[], PlanetInstaller>
     {

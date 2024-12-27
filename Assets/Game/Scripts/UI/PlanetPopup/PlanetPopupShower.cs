@@ -1,6 +1,6 @@
 using Modules.Planets;
 
-namespace Game.UI.Planets
+namespace Game.UI.PlanetPopup
 {
     public class PlanetPopupShower
     {

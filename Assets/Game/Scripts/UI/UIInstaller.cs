@@ -1,4 +1,6 @@
+using Game.UI.Money;
 using Game.UI.Planet;
+using Game.UI.PlanetPopup;
 using Modules.Planets;
 using UnityEngine;
 using Zenject;
@@ -17,6 +19,9 @@ namespace Game.UI
         {
             Container
                 .BindFactory<PlanetView, IPlanet, PlanetPresenter, PlanetPresenterFactory>()
+                .AsCached();
+            Container
+                .BindFactory<PlanetView, IPlanet, CoinAnimation, CoinAnimationController, CoinAnimationControllerFactory>()
                 .AsCached();
             
             MoneyInstaller.Install(Container, moneyView);

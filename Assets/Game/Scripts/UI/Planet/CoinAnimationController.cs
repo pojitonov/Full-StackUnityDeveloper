@@ -1,10 +1,8 @@
 using System;
-using Game.UI.Planet;
 using Modules.Planets;
-using Modules.UI;
 using Zenject;
 
-namespace Game.UI
+namespace Game.UI.Planet
 {
     public sealed class CoinAnimationController : IInitializable, IDisposable
     {
@@ -31,10 +29,8 @@ namespace Game.UI
 
         private void OnPlanetClick()
         {
-            if (_planet.IsIncomeReady)
-            {
+            if (_planet.IsIncomeReady) 
                 _animation.StartAnimation();
-            }
         }
     }
 }
