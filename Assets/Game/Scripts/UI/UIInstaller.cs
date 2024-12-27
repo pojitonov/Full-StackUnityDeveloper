@@ -1,6 +1,6 @@
 using Game.UI.Money;
 using Game.UI.Planet;
-using Game.UI.PlanetPopup;
+using Game.UI.Popup;
 using Modules.Planets;
 using UnityEngine;
 using Zenject;

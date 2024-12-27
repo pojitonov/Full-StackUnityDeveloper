@@ -2,7 +2,7 @@ using System;
 using Modules.Planets;
 using UnityEngine;
 
-namespace Game.UI.PlanetPopup
+namespace Game.UI.Popup
 {
     public class PlanetPopupPresenter : IPlanetPopupPresenter
     {

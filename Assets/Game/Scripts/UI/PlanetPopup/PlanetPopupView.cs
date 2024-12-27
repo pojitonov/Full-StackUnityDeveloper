@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Game.UI.PlanetPopup
+namespace Game.UI.Popup
 {
     public class PlanetPopupView : MonoBehaviour
     {

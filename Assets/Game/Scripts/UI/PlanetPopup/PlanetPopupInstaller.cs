@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace Game.UI.PlanetPopup
+namespace Game.UI.Popup
 {
     public sealed class PlanetPopupInstaller : Installer<PlanetPopupInstaller>
     {
