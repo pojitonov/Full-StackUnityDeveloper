@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Modules.UI;
 using TMPro;
 using UnityEngine;
@@ -11,9 +10,6 @@ namespace Game.UI.Planet
     {
         public event Action OnPlanetClick;
         public event Action OnPlanetHoldClick;
-
-        [SerializeField]
-        private MoneyView _moneyView;
         
         [SerializeField]
         private GameObject _incomePrefab;
@@ -41,12 +37,7 @@ namespace Game.UI.Planet
 
         [SerializeField]
         private SmartButton _button;
-
-        [SerializeField]
-        private CoinAnimation _animation;
-
-        private Coroutine _timerCoroutine;
-
+        
         public void Awake()
         {
             _button.OnClick += HandlePlanetClick;
@@ -102,42 +93,6 @@ namespace Game.UI.Planet
         public void ShowPrice(bool show)
         {
             _pricePrefab.gameObject.SetActive(show);
-        }
-
-        public void StartTimerAnimation(float time, float progress)
-        {
-            if (_timerCoroutine != null)
-            {
-                StopCoroutine(_timerCoroutine);
-            }
-
-            _timerCoroutine = StartCoroutine(AnimateTimer(time, progress));
-        }
-
-        public void StartCoinAnimation(Action OnComplete)
-        {
-            _animation?.FlyCoinToWidget(_moneyView.GetCoinPosition(), OnComplete);
-            if (_animation == null)
-                OnComplete?.Invoke();
-        }
-
-        private IEnumerator AnimateTimer(float time, float progress)
-        {
-            while (time > 0)
-            {
-                ShowTimer(true);
-                ShowCoin(false);
-
-                _timerText.text = time.ToString("0m:00s");
-                _timerProgress.fillAmount = progress;
-                yield return null;
-            }
-
-            _timerText.text = "0m:00s";
-            _timerProgress.fillAmount = 1f;
-
-            ShowTimer(false);
-            ShowCoin(true);
         }
     }
 }

@@ -24,12 +24,11 @@ namespace Game.UI.Planet
         {
             _view.OnPlanetClick += OnPlanetClick;
             _view.OnPlanetHoldClick += OnPlanetHoldClick;
-            _planet.OnIncomeTimeChanged += OnIncomeTimeChanged;
             _planet.OnIncomeReady += OnIncomeReady;
             _planet.OnUnlocked += OnUnlocked;
             _planet.OnUpgraded += OnUpgraded;
+            _planet.OnGathered += OnGathered;
 
-            _view.ShowTimer(false);
             UpdateView();
         }
 
@@ -37,41 +36,33 @@ namespace Game.UI.Planet
         {
             _view.OnPlanetClick -= OnPlanetClick;
             _view.OnPlanetHoldClick -= OnPlanetHoldClick;
-            _planet.OnIncomeTimeChanged -= OnIncomeTimeChanged;
             _planet.OnIncomeReady -= OnIncomeReady;
             _planet.OnUnlocked -= OnUnlocked;
             _planet.OnUpgraded -= OnUpgraded;
+            _planet.OnGathered -= OnGathered;
         }
 
         private void OnUnlocked()
         {
             UpdateView();
         }
-        
+
         private void OnUpgraded(int _)
         {
             UpdateView();
         }
-
-        private void OnIncomeReady(bool isReady)
+        
+        private void OnGathered(int _)
         {
-            _view.ShowCoin(isReady);
+            UpdateView();
         }
 
         private void OnPlanetClick()
         {
             if (_money.IsEnough(_planet.Price) && !_planet.IsUnlocked)
-            {
                 _planet.Unlock();
-            }
-
-            if (_planet.IsIncomeReady)
-            {
-                _view.StartCoinAnimation(() =>
-                {
-                    _planet.GatherIncome();
-                });
-            }
+            if (_planet.IsIncomeReady) 
+                _planet.GatherIncome();
         }
 
         private void OnPlanetHoldClick()
@@ -79,19 +70,21 @@ namespace Game.UI.Planet
             _shower.Show(_planet);
         }
 
+        private void OnIncomeReady(bool isReady)
+        {
+            _view.ShowCoin(isReady);
+            _view.ShowTimer(!isReady);
+        }
+
         private void UpdateView()
         {
             _view.SetIcon(_planet.GetIcon(_planet.IsUnlocked));
+            _view.ShowTimer(_planet.IsUnlocked && !_planet.IsIncomeReady);
             _view.SetPrice(_planet.Price.ToString());
             _view.SetTime(_planet.Price.ToString());
-            _view.ShowLock(!_planet.IsUnlocked);
             _view.ShowCoin(_planet.IsIncomeReady);
+            _view.ShowLock(!_planet.IsUnlocked);
             _view.ShowPrice(!_planet.IsUnlocked);
-        }
-
-        private void OnIncomeTimeChanged(float time)
-        {
-            _view.StartTimerAnimation(time, _planet.IncomeProgress);
         }
     }
 }
