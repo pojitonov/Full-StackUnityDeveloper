@@ -1414,7 +1414,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyView: {fileID: 813176138}
-  catalog: {fileID: 11400000, guid: 24135235a5c00425d9bcca105b41c4c4, type: 2}
   planetViews:
   - {fileID: 7237256081421283247}
   - {fileID: 808908706}
@@ -1425,7 +1424,6 @@ MonoBehaviour:
   - {fileID: 1247079643}
   - {fileID: 1000499689}
   - {fileID: 796504061}
-  coinEndPosition: {fileID: 410495275}
 --- !u!1 &974007725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,7 +1635,8 @@ PrefabInstance:
       propertyPath: _config
       value: 
       objectReference: {fileID: 11400000, guid: c791f5371bb1149548fdce7f5487a6cf, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5925086658015744704, guid: 368c7b958afaee34caa5e1b9338e5e65, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2787,10 +2786,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1688462861709361942, guid: 368c7b958afaee34caa5e1b9338e5e65, type: 3}
-      propertyPath: _moneyView
-      value: 
-      objectReference: {fileID: 813176138}
     - target: {fileID: 2977064503454360078, guid: 368c7b958afaee34caa5e1b9338e5e65, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2835,8 +2830,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5925086658015744704, guid: 368c7b958afaee34caa5e1b9338e5e65, type: 3}
+    - target: {fileID: 6957056471650030287, guid: 368c7b958afaee34caa5e1b9338e5e65, type: 3}
+      propertyPath: _coinEndPosition
+      value: 
+      objectReference: {fileID: 410495275}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
