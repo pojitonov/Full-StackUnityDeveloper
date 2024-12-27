@@ -1,7 +1,6 @@
 using DG.Tweening;
 using Game.UI.Money;
 using Modules.UI;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
@@ -27,7 +26,6 @@ namespace Game.UI.Planet
             initialTransform = _coinPrefab.transform.position;
         }
 
-        [Button]
         public void StartAnimation()
         {
             StopFloatingAnimation();
