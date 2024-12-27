@@ -19,15 +19,15 @@ namespace Game.UI.Planet
 
         public void Initialize()
         {
-            _view.OnPlanetClick += OnPlanetClick;
+            _view.OnPlanetClick += StartAnimation;
         }
 
         public void Dispose()
         {
-            _view.OnPlanetClick -= OnPlanetClick;
+            _view.OnPlanetClick -= StartAnimation;
         }
 
-        private void OnPlanetClick()
+        private void StartAnimation()
         {
             if (_planet.IsIncomeReady) 
                 _animation.StartAnimation();
