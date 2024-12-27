@@ -7,29 +7,29 @@ namespace Game.UI
 {
     public sealed class MoneyAnimationController : IInitializable, IDisposable
     {
-        private readonly MoneyStorage _moneyStorage;
-        private readonly MoneyAnimation _moneyAnimation;
+        private readonly MoneyStorage _money;
+        private readonly MoneyAnimation _animation;
 
-        public MoneyAnimationController(MoneyStorage moneyStorage, MoneyAnimation moneyAnimation)
+        public MoneyAnimationController(MoneyStorage money, MoneyAnimation animation)
         {
-            _moneyStorage = moneyStorage;
-            _moneyAnimation = moneyAnimation;
+            _money = money;
+            _animation = animation;
         }
 
         public void Initialize()
         {
-            _moneyAnimation.Initialize(_moneyStorage.Money.ToString());
-            _moneyStorage.OnMoneyChanged += StartAnimation;
+            _animation.Initialize(_money.Money.ToString());
+            _money.OnMoneyChanged += StartAnimation;
         }
 
         public void Dispose()
         {
-            _moneyStorage.OnMoneyChanged -= StartAnimation;
+            _money.OnMoneyChanged -= StartAnimation;
         }
 
         private void StartAnimation(int newValue, int previousValue)
         {
-            _moneyAnimation.UpdateText(newValue.ToString());
+            _animation.UpdateText(newValue.ToString());
         }
     }
 }

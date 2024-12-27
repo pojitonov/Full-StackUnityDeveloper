@@ -5,13 +5,13 @@ using Zenject;
 
 namespace Game.UI
 {
-    public class PlanetPresenterInitializer : IInitializable
+    public class PlanetInitializer : IInitializable
     {
         private readonly PlanetView[] _planetViews;
-        private readonly PlanetPresenterFactory _factory;
         private readonly List<IPlanet> _planets;
+        private readonly PlanetPresenterFactory _factory;
 
-        public PlanetPresenterInitializer(
+        public PlanetInitializer(
             PlanetView[] planetViews,
             PlanetPresenterFactory factory,
             List<IPlanet> planets)
