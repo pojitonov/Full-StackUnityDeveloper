@@ -31,6 +31,7 @@ namespace Game.UI.Money
         public void ChangeMoney(int money)
         {
             _currentValue = money;
+            _targetValue = money;
             _moneyText.text = money.ToString();
         }
 
@@ -46,26 +47,31 @@ namespace Game.UI.Money
 
         private IEnumerator AnimateText()
         {
+            int startValue = _currentValue;
+            int totalChange = _targetValue - startValue;
+            int totalFrames = Mathf.Max(1, Mathf.CeilToInt(_duration * _fps));
+            float stepAmount = (float)totalChange / totalFrames;
             WaitForSeconds wait = new WaitForSeconds(1f / _fps);
 
-            while (_currentValue != _targetValue)
+            for (int frame = 0; frame < totalFrames; frame++)
             {
-                int stepAmount = Mathf.Max(1, Mathf.Abs(_targetValue - _currentValue) / _fps) *
-                                 (int)Mathf.Sign(_targetValue - _currentValue);
-
-                if (Mathf.Abs(_targetValue - _currentValue) < Mathf.Abs(stepAmount))
+                _currentValue = Mathf.RoundToInt(startValue + stepAmount * (frame + 1));
+                
+                if (Mathf.Abs(_currentValue - _targetValue) < Mathf.Abs(stepAmount))
                 {
                     _currentValue = _targetValue;
                 }
-                else
-                {
-                    _currentValue += stepAmount;
-                }
 
                 _moneyText.text = _currentValue.ToString();
+
+                if (_currentValue == _targetValue)
+                    break;
+
                 yield return wait;
             }
 
+            _currentValue = _targetValue;
+            _moneyText.text = _currentValue.ToString();
             _countingCoroutine = null;
         }
     }
