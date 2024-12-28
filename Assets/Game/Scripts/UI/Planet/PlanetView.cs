@@ -38,6 +38,8 @@ namespace Game.UI.Planet
         [SerializeField]
         private Image _timerProgress;
         
+        public Vector3 CoinPosition => _coinPrefab.transform.position;
+        
         public void Awake()
         {
             _button.OnClick += HandlePlanetClick;
@@ -50,16 +52,6 @@ namespace Game.UI.Planet
             _button.OnHold -= HandlePlanetHoldClick;
         }
 
-        private void HandlePlanetClick()
-        {
-            OnPlanetClick?.Invoke();
-        }
-
-        private void HandlePlanetHoldClick()
-        {
-            OnPlanetHoldClick?.Invoke();
-        }
-
         public void SetIcon(Sprite icon)
         {
             _icon.sprite = icon;
@@ -69,7 +61,7 @@ namespace Game.UI.Planet
         {
             _timerText.text = time;
         }
-        
+
         public void SetProgress(float progress)
         {
             _timerProgress.fillAmount = progress;
@@ -98,6 +90,16 @@ namespace Game.UI.Planet
         public void ShowPrice(bool show)
         {
             _pricePrefab.gameObject.SetActive(show);
+        }
+
+        private void HandlePlanetClick()
+        {
+            OnPlanetClick?.Invoke();
+        }
+
+        private void HandlePlanetHoldClick()
+        {
+            OnPlanetHoldClick?.Invoke();
         }
     }
 }

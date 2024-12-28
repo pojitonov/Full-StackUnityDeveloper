@@ -1413,7 +1413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c711a2d3bc3c4b75be17cf37c322fe97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyView: {fileID: 813176138}
   planetViews:
   - {fileID: 7237256081421283247}
   - {fileID: 808908706}
@@ -1433,6 +1432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 974007726}
+  - component: {fileID: 974007727}
   m_Layer: 5
   m_Name: PlanetViews
   m_TagString: Untagged
@@ -1468,6 +1468,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &974007727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974007725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 046cdd3a9f5d40c594a69c76aa9e8ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particlePrefab: {fileID: 8463490587080572799, guid: 38d7f5045319aa547904a82ff3c91ebb, type: 3}
+  _parent: {fileID: 974007726}
 --- !u!114 &985570342 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2019871224800427396, guid: c6f3aabda10ed1841ba1c1a8999ef4ba, type: 3}

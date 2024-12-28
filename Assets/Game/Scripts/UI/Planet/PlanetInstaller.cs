@@ -1,4 +1,3 @@
-using Game.UI.Signals;
 using Zenject;
 
 namespace Game.UI.Planet
@@ -14,8 +13,6 @@ namespace Game.UI.Planet
                 .BindInterfacesTo<PlanetInitializer>()
                 .AsSingle()
                 .WithArguments(planetViews);
-            
-            Container.DeclareSignal<CoinGatheredSignal>();
             
             Container.BindInterfacesAndSelfTo<CoinAnimationController>()
                 .AsSingle();

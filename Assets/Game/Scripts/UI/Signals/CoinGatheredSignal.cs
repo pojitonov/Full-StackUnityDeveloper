@@ -1,14 +1,16 @@
-using Game.UI.Planet;
+using UnityEngine;
 
 namespace Game.UI.Signals
 {
     public class CoinGatheredSignal
     {
-        public PlanetView View;
+        public int Money { get; }
+        public Vector3 StartPosition { get; }
 
-        public CoinGatheredSignal(PlanetView view)
+        public CoinGatheredSignal(int money, Vector3 startPosition)
         {
-            View = view;
+            StartPosition = startPosition;
+            Money = money;
         }
     }
 }

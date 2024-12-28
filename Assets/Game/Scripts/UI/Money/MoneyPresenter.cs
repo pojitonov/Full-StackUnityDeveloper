@@ -18,13 +18,11 @@ namespace Game.UI.Money
         public void Initialize()
         {
             _moneyView.ChangeMoney(_moneyStorage.Money.ToString());
-            _moneyStorage.OnMoneyEarned += ChangeMoney;
             _moneyStorage.OnMoneySpent += ChangeMoney;
         }
 
         public void Dispose()
         {
-            _moneyStorage.OnMoneyEarned -= ChangeMoney;
             _moneyStorage.OnMoneySpent -= ChangeMoney;
         }
 

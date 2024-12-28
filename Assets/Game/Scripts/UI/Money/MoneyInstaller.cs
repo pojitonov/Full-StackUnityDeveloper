@@ -1,13 +1,9 @@
-using Modules.UI;
 using Zenject;
 
 namespace Game.UI.Money
 {
-    public sealed class MoneyInstaller : Installer<MoneyView, MoneyInstaller>
+    public sealed class MoneyInstaller : Installer<MoneyInstaller>
     {
-        [Inject]
-        private MoneyView _moneyView;
-        
         public override void InstallBindings()
         {
             Container
@@ -19,18 +15,7 @@ namespace Game.UI.Money
             Container
                 .BindInterfacesTo<MoneyPresenter>()
                 .AsCached()
-                .WithArguments(_moneyView)
                 .NonLazy();
-            
-            Container
-                .BindInterfacesTo<MoneyAnimationController>()
-                .AsCached()
-                .NonLazy();
-
-            Container
-                .Bind<MoneyAnimation>()
-                .FromComponentInHierarchy()
-                .AsCached();
         }
     }
 }
