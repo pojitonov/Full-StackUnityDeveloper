@@ -12,7 +12,7 @@ namespace Game.UI.Money
 
         [SerializeField]
         private Image _icon;
-        
+
         [SerializeField]
         private float _duration = 1f;
 
@@ -20,6 +20,7 @@ namespace Game.UI.Money
         private int _fps = 30;
 
         private int _currentValue;
+        private int _targetValue;
         private Coroutine _countingCoroutine;
 
         public Vector3 GetCoinPosition()
@@ -27,46 +28,45 @@ namespace Game.UI.Money
             return _icon.transform.position;
         }
 
-        public void ChangeMoney(string money)
+        public void ChangeMoney(int money)
         {
-            _moneyText.text = money;
+            _currentValue = money;
+            _moneyText.text = money.ToString();
         }
 
-        public void AddMoney(string newValue)
+        public void AddMoney(int money)
         {
-            int targetValue = ConvertStringToInt(newValue);
+            _targetValue += money;
 
-            if (_countingCoroutine != null)
+            if (_countingCoroutine == null)
             {
-                StopCoroutine(_countingCoroutine);
+                _countingCoroutine = StartCoroutine(AnimateText());
             }
-
-            _countingCoroutine = StartCoroutine(AnimateText(targetValue));
         }
 
-        private IEnumerator AnimateText(int targetValue)
+        private IEnumerator AnimateText()
         {
-            WaitForSeconds wait = new WaitForSeconds(_duration / _fps);
-            int startValue = _currentValue;
-            int totalFrames = Mathf.Max(1, Mathf.CeilToInt(_fps * _duration));
-            int stepAmount = Mathf.Max(1, Mathf.Abs(targetValue - startValue) / totalFrames) *
-                             (int)Mathf.Sign(targetValue - startValue);
+            WaitForSeconds wait = new WaitForSeconds(1f / _fps);
 
-            while (_currentValue != targetValue)
+            while (_currentValue != _targetValue)
             {
-                if (Mathf.Abs(targetValue - _currentValue) < Mathf.Abs(stepAmount))
-                    _currentValue = targetValue;
+                int stepAmount = Mathf.Max(1, Mathf.Abs(_targetValue - _currentValue) / _fps) *
+                                 (int)Mathf.Sign(_targetValue - _currentValue);
+
+                if (Mathf.Abs(_targetValue - _currentValue) < Mathf.Abs(stepAmount))
+                {
+                    _currentValue = _targetValue;
+                }
                 else
+                {
                     _currentValue += stepAmount;
+                }
 
                 _moneyText.text = _currentValue.ToString();
                 yield return wait;
             }
-        }
 
-        private int ConvertStringToInt(string value)
-        {
-            return int.TryParse(value, out var result) ? result : 0;
+            _countingCoroutine = null;
         }
     }
 }

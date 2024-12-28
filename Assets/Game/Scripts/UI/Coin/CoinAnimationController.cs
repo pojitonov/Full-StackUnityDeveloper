@@ -34,7 +34,7 @@ namespace Game.UI.Planet
             var money = signal.Money;
             var startPosition = signal.StartPosition;
             var endPosition = _moneyView.GetCoinPosition();
-            _animator.Emit(startPosition, endPosition, 1f, () => _moneyView.AddMoney(money.ToString()));
+            _animator.Emit(startPosition, endPosition, 1f, () => _moneyView.AddMoney(money));
         }
     }
 }

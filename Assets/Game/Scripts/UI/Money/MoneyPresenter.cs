@@ -17,7 +17,7 @@ namespace Game.UI.Money
 
         public void Initialize()
         {
-            _moneyView.ChangeMoney(_moneyStorage.Money.ToString());
+            _moneyView.ChangeMoney(_moneyStorage.Money);
             _moneyStorage.OnMoneySpent += ChangeMoney;
         }
 
@@ -28,7 +28,7 @@ namespace Game.UI.Money
 
         private void ChangeMoney(int newValue, int _)
         {
-            _moneyView.ChangeMoney(newValue.ToString());
+            _moneyView.ChangeMoney(newValue);
         }
     }
 }
