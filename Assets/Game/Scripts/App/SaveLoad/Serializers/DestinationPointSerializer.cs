@@ -1,24 +1,25 @@
+using System;
+using SampleGame.Common;
 using SampleGame.Gameplay;
 
 namespace Game.App
 {
+    [Serializable]
+    public struct DestinationPointData
+    {
+        public SerializedVector3 value;
+    }
+
     public sealed class DestinationPointSerializer : GenericSerializer<DestinationPoint, DestinationPointData>
     {
-        private readonly DestinationPoint _destinationPoint;
-
-        public DestinationPointSerializer(DestinationPoint destinationPoint)
+        protected override DestinationPointData Serialize(DestinationPoint component)
         {
-            _destinationPoint = destinationPoint;
+            return new DestinationPointData { value = component.Value };
         }
 
-        protected override DestinationPointData Serialize(DestinationPoint service)
+        protected override void Deserialize(DestinationPoint component, DestinationPointData data)
         {
-            return new DestinationPointData{value = service.Value};
-        }
-
-        protected override void Deserialize(DestinationPoint service, DestinationPointData data)
-        {
-            _destinationPoint.Value = data.value;
+            component.Value = data.value;
         }
     }
 }

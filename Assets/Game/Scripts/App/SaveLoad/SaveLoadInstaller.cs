@@ -1,3 +1,4 @@
+using Modules.Entities;
 using SampleGame.Gameplay;
 using UnityEngine;
 using Zenject;
@@ -23,6 +24,8 @@ namespace Game.App
                 .AsSingle();
             Container.BindInterfacesTo<ResourceBagSerializer>()
                 .AsSingle();
+            Container.BindInterfacesTo<TargetObjectSerializer>()
+                .AsSingle();
             
             Container.Bind<Countdown>()
                 .FromComponentInHierarchy()
@@ -34,6 +37,9 @@ namespace Game.App
                 .FromComponentInHierarchy()
                 .AsSingle();
             Container.Bind<ResourceBag>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+            Container.Bind<TargetObject>()
                 .FromComponentInHierarchy()
                 .AsSingle();
         }

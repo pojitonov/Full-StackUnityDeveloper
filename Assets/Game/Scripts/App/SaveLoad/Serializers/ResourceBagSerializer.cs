@@ -1,29 +1,31 @@
+using System;
+using SampleGame.Common;
 using SampleGame.Gameplay;
 
 namespace Game.App
 {
+    [Serializable]
+    public struct ResourceTypeData
+    {
+        public ResourceType type;
+        public int current;
+    }
+    
     public sealed class ResourceBagSerializer : GenericSerializer<ResourceBag, ResourceTypeData>
     {
-        private readonly ResourceBag _resourceBag;
-
-        public ResourceBagSerializer(ResourceBag resourceBag)
-        {
-            _resourceBag = resourceBag;
-        }
-
-        protected override ResourceTypeData Serialize(ResourceBag service)
+        protected override ResourceTypeData Serialize(ResourceBag component)
         {
             return new ResourceTypeData
             {
-                type = service.Type,
-                current = service.Current
+                type = component.Type,
+                current = component.Current
             };
         }
 
-        protected override void Deserialize(ResourceBag service, ResourceTypeData data)
+        protected override void Deserialize(ResourceBag component, ResourceTypeData data)
         {
-            _resourceBag.Type = data.type;
-            _resourceBag.Current = data.current;
+            component.Type = data.type;
+            component.Current = data.current;
         }
     }
 }

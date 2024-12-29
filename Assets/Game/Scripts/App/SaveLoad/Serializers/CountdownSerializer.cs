@@ -1,24 +1,24 @@
+using System;
 using SampleGame.Gameplay;
 
 namespace Game.App
 {
+    [Serializable]
+    public struct CountdownData
+    {
+        public float value;
+    }
+    
     public sealed class CountdownSerializer : GenericSerializer<Countdown, CountdownData>
     {
-        private readonly Countdown _countdown;
-
-        public CountdownSerializer(Countdown countdown)
+        protected override CountdownData Serialize(Countdown component)
         {
-            _countdown = countdown;
+            return new CountdownData { value = component.Current };
         }
 
-        protected override CountdownData Serialize(Countdown service)
+        protected override void Deserialize(Countdown component, CountdownData data)
         {
-            return new CountdownData{value = service.Current};
-        }
-
-        protected override void Deserialize(Countdown service, CountdownData data)
-        {
-            _countdown.Current = data.value;
+            component.Current = data.value;
         }
     }
 }

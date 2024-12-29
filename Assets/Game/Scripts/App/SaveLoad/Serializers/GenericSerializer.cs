@@ -4,16 +4,16 @@ using Zenject;
 
 namespace Game.App
 {
-    public abstract class GenericSerializer<TService, TData> : IGenericSerializer
+    public abstract class GenericSerializer<TComponent, TData> : IGenericSerializer
     {
         protected virtual string Key => typeof(TData).Name;
 
         [Inject]
-        private TService _service;
+        private TComponent _component;
 
         public void Serialize(IDictionary<string, string> gameState)
         {
-            TData data = Serialize(_service);
+            TData data = Serialize(_component);
             gameState[Key] = JsonConvert.SerializeObject(data);
         }
 
@@ -22,10 +22,38 @@ namespace Game.App
             if (!gameState.TryGetValue(Key, out string json))
                 return;
             TData data = JsonConvert.DeserializeObject<TData>(json);
-            Deserialize(_service, data);
+            Deserialize(_component, data);
         }
 
-        protected abstract TData Serialize(TService service);
-        protected abstract void Deserialize(TService service, TData data);
+        protected abstract TData Serialize(TComponent component);
+        protected abstract void Deserialize(TComponent component, TData data);
+    }
+    
+    public abstract class GenericSerializer<TComponent, TService, TData> : IGenericSerializer
+    {
+        protected virtual string Key => typeof(TData).Name;
+
+        [Inject]
+        private TComponent _component;
+        
+        [Inject]
+        private TService _service;
+
+        public void Serialize(IDictionary<string, string> gameState)
+        {
+            TData data = Serialize(_component, _service);
+            gameState[Key] = JsonConvert.SerializeObject(data);
+        }
+
+        public void Deserialize(IDictionary<string, string> gameState)
+        {
+            if (!gameState.TryGetValue(Key, out string json))
+                return;
+            TData data = JsonConvert.DeserializeObject<TData>(json);
+            Deserialize(_component, _service, data);
+        }
+
+        protected abstract TData Serialize(TComponent component, TService service);
+        protected abstract void Deserialize(TComponent component, TService service, TData data);
     }
 }
