@@ -12,11 +12,11 @@ namespace Game.UI.Planet
         private readonly MoneyView _moneyView;
         private readonly ParticleAnimator _animator;
 
-        public CoinAnimationController(SignalBus signalBus, MoneyView moneyView, ParticleAnimator animator)
+        public CoinAnimationController(MoneyView moneyView, ParticleAnimator animator, SignalBus signalBus)
         {
-            _signalBus = signalBus;
             _moneyView = moneyView;
             _animator = animator;
+            _signalBus = signalBus;
         }
 
         public void Initialize()

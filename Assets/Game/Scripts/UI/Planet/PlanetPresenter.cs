@@ -11,16 +11,13 @@ namespace Game.UI.Planet
         private readonly IMoneyAdapter _money;
         private readonly PlanetView _view;
         private readonly IPlanet _planet;
-        private readonly PlanetPopupShower _shower;
         private readonly SignalBus _signalBus;
 
-        public PlanetPresenter(IMoneyAdapter money, PlanetView view, IPlanet planet, PlanetPopupShower shower,
-            SignalBus signalBus)
+        public PlanetPresenter(IMoneyAdapter money, PlanetView view, IPlanet planet, SignalBus signalBus)
         {
             _view = view;
             _money = money;
             _planet = planet;
-            _shower = shower;
             _signalBus = signalBus;
         }
 
@@ -52,13 +49,13 @@ namespace Game.UI.Planet
         {
             if (_money.IsEnough(_planet.Price) && !_planet.IsUnlocked)
                 _planet.Unlock();
-            if (_planet.IsIncomeReady) 
+            if (_planet.IsIncomeReady)
                 _planet.GatherIncome();
         }
 
         private void OnPlanetHoldClick()
         {
-            _shower.Show(_planet);
+            _signalBus.Fire(new OpenPlanetPopupSignal(_planet));
         }
 
         private void OnUnlocked()

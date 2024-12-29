@@ -1,4 +1,5 @@
 using System;
+using Modules.Planets;
 using UnityEngine;
 
 namespace Game.UI.Popup
@@ -17,6 +18,7 @@ namespace Game.UI.Popup
         bool IsUpgradeButtonEnabled { get; }
         bool IsMaxLevel { get; }
 
+        void SetPlanet(IPlanet planet);
         void OnUpgradeButtonClick();
      }
 }

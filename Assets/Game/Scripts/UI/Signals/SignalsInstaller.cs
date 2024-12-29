@@ -9,6 +9,7 @@ namespace Game.UI.Signals
             SignalBusInstaller.Install(Container);
 
             Container.DeclareSignal<CoinGatheredSignal>();
+            Container.DeclareSignal<OpenPlanetPopupSignal>();
         }
     }
 }

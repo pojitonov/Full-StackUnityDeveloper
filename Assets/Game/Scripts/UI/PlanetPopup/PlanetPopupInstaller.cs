@@ -7,18 +7,14 @@ namespace Game.UI.Popup
         public override void InstallBindings()
         {
             Container
+                .BindInterfacesAndSelfTo<PlanetPopupView>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+            
+            Container
                 .BindInterfacesAndSelfTo<PlanetPopupPresenter>()
                 .AsSingle()
                 .NonLazy();
-
-            Container
-                .Bind<PlanetPopupShower>()
-                .AsSingle();
-
-            Container
-                .Bind<PlanetPopupView>()
-                .FromComponentInHierarchy()
-                .AsSingle();
         }
     }
 }
