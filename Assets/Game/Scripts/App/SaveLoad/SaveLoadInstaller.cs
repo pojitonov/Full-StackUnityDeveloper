@@ -26,6 +26,8 @@ namespace Game.App
                 .AsSingle();
             Container.BindInterfacesTo<Serializer_TargetObject>()
                 .AsSingle();
+            Container.BindInterfacesTo<Serializer_Team>()
+                .AsSingle();
             
             Container.Bind<Countdown>()
                 .FromComponentInHierarchy()
@@ -40,6 +42,9 @@ namespace Game.App
                 .FromComponentInHierarchy()
                 .AsSingle();
             Container.Bind<TargetObject>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+            Container.Bind<Team>()
                 .FromComponentInHierarchy()
                 .AsSingle();
         }

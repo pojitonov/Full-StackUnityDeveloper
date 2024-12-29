@@ -19,8 +19,8 @@ namespace Game.App
 
         protected override void Deserialize(TargetObject component, EntityWorld service, TargetObjectData data)
         {
-            service.TryGet(data.value, out var entity);
-            component.Value = entity;
+            service.TryGet(data.value, out var value);
+            component.Value = value;
         }
     }
 }
