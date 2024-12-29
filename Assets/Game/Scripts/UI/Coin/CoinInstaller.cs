@@ -7,6 +7,9 @@ namespace Game.UI.Planet
     {
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<CoinAnimationController>()
+                .AsSingle();
+            
             Container
                 .Bind<ParticleAnimator>()
                 .FromComponentInHierarchy()

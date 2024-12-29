@@ -13,9 +13,6 @@ namespace Game.UI.Planet
                 .BindInterfacesTo<PlanetInitializer>()
                 .AsSingle()
                 .WithArguments(planetViews);
-            
-            Container.BindInterfacesAndSelfTo<CoinAnimationController>()
-                .AsSingle();
         }
     }
 }

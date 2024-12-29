@@ -1,5 +1,4 @@
 using System;
-using Game.UI.Popup;
 using Game.UI.Signals;
 using Modules.Planets;
 using Zenject;

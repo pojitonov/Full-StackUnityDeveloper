@@ -65,7 +65,7 @@ namespace Game.UI.Popup
             Show();
         }
 
-        public void Show()
+        private void Show()
         {
             _upgradeButton.onClick.AddListener(_popupPresenter.OnUpgradeButtonClick);
             _closeButton.onClick.AddListener(Hide);
