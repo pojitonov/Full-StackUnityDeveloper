@@ -22,6 +22,8 @@ namespace Game.App
                 .AsSingle();
             Container.BindInterfacesTo<Serializer_Health>()
                 .AsSingle();
+            Container.BindInterfacesTo<Serializer_ProductionOrder>()
+                .AsSingle();
             Container.BindInterfacesTo<Serializer_ResourceBag>()
                 .AsSingle();
             Container.BindInterfacesTo<Serializer_TargetObject>()
@@ -36,6 +38,9 @@ namespace Game.App
                 .FromComponentInHierarchy()
                 .AsSingle();
             Container.Bind<Health>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+            Container.Bind<ProductionOrder>()
                 .FromComponentInHierarchy()
                 .AsSingle();
             Container.Bind<ResourceBag>()
