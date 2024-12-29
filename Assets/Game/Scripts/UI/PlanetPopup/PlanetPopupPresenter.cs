@@ -18,7 +18,7 @@ namespace Game.UI.Popup
         public bool IsUpgradeButtonEnabled =>
             !(_planet?.Level >= _planet.MaxLevel) && _money.IsEnough(_planet?.Price ?? 0);
         public string Button =>
-            _planet?.Level == _planet?.MaxLevel ? "Not Upgradable" :
+            _planet?.Level == _planet?.MaxLevel ? "Max Level Reached" :
             _planet?.IsUnlocked == true ? "Upgrade" : "Unlock";
         
         private readonly IMoneyAdapter _money;
