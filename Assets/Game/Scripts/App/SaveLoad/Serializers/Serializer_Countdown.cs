@@ -9,7 +9,7 @@ namespace Game.App
         public float value;
     }
     
-    public sealed class CountdownSerializer : GenericSerializer<Countdown, CountdownData>
+    public sealed class Serializer_Countdown : Serializer<Countdown, CountdownData>
     {
         protected override CountdownData Serialize(Countdown component)
         {

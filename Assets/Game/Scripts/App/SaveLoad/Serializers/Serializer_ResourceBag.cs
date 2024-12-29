@@ -11,7 +11,7 @@ namespace Game.App
         public int current;
     }
     
-    public sealed class ResourceBagSerializer : GenericSerializer<ResourceBag, ResourceTypeData>
+    public sealed class Serializer_ResourceBag : Serializer<ResourceBag, ResourceTypeData>
     {
         protected override ResourceTypeData Serialize(ResourceBag component)
         {

@@ -10,7 +10,7 @@ namespace Game.App
         public SerializedVector3 value;
     }
 
-    public sealed class DestinationPointSerializer : GenericSerializer<DestinationPoint, DestinationPointData>
+    public sealed class Serializer_DestinationPoint : Serializer<DestinationPoint, DestinationPointData>
     {
         protected override DestinationPointData Serialize(DestinationPoint component)
         {

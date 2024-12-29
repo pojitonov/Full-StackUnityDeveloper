@@ -16,15 +16,15 @@ namespace Game.App
             Container.Bind<SaveLoader>()
                 .AsSingle();
             
-            Container.BindInterfacesTo<CountdownSerializer>()
+            Container.BindInterfacesTo<Serializer_Countdown>()
                 .AsSingle();
-            Container.BindInterfacesTo<DestinationPointSerializer>()
+            Container.BindInterfacesTo<Serializer_DestinationPoint>()
                 .AsSingle();
-            Container.BindInterfacesTo<HealthSerializer>()
+            Container.BindInterfacesTo<Serializer_Health>()
                 .AsSingle();
-            Container.BindInterfacesTo<ResourceBagSerializer>()
+            Container.BindInterfacesTo<Serializer_ResourceBag>()
                 .AsSingle();
-            Container.BindInterfacesTo<TargetObjectSerializer>()
+            Container.BindInterfacesTo<Serializer_TargetObject>()
                 .AsSingle();
             
             Container.Bind<Countdown>()

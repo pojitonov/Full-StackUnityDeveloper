@@ -10,7 +10,7 @@ namespace Game.App
         public int value;
     }
     
-    public sealed class TargetObjectSerializer : GenericSerializer<TargetObject, EntityWorld, TargetObjectData>
+    public sealed class Serializer_TargetObject : Serializer<TargetObject, EntityWorld, TargetObjectData>
     {
         protected override TargetObjectData Serialize(TargetObject component, EntityWorld service)
         {

@@ -9,7 +9,7 @@ namespace Game.App
         public int value;
     }
 
-    public sealed class HealthSerializer : GenericSerializer<Health, HealthData>
+    public sealed class Serializer_Health : Serializer<Health, HealthData>
     {
         protected override HealthData Serialize(Health component)
         {
