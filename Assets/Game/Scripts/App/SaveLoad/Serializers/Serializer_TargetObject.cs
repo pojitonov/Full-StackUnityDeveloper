@@ -1,23 +1,16 @@
-using System;
 using Modules.Entities;
 using SampleGame.Gameplay;
 
 namespace Game.App
 {
-    [Serializable]
-    public struct TargetObjectData
+    public sealed class Serializer_TargetObject : Serializer<TargetObject, EntityWorld, Data_TargetObject>
     {
-        public int value;
-    }
-    
-    public sealed class Serializer_TargetObject : Serializer<TargetObject, EntityWorld, TargetObjectData>
-    {
-        protected override TargetObjectData Serialize(TargetObject component, EntityWorld service)
+        protected override Data_TargetObject Serialize(TargetObject component, EntityWorld service)
         {
-            return new TargetObjectData { value = component.Value.Id };
+            return new Data_TargetObject { value = component.Value.Id };
         }
 
-        protected override void Deserialize(TargetObject component, EntityWorld service, TargetObjectData data)
+        protected override void Deserialize(TargetObject component, EntityWorld service, Data_TargetObject data)
         {
             service.TryGet(data.value, out var value);
             component.Value = value;

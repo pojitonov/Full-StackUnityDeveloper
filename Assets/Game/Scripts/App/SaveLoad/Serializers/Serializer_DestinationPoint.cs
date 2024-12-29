@@ -1,23 +1,15 @@
-using System;
-using SampleGame.Common;
 using SampleGame.Gameplay;
 
 namespace Game.App
 {
-    [Serializable]
-    public struct DestinationPointData
+    public sealed class Serializer_DestinationPoint : Serializer<DestinationPoint, Data_DestinationPoint>
     {
-        public SerializedVector3 value;
-    }
-
-    public sealed class Serializer_DestinationPoint : Serializer<DestinationPoint, DestinationPointData>
-    {
-        protected override DestinationPointData Serialize(DestinationPoint component)
+        protected override Data_DestinationPoint Serialize(DestinationPoint component)
         {
-            return new DestinationPointData { value = component.Value };
+            return new Data_DestinationPoint { value = component.Value };
         }
 
-        protected override void Deserialize(DestinationPoint component, DestinationPointData data)
+        protected override void Deserialize(DestinationPoint component, Data_DestinationPoint data)
         {
             component.Value = data.value;
         }

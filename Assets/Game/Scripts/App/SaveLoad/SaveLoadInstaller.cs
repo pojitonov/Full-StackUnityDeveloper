@@ -1,4 +1,3 @@
-using Modules.Entities;
 using SampleGame.Gameplay;
 using UnityEngine;
 using Zenject;

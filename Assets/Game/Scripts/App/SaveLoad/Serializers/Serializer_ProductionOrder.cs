@@ -1,19 +1,12 @@
-using System;
 using System.Collections.Generic;
 using Modules.Entities;
 using SampleGame.Gameplay;
 
 namespace Game.App
 {
-    [Serializable]
-    public struct ProductionOrderData
+    public sealed class Serializer_ProductionOrder : Serializer<ProductionOrder, EntityCatalog, Data_ProductionOrder>
     {
-        public List<string> value;
-    }
-
-    public sealed class Serializer_ProductionOrder : Serializer<ProductionOrder, EntityCatalog, ProductionOrderData>
-    {
-        protected override ProductionOrderData Serialize(ProductionOrder component, EntityCatalog service)
+        protected override Data_ProductionOrder Serialize(ProductionOrder component, EntityCatalog service)
         {
             List<string> queue = new List<string>();
 
@@ -22,10 +15,10 @@ namespace Game.App
                 queue.Add(item.Name);
             }
 
-            return new ProductionOrderData { value = queue };
+            return new Data_ProductionOrder { value = queue };
         }
 
-        protected override void Deserialize(ProductionOrder component, EntityCatalog service, ProductionOrderData data)
+        protected override void Deserialize(ProductionOrder component, EntityCatalog service, Data_ProductionOrder data)
         {
             var newQueue = new List<EntityConfig>();
             foreach (var entityName in data.value)

@@ -1,22 +1,15 @@
-using System;
 using SampleGame.Gameplay;
 
 namespace Game.App
 {
-    [Serializable]
-    public struct HealthData
+    public sealed class Serializer_Health : Serializer<Health, Data_Health>
     {
-        public int value;
-    }
-
-    public sealed class Serializer_Health : Serializer<Health, HealthData>
-    {
-        protected override HealthData Serialize(Health component)
+        protected override Data_Health Serialize(Health component)
         {
-            return new HealthData { value = component.Current };
+            return new Data_Health { value = component.Current };
         }
 
-        protected override void Deserialize(Health component, HealthData data)
+        protected override void Deserialize(Health component, Data_Health data)
         {
             component.Current = data.value;
         }

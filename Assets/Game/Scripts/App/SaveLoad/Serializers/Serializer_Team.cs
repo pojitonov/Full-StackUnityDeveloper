@@ -4,20 +4,14 @@ using SampleGame.Gameplay;
 
 namespace Game.App
 {
-    [Serializable]
-    public struct TeamData
+    public sealed class Serializer_Team : Serializer<Team, Data_Team>
     {
-        public string value;
-    }
-
-    public sealed class Serializer_Team : Serializer<Team, TeamData>
-    {
-        protected override TeamData Serialize(Team component)
+        protected override Data_Team Serialize(Team component)
         {
-            return new TeamData { value = component.Type.ToString() };
+            return new Data_Team { value = component.Type.ToString() };
         }
 
-        protected override void Deserialize(Team component, TeamData data)
+        protected override void Deserialize(Team component, Data_Team data)
         {
             Enum.TryParse<TeamType>(data.value, out var value);
             component.Type = value;
