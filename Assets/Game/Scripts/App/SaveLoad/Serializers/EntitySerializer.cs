@@ -44,14 +44,14 @@ namespace Game.App
             };
         }
         
-        public bool TrySpawnEntity(EntityData entityWorldData, out Entity entity)
+        public bool TrySpawnEntity(EntityData entityData, out Entity entity)
         {
             entity = null;
             
-            if (!catalog.FindConfig(entityWorldData.entityName, out var config))
+            if (!catalog.FindConfig(entityData.entityName, out var config))
                 return false;
 
-            entity = world.Spawn(config, entityWorldData.position, entityWorldData.rotation, entityWorldData.id);
+            entity = world.Spawn(config, entityData.position, entityData.rotation, entityData.id);
             return true;
         }
         
@@ -65,20 +65,17 @@ namespace Game.App
         
         private IComponentSerializer GetSerializer(ISerializable component)
         {
-            if (_serializers.TryGetValue(component.GetType(), out var serializer))
-                return serializer;
-
-            throw new InvalidOperationException($"Serializer for component type {component.GetType()} not found.");
+            return _serializers.GetValueOrDefault(component.GetType());
         }
 
-        private void SerializeComponent(ISerializable component, Dictionary<string, string> saveState)
+        private void SerializeComponent(ISerializable component, Dictionary<string, string> gameState)
         {
-            GetSerializer(component).Serialize(component, saveState);
+            GetSerializer(component).Serialize(component, gameState);
         }
 
-        private void DeserializeComponent(ISerializable component, Dictionary<string, string> saveState)
+        private void DeserializeComponent(ISerializable component, Dictionary<string, string> gameState)
         {
-            GetSerializer(component).Deserialize(component, saveState);
+            GetSerializer(component).Deserialize(component, gameState);
         }
     }
 }

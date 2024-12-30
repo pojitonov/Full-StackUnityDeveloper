@@ -56,8 +56,8 @@ namespace Game.App
             Deserialize(_service1, _service2, data);
         }
 
-        protected abstract TData Serialize(TService1 service1, TService2 service2);
-        protected abstract void Deserialize(TService1 service1, TService2 service2, TData data);
+        protected abstract TData Serialize(TService1 service1, TService2 entitySerializer);
+        protected abstract void Deserialize(TService1 service1, TService2 entitySerializer, TData data);
     }
     
     
