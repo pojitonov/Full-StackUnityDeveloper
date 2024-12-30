@@ -3,7 +3,7 @@ using System;
 namespace Game.App
 {
     [Serializable]
-    public struct Data_Health
+    public struct HealthData
     {
         public int value;
     }

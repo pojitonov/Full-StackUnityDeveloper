@@ -3,8 +3,8 @@ using System;
 namespace Game.App
 {
     [Serializable]
-    public struct Data_Team
+    public struct CountdownData
     {
-        public string value;
+        public float value;
     }
 }

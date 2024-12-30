@@ -4,9 +4,9 @@ using SampleGame.Common;
 namespace Game.App
 {
     [Serializable]
-    public struct Data_ResourceType
+    public struct ResourceBagData
     {
-        public ResourceType type;
+        public string type;
         public int current;
     }
 }

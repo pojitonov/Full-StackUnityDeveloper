@@ -4,9 +4,10 @@ using SampleGame.Gameplay;
 
 namespace Game.App
 {
-    public sealed class Serializer_ProductionOrder : Serializer<ProductionOrder, EntityCatalog, Data_ProductionOrder>
+    public sealed class
+        ProductionOrderSerializer : ComponentSerializer<ProductionOrder, EntityCatalog, ProductionOrderData>
     {
-        protected override Data_ProductionOrder Serialize(ProductionOrder component, EntityCatalog service)
+        protected override ProductionOrderData Serialize(ProductionOrder component, EntityCatalog service)
         {
             List<string> queue = new List<string>();
 
@@ -15,20 +16,23 @@ namespace Game.App
                 queue.Add(item.Name);
             }
 
-            return new Data_ProductionOrder { value = queue };
+            return new ProductionOrderData
+            {
+                value = queue
+            };
         }
 
-        protected override void Deserialize(ProductionOrder component, EntityCatalog service, Data_ProductionOrder data)
+        protected override void Deserialize(ProductionOrder component, EntityCatalog service, ProductionOrderData productionOrderData)
         {
             var newQueue = new List<EntityConfig>();
-            foreach (var entityName in data.value)
+            foreach (var entityName in productionOrderData.value)
             {
                 if (service.FindConfig(entityName, out var config))
                 {
                     newQueue.Add(config);
                 }
             }
-            
+
             component.Queue = newQueue;
         }
     }

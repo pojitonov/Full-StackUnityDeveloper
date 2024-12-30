@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game.App
 {
-    public abstract class Serializer<TComponent, TData> : ISerializer
+    public abstract class ComponentSerializer<TComponent, TData> : IComponentSerializer
     {
         protected virtual string Key => typeof(TData).Name;
 
@@ -29,7 +29,7 @@ namespace Game.App
         protected abstract void Deserialize(TComponent component, TData data);
     }
     
-    public abstract class Serializer<TComponent, TService, TData> : ISerializer
+    public abstract class ComponentSerializer<TComponent, TService, TData> : IComponentSerializer
     {
         protected virtual string Key => typeof(TData).Name;
 

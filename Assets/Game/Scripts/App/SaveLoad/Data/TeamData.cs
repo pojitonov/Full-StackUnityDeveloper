@@ -3,8 +3,8 @@ using System;
 namespace Game.App
 {
     [Serializable]
-    public struct Data_TargetObject
+    public struct TeamData
     {
-        public int value;
+        public string value;
     }
 }

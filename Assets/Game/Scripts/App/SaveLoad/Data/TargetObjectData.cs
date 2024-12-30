@@ -3,8 +3,8 @@ using System;
 namespace Game.App
 {
     [Serializable]
-    public struct Data_Countdown
+    public struct TargetObjectData
     {
-        public float value;
+        public int value;
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Game.App
 {
     [Serializable]
-    public struct Data_ProductionOrder
+    public struct ProductionOrderData
     {
         public List<string> value;
     }
