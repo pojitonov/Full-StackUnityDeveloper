@@ -1,4 +1,3 @@
-using SampleGame.Gameplay;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +14,11 @@ namespace Game.App
             Container.Bind<SaveLoader>()
                 .AsSingle();
             
+            Container.BindInterfacesAndSelfTo<EntitySerializer>()
+                .AsSingle();
+
+            Container.BindInterfacesTo<WorldSerializer>()
+                .AsSingle();
             Container.BindInterfacesTo<CountdownSerializer>()
                 .AsSingle();
             Container.BindInterfacesTo<DestinationPointSerializer>()
@@ -28,28 +32,6 @@ namespace Game.App
             Container.BindInterfacesTo<TargetObjectSerializer>()
                 .AsSingle();
             Container.BindInterfacesTo<TeamSerializer>()
-                .AsSingle();
-            
-            Container.Bind<Countdown>()
-                .FromComponentInHierarchy()
-                .AsSingle();
-            Container.Bind<DestinationPoint>()
-                .FromComponentInHierarchy()
-                .AsSingle();
-            Container.Bind<Health>()
-                .FromComponentInHierarchy()
-                .AsSingle();
-            Container.Bind<ProductionOrder>()
-                .FromComponentInHierarchy()
-                .AsSingle();
-            Container.Bind<ResourceBag>()
-                .FromComponentInHierarchy()
-                .AsSingle();
-            Container.Bind<TargetObject>()
-                .FromComponentInHierarchy()
-                .AsSingle();
-            Container.Bind<Team>()
-                .FromComponentInHierarchy()
                 .AsSingle();
         }
     }

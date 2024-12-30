@@ -6,9 +6,9 @@ namespace Game.App
     public sealed class SaveLoader
     {
         private readonly IRepository _repository;
-        private readonly IEnumerable<IComponentSerializer> _serializers;
+        private readonly IEnumerable<IGameSerializer> _serializers;
 
-        public SaveLoader(IRepository repository, IEnumerable<IComponentSerializer> serializers)
+        public SaveLoader(IRepository repository, IEnumerable<IGameSerializer> serializers)
         {
             _repository = repository;
             _serializers = serializers;
@@ -18,7 +18,7 @@ namespace Game.App
         {
             var gameState = new Dictionary<string, string>();
 
-            foreach (IComponentSerializer serializer in _serializers)
+            foreach (IGameSerializer serializer in _serializers)
             {
                 serializer.Serialize(gameState);
             }
@@ -30,7 +30,7 @@ namespace Game.App
         public async UniTask<bool> Load(int version)
         {
             (bool success, Dictionary<string, string> gameState) = await _repository.GetState(version);
-            foreach (IComponentSerializer serializer in _serializers)
+            foreach (IGameSerializer serializer in _serializers)
             {
                 serializer.Deserialize(gameState);
             }
