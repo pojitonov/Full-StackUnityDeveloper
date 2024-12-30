@@ -1,9 +1,10 @@
+using Game.App;
 using UnityEngine;
 
 namespace SampleGame.Gameplay
 {
     //Can be extended
-    public sealed class Health : MonoBehaviour
+    public sealed class Health : MonoBehaviour, ISerializable<HealthSerializer>
     {
         ///Variable
         [field: SerializeField]

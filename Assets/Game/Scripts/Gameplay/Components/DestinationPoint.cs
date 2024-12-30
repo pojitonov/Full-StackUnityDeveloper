@@ -1,9 +1,10 @@
+using Game.App;
 using UnityEngine;
 
 namespace SampleGame.Gameplay
 {
     //Can be extended
-    public sealed class DestinationPoint : MonoBehaviour
+    public sealed class DestinationPoint : MonoBehaviour, ISerializable<DestinationPointSerializer>
     {
         ///Variable
         [field: SerializeField]

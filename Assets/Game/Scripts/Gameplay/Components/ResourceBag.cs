@@ -1,10 +1,11 @@
+using Game.App;
 using SampleGame.Common;
 using UnityEngine;
 
 namespace SampleGame.Gameplay
 {
     //Can be extended
-    public sealed class ResourceBag : MonoBehaviour
+    public sealed class ResourceBag : MonoBehaviour, ISerializable<ResourceBagSerializer>
     {
         ///Variable
         [field: SerializeField]

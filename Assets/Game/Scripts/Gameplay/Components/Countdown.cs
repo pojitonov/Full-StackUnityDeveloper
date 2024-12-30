@@ -1,9 +1,10 @@
+using Game.App;
 using UnityEngine;
 
 namespace SampleGame.Gameplay
 {
     //Can be extended
-    public sealed class Countdown : MonoBehaviour
+    public sealed class Countdown : MonoBehaviour, ISerializable<CountdownSerializer>
     {
         ///Variable
         [field: SerializeField]
