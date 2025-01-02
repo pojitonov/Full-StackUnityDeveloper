@@ -4,7 +4,7 @@ using Modules.Entities;
 
 namespace Game.App
 {
-    public class WorldSerializer : GameSerializer<EntityWorld, EntitySerializer, EntityWorldData>
+    public class WorldSerializer : Serializer<EntityWorld, EntitySerializer, EntityWorldData>
     {
         protected override EntityWorldData Serialize(EntityWorld world, EntitySerializer entitySerializer)
         {
@@ -21,9 +21,9 @@ namespace Game.App
         {
             world.DestroyAll();
             var entities = SpawnEntities(entitySerializer, data);
-            foreach (var e in entities)
+            foreach (var entity in entities)
             {
-                entitySerializer.DeserializeComponents(e.entity, e.data.components);
+                entitySerializer.DeserializeComponents(entity.entity, entity.data.components);
             }
         }
 
