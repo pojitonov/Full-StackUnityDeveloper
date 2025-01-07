@@ -5,7 +5,7 @@ namespace Game.Scripts
     public sealed class CharacterMoveController : MonoBehaviour
     {
         [SerializeField]
-        private Character character;
+        private Character _character;
 
         private void Update()
         {
@@ -20,7 +20,7 @@ namespace Game.Scripts
                 moveDirection = 1;
             }
 
-            character._moveDirection = moveDirection;
+            _character._moveDirection = moveDirection;
         }
     }
 }

@@ -1,27 +1,24 @@
-using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts
 {
     public class Character : MonoBehaviour
     {
         public float _jumpForce = 8f;
+        public bool _isAlive = true;
+
+        [ShowInInspector, ReadOnly]
+        public bool _isGrounded = true;
+
+        [ShowInInspector, ReadOnly]
+        public float _moveDirection;
 
         [SerializeField]
         private float _moveSpeed = 5f;
 
         [SerializeField]
         private float _groundDistance = 0.1f;
-
-        [ShowInInspector, ReadOnly]
-        public bool _isJumpEnabled = true;
-        
-        public bool _isAlive = true;
-
-        [ShowInInspector, ReadOnly]
-        public float _moveDirection;
 
         [SerializeField]
         private Rigidbody2D _rigidbody;
@@ -33,16 +30,16 @@ namespace Game.Scripts
         
         private MovementMechanic _movementMechanic;
         private FlipMechanic _flipMechanic;
-        private OnGroundMechanic _onGroundMechanic;
+        private GroundMechanic _groundMechanic;
 
         private void Awake()
         {
             _movementMechanic = new MovementMechanic(_rigidbody, _moveSpeed);
             _flipMechanic = new FlipMechanic(transform);
             _jumpAction = new JumpAction(_rigidbody, _jumpForce);
-            _onGroundMechanic = new OnGroundMechanic(_feetTransform, _isJumpEnabled, _groundDistance);
+            _groundMechanic = new GroundMechanic(_feetTransform, _isGrounded, _groundDistance);
             
-            _jumpAction.AddCondition(() => _isJumpEnabled && _isAlive);
+            _jumpAction.AddCondition(() => _isGrounded && _isAlive);
             _movementMechanic.AddCondition(() => _isAlive);
         }
 
@@ -50,13 +47,13 @@ namespace Game.Scripts
         {
             _movementMechanic.FixedUpdate(_moveDirection);
             _flipMechanic.FixedUpdate(_moveDirection);
-            _onGroundMechanic.FixedUpdate();
-            _isJumpEnabled = _onGroundMechanic.CanJump;
+            _groundMechanic.FixedUpdate();
+            _isGrounded = _groundMechanic.CanJump;
         }
 
         private void OnDrawGizmos()
         {
-            _onGroundMechanic?.OnDrawGizmos();
+            _groundMechanic?.OnDrawGizmos();
         }
     }
 }

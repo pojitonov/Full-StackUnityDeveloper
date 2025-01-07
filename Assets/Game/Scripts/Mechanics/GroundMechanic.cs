@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class OnGroundMechanic
+    public class GroundMechanic
     {
         private static readonly int GROUND_MASK = LayerMask.GetMask("Ground");
 
@@ -12,7 +12,7 @@ namespace Game.Scripts
         private readonly float _distance;
         private bool _canJump;
         
-        public OnGroundMechanic(Transform groundPoint, bool canJump, float distance)
+        public GroundMechanic(Transform groundPoint, bool canJump, float distance)
         {
             _groundPoint = groundPoint;
             _canJump = canJump;
