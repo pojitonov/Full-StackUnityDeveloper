@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Game.Scripts
@@ -6,6 +7,7 @@ namespace Game.Scripts
     {
         private readonly Rigidbody2D _rigidbody;
         private readonly float _force;
+        private readonly CompositeCondition _condition = new();
 
         public JumpAction(Rigidbody2D rigidbody, float force)
         {
@@ -13,14 +15,17 @@ namespace Game.Scripts
             _force = force;
         }
 
-        public void Invoke(bool enabled)
+        public void Invoke()
         {
-            if (!enabled)
-            {
+            if (!_condition.IsTrue())
                 return;
-            }
 
             _rigidbody.AddForce(new Vector2(0, _force), ForceMode2D.Impulse);
+        }
+
+        public void AddCondition(Func<bool> condition)
+        {
+            _condition.Add(condition);
         }
     }
 }

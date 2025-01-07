@@ -11,7 +11,7 @@ namespace Game.Scripts
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _character._jumpAction.Invoke(_character._jumpEnabled);
+                _character._jumpAction.Invoke();
             }
         }
     }
