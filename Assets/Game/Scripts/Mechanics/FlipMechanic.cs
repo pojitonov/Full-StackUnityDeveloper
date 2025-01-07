@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class FlipMechanics
+    public class FlipMechanic
     {
         private readonly Transform _transform;
 
-        public FlipMechanics(Transform transform)
+        public FlipMechanic(Transform transform)
         {
             _transform = transform;
         }

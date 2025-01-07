@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class JumpController : MonoBehaviour
+    public class CharacterJumpController : MonoBehaviour
     {
         [SerializeField]
         private Character _character;
@@ -11,7 +11,7 @@ namespace Game.Scripts
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _character._jumpAction.Invoke();
+                _character._jumpAction.Invoke(_character._jumpEnabled);
             }
         }
     }

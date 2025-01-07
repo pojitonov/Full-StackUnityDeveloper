@@ -2600,6 +2600,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6318981597555825327, guid: 1ff28e98c3c0f41e3ba43630d5d0ba0a, type: 3}
   m_PrefabInstance: {fileID: 1181413201}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1237978796 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1768056685699584485, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
+  m_PrefabInstance: {fileID: 8996098538730116476}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1244948960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5509,10 +5514,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpEnabled: 1
-  _jumpForce: 5
+  _jumpForce: 8
+  _canJump: 1
   _moveDirection: 0
-  _rigidbody: {fileID: 8996098538730116477}
   _moveSpeed: 5
+  _rigidbody: {fileID: 8996098538730116477}
+  _feetTransform: {fileID: 1237978796}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

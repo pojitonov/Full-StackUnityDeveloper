@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    internal class MovementMechanics
+    internal class MovementMechanic
     {
         private readonly Rigidbody2D _rigidbody;
         private readonly float _moveSpeed;
 
-        public MovementMechanics(Rigidbody2D rigidbody, float moveSpeed)
+        public MovementMechanic(Rigidbody2D rigidbody, float moveSpeed)
         {
             _rigidbody = rigidbody;
             _moveSpeed = moveSpeed;

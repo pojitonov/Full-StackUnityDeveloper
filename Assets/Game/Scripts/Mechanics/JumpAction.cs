@@ -4,20 +4,18 @@ namespace Game.Scripts
 {
     public class JumpAction
     {
-        private readonly bool _enabled;
         private readonly Rigidbody2D _rigidbody;
         private readonly float _force;
 
-        public JumpAction(Rigidbody2D rigidbody, float force, bool enabled)
+        public JumpAction(Rigidbody2D rigidbody, float force)
         {
             _rigidbody = rigidbody;
             _force = force;
-            _enabled = enabled;
         }
 
-        public void Invoke()
+        public void Invoke(bool enabled)
         {
-            if (!_enabled)
+            if (!enabled)
             {
                 return;
             }
