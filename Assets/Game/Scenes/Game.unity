@@ -2043,6 +2043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 985800779}
   - component: {fileID: 985800780}
+  - component: {fileID: 985800781}
   m_Layer: 0
   m_Name: '[System]'
   m_TagString: Untagged
@@ -2078,6 +2079,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 9176129389965680748}
+--- !u!114 &985800781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985800778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8b0e32d17c41458e18f1145638ec72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _character: {fileID: 9176129389965680748}
 --- !u!1 &1000631199
 GameObject:
   m_ObjectHideFlags: 0
@@ -5494,9 +5508,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08aebf583fec49829e674ca84ea76c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  moveDirection: 0
-  rigidbody: {fileID: 8996098538730116477}
+  _jumpEnabled: 1
+  _jumpForce: 5
+  _moveDirection: 0
+  _rigidbody: {fileID: 8996098538730116477}
+  _moveSpeed: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
