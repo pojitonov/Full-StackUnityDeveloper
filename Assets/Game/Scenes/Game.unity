@@ -2082,9 +2082,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 971936757}
   _stoppingThreshold: 0.5
-  _waypoints:
-  - {fileID: 322347147}
-  - {fileID: 788114737}
+  _waypoint1: {fileID: 322347147}
+  _waypoint2: {fileID: 788114737}
 --- !u!114 &971936757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,7 +3071,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1368419317}
-  _patrolComponent: {fileID: 1368419316}
   _rigidbody: {fileID: 1393719688}
   _transform: {fileID: 1393719685}
 --- !u!114 &1368419316
@@ -3089,9 +3087,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1368419317}
   _stoppingThreshold: 0.5
-  _waypoints:
-  - {fileID: 992545922}
-  - {fileID: 1671492287}
+  _waypoint1: {fileID: 992545922}
+  _waypoint2: {fileID: 1671492287}
 --- !u!114 &1368419317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3211,7 +3208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1474340431}
-  _patrolComponent: {fileID: 1474340430}
   _rigidbody: {fileID: 2073272220}
   _transform: {fileID: 2073272217}
 --- !u!114 &1474340430
@@ -3228,9 +3224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1474340431}
   _stoppingThreshold: 0.5
-  _waypoints:
-  - {fileID: 1043611383}
-  - {fileID: 1274071210}
+  _waypoint1: {fileID: 1043611383}
+  _waypoint2: {fileID: 1274071210}
 --- !u!114 &1474340431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3263,7 +3258,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1484373076}
-  _patrolComponent: {fileID: 1484373075}
   _rigidbody: {fileID: 1033325583}
   _transform: {fileID: 1033325580}
 --- !u!114 &1484373075
@@ -3280,9 +3274,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1484373076}
   _stoppingThreshold: 0.5
-  _waypoints:
-  - {fileID: 711423033}
-  - {fileID: 2001630745}
+  _waypoint1: {fileID: 711423033}
+  _waypoint2: {fileID: 2001630745}
 --- !u!114 &1484373076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3483,9 +3476,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1548621520}
   _stoppingThreshold: 0.5
-  _waypoints:
-  - {fileID: 1545870946}
-  - {fileID: 1923549120}
+  _waypoint1: {fileID: 1545870946}
+  _waypoint2: {fileID: 1923549120}
 --- !u!114 &1548621520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4124,7 +4116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1684291915}
-  _patrolComponent: {fileID: 1684291914}
   _rigidbody: {fileID: 1443223195}
   _transform: {fileID: 1443223192}
 --- !u!114 &1684291914
@@ -4141,9 +4132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1684291915}
   _stoppingThreshold: 0.5
-  _waypoints:
-  - {fileID: 405229917}
-  - {fileID: 1046253004}
+  _waypoint1: {fileID: 405229917}
+  _waypoint2: {fileID: 1046253004}
 --- !u!114 &1684291915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4789,9 +4779,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1929919566}
   _stoppingThreshold: 0.5
-  _waypoints:
-  - {fileID: 1996177169}
-  - {fileID: 528107189}
+  _waypoint1: {fileID: 1996177169}
+  _waypoint2: {fileID: 528107189}
 --- !u!114 &1929919566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5152,9 +5141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 346548071188616952}
   _stoppingThreshold: 0.5
-  _waypoints:
-  - {fileID: 1247068065}
-  - {fileID: 70083303}
+  _waypoint1: {fileID: 1247068065}
+  _waypoint2: {fileID: 70083303}
 --- !u!114 &346548071188616952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5796,6 +5784,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1674429860930161243, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
+      propertyPath: _transform
+      value: 
+      objectReference: {fileID: 9176129389965680746}
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4

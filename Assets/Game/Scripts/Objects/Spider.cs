@@ -9,9 +9,6 @@ namespace Game.Scripts
         public MoveComponent _moveComponent;
 
         [SerializeField]
-        public PatrolComponent _patrolComponent;
-
-        [SerializeField]
         private Rigidbody2D _rigidbody;
 
         [SerializeField]
@@ -21,7 +18,6 @@ namespace Game.Scripts
 
         private void Awake()
         {
-            _moveComponent.Initialize(_rigidbody, _transform);
             _moveComponent.AddCondition(() => _isAlive);
         }
 

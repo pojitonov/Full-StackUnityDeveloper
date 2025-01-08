@@ -7,27 +7,29 @@ namespace Game.Scripts
     {
         [SerializeField]
         private MoveComponent _moveComponent;
-        
+
         [SerializeField]
         private float _stoppingThreshold = 0.5f;
-        
+
         [SerializeField]
-        private Transform[] _waypoints;
-        
-        private int _pointIndex;
+        private Transform _waypoint1;
 
-        public void Update()
+        [SerializeField]
+        private Transform _waypoint2;
+
+        private Transform _currentTarget;
+
+        private void Start()
         {
-            if (Vector2.Distance(_moveComponent._transform.position, _waypoints[_pointIndex].position) < _stoppingThreshold)
-            {
-                _pointIndex++;
-                if (_pointIndex >= _waypoints.Length)
-                {
-                    _pointIndex = 0;
-                }
-            }
+            _currentTarget = _waypoint1;
+        }
 
-            var direction = _waypoints[_pointIndex].position - _moveComponent._transform.position;
+        private void Update()
+        {
+            if (Vector2.Distance(_moveComponent._transform.position, _currentTarget.position) < _stoppingThreshold)
+                _currentTarget = _currentTarget == _waypoint1 ? _waypoint2 : _waypoint1;
+
+            var direction = _currentTarget.position - _moveComponent._transform.position;
             _moveComponent.Move(direction);
         }
     }

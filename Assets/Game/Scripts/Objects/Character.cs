@@ -10,9 +10,6 @@ namespace Game.Scripts
         public JumpComponent _jumpComponent;
 
         [SerializeField]
-        private Rigidbody2D _rigidbody;
-
-        [SerializeField]
         private Transform _feetTransform;
 
         private FlipMechanic _flipMechanic;
@@ -23,10 +20,7 @@ namespace Game.Scripts
         
         private void Awake()
         {
-            _moveComponent.Initialize(_rigidbody, transform);
             _moveComponent.AddCondition(() => _isAlive);
-
-            _jumpComponent.Initialize(_rigidbody);
             _jumpComponent.AddCondition(() => _isGrounded && _isAlive);
 
             _flipMechanic = new FlipMechanic(transform);

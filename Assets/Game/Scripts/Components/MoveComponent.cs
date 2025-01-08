@@ -6,22 +6,16 @@ namespace Game.Scripts
 {
     public class MoveComponent : MonoBehaviour
     {
+        [SerializeField]
         public Transform _transform;
-        
+
         [SerializeField]
         private float _speed = 5f;
 
         [ShowInInspector, ReadOnly]
         private Vector2 _direction;
 
-        private Rigidbody2D _rigidbody;
         private readonly CompositeCondition _condition = new();
-
-        public void Initialize(Rigidbody2D rigidbody, Transform transform)
-        {
-            _rigidbody = rigidbody;
-            _transform = transform;
-        }
 
         public Vector2 GetDirection()
         {
@@ -35,10 +29,10 @@ namespace Game.Scripts
             if (!_condition.IsTrue())
                 return;
 
-            _transform.position += (Vector3)_direction.normalized * _speed * Time.deltaTime;
+            _transform.position += (Vector3)_direction.normalized * (_speed * Time.deltaTime);
 
-            // float speedY = _rigidbody.velocity.y;
             // float speedX = _direction.x * _speed;
+            // float speedY = _rigidbody.velocity.y;
             // _rigidbody.velocity = new Vector2(speedX, speedY);
         }
 
