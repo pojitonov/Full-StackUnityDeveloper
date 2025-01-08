@@ -35,7 +35,6 @@ namespace Game.Scripts
             else
             {
                 MoveDirection = distance.normalized.x;
-                Debug.Log(MoveDirection);
             }
         }
     }

@@ -1,30 +1,38 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Scripts
 {
-    internal class MovementMechanic
+    [Serializable]
+    public class MoveComponent
     {
-        private readonly Rigidbody2D _rigidbody;
-        private readonly float _moveSpeed;
+        [SerializeField]
+        private float _moveSpeed = 5f;
+
+        [ShowInInspector, ReadOnly]
+        private float _moveDirection;
+
+        private Rigidbody2D _rigidbody;
         private readonly CompositeCondition _condition = new();
 
-        public MovementMechanic(Rigidbody2D rigidbody, float moveSpeed)
+        public void Initialize(Rigidbody2D rigidbody)
         {
             _rigidbody = rigidbody;
-            _moveSpeed = moveSpeed;
         }
 
-        public void FixedUpdate(float moveDirection)
+        public void Move(float moveDirection)
         {
+            _moveDirection = moveDirection;
+
             if (!_condition.IsTrue())
                 return;
-            
+
             float speedY = _rigidbody.velocity.y;
-            float speedX = moveDirection * _moveSpeed;
+            float speedX = _moveDirection * _moveSpeed;
             _rigidbody.velocity = new Vector2(speedX, speedY);
         }
-        
+
         public void AddCondition(Func<bool> condition)
         {
             _condition.Add(condition);

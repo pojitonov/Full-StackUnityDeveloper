@@ -513,9 +513,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 3
   _rigidbody: {fileID: 2035167185}
-  waypoints:
-  - {fileID: 330772587}
-  - {fileID: 1613420464}
+  _waypoint1: {fileID: 330772587}
+  _waypoint2: {fileID: 1613420464}
 --- !u!1001 &371281960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5541,11 +5540,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08aebf583fec49829e674ca84ea76c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveComponent:
+    _moveSpeed: 5
+  _jumpComponent: {fileID: 0}
   _jumpForce: 8
   _isAlive: 1
   _isGrounded: 1
-  _moveDirection: 0
-  _moveSpeed: 5
   _groundDistance: 0.1
   _rigidbody: {fileID: 8996098538730116477}
   _feetTransform: {fileID: 1237978796}

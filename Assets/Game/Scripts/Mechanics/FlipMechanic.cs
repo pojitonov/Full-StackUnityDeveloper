@@ -11,7 +11,7 @@ namespace Game.Scripts
             _transform = transform;
         }
 
-        public void FixedUpdate(float moveDirection)
+        public void Flip(float moveDirection)
         {
             if (moveDirection == 1)
                 _transform.rotation = Quaternion.Euler(0, 0, 0);

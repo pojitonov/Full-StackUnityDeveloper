@@ -7,10 +7,12 @@ namespace Game.Scripts
         [SerializeField]
         private Character _character;
 
+        private MoveComponent _moveComponent;
+
         private void Update()
         {
             float moveDirection = 0;
-            
+
             if (Input.GetKey(KeyCode.A))
             {
                 moveDirection = -1;
@@ -20,7 +22,7 @@ namespace Game.Scripts
                 moveDirection = 1;
             }
 
-            _character._moveDirection = moveDirection;
+            _character.MoveDirection = moveDirection;
         }
     }
 }

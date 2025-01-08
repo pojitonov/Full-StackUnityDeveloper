@@ -23,10 +23,5 @@ namespace Game.Scripts
         {
             _canJump = Physics2D.Raycast(_groundPoint.position, Vector2.down, _distance, GROUND_MASK);
         }
-
-        public void OnDrawGizmos()
-        {
-            Gizmos.DrawLine(_groundPoint.position, _groundPoint.position + Vector3.down * _distance);
-        }
     }
 }
