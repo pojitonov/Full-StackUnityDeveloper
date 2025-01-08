@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class Character : MonoBehaviour
+    public sealed class Character : MonoBehaviour
     {
         public float _jumpForce = 8f;
         public bool _isAlive = true;

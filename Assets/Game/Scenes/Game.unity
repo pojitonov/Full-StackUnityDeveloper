@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &109096106 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5554046834176312192, guid: 0ec997e873f9642f3b6e0d36345da0c0, type: 3}
+  m_PrefabInstance: {fileID: 355106729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &160203728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -424,6 +429,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b12d48f7b934943239d57d70cddd96e7, type: 3}
+--- !u!4 &330772587 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3929516699554365295, guid: 0ec997e873f9642f3b6e0d36345da0c0, type: 3}
+  m_PrefabInstance: {fileID: 355106729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &355106729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -479,13 +489,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5554046834176312192, guid: 0ec997e873f9642f3b6e0d36345da0c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 355106731}
   m_SourcePrefab: {fileID: 100100000, guid: 0ec997e873f9642f3b6e0d36345da0c0, type: 3}
 --- !u!4 &355106730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1114773270552738056, guid: 0ec997e873f9642f3b6e0d36345da0c0, type: 3}
   m_PrefabInstance: {fileID: 355106729}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &355106731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109096106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6698ad2175b841d7a24815999da2bbf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 3
+  _rigidbody: {fileID: 2035167185}
+  waypoints:
+  - {fileID: 330772587}
+  - {fileID: 1613420464}
 --- !u!1001 &371281960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3445,6 +3475,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4979841302588641904, guid: b12d48f7b934943239d57d70cddd96e7, type: 3}
   m_PrefabInstance: {fileID: 1601683713}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1613420464 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4629981065635871775, guid: 0ec997e873f9642f3b6e0d36345da0c0, type: 3}
+  m_PrefabInstance: {fileID: 355106729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1619936551
 GameObject:
   m_ObjectHideFlags: 0
@@ -4446,6 +4481,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1736318179580503177, guid: 72f49d2e77eaa4d26818f3f35aef8a5f, type: 3}
   m_PrefabInstance: {fileID: 1929919563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &2035167185 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 4015829716640782646, guid: 0ec997e873f9642f3b6e0d36345da0c0, type: 3}
+  m_PrefabInstance: {fileID: 355106729}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2094986495
 PrefabInstance:
