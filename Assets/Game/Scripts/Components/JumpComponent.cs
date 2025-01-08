@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    [Serializable]
-    public class JumpComponent
+    public class JumpComponent : MonoBehaviour
     {
         [SerializeField]
         private float _force = 8f;

@@ -13,16 +13,16 @@ namespace Game.Scripts
         {
             Vector2 direction = Vector2.zero;
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 direction = Vector2.left;
             }
-            else if (Input.GetKey(KeyCode.D))
+            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 direction = Vector2.right;
             }
 
-            _character._moveComponent.Move(direction);
+            _character.MoveDirection = direction;
         }
     }
 }

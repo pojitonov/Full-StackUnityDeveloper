@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    [Serializable]
-    public class MoveComponent
+    public class MoveComponent : MonoBehaviour
     {
+        public Transform _transform;
+        
         [SerializeField]
         private float _speed = 5f;
 
@@ -16,16 +17,17 @@ namespace Game.Scripts
         private Rigidbody2D _rigidbody;
         private readonly CompositeCondition _condition = new();
 
-        public void Initialize(Rigidbody2D rigidbody)
+        public void Initialize(Rigidbody2D rigidbody, Transform transform)
         {
             _rigidbody = rigidbody;
+            _transform = transform;
         }
 
         public Vector2 GetDirection()
         {
             return _direction;
         }
-        
+
         public void Move(Vector2 direction)
         {
             _direction = direction;
@@ -33,9 +35,11 @@ namespace Game.Scripts
             if (!_condition.IsTrue())
                 return;
 
-            float speedY = _rigidbody.velocity.y;
-            float speedX = _direction.x * _speed;
-            _rigidbody.velocity = new Vector2(speedX, speedY);
+            _transform.position += (Vector3)_direction.normalized * _speed * Time.deltaTime;
+
+            // float speedY = _rigidbody.velocity.y;
+            // float speedX = _direction.x * _speed;
+            // _rigidbody.velocity = new Vector2(speedX, speedY);
         }
 
         public void AddCondition(Func<bool> condition)

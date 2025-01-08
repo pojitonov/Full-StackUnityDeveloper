@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 790263129781726672}
   - component: {fileID: 8255752769676833144}
   - component: {fileID: 8807684224348490779}
-  - component: {fileID: 4587342120035178019}
+  - component: {fileID: 4736511025602418455}
   m_Layer: 6
   m_Name: Lava
   m_TagString: Untagged
@@ -228,7 +228,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4587342120035178019
+--- !u!114 &4736511025602418455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

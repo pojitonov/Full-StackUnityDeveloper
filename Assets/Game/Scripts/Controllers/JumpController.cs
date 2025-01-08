@@ -9,7 +9,7 @@ namespace Game.Scripts
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 _character._jumpComponent.Jump();
             }

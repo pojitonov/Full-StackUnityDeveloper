@@ -2,8 +2,10 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
+    [RequireComponent(typeof(MoveComponent), typeof(JumpComponent))]
     public sealed class Character : MonoBehaviour, IDestroyable
     {
+        public Vector2 MoveDirection { get; set; }
         public MoveComponent _moveComponent;
         public JumpComponent _jumpComponent;
 
@@ -21,7 +23,7 @@ namespace Game.Scripts
         
         private void Awake()
         {
-            _moveComponent.Initialize(_rigidbody);
+            _moveComponent.Initialize(_rigidbody, transform);
             _moveComponent.AddCondition(() => _isAlive);
 
             _jumpComponent.Initialize(_rigidbody);
@@ -31,9 +33,10 @@ namespace Game.Scripts
             _groundMechanic = new GroundMechanic(_feetTransform);
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             _flipMechanic.Invoke(_moveComponent.GetDirection());
+            _moveComponent.Move(MoveDirection);
             _isGrounded = _groundMechanic.Invoke();
         }
 

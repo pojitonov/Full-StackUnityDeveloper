@@ -2,10 +2,9 @@
 //
 // namespace Game.Scripts
 // {
-//     public sealed class Spider : MonoBehaviour, IDestroyable
+//     public sealed class Platform : MonoBehaviour
 //     {
 //         public MoveComponent _moveComponent;
-//         public PatrolComponent _patrolComponent;
 //         
 //         [SerializeField]
 //         private Rigidbody2D _rigidbody;
@@ -16,23 +15,17 @@
 //         [SerializeField]
 //         private Transform[] _waypoints;
 //         
-//         private bool _isAlive = true;
+//         private PatrolMechanic _patrolMechanic;
 //
 //         private void Awake()
 //         {
 //             _moveComponent.Initialize(_rigidbody, _transform);
-//             _moveComponent.AddCondition(() => _isAlive);
+//             _patrolMechanic = new PatrolMechanic(_waypoints);
 //         }
 //
-//         private void Update()
+//         private void FixedUpdate()
 //         {
-//             _moveComponent.Move(MoveDirection);
-//         }
-//
-//         public void Destroy()
-//         {
-//             _isAlive = false;
-//             gameObject.SetActive(false);
+//             _moveComponent.Move(_patrolMechanic.Invoke(_transform));
 //         }
 //     }
 // }
