@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 8342082945872629457}
   - component: {fileID: 4859882623022117604}
   - component: {fileID: 7533625333521889301}
+  - component: {fileID: 1140192853861679584}
   m_Layer: 9
   m_Name: Character
   m_TagString: Character
@@ -401,6 +402,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.2542764}
   serializedVersion: 2
   m_Radius: 0.2457236
+--- !u!114 &1140192853861679584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490323295220271620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08aebf583fec49829e674ca84ea76c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveComponent:
+    _speed: 5
+  _jumpComponent:
+    _force: 12
+  _rigidbody: {fileID: 8342082945872629457}
+  _feetTransform: {fileID: 1768056685699584485}
 --- !u!1 &7801279227858408424
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,11 +13,12 @@ namespace Game.Scripts
         [SerializeField]
         private Transform _feetTransform;
 
-        private bool _isAlive = true;
-        private bool _isGrounded = true;
         private FlipMechanic _flipMechanic;
         private GroundMechanic _groundMechanic;
-
+        
+        private bool _isAlive = true;
+        private bool _isGrounded = true;
+        
         private void Awake()
         {
             _moveComponent.Initialize(_rigidbody);

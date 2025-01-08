@@ -11,13 +11,13 @@ namespace Game.Scripts
             _transform = transform;
         }
 
-        public void Invoke(float direction)
+        public void Invoke(Vector2 direction)
         {
-            if (direction == 1)
+            if (direction == Vector2.right)
             {
                 _transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            else if (direction == -1)
+            else if (direction == Vector2.left)
             {
                 _transform.rotation = Quaternion.Euler(0, 180, 0);
             }

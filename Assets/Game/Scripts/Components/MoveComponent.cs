@@ -11,7 +11,7 @@ namespace Game.Scripts
         private float _speed = 5f;
 
         [ShowInInspector, ReadOnly]
-        private float _direction;
+        private Vector2 _direction;
 
         private Rigidbody2D _rigidbody;
         private readonly CompositeCondition _condition = new();
@@ -21,12 +21,12 @@ namespace Game.Scripts
             _rigidbody = rigidbody;
         }
 
-        public float GetDirection()
+        public Vector2 GetDirection()
         {
             return _direction;
         }
         
-        public void Move(float direction)
+        public void Move(Vector2 direction)
         {
             _direction = direction;
 
@@ -34,7 +34,7 @@ namespace Game.Scripts
                 return;
 
             float speedY = _rigidbody.velocity.y;
-            float speedX = _direction * _speed;
+            float speedX = _direction.x * _speed;
             _rigidbody.velocity = new Vector2(speedX, speedY);
         }
 
