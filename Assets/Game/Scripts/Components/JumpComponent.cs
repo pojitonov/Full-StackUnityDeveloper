@@ -1,5 +1,4 @@
 using System;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Scripts
@@ -8,7 +7,27 @@ namespace Game.Scripts
     public class JumpComponent
     {
         [SerializeField]
-        public float _jumpForce = 8f;
+        private float _force = 8f;
 
+        private Rigidbody2D _rigidbody;
+        private readonly CompositeCondition _condition = new();
+
+        public void Initialize(Rigidbody2D rigidbody)
+        {
+            _rigidbody = rigidbody;
+        }
+
+        public void Jump()
+        {
+            if (!_condition.IsTrue())
+                return;
+
+            _rigidbody.AddForce(new Vector2(0, _force), ForceMode2D.Impulse);
+        }
+
+        public void AddCondition(Func<bool> condition)
+        {
+            _condition.Add(condition);
+        }
     }
 }

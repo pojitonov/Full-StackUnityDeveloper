@@ -22,7 +22,7 @@ namespace Game.Scripts
                 moveDirection = 1;
             }
 
-            _character.MoveDirection = moveDirection;
+            _character._moveComponent.Move(moveDirection);
         }
     }
 }
