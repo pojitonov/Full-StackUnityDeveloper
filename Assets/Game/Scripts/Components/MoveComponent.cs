@@ -6,7 +6,6 @@ namespace Game.Scripts
 {
     public class MoveComponent : MonoBehaviour
     {
-        [SerializeField]
         public Transform _transform;
 
         [SerializeField]
@@ -16,11 +15,6 @@ namespace Game.Scripts
         private Vector2 _direction;
 
         private readonly CompositeCondition _condition = new();
-
-        public Vector2 GetDirection()
-        {
-            return _direction;
-        }
 
         public void Move(Vector2 direction)
         {

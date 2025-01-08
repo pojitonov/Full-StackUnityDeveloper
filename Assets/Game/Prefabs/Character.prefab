@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1674429860930161243}
   _jumpComponent: {fileID: 6991238943733658325}
-  _feetTransform: {fileID: 4102650447071868940}
+  _feetTransform: {fileID: 1768056685699584485}
 --- !u!114 &1674429860930161243
 MonoBehaviour:
   m_ObjectHideFlags: 0

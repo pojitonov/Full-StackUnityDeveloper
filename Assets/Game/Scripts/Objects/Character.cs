@@ -27,10 +27,10 @@ namespace Game.Scripts
             _groundMechanic = new GroundMechanic(_feetTransform);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            _flipMechanic.Invoke(_moveComponent.GetDirection());
             _moveComponent.Move(MoveDirection);
+            _flipMechanic.Invoke(MoveDirection);
             _isGrounded = _groundMechanic.Invoke();
         }
 
