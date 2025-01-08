@@ -19,12 +19,12 @@ namespace Game.Scripts
 
         public bool IsTrue()
         {
-            for (int i = 0; i < _conditions.Count; i++)
+            foreach (var condition in _conditions)
             {
-                var condition = _conditions[i];
                 if (condition.Invoke() == false)
                     return false;
             }
+
             return true;
         }
     }

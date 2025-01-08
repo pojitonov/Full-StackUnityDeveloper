@@ -4,16 +4,16 @@ namespace Game.Scripts
 {
     public sealed class Lava : MonoBehaviour
     {
-        private KillMechanic _killMechanic;
+        private DestroyMechanic _destroyMechanic;
 
         public void Awake()
         {
-            _killMechanic = new KillMechanic();
+            _destroyMechanic = new DestroyMechanic();
         }
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            _killMechanic.OnTriggerEnter2D(other);
+            _destroyMechanic.OnTriggerEnter2D(other);
         }
     }
 }

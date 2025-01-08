@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class KillMechanic
+    public class DestroyMechanic
     {
         public void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.TryGetComponent<IKillable>(out var killable))
+            if (other.gameObject.TryGetComponent<IDestroyable>(out var component))
             {
-                killable.Kill();
+                component.Destroy();
             }
         }
     }

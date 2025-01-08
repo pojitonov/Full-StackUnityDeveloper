@@ -11,12 +11,16 @@ namespace Game.Scripts
             _transform = transform;
         }
 
-        public void Flip(float moveDirection)
+        public void Invoke(float direction)
         {
-            if (moveDirection == 1)
+            if (direction == 1)
+            {
                 _transform.rotation = Quaternion.Euler(0, 0, 0);
-            else if (moveDirection == -1)
+            }
+            else if (direction == -1)
+            {
                 _transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
         }
     }
 }

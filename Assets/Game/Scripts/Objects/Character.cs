@@ -1,16 +1,9 @@
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Scripts
 {
-    public sealed class Character : MonoBehaviour, IKillable
+    public sealed class Character : MonoBehaviour, IDestroyable
     {
-        [ShowInInspector, ReadOnly]
-        private bool _isAlive = true;
-
-        [ShowInInspector, ReadOnly]
-        private bool _isGrounded = true;
-
         public MoveComponent _moveComponent;
         public JumpComponent _jumpComponent;
 
@@ -20,8 +13,10 @@ namespace Game.Scripts
         [SerializeField]
         private Transform _feetTransform;
 
+        private bool _isAlive = true;
+        private bool _isGrounded = true;
         private FlipMechanic _flipMechanic;
-        private IsGroundMechanic _isGroundMechanic;
+        private GroundMechanic _groundMechanic;
 
         private void Awake()
         {
@@ -32,16 +27,16 @@ namespace Game.Scripts
             _jumpComponent.AddCondition(() => _isGrounded && _isAlive);
 
             _flipMechanic = new FlipMechanic(transform);
-            _isGroundMechanic = new IsGroundMechanic(_feetTransform);
+            _groundMechanic = new GroundMechanic(_feetTransform);
         }
 
         private void FixedUpdate()
         {
-            _flipMechanic.Flip(_moveComponent.GetDirection());
-            _isGrounded = _isGroundMechanic.Check();
+            _flipMechanic.Invoke(_moveComponent.GetDirection());
+            _isGrounded = _groundMechanic.Invoke();
         }
 
-        public void Kill()
+        public void Destroy()
         {
             _isAlive = false;
             gameObject.SetActive(false);

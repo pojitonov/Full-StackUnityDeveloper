@@ -11,18 +11,18 @@ namespace Game.Scripts
 
         private void Update()
         {
-            float moveDirection = 0;
+            float direction = 0;
 
             if (Input.GetKey(KeyCode.A))
             {
-                moveDirection = -1;
+                direction = -1;
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                moveDirection = 1;
+                direction = 1;
             }
 
-            _character._moveComponent.Move(moveDirection);
+            _character._moveComponent.Move(direction);
         }
     }
 }
