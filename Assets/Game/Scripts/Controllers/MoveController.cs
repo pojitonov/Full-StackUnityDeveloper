@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public sealed class CharacterMoveController : MonoBehaviour
+    public sealed class MoveController : MonoBehaviour
     {
         [SerializeField]
         private Character _character;

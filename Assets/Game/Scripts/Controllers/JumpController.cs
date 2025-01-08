@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class CharacterJumpController : MonoBehaviour
+    public class JumpController : MonoBehaviour
     {
         [SerializeField]
         private Character _character;

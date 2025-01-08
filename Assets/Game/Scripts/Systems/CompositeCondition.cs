@@ -5,7 +5,7 @@ namespace Game.Scripts
 {
     public class CompositeCondition
     {
-        private List<Func<bool>> _conditions = new();
+        private readonly List<Func<bool>> _conditions = new();
 
         public void Add(Func<bool> condition)
         {
