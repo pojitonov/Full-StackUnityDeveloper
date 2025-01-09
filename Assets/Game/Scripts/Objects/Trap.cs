@@ -4,16 +4,19 @@ namespace Game.Scripts
 {
     public sealed class Trap : MonoBehaviour, ITossable
     {
+        [SerializeField]
         private Rigidbody2D _rigidbody;
+
+        private TossMechanic _tossMechanic;
 
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody2D>();
+            _tossMechanic = new TossMechanic(_rigidbody);
         }
 
-        public void Toss(float strength)
+        public void Toss(Vector2 direction, float force)
         {
-            _rigidbody.AddForce(Vector3.up * strength);
+            _tossMechanic.Invoke(direction, force);
         }
     }
 }

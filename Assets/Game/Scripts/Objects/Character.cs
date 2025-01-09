@@ -2,13 +2,12 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    [RequireComponent(typeof(MoveComponent), typeof(JumpComponent))]
     public sealed class Character : MonoBehaviour, IDestroyable
     {
         public Vector2 MoveDirection { get; set; }
         public MoveComponent _moveComponent;
         public JumpComponent _jumpComponent;
-        public TossComponent _tossComponent;
+        public PushComponent _pushComponent;
 
         [SerializeField]
         private Transform _feetTransform;
@@ -23,7 +22,6 @@ namespace Game.Scripts
         {
             _moveComponent.AddCondition(() => _isAlive);
             _jumpComponent.AddCondition(() => _isGrounded && _isAlive);
-
             _flipMechanic = new FlipMechanic(transform);
             _groundMechanic = new GroundMechanic(_feetTransform);
         }
@@ -31,7 +29,7 @@ namespace Game.Scripts
         private void FixedUpdate()
         {
             _moveComponent.Move(MoveDirection);
-            _flipMechanic.Invoke(MoveDirection);
+            _flipMechanic.Flip(MoveDirection);
             _isGrounded = _groundMechanic.Invoke();
         }
 

@@ -11,7 +11,7 @@ namespace Game.Scripts
             _transform = transform;
         }
 
-        public void Invoke(Vector2 direction)
+        public void Flip(Vector2 direction)
         {
             if (direction == Vector2.right)
             {

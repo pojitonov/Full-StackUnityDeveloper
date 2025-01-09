@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    [RequireComponent(typeof(MoveComponent), typeof(PatrolComponent))]
     public sealed class Spider : MonoBehaviour, IDestroyable
     {
         [SerializeField]

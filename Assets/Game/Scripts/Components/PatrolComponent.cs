@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    [RequireComponent(typeof(MoveComponent))]
     public class PatrolComponent : MonoBehaviour
     {
         [SerializeField]
