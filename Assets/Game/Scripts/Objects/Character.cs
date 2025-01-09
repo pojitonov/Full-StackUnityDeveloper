@@ -22,13 +22,13 @@ namespace Game.Scripts
             _jumpComponent.AddCondition(() => _isGrounded && _isAlive);
             
             _groundComponent.OnStateChanged += value => _isGrounded = value;
-            _healthComponent.OnStateChanged += value => _isAlive = value;
+            _healthComponent.OnDie += value => _isAlive = value;
         }
 
         private void OnDestroy()
         {
             _groundComponent.OnStateChanged -= value => _isGrounded = value;
-            _healthComponent.OnStateChanged -= value => _isAlive = value;
+            _healthComponent.OnDie -= value => _isAlive = value;
         }
 
         private void FixedUpdate()

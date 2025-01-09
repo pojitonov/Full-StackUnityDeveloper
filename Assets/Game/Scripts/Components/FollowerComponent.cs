@@ -8,24 +8,19 @@ namespace Components.Core
         [SerializeField]
         private GroundComponent _groundComponent;
 
-        private Transform _parentTransform;
-        
+        private Transform _worldTransform;
+
         public void FixedUpdate()
         {
             var groundTransform = _groundComponent.RycastTransform;
 
             if (_groundComponent.CheckGround())
             {
-                {
-                    transform.SetParent(groundTransform);
-                }
+                transform.SetParent(groundTransform);
             }
             else
             {
-                if (transform.parent != _parentTransform)
-                {
-                    transform.SetParent(_parentTransform);
-                }
+                transform.SetParent(_worldTransform);
             }
         }
     }

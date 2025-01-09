@@ -285,6 +285,8 @@ GameObject:
   - component: {fileID: 6991238943733658325}
   - component: {fileID: 438063799118009260}
   - component: {fileID: 8705098180684878821}
+  - component: {fileID: 649709588814713679}
+  - component: {fileID: 5990849283800270233}
   m_Layer: 9
   m_Name: Character
   m_TagString: Character
@@ -528,6 +530,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 5
   _damagePoints: 0
+--- !u!114 &649709588814713679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490323295220271620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861a142e4509479a88f210650af9c386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundComponent: {fileID: 946704862140120437}
+--- !u!114 &5990849283800270233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490323295220271620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edaf767649f048c78e91096e16a4b497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5973739499012079652}
+  _damagedColor: {r: 1, g: 0.5882353, b: 0, a: 1}
+  _healthComponent: {fileID: 8705098180684878821}
 --- !u!1 &7801279227858408424
 GameObject:
   m_ObjectHideFlags: 0

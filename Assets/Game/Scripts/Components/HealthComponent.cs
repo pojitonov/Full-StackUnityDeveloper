@@ -6,7 +6,8 @@ namespace Game.Scripts
 {
     public class HealthComponent : MonoBehaviour
     {
-        public event Action<bool> OnStateChanged;
+        public event Action OnStateChanged;
+        public event Action<bool> OnDie;
 
         [ShowInInspector, ReadOnly]
         private bool _isAlive;
@@ -20,6 +21,7 @@ namespace Game.Scripts
         public void TakeDamage(int damage)
         {
             _damagePoints += damage;
+            OnStateChanged?.Invoke();
 
             if (_damagePoints >= _lifePoints)
             {
@@ -31,7 +33,7 @@ namespace Game.Scripts
         {
             _isAlive = false;
             gameObject.SetActive(false);
-            OnStateChanged?.Invoke(_isAlive);
+            OnDie?.Invoke(_isAlive);
         }
     }
 }
