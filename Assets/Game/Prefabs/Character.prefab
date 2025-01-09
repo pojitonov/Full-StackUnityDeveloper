@@ -434,8 +434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5fbf4340684141a3f41a9a2962b999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transform: {fileID: 4102650447071868940}
   _speed: 5
+  _transform: {fileID: 4102650447071868940}
 --- !u!114 &6991238943733658325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3181630930949df89371d2e5cc43a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceStrength: 400
+  _forceStrength: 5
   _detectionRadius: 1
   _mask:
     serializedVersion: 2
@@ -480,10 +480,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detectDistance: 0.1
+  _feetTransform: {fileID: 1768056685699584485}
   _mask:
     serializedVersion: 2
     m_Bits: 8
-  _feetTransform: {fileID: 1768056685699584485}
 --- !u!1 &7801279227858408424
 GameObject:
   m_ObjectHideFlags: 0

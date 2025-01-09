@@ -5,7 +5,7 @@ namespace Game.Scripts
     public class PushComponent : MonoBehaviour
     {
         [SerializeField]
-        private float _forceStrength = 500f;
+        private float _forceStrength = 5f;
 
         [SerializeField]
         private float _detectionRadius = 1f;

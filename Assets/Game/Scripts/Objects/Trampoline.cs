@@ -5,15 +5,15 @@ namespace Game.Scripts
     public sealed class Trampoline : MonoBehaviour
     {
         [SerializeField]
-        private float _forceStrength = 1200f;
+        private float _forceStrength = 12f;
 
-        private TossMechanic _tossMechanic;
+        private PushMechanic _pushMechanic;
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            var rb = other.GetComponent<Rigidbody2D>();
-            _tossMechanic = new TossMechanic(rb);
-            _tossMechanic.Invoke(Vector2.up, _forceStrength);
+            var rigidbody = other.GetComponent<Rigidbody2D>();
+            _pushMechanic = new PushMechanic(rigidbody);
+            _pushMechanic.Invoke(Vector2.up, _forceStrength);
         }
     }
 }

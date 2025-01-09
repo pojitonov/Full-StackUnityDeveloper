@@ -13,18 +13,18 @@ namespace Game.Scripts
         [SerializeField]
         public MoveComponent _moveComponent;
 
-        private TossMechanic _tossMechanic;
+        private PushMechanic _pushMechanic;
         private bool _isAlive = true;
 
         private void Awake()
         {
             _moveComponent.AddCondition(() => _isAlive);
-            _tossMechanic = new TossMechanic(_rigidbody);
+            _pushMechanic = new PushMechanic(_rigidbody);
         }
         
         public void Push(Vector2 direction, float force)
         {
-            _tossMechanic.Invoke(direction, force);
+            _pushMechanic.Invoke(direction, force);
         }
 
         public void Destroy()

@@ -7,16 +7,16 @@ namespace Game.Scripts
         [SerializeField]
         private Rigidbody2D _rigidbody;
 
-        private TossMechanic _tossMechanic;
+        private PushMechanic _pushMechanic;
 
         private void Awake()
         {
-            _tossMechanic = new TossMechanic(_rigidbody);
+            _pushMechanic = new PushMechanic(_rigidbody);
         }
         
         public void Push(Vector2 direction, float force)
         {
-            _tossMechanic.Invoke(direction, force);
+            _pushMechanic.Invoke(direction, force);
         }
 
         public void Destroy()
