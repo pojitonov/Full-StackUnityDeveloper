@@ -12,10 +12,8 @@ namespace Game.Scripts
 
         [SerializeField]
         private LayerMask _mask;
-
-        private IInteractable _nearbyInteractable;
-
-        public void Push(Vector2 direction)
+        
+        public void Push(Vector2 lookAtDirection, Vector2 pushDirection)
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _detectionRadius, _mask);
 
@@ -26,7 +24,12 @@ namespace Game.Scripts
                                              ?? collider.GetComponentInChildren<IInteractable>();
                 if (interactable != null)
                 {
-                    interactable.Push(direction, _forceStrength);
+                    Vector2 toObject = (collider.transform.position - transform.position).normalized;
+
+                    if (Vector2.Dot(lookAtDirection, toObject) > 0)
+                    {
+                        interactable.Push(pushDirection, _forceStrength);
+                    }
                 }
             }
         }

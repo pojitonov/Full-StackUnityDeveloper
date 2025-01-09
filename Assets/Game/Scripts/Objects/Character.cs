@@ -9,6 +9,7 @@ namespace Game.Scripts
         public JumpComponent _jumpComponent;
         public PushComponent _pushComponent;
         public GroundComponent _groundComponent;
+        public LookAtComponent _lookAtComponent;
         
         private FlipMechanic _flipMechanic;
         

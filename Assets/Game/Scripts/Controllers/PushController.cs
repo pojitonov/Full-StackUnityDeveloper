@@ -6,17 +6,23 @@ namespace Game.Scripts
     {
         [SerializeField]
         private Character _character;
-        
+
         private void Update()
         {
+            var lokAtDirection = _character._lookAtComponent.FacingDirection;
+
             if (Input.GetKeyDown(KeyCode.W))
             {
-                _character._pushComponent.Push(Vector2.up);
+                _character._pushComponent.Push(lokAtDirection, Vector2.up);
             }
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
             {
-                _character._pushComponent.Push(_character.MoveDirection);
+                if (lokAtDirection == Vector2.left)
+                    _character._pushComponent.Push(lokAtDirection, Vector2.left)
+                ;
+                if (lokAtDirection == Vector2.right)
+                    _character._pushComponent.Push(lokAtDirection, Vector2.right);
             }
         }
     }
