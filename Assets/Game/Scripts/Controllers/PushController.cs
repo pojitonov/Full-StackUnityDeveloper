@@ -9,14 +9,14 @@ namespace Game.Scripts
         
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                _character._pushComponent.Push();
+                _character._pushComponent.Push(Vector2.up);
             }
 
-            else if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                _character._pushComponent.Push();
+                _character._pushComponent.Push(_character.MoveDirection);
             }
         }
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public sealed class Trap : MonoBehaviour, ITossable
+    public sealed class Trap : MonoBehaviour, IInteractable, IDestroyable
     {
         [SerializeField]
         private Rigidbody2D _rigidbody;
@@ -13,10 +13,15 @@ namespace Game.Scripts
         {
             _tossMechanic = new TossMechanic(_rigidbody);
         }
-
-        public void Toss(Vector2 direction, float force)
+        
+        public void Push(Vector2 direction, float force)
         {
             _tossMechanic.Invoke(direction, force);
+        }
+
+        public void Destroy()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

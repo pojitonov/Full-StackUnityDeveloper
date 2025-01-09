@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Scripts
@@ -12,20 +11,22 @@ namespace Game.Scripts
         private float _detectionRadius = 1f;
 
         [SerializeField]
-        private LayerMask _tossableMask;
+        private LayerMask _mask;
 
-        private ITossable _nearbyTossable;
+        private IInteractable _nearbyInteractable;
 
-        public void Push()
+        public void Push(Vector2 direction)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _detectionRadius, _tossableMask);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _detectionRadius, _mask);
 
             foreach (var collider in colliders)
             {
-                ITossable tossable = collider.GetComponent<ITossable>();
-                if (tossable != null)
+                IInteractable interactable = collider.GetComponent<IInteractable>()
+                                             ?? collider.GetComponentInParent<IInteractable>()
+                                             ?? collider.GetComponentInChildren<IInteractable>();
+                if (interactable != null)
                 {
-                    tossable.Toss(Vector2.right, _forceStrength);
+                    interactable.Push(direction, _forceStrength);
                 }
             }
         }
