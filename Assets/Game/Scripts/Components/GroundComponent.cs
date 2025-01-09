@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace Game.Scripts
 {
     public class GroundComponent : MonoBehaviour
     {
+        public event Action<bool> OnGroundStateChanged;
+
         [SerializeField]
         private float _detectDistance = 0.1f;
 
@@ -12,6 +15,16 @@ namespace Game.Scripts
 
         [SerializeField]
         private LayerMask _mask;
+
+        private bool _isGrounded;
+
+        private void Update()
+        {
+            var newGroundState = CheckGround();
+            if (newGroundState == _isGrounded) return;
+            _isGrounded = newGroundState;
+            OnGroundStateChanged?.Invoke(_isGrounded);
+        }
 
         public bool CheckGround()
         {

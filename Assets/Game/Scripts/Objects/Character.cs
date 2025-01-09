@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Game.Scripts
@@ -10,24 +11,29 @@ namespace Game.Scripts
         public PushComponent _pushComponent;
         public GroundComponent _groundComponent;
         public LookAtComponent _lookAtComponent;
-        
+
         private FlipMechanic _flipMechanic;
-        
+
         private bool _isAlive = true;
         private bool _isGrounded = true;
-        
+
         private void Awake()
         {
             _moveComponent.AddCondition(() => _isAlive);
             _jumpComponent.AddCondition(() => _isGrounded && _isAlive);
             _flipMechanic = new FlipMechanic(transform);
+            _groundComponent.OnGroundStateChanged += value => _isGrounded = value;
+        }
+
+        private void OnDestroy()
+        {
+            _groundComponent.OnGroundStateChanged -= value => _isGrounded = value;
         }
 
         private void FixedUpdate()
         {
             _moveComponent.Move(MoveDirection);
             _flipMechanic.Flip(MoveDirection);
-            _isGrounded = _groundComponent.CheckGround();
         }
 
         public void Destroy()

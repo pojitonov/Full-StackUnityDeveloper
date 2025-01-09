@@ -21,7 +21,7 @@ namespace Game.Scripts
             _character = GetComponent<Character>();
         }
 
-        public void Update()
+        private void Update()
         {
             UpdateFacingDirection(_character.MoveDirection);
         }
@@ -40,7 +40,7 @@ namespace Game.Scripts
 
             foreach (var collider in colliders)
             {
-                IInteractable interactable = GetInteractableInHierarchy(collider);
+                IInteractable interactable = FindInteractableInHierarchy(collider);
 
                 if (interactable != null && IsLookingAtObject(collider.transform.position))
                 {
@@ -49,7 +49,7 @@ namespace Game.Scripts
             }
         }
 
-        private IInteractable GetInteractableInHierarchy(Collider2D collider)
+        private IInteractable FindInteractableInHierarchy(Collider2D collider)
         {
             return collider.GetComponent<IInteractable>()
                    ?? collider.GetComponentInParent<IInteractable>()
