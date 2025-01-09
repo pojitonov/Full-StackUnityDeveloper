@@ -5,32 +5,20 @@ namespace Game.Scripts
     public class PushComponent : MonoBehaviour
     {
         [SerializeField]
-        private float _forceStrength = 5f;
+        private float _forceStrength;
 
-        [SerializeField]
-        private float _detectionRadius = 1f;
+        private Character _character;
 
-        [SerializeField]
-        private LayerMask _mask;
-        
-        public void Push(Vector2 lookAtDirection, Vector2 pushDirection)
+        private void Awake()
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _detectionRadius, _mask);
+            _character = GetComponent<Character>();
+        }
 
-            foreach (var collider in colliders)
+        public void Push(Vector2 pushDirection)
+        {
+            foreach (var interactable in _character._lookAtComponent.GetInteractableInFront())
             {
-                IInteractable interactable = collider.GetComponent<IInteractable>()
-                                             ?? collider.GetComponentInParent<IInteractable>()
-                                             ?? collider.GetComponentInChildren<IInteractable>();
-                if (interactable != null)
-                {
-                    Vector2 toObject = (collider.transform.position - transform.position).normalized;
-
-                    if (Vector2.Dot(lookAtDirection, toObject) > 0)
-                    {
-                        interactable.Push(pushDirection, _forceStrength);
-                    }
-                }
+                interactable.Push(pushDirection, _forceStrength);
             }
         }
     }

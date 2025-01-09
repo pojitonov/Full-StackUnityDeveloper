@@ -9,20 +9,20 @@ namespace Game.Scripts
 
         private void Update()
         {
-            var lokAtDirection = _character._lookAtComponent.FacingDirection;
+            var lokAtDirection = _character._lookAtComponent.LookAtDirection;
 
             if (Input.GetKeyDown(KeyCode.W))
             {
-                _character._pushComponent.Push(lokAtDirection, Vector2.up);
+                _character._pushComponent.Push(Vector2.up);
             }
 
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
             {
                 if (lokAtDirection == Vector2.left)
-                    _character._pushComponent.Push(lokAtDirection, Vector2.left)
+                    _character._pushComponent.Push(Vector2.left)
                 ;
                 if (lokAtDirection == Vector2.right)
-                    _character._pushComponent.Push(lokAtDirection, Vector2.right);
+                    _character._pushComponent.Push(Vector2.right);
             }
         }
     }
