@@ -23,7 +23,7 @@ namespace Game.Scripts
             _currentTarget = _waypoint1;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (Vector2.Distance(_moveComponent.GetTransform(), _currentTarget.position) < _stoppingThreshold)
                 _currentTarget = _currentTarget == _waypoint1 ? _waypoint2 : _waypoint1;

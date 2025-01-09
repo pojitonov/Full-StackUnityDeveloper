@@ -7,12 +7,12 @@ namespace Game.Scripts
 {
     public class MoveComponent : MonoBehaviour
     {
-        [SerializeField]
-        private float _speed = 5f;
-
         [ShowInInspector, ReadOnly]
         private Vector2 _direction;
-
+        
+        [SerializeField]
+        private float _speed = 5f;
+        
         [SerializeField]
         private Transform _transform;
 

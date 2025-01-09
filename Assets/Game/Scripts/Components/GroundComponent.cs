@@ -5,7 +5,7 @@ namespace Game.Scripts
 {
     public class GroundComponent : MonoBehaviour
     {
-        public event Action<bool> OnGroundStateChanged;
+        public event Action<bool> OnStateChanged;
 
         [SerializeField]
         private float _detectDistance = 0.1f;
@@ -20,13 +20,13 @@ namespace Game.Scripts
 
         private void Update()
         {
-            var newGroundState = CheckGround();
-            if (newGroundState == _isGrounded) return;
-            _isGrounded = newGroundState;
-            OnGroundStateChanged?.Invoke(_isGrounded);
+            var newState = CheckGround();
+            if (newState == _isGrounded) return;
+            _isGrounded = newState;
+            OnStateChanged?.Invoke(_isGrounded);
         }
 
-        public bool CheckGround()
+        private bool CheckGround()
         {
             return Physics2D.Raycast(_feetTransform.position, Vector2.down, _detectDistance, _mask);
         }

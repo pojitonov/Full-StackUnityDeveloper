@@ -2,17 +2,22 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class FlipMechanic
+    public class FlipComponent : MonoBehaviour
     {
-        private readonly Transform _transform;
+        [SerializeField]
+        private Transform _transform;
 
-        public FlipMechanic(Transform transform)
+        private Character _character;
+
+        private void Awake()
         {
-            _transform = transform;
+            _character = GetComponent<Character>();
         }
 
-        public void Flip(Vector2 direction)
+        public void Update()
         {
+            var direction = _character.MoveDirection;
+            
             if (direction == Vector2.right)
             {
                 _transform.rotation = Quaternion.Euler(0, 0, 0);

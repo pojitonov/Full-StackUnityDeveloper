@@ -6,19 +6,11 @@ namespace Game.Scripts
     {
         [SerializeField]
         private Rigidbody2D _rigidbody;
-
-        [SerializeField]
-        private Transform _transform;
         
-        [SerializeField]
-        public MoveComponent _moveComponent;
-
         private PushMechanic _pushMechanic;
-        private bool _isAlive = true;
 
         private void Awake()
         {
-            _moveComponent.AddCondition(() => _isAlive);
             _pushMechanic = new PushMechanic(_rigidbody);
         }
         
@@ -29,7 +21,6 @@ namespace Game.Scripts
 
         public void Destroy()
         {
-            _isAlive = false;
             gameObject.SetActive(false);
         }
     }
