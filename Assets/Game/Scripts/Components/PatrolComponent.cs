@@ -25,10 +25,10 @@ namespace Game.Scripts
 
         private void FixedUpdate()
         {
-            if (Vector2.Distance(_moveComponent.GetTransform(), _currentTarget.position) < _stoppingThreshold)
+            if (Vector2.Distance(_moveComponent.Transform.position, _currentTarget.position) < _stoppingThreshold)
                 _currentTarget = _currentTarget == _waypoint1 ? _waypoint2 : _waypoint1;
 
-            var direction = _currentTarget.position - _moveComponent.GetTransform();
+            var direction = _currentTarget.position - _moveComponent.Transform.position;
             _moveComponent.Move(direction);
         }
     }

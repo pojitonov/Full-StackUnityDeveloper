@@ -7,6 +7,9 @@ namespace Game.Scripts
 {
     public class MoveComponent : MonoBehaviour
     {
+        public Transform Transform => _transform;
+        public Vector2 Direction => _direction;
+        
         [ShowInInspector, ReadOnly]
         private Vector2 _direction;
         
@@ -26,16 +29,6 @@ namespace Game.Scripts
                 return;
 
             _transform.position += (Vector3)_direction * (_speed * Time.deltaTime);
-        }
-
-        public Vector3 GetTransform()
-        {
-            return _transform.position;
-        }
-        
-        public Vector2 GetDirection()
-        {
-            return _direction;
         }
         
         public void AddCondition(Func<bool> condition)

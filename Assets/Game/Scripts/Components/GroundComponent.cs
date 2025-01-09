@@ -6,6 +6,8 @@ namespace Game.Scripts
     public class GroundComponent : MonoBehaviour
     {
         public event Action<bool> OnStateChanged;
+        
+        public Transform RycastTransform { get; private set;}
 
         [SerializeField]
         private float _detectDistance = 0.1f;
@@ -26,9 +28,11 @@ namespace Game.Scripts
             OnStateChanged?.Invoke(_isGrounded);
         }
 
-        private bool CheckGround()
+        public bool CheckGround()
         {
-            return Physics2D.Raycast(_feetTransform.position, Vector2.down, _detectDistance, _mask);
+            var raycast =  Physics2D.Raycast(_feetTransform.position, Vector2.down, _detectDistance, _mask);
+            RycastTransform = raycast.transform;
+            return raycast;
         }
     }
 }

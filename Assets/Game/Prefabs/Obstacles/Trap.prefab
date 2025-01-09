@@ -97,6 +97,8 @@ GameObject:
   - component: {fileID: 8320438562223812922}
   - component: {fileID: 6493561456656663551}
   - component: {fileID: 5353495280700337263}
+  - component: {fileID: 1397027944515369323}
+  - component: {fileID: 7280537044973331671}
   m_Layer: 8
   m_Name: Trap
   m_TagString: Untagged
@@ -221,3 +223,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageValue: 1
+--- !u!114 &1397027944515369323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331236207197526835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861a142e4509479a88f210650af9c386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundComponent: {fileID: 7280537044973331671}
+--- !u!114 &7280537044973331671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331236207197526835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60cf66dbbed438d83446e9acd53959c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detectDistance: 0.1
+  _feetTransform: {fileID: 3075001735327464809}
+  _mask:
+    serializedVersion: 2
+    m_Bits: 8
