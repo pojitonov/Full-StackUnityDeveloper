@@ -3192,7 +3192,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1393719688}
-  _transform: {fileID: 1393719685}
 --- !u!114 &1368419316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3389,7 +3388,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 2073272220}
-  _transform: {fileID: 2073272217}
 --- !u!114 &1474340430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3438,7 +3436,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1033325583}
-  _transform: {fileID: 1033325580}
 --- !u!114 &1484373075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4298,7 +4295,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1443223195}
-  _transform: {fileID: 1443223192}
 --- !u!114 &1684291914
 MonoBehaviour:
   m_ObjectHideFlags: 0

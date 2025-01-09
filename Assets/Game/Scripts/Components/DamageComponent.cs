@@ -6,13 +6,30 @@ namespace Game.Scripts
     {
         [SerializeField]
         private int _damageValue = 1;
-        
+
         private void OnCollisionEnter2D(Collision2D other)
         {
-            HealthComponent damageable = other.gameObject.GetComponent<HealthComponent>();
-            if (damageable != null)
+            ApplyDamage(other.gameObject);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            ApplyDamage(other.gameObject);
+        }
+
+        private void ApplyDamage(GameObject other)
+        {
+            Collider2D[] colliders = other.GetComponentsInChildren<Collider2D>();
+
+            foreach (var collider in colliders)
             {
-                damageable.TakeDamage(_damageValue);
+                HealthComponent damageable = collider.transform.root.GetComponent<HealthComponent>();
+
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(_damageValue);
+                    break;
+                }
             }
         }
     }
