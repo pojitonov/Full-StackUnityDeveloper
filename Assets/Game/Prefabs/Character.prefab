@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 1674429860930161243}
   - component: {fileID: 6991238943733658325}
   - component: {fileID: 438063799118009260}
+  - component: {fileID: 946704862140120437}
   m_Layer: 9
   m_Name: Character
   m_TagString: Character
@@ -420,7 +421,7 @@ MonoBehaviour:
   _moveComponent: {fileID: 1674429860930161243}
   _jumpComponent: {fileID: 6991238943733658325}
   _pushComponent: {fileID: 438063799118009260}
-  _feetTransform: {fileID: 1768056685699584485}
+  _groundComponent: {fileID: 946704862140120437}
 --- !u!114 &1674429860930161243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,6 +467,23 @@ MonoBehaviour:
   _mask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &946704862140120437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490323295220271620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60cf66dbbed438d83446e9acd53959c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detectDistance: 0.1
+  _mask:
+    serializedVersion: 2
+    m_Bits: 8
+  _feetTransform: {fileID: 1768056685699584485}
 --- !u!1 &7801279227858408424
 GameObject:
   m_ObjectHideFlags: 0

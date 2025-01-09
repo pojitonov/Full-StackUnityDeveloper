@@ -8,12 +8,9 @@ namespace Game.Scripts
         public MoveComponent _moveComponent;
         public JumpComponent _jumpComponent;
         public PushComponent _pushComponent;
-
-        [SerializeField]
-        private Transform _feetTransform;
-
+        public GroundComponent _groundComponent;
+        
         private FlipMechanic _flipMechanic;
-        private GroundMechanic _groundMechanic;
         
         private bool _isAlive = true;
         private bool _isGrounded = true;
@@ -23,14 +20,13 @@ namespace Game.Scripts
             _moveComponent.AddCondition(() => _isAlive);
             _jumpComponent.AddCondition(() => _isGrounded && _isAlive);
             _flipMechanic = new FlipMechanic(transform);
-            _groundMechanic = new GroundMechanic(_feetTransform);
         }
 
         private void FixedUpdate()
         {
             _moveComponent.Move(MoveDirection);
             _flipMechanic.Flip(MoveDirection);
-            _isGrounded = _groundMechanic.Invoke();
+            _isGrounded = _groundComponent.CheckGround();
         }
 
         public void Destroy()
