@@ -4,8 +4,8 @@ namespace Game.Scripts
 {
     public class GroundMechanic
     {
-        private const float GROUND_DISTANCE = 0.1f;
-        private readonly int GROUND_MASK = LayerMask.GetMask("Ground");
+        private const float DISTANCE = 0.1f;
+        private readonly int MASK = LayerMask.GetMask("Ground");
         private readonly Transform _transform;
 
         public GroundMechanic(Transform transform)
@@ -15,7 +15,7 @@ namespace Game.Scripts
 
         public bool Invoke()
         {
-            return Physics2D.Raycast(_transform.position, Vector2.down, GROUND_DISTANCE, GROUND_MASK);
+            return Physics2D.Raycast(_transform.position, Vector2.down, DISTANCE, MASK);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Game.Scripts
         public Vector2 MoveDirection { get; set; }
         public MoveComponent _moveComponent;
         public JumpComponent _jumpComponent;
+        public TossComponent _tossComponent;
 
         [SerializeField]
         private Transform _feetTransform;
