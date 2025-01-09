@@ -20,17 +20,22 @@ namespace Game.Scripts
 
         public void Move(Vector2 direction)
         {
-            _direction = direction;
+            _direction = direction.normalized;
 
             if (!_condition.IsTrue())
                 return;
 
-            _transform.position += (Vector3)_direction.normalized * (_speed * Time.deltaTime);
+            _transform.position += (Vector3)_direction * (_speed * Time.deltaTime);
         }
 
         public Vector3 GetTransform()
         {
             return _transform.position;
+        }
+        
+        public Vector2 GetDirection()
+        {
+            return _direction;
         }
         
         public void AddCondition(Func<bool> condition)

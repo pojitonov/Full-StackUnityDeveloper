@@ -6,23 +6,23 @@ namespace Game.Scripts
     {
         [SerializeField]
         private Transform _transform;
-
-        private Character _character;
+        
+        private MoveComponent _moveComponent;
 
         private void Awake()
         {
-            _character = GetComponent<Character>();
+            _moveComponent = GetComponent<MoveComponent>();
         }
 
         public void Update()
         {
-            var direction = _character.MoveDirection;
+            var direction = _moveComponent.GetDirection();
             
-            if (direction == Vector2.right)
+            if (direction.x > 0)
             {
                 _transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            else if (direction == Vector2.left)
+            else if (direction.x < 0)
             {
                 _transform.rotation = Quaternion.Euler(0, 180, 0);
             }

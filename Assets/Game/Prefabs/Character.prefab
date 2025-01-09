@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fafc791c0dd041f9bd691d1f0e4f934a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectionRadius: 1
+  _detectionRadius: 1.5
   _mask:
     serializedVersion: 2
     m_Bits: 256
@@ -528,7 +528,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 5
   _damagePoints: 0
-  _isAlive: 1
 --- !u!1 &7801279227858408424
 GameObject:
   m_ObjectHideFlags: 0
