@@ -19,10 +19,11 @@ namespace Game.Scripts
 
         public void Push(Vector2 pushDirection)
         {
+            OnStateChanged?.Invoke(pushDirection);
+            
             foreach (var interactable in _character._lookAtComponent.GetInteractableInFront())
             {
                 interactable.Push(pushDirection, _forceStrength);
-                OnStateChanged?.Invoke(pushDirection);
             }
         }
     }

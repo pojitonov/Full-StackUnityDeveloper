@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class ParticleAnimationComponent : MonoBehaviour
+    public class PushAnimationComponent : MonoBehaviour
     {
         [SerializeField]
         private ParticleSystem _pushParticle;
