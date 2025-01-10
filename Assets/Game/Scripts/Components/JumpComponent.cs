@@ -5,6 +5,8 @@ namespace Game.Scripts
 {
     public class JumpComponent : MonoBehaviour
     {
+        public event Action OnStateChanged;
+
         [SerializeField]
         private float _force = 8f;
 
@@ -19,6 +21,7 @@ namespace Game.Scripts
                 return;
 
             _rigidbody.AddForce(new Vector2(0, _force), ForceMode2D.Impulse);
+            OnStateChanged?.Invoke();
         }
 
         public void AddCondition(Func<bool> condition)

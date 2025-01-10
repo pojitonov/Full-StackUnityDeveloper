@@ -7,9 +7,6 @@ namespace Game.Scripts
         [SerializeField]
         private int _damageValue = 1;
         
-        [SerializeField]
-        HealthComponent _healthComponent;
-
         private void OnCollisionEnter2D(Collision2D other)
         {
             ApplyDamage(other.gameObject);

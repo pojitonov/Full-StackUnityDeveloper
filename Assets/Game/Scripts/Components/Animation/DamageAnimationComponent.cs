@@ -17,14 +17,17 @@ namespace Game.Scripts
         private Tween _tween;
         private Color _originalColor;
 
-
         private void Awake()
         {
             _originalColor = spriteRenderer.color;
+        }
+
+        private void OnEnable()
+        {
             _healthComponent.OnStateChanged += Animate;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _healthComponent.OnStateChanged -= Animate;
         }
@@ -35,7 +38,8 @@ namespace Game.Scripts
 
             _tween = spriteRenderer
                 .DOColor(_damagedColor, 0.1f)
-                .SetLoops(12, LoopType.Yoyo)
+                .SetEase(Ease.OutBounce)
+                .SetLoops(8, LoopType.Yoyo)
                 .OnComplete(() => spriteRenderer.color = _originalColor);
         }
     }
