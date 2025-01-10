@@ -953,7 +953,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.200005, y: 5.700001, z: -10}
+  m_LocalPosition: {x: 100.9, y: 28.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2374,6 +2374,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1381897775955246070, guid: 80a831c9d00f24f04b83b56403d7f261, type: 3}
       propertyPath: _isTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381897775955246070, guid: 80a831c9d00f24f04b83b56403d7f261, type: 3}
+      propertyPath: _countdown._duration
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1460607820475782585, guid: 80a831c9d00f24f04b83b56403d7f261, type: 3}
@@ -5460,6 +5464,10 @@ PrefabInstance:
       propertyPath: _isTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1381897775955246070, guid: 80a831c9d00f24f04b83b56403d7f261, type: 3}
+      propertyPath: _countdown._duration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1460607820475782585, guid: 80a831c9d00f24f04b83b56403d7f261, type: 3}
       propertyPath: _countdown.duration
       value: 1
@@ -5794,11 +5802,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.2
+      value: 96.9
       objectReference: {fileID: 0}
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7
+      value: 23.2
       objectReference: {fileID: 0}
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.z

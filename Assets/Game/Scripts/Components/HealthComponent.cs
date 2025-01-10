@@ -1,6 +1,7 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts
 {
@@ -18,21 +19,21 @@ namespace Game.Scripts
         private int _damagePoints;
 
         [SerializeField]
-        private Countdown _countdown;
+        private Countdown _delay;
 
         private void Awake()
         {
-            _countdown.OnTimeIsUp += Destroy;
+            _delay.OnTimeIsUp += Destroy;
         }
 
         private void OnDestroy()
         {
-            _countdown.OnTimeIsUp -= Destroy;
+            _delay.OnTimeIsUp -= Destroy;
         }
 
         public void Update()
         {
-            if (!IsAlive) _countdown.Tick(Time.deltaTime);
+            if (!IsAlive) _delay.Tick(Time.deltaTime);
         }
 
         public void TakeDamage(int damage)
@@ -43,7 +44,7 @@ namespace Game.Scripts
             if (_damagePoints >= _lifePoints)
             {
                 IsAlive = false;
-                _countdown.Reset();
+                _delay.Reset();
             }
         }
 
