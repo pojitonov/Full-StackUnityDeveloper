@@ -9,19 +9,27 @@ namespace Game.Scripts
 
         [SerializeField]
         private int _damageValue = 1;
-        
+
+        [SerializeField]
+        private bool _isTrigger;
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (_isTrigger)
+                ApplyDamage(other.gameObject);
+        }
+
         private void OnCollisionEnter2D(Collision2D other)
         {
-            ApplyDamage(other.gameObject);
+            if (!_isTrigger)
+                ApplyDamage(other.gameObject);
         }
-        
+
         private void ApplyDamage(GameObject other)
         {
-            HealthComponent damageable = other.GetComponent<HealthComponent>();
-
-            if (damageable != null)
+            if (other.TryGetComponent<HealthComponent>(out var component))
             {
-                damageable.TakeDamage(_damageValue);
+                component.TakeDamage(_damageValue);
                 OnStateChanged?.Invoke();
             }
         }

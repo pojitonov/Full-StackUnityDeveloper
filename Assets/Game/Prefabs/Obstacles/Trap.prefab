@@ -238,6 +238,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 1
   _damagePoints: 0
+  _countdown:
+    _duration: 0
 --- !u!114 &7280537044973331671
 MonoBehaviour:
   m_ObjectHideFlags: 0
