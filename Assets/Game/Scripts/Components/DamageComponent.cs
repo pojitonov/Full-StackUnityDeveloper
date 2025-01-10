@@ -12,7 +12,7 @@ namespace Game.Scripts
         private int _damageValue = 1;
 
         [SerializeField]
-        private bool _isTrigger;
+        private bool _colliderIsTrigger;
         
         [SerializeField]
         private Countdown _delay;
@@ -24,7 +24,7 @@ namespace Game.Scripts
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_isTrigger && _delay.IsTimeUp())
+            if (_colliderIsTrigger && _delay.IsTimeUp())
             {
                 ApplyDamage(other.gameObject);
                 _delay.Reset();
@@ -33,7 +33,7 @@ namespace Game.Scripts
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (!_isTrigger)
+            if (!_colliderIsTrigger)
             {
                 ApplyDamage(other.gameObject);
             }

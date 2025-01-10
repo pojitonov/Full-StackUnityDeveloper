@@ -1,7 +1,6 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts
 {
@@ -9,7 +8,7 @@ namespace Game.Scripts
     {
         public event Action OnStateChanged;
 
-        [field: ShowInInspector] [field: ReadOnly]
+        [field: ShowInInspector]
         public bool IsAlive { get; private set; } = true;
 
         [SerializeField]
@@ -41,11 +40,9 @@ namespace Game.Scripts
             _damagePoints += damage;
             OnStateChanged?.Invoke();
 
-            if (_damagePoints >= _lifePoints)
-            {
-                IsAlive = false;
-                _delay.Reset();
-            }
+            if (_damagePoints < _lifePoints) return;
+            IsAlive = false;
+            _delay.Reset();
         }
 
         public void Destroy()

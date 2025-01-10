@@ -14,14 +14,7 @@ namespace Components.Core
         {
             var groundTransform = _groundComponent.RaycastTransform;
 
-            if (_groundComponent.CheckGround())
-            {
-                transform.SetParent(groundTransform);
-            }
-            else
-            {
-                transform.SetParent(_worldTransform);
-            }
+            transform.SetParent(_groundComponent.CheckGround() ? groundTransform : _worldTransform);
         }
     }
 }
