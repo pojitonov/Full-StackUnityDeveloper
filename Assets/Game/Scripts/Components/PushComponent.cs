@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace Game.Scripts
 {
     public class PushComponent : MonoBehaviour
     {
+        public event Action<Vector2> OnStateChanged;
+
         [SerializeField]
         private float _forceStrength;
 
@@ -19,6 +22,7 @@ namespace Game.Scripts
             foreach (var interactable in _character._lookAtComponent.GetInteractableInFront())
             {
                 interactable.Push(pushDirection, _forceStrength);
+                OnStateChanged?.Invoke(pushDirection);
             }
         }
     }
