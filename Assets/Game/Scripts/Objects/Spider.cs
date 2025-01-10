@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public sealed class Spider : MonoBehaviour, IInteractable, IDestroyable
+    public sealed class Spider : MonoBehaviour, IInteractable
     {
         [SerializeField]
         private Rigidbody2D _rigidbody;
@@ -17,11 +17,6 @@ namespace Game.Scripts
         public void Push(Vector2 direction, float force)
         {
             _pushMechanic.Invoke(direction, force);
-        }
-
-        public void Destroy()
-        {
-            gameObject.SetActive(false);
         }
     }
 }

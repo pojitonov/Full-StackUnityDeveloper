@@ -19,6 +19,5 @@ namespace Game.Scripts
             _destroyMechanic.OnTriggerEnter2D(other);
             OnStateChanged?.Invoke();
         }
-
     }
 }

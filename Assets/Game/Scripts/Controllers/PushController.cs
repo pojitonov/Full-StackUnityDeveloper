@@ -9,8 +9,6 @@ namespace Game.Scripts
 
         private void Update()
         {
-            var lokAtDirection = _character._lookAtComponent.LookAtDirection;
-
             if (Input.GetKeyDown(KeyCode.W))
             {
                 _character._tossComponent.Toss();
@@ -18,11 +16,7 @@ namespace Game.Scripts
 
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
             {
-                if (lokAtDirection == Vector2.left)
-                    _character._pushComponent.Push(Vector2.left)
-                ;
-                if (lokAtDirection == Vector2.right)
-                    _character._pushComponent.Push(Vector2.right);
+                _character._pushComponent.Push();
             }
         }
     }

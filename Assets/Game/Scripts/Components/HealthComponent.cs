@@ -6,11 +6,10 @@ namespace Game.Scripts
 {
     public class HealthComponent : MonoBehaviour
     {
-        public event Action OnStateChanged;
-        public event Action<bool> OnDie;
+        public event Action OnDamaged;
 
-        [ShowInInspector, ReadOnly]
-        private bool _isAlive;
+        [field: ShowInInspector] [field: ReadOnly]
+        public bool IsAlive { get; private set; } = true;
 
         [SerializeField]
         private int _lifePoints = 5;
@@ -21,19 +20,18 @@ namespace Game.Scripts
         public void TakeDamage(int damage)
         {
             _damagePoints += damage;
-            OnStateChanged?.Invoke();
+            OnDamaged?.Invoke();
 
             if (_damagePoints >= _lifePoints)
             {
-                Die();
+                Destroy();
             }
         }
 
-        private void Die()
+        public void Destroy()
         {
-            _isAlive = false;
+            IsAlive = false;
             gameObject.SetActive(false);
-            OnDie?.Invoke(_isAlive);
         }
     }
 }

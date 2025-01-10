@@ -6,7 +6,7 @@ namespace Game.Scripts
     {
         public void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.TryGetComponent<IDestroyable>(out var component))
+            if (other.gameObject.TryGetComponent<HealthComponent>(out var component))
             {
                 component.Destroy();
             }

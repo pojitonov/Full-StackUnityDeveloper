@@ -8,14 +8,14 @@ namespace Game.Scripts
         public event Action OnStateChanged;
 
         [SerializeField]
-        private Vector2 _forceDirection;
+        private Vector2 _forceDirection = Vector2.up;
 
         [SerializeField]
-        private float _forceStrength = 12f;
+        private float _forceStrength = 10f;
 
         private PushMechanic _pushMechanic;
 
-        public void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             var rigidbody = other.GetComponent<Rigidbody2D>();
             _pushMechanic = new PushMechanic(rigidbody);

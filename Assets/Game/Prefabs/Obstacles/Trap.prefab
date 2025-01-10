@@ -97,8 +97,9 @@ GameObject:
   - component: {fileID: 8320438562223812922}
   - component: {fileID: 6493561456656663551}
   - component: {fileID: 5353495280700337263}
-  - component: {fileID: 1397027944515369323}
+  - component: {fileID: 9086488212919646905}
   - component: {fileID: 7280537044973331671}
+  - component: {fileID: 1397027944515369323}
   m_Layer: 8
   m_Name: Trap
   m_TagString: Untagged
@@ -209,7 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7185fdb8ad479da1e2e91b55103706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageComponent: {fileID: 5353495280700337263}
   _rigidbody: {fileID: 1650171991482105198}
 --- !u!114 &5353495280700337263
 MonoBehaviour:
@@ -224,8 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageValue: 1
-  _healthComponent: {fileID: 0}
---- !u!114 &1397027944515369323
+--- !u!114 &9086488212919646905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,10 +233,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4331236207197526835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 861a142e4509479a88f210650af9c386, type: 3}
+  m_Script: {fileID: 11500000, guid: a5e5c155787a4204bb1eeee8bebfe8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundComponent: {fileID: 7280537044973331671}
+  _lifePoints: 1
+  _damagePoints: 0
 --- !u!114 &7280537044973331671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,3 +255,16 @@ MonoBehaviour:
   _mask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &1397027944515369323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331236207197526835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861a142e4509479a88f210650af9c386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundComponent: {fileID: 7280537044973331671}

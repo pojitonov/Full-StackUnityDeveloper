@@ -17,13 +17,15 @@ namespace Game.Scripts
             _character = GetComponent<Character>();
         }
 
-        public void Push(Vector2 pushDirection)
+        public void Push()
         {
+            var direction = _character._lookAtComponent.LookAtDirection;
+
             OnStateChanged?.Invoke();
             
             foreach (var interactable in _character._lookAtComponent.GetInteractableInFront())
             {
-                interactable.Push(pushDirection, _forceStrength);
+                interactable.Push(direction, _forceStrength);
             }
         }
     }
