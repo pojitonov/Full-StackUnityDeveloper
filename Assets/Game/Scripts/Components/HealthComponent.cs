@@ -17,6 +17,24 @@ namespace Game.Scripts
         [SerializeField]
         private int _damagePoints;
 
+        [SerializeField]
+        private Countdown _countdown;
+
+        private void Awake()
+        {
+            _countdown.OnTimeIsUp += Destroy;
+        }
+
+        private void OnDestroy()
+        {
+            _countdown.OnTimeIsUp -= Destroy;
+        }
+
+        public void Update()
+        {
+            if (!IsAlive) _countdown.Tick(Time.deltaTime);
+        }
+
         public void TakeDamage(int damage)
         {
             _damagePoints += damage;
@@ -24,13 +42,13 @@ namespace Game.Scripts
 
             if (_damagePoints >= _lifePoints)
             {
-                Destroy();
+                IsAlive = false;
+                _countdown.Reset();
             }
         }
 
         public void Destroy()
         {
-            IsAlive = false;
             gameObject.SetActive(false);
         }
     }

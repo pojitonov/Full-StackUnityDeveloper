@@ -971,7 +971,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 101, y: 28.1, z: -10}
+  m_LocalPosition: {x: 31.120003, y: 5.3199997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2386,6 +2386,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1625251630}
     m_Modifications:
+    - target: {fileID: 1460607820475782585, guid: 80a831c9d00f24f04b83b56403d7f261, type: 3}
+      propertyPath: _countdown.duration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460607820475782585, guid: 80a831c9d00f24f04b83b56403d7f261, type: 3}
+      propertyPath: _delayBeforeDie.duration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2249509657768813407, guid: 80a831c9d00f24f04b83b56403d7f261, type: 3}
       propertyPath: spriteRenderer
       value: 
@@ -3275,6 +3283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 3
   _damagePoints: 0
+  _countdown:
+    duration: 0
 --- !u!1001 &1397761578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3390,6 +3400,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 3
   _damagePoints: 0
+  _countdown:
+    duration: 0
 --- !u!1 &1474340428 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5554046834176312192, guid: 0ec997e873f9642f3b6e0d36345da0c0, type: 3}
@@ -3505,6 +3517,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 1
   _damagePoints: 0
+  _countdown:
+    duration: 0
 --- !u!4 &1520248254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7845036276167105276, guid: 72f49d2e77eaa4d26818f3f35aef8a5f, type: 3}
@@ -4804,6 +4818,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 1
   _damagePoints: 0
+  _countdown:
+    duration: 0
 --- !u!1 &1840973718
 GameObject:
   m_ObjectHideFlags: 0
@@ -5103,6 +5119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 3
   _damagePoints: 0
+  _countdown:
+    duration: 0
 --- !u!4 &2073272217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3105770917179402914, guid: 0ec997e873f9642f3b6e0d36345da0c0, type: 3}
@@ -5140,6 +5158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 3
   _damagePoints: 0
+  _countdown:
+    duration: 0
 --- !u!1001 &2094986495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5331,6 +5351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 1
   _damagePoints: 0
+  _countdown:
+    duration: 0
 --- !u!1 &2133861096
 GameObject:
   m_ObjectHideFlags: 0
@@ -5480,6 +5502,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 1
   _damagePoints: 0
+  _countdown:
+    duration: 0
 --- !u!4 &346548071188616950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1736318179580503177, guid: 72f49d2e77eaa4d26818f3f35aef8a5f, type: 3}
@@ -5866,6 +5890,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1625251630}
     m_Modifications:
+    - target: {fileID: 1460607820475782585, guid: 80a831c9d00f24f04b83b56403d7f261, type: 3}
+      propertyPath: _countdown.duration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460607820475782585, guid: 80a831c9d00f24f04b83b56403d7f261, type: 3}
+      propertyPath: _delayBeforeDie.duration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2249509657768813407, guid: 80a831c9d00f24f04b83b56403d7f261, type: 3}
       propertyPath: spriteRenderer
       value: 
@@ -6184,11 +6216,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 97
+      value: 27.12
       objectReference: {fileID: 0}
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.1
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.z

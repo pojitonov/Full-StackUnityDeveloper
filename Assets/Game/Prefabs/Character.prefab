@@ -564,6 +564,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 5
   _damagePoints: 0
+  _countdown:
+    duration: 0.5
 --- !u!114 &5814930138478287487
 MonoBehaviour:
   m_ObjectHideFlags: 0
