@@ -12,7 +12,7 @@ namespace Components.Core
 
         public void FixedUpdate()
         {
-            var groundTransform = _groundComponent.RycastTransform;
+            var groundTransform = _groundComponent.RaycastTransform;
 
             if (_groundComponent.CheckGround())
             {

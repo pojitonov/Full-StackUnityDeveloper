@@ -14,19 +14,10 @@ namespace Game.Scripts
         public LookAtComponent _lookAtComponent;
         public HealthComponent _healthComponent;
         
-        private bool _isGrounded = true;
-
         private void Awake()
         {
             _moveComponent.AddCondition(() => _healthComponent.IsAlive);
-            _jumpComponent.AddCondition(() => _isGrounded && _healthComponent.IsAlive);
-            
-            _groundComponent.OnStateChanged += value => _isGrounded = value;
-        }
-
-        private void OnDestroy()
-        {
-            _groundComponent.OnStateChanged -= value => _isGrounded = value;
+            _jumpComponent.AddCondition(() => _groundComponent.IsGrounded && _healthComponent.IsAlive);
         }
 
         private void FixedUpdate()

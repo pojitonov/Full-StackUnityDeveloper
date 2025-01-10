@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class HealthComponent : MonoBehaviour
+    public class HealthComponent : MonoBehaviour, ITriggerable
     {
-        public event Action OnDamaged;
+        public event Action OnStateChanged;
 
         [field: ShowInInspector] [field: ReadOnly]
         public bool IsAlive { get; private set; } = true;
@@ -20,7 +20,7 @@ namespace Game.Scripts
         public void TakeDamage(int damage)
         {
             _damagePoints += damage;
-            OnDamaged?.Invoke();
+            OnStateChanged?.Invoke();
 
             if (_damagePoints >= _lifePoints)
             {

@@ -9,7 +9,7 @@ namespace Game.Scripts
         private SpriteRenderer spriteRenderer;
 
         [SerializeField]
-        private Color _damagedColor = Color.red;
+        private Color _damagedColor = Color.magenta;
 
         [SerializeField]
         private HealthComponent _healthComponent;
@@ -24,12 +24,12 @@ namespace Game.Scripts
 
         private void OnEnable()
         {
-            _healthComponent.OnDamaged += Animate;
+            _healthComponent.OnStateChanged += Animate;
         }
 
         private void OnDisable()
         {
-            _healthComponent.OnDamaged -= Animate;
+            _healthComponent.OnStateChanged -= Animate;
         }
 
         private void Animate()

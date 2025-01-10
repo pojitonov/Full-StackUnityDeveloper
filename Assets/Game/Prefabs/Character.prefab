@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 8432673849299967323}
   - component: {fileID: 1101487105844202494}
   - component: {fileID: 1953405539900541842}
+  - component: {fileID: 2803689355287759373}
+  - component: {fileID: 2843430124692537427}
   m_Layer: 9
   m_Name: <VFX>
   m_TagString: Untagged
@@ -94,6 +96,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSource: {fileID: 7586124585203602957}
   _component: {fileID: 4500392856088775936}
+--- !u!114 &2803689355287759373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5346349396641781813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce24a22706b4d71b49ddd1074699b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 6620481527559855412}
+  _jumpComponent: {fileID: 6991238943733658325}
+  _punch: {x: 0, y: 1, z: 0}
+  _duration: 0.2
+  _vibrato: 2
+  _elasticity: 1
+--- !u!114 &2843430124692537427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5346349396641781813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edaf767649f048c78e91096e16a4b497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5973739499012079652}
+  _damagedColor: {r: 1, g: 0, b: 1, a: 1}
+  _healthComponent: {fileID: 8705098180684878821}
 --- !u!1 &5552094765977821293
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,8 +254,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6620481527559855412}
   - component: {fileID: 5973739499012079652}
-  - component: {fileID: 4260119617383755146}
-  - component: {fileID: 8786452744388946112}
   m_Layer: 0
   m_Name: <Sprite>
   m_TagString: Untagged
@@ -297,39 +330,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4260119617383755146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6893392414830286016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edaf767649f048c78e91096e16a4b497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 5973739499012079652}
-  _damagedColor: {r: 1, g: 0, b: 0, a: 1}
-  _healthComponent: {fileID: 8705098180684878821}
---- !u!114 &8786452744388946112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6893392414830286016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce24a22706b4d71b49ddd1074699b1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _transform: {fileID: 6620481527559855412}
-  _jumpComponent: {fileID: 6991238943733658325}
-  _punch: {x: 0, y: 1, z: 0}
-  _duration: 0.2
-  _vibrato: 2
-  _elasticity: 1
 --- !u!1 &7490323295220271620
 GameObject:
   m_ObjectHideFlags: 0
