@@ -5,6 +5,9 @@ namespace Game.Scripts
     public sealed class Trampoline : MonoBehaviour
     {
         [SerializeField]
+        private Vector2 _forceDirection;
+
+        [SerializeField]
         private float _forceStrength = 12f;
 
         private PushMechanic _pushMechanic;
@@ -13,7 +16,7 @@ namespace Game.Scripts
         {
             var rigidbody = other.GetComponent<Rigidbody2D>();
             _pushMechanic = new PushMechanic(rigidbody);
-            _pushMechanic.Invoke(Vector2.up, _forceStrength);
+            _pushMechanic.Invoke(_forceDirection, _forceStrength);
         }
     }
 }
