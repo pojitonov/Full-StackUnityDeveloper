@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts
 {
@@ -9,7 +10,7 @@ namespace Game.Scripts
         public event Action OnTimeIsUp;
 
         [SerializeField]
-        private float delayToDie;
+        private float _duration;
 
         private float time;
 
@@ -17,7 +18,7 @@ namespace Game.Scripts
 
         public void SetDuration(float duration)
         {
-            delayToDie = duration;
+            _duration = duration;
             Reset();
         }
 
@@ -34,7 +35,7 @@ namespace Game.Scripts
 
         public void Reset()
         {
-            time = delayToDie;
+            time = _duration;
             if (time <= 0)
             {
                 OnTimeIsUp?.Invoke();

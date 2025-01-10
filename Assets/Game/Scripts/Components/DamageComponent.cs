@@ -14,12 +14,7 @@ namespace Game.Scripts
         {
             ApplyDamage(other.gameObject);
         }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            ApplyDamage(other.gameObject);
-        }
-
+        
         private void ApplyDamage(GameObject other)
         {
             HealthComponent damageable = other.GetComponent<HealthComponent>();
