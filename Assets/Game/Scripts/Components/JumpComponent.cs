@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class JumpComponent : MonoBehaviour
+    public class JumpComponent : MonoBehaviour, ITriggerable
     {
         public event Action OnStateChanged;
 

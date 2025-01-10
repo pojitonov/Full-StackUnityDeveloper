@@ -3,10 +3,13 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class PlayParticleComponent : MonoBehaviour
+    public class PlayAudioComponent : MonoBehaviour
     {
         [SerializeField]
-        private ParticleSystem _particleSource;
+        private AudioSource _audioSource;
+
+        [SerializeField]
+        private AudioClip _sourceClip;
 
         [SerializeField]
         private MonoBehaviour _component;
@@ -21,10 +24,10 @@ namespace Game.Scripts
         [Button]
         private void Test()
         {
-            if (_component is null || _particleSource is null)
-                Debug.LogError($"Component or ParticleSystem are empty");
+            if (_component is null || _audioSource is null)
+                Debug.LogError($"Component or AudioSource are empty");
             else if (_component is not ITriggerable)
-                Debug.LogError($"Component does not implement IVfx interface");
+                Debug.LogError($"Component does not implement IAudio interface");
             else
                 Play();
         }
@@ -47,8 +50,7 @@ namespace Game.Scripts
 
         private void Play()
         {
-            _particleSource.Stop();
-            _particleSource.Play();
+            _audioSource.PlayOneShot(_sourceClip);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Game.Scripts
 
             if (Input.GetKeyDown(KeyCode.W))
             {
-                _character._pushComponent.Push(Vector2.up);
+                _character._tossComponent.Toss();
             }
 
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))

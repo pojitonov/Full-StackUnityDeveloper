@@ -9,6 +9,7 @@ namespace Game.Scripts
         public MoveComponent _moveComponent;
         public JumpComponent _jumpComponent;
         public PushComponent _pushComponent;
+        public TossComponent _tossComponent;
         public GroundComponent _groundComponent;
         public LookAtComponent _lookAtComponent;
         public HealthComponent _healthComponent;

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8255752769676833144}
   - component: {fileID: 8807684224348490779}
   - component: {fileID: 4736511025602418455}
+  - component: {fileID: 4807478237937729168}
   m_Layer: 6
   m_Name: Lava
   m_TagString: Untagged
@@ -240,3 +241,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929e2bab4a4d479c9261acd89fe4c414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4807478237937729168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941354820746825385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d9b63f40a04938a86e3703cbef2c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 8807684224348490779}
+  _sourceClip: {fileID: 8300000, guid: cd6cde2e439ce0b4984c66ae86955c23, type: 3}
+  _component: {fileID: 4736511025602418455}

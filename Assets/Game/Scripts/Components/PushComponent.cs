@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class PushComponent : MonoBehaviour
+    public class PushComponent : MonoBehaviour, ITriggerable
     {
-        public event Action<Vector2> OnStateChanged;
+        public event Action OnStateChanged;
 
         [SerializeField]
         private float _forceStrength;
@@ -19,7 +19,7 @@ namespace Game.Scripts
 
         public void Push(Vector2 pushDirection)
         {
-            OnStateChanged?.Invoke(pushDirection);
+            OnStateChanged?.Invoke();
             
             foreach (var interactable in _character._lookAtComponent.GetInteractableInFront())
             {
