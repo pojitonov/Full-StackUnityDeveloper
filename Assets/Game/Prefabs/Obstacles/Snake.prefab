@@ -510,6 +510,7 @@ GameObject:
   - component: {fileID: 1381897775955246070}
   - component: {fileID: 1460607820475782585}
   - component: {fileID: 2249509657768813407}
+  - component: {fileID: 6684099585058104988}
   m_Layer: 8
   m_Name: <Snake>
   m_TagString: Untagged
@@ -664,6 +665,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageValue: 2
+  _colliderIsTrigger: 1
+  _delay:
+    _duration: 1
 --- !u!114 &1460607820475782585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,8 +682,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 6
   _damagePoints: 0
-  _countdown:
-    _duration: 0
+  _delay:
+    _duration: 1
 --- !u!114 &2249509657768813407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,9 +696,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edaf767649f048c78e91096e16a4b497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 7937140358218983994}
   _damagedColor: {r: 1, g: 0, b: 1, a: 1}
-  _healthComponent: {fileID: 0}
+  _healthComponent: {fileID: 1460607820475782585}
+--- !u!114 &6684099585058104988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8521204571576199944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edaf767649f048c78e91096e16a4b497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 7125585022512431628}
+  _damagedColor: {r: 1, g: 0, b: 1, a: 1}
+  _healthComponent: {fileID: 1460607820475782585}
 --- !u!1 &9168432786817898581
 GameObject:
   m_ObjectHideFlags: 0

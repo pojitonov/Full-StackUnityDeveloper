@@ -14,7 +14,7 @@ namespace Game.Scripts
 
         public void Invoke(Vector2 direction, float force)
         {
-            _rigidbody.AddForce(direction * force * _multiplier);
+            _rigidbody.AddForce(direction.normalized * force * _multiplier);
         }
     }
 }

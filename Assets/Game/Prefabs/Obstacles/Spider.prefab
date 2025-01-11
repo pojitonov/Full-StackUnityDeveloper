@@ -395,7 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 4485897333727555696}
   _sourceClip: {fileID: 8300000, guid: 49fd8f26329a7d447b6232131cfd5e71, type: 3}
-  _component: {fileID: 0}
+  _component: {fileID: 4750874094732761688}
 --- !u!1 &5554046834176312192
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,6 +794,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageValue: 2
+  _colliderIsTrigger: 1
+  _delay:
+    _duration: 1
 --- !u!114 &3278977000280703393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,8 +811,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 3
   _damagePoints: 0
-  _countdown:
-    _duration: 0
+  _delay:
+    _duration: 0.5
 --- !u!114 &3657696452733654929
 MonoBehaviour:
   m_ObjectHideFlags: 0
