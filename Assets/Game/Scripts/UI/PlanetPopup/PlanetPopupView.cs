@@ -1,5 +1,3 @@
-using System;
-using Game.UI.Signals;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +5,7 @@ using Zenject;
 
 namespace Game.UI.Popup
 {
-    public class PlanetPopupView : MonoBehaviour, IInitializable, IDisposable
+    public class PlanetPopupView : MonoBehaviour
     {
         [SerializeField]
         private TMP_Text _title;
@@ -40,32 +38,14 @@ namespace Game.UI.Popup
         private Button _closeButton;
 
         private IPlanetPopupPresenter _popupPresenter;
-        private SignalBus _signalBus;
 
         [Inject]
-        public void Construct(IPlanetPopupPresenter popupPresenter, SignalBus signalBus)
+        public void Construct(IPlanetPopupPresenter popupPresenter)
         {
             _popupPresenter = popupPresenter;
-            _signalBus = signalBus;
         }
 
-        public void Initialize()
-        {
-            _signalBus.Subscribe<OpenPlanetPopupSignal>(ConfigurePopup);
-        }
-
-        public void Dispose()
-        {
-            _signalBus.Unsubscribe<OpenPlanetPopupSignal>(ConfigurePopup);
-        }
-
-        private void ConfigurePopup(OpenPlanetPopupSignal signal)
-        {
-            _popupPresenter.SetPlanet(signal.Planet);
-            Show();
-        }
-
-        private void Show()
+        public void Show()
         {
             _upgradeButton.onClick.AddListener(_popupPresenter.OnUpgradeButtonClick);
             _closeButton.onClick.AddListener(Hide);
@@ -75,7 +55,7 @@ namespace Game.UI.Popup
             UpdateView();
         }
 
-        private void Hide()
+        public void Hide()
         {
             _upgradeButton.onClick.RemoveListener(_popupPresenter.OnUpgradeButtonClick);
             _closeButton.onClick.RemoveListener(Hide);

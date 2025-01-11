@@ -12,20 +12,15 @@ namespace Game.UI
     {
         [SerializeField]
         private PlanetView[] planetViews;
-        
+
         public override void InstallBindings()
         {
-            Container
-                .BindFactory<PlanetView, IPlanet, PlanetPresenter, PlanetPresenterFactory>()
-                .AsCached();
-   
             SignalBusInstaller.Install(Container);
-
             CoinInstaller.Install(Container);
             MoneyInstaller.Install(Container);
-            PlanetInstaller.Install(Container,  planetViews);
+            PlanetInstaller.Install(Container, planetViews);
             PlanetPopupInstaller.Install(Container);
             SignalsInstaller.Install(Container);
         }
-    }   
+    }
 }

@@ -1,5 +1,4 @@
 using System;
-using Modules.Planets;
 using UnityEngine;
 
 namespace Game.UI.Popup
@@ -14,11 +13,12 @@ namespace Game.UI.Popup
         string Income { get; }
         string Price { get; }
         string Button { get; }
+        
         Sprite Avatar { get; }
+        
         bool IsUpgradeButtonEnabled { get; }
         bool IsMaxLevel { get; }
 
-        void SetPlanet(IPlanet planet);
         void OnUpgradeButtonClick();
      }
 }

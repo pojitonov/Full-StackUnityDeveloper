@@ -15,6 +15,11 @@ namespace Game.UI.Popup
                 .BindInterfacesAndSelfTo<PlanetPopupPresenter>()
                 .AsSingle()
                 .NonLazy();
+            
+            Container
+                .BindInterfacesAndSelfTo<PlanetPopupController>()
+                .AsSingle()
+                .NonLazy();
         }
     }
 }

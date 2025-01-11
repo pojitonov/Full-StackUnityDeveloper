@@ -1,3 +1,4 @@
+using Modules.Planets;
 using Zenject;
 
 namespace Game.UI.Planet
@@ -9,6 +10,10 @@ namespace Game.UI.Planet
 
         public override void InstallBindings()
         {
+            Container
+                .BindFactory<PlanetView, IPlanet, PlanetPresenter, PlanetPresenterFactory>()
+                .AsCached();
+              
             Container
                 .BindInterfacesTo<PlanetInitializer>()
                 .AsSingle()
