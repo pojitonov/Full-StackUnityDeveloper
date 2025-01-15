@@ -379,9 +379,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7302201298826456237}
-  - component: {fileID: 2111519996956936922}
-  - component: {fileID: 8612971960247362864}
   - component: {fileID: 3949016449701737424}
+  - component: {fileID: 8612971960247362864}
   - component: {fileID: 291620296381687433}
   m_Layer: 0
   m_Name: Snake
@@ -408,33 +407,6 @@ Transform:
   - {fileID: 3188779134163127405}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2111519996956936922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6630584940079141506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7652c18e6ac45e7baa482b6b6a1e3eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 1745589832700849}
---- !u!114 &8612971960247362864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6630584940079141506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a5fbf4340684141a3f41a9a2962b999, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 3
-  _transform: {fileID: 1819249752555060710}
 --- !u!114 &3949016449701737424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +423,21 @@ MonoBehaviour:
   _stoppingThreshold: 0.5
   _waypoint1: {fileID: 7836685165928915669}
   _waypoint2: {fileID: 3188779134163127405}
+--- !u!114 &8612971960247362864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630584940079141506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5fbf4340684141a3f41a9a2962b999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _transform: {fileID: 1819249752555060710}
+  _flipComponent: {fileID: 291620296381687433}
 --- !u!114 &291620296381687433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,6 +655,7 @@ MonoBehaviour:
   _colliderIsTrigger: 1
   _delay:
     _duration: 1
+  _pushBackForce: 5
 --- !u!114 &1460607820475782585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,7 +712,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2315917673189246781}
   - component: {fileID: 7373436372039092287}
-  - component: {fileID: 9128488533824363164}
+  - component: {fileID: 8145415289509038690}
   m_Layer: 0
   m_Name: <Audio>
   m_TagString: Untagged
@@ -843,7 +831,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &9128488533824363164
+--- !u!114 &8145415289509038690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -852,9 +840,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 9168432786817898581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93d9b63f40a04938a86e3703cbef2c22, type: 3}
+  m_Script: {fileID: 11500000, guid: b25c4f6bc09f4b71a2d69fab513ece77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 7373436372039092287}
-  _sourceClip: {fileID: 8300000, guid: 49fd8f26329a7d447b6232131cfd5e71, type: 3}
-  _component: {fileID: 1381897775955246070}
+  _audioClip: {fileID: 8300000, guid: 49fd8f26329a7d447b6232131cfd5e71, type: 3}
+  _healthComponent: {fileID: 1460607820475782585}

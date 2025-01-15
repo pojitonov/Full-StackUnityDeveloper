@@ -1,9 +1,8 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Game.Scripts
-{
-    // TODO: Сделать под каждую механику свой компонент без универсальности
+// namespace Game.Scripts
+// {
     //
     // public class PlayParticleComponent : MonoBehaviour
     // {
@@ -50,4 +49,4 @@ namespace Game.Scripts
     //         _particleSource.Play();
     //     }
     // }
-}
+// }

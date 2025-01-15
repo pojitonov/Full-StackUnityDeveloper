@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class PlayTossAnimationComponent : MonoBehaviour
+    public class PushAnimationComponent : MonoBehaviour
     {
         [SerializeField] private ParticleSystem _particleSource;
         
@@ -15,12 +15,12 @@ namespace Game.Scripts
 
         private void OnEnable()
         {
-            _pushComponent.OnTossed += Play;
+            _pushComponent.OnPushed += Play;
         }
 
         private void OnDisable()
         {
-            _pushComponent.OnTossed -= Play;
+            _pushComponent.OnPushed -= Play;
         }
 
         private void Play()

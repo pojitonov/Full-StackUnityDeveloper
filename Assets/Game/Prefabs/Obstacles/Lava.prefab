@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 790263129781726672}
   - component: {fileID: 8255752769676833144}
   - component: {fileID: 8807684224348490779}
-  - component: {fileID: 4807478237937729168}
-  - component: {fileID: 1680733187294919645}
+  - component: {fileID: 968856322251319946}
+  - component: {fileID: 1770038353342133826}
   m_Layer: 6
   m_Name: Lava
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.5, y: -4, z: 0}
-  m_LocalScale: {x: 7, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -229,19 +229,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4807478237937729168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1941354820746825385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93d9b63f40a04938a86e3703cbef2c22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1680733187294919645
+--- !u!114 &968856322251319946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,3 +241,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf2881d45024dfea6d4f5c4298829d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1770038353342133826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941354820746825385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fae23c670394b8aa2a50f1ae1c7bd5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 8807684224348490779}
+  _audioClip: {fileID: 8300000, guid: cd6cde2e439ce0b4984c66ae86955c23, type: 3}
+  _destroyerComponent: {fileID: 968856322251319946}

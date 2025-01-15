@@ -21,7 +21,7 @@ namespace Game.Scripts
 
         private void Update()
         {
-            UpdateFacingDirection(_moveComponent.MoveDirection);
+            UpdateFacingDirection(_moveComponent.Direction);
         }
 
         private void UpdateFacingDirection(Vector2 direction)

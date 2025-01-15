@@ -26,7 +26,7 @@ namespace Game.Scripts
                 direction = Vector2.right;
             }
 
-            _moveComponent.MoveDirection = direction;
+            _moveComponent.Direction = direction;
         }
     }
 }

@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2584215938954885249}
   - component: {fileID: 4485897333727555696}
-  - component: {fileID: 6304672139579212150}
+  - component: {fileID: 5248471334285821360}
   m_Layer: 0
   m_Name: <Audio>
   m_TagString: Untagged
@@ -381,7 +381,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6304672139579212150
+--- !u!114 &5248471334285821360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,12 +390,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5071641848716796736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93d9b63f40a04938a86e3703cbef2c22, type: 3}
+  m_Script: {fileID: 11500000, guid: b25c4f6bc09f4b71a2d69fab513ece77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 4485897333727555696}
-  _sourceClip: {fileID: 8300000, guid: 49fd8f26329a7d447b6232131cfd5e71, type: 3}
-  _component: {fileID: 4750874094732761688}
+  _audioClip: {fileID: 8300000, guid: 49fd8f26329a7d447b6232131cfd5e71, type: 3}
+  _healthComponent: {fileID: 3278977000280703393}
 --- !u!1 &5554046834176312192
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +405,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1114773270552738056}
-  - component: {fileID: 5944301615243423402}
   - component: {fileID: 5352395781337772132}
   - component: {fileID: 8828846598355375344}
   m_Layer: 0
@@ -433,19 +432,6 @@ Transform:
   - {fileID: 4629981065635871775}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5944301615243423402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5554046834176312192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6698ad2175b841d7a24815999da2bbf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 4015829716640782646}
 --- !u!114 &5352395781337772132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,6 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1
   _transform: {fileID: 3105770917179402914}
+  _flipComponent: {fileID: 0}
 --- !u!114 &8828846598355375344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,6 +784,7 @@ MonoBehaviour:
   _colliderIsTrigger: 1
   _delay:
     _duration: 1
+  _pushBackForce: 5
 --- !u!114 &3278977000280703393
 MonoBehaviour:
   m_ObjectHideFlags: 0
