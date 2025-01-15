@@ -1,6 +1,8 @@
+using Game.Scripts.Components;
+using Game.Scripts.Objects;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Controllers
 {
     public sealed class PushController : MonoBehaviour
     {

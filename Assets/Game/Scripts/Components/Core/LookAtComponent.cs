@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Components
 {
     public class LookAtComponent : MonoBehaviour
     {
-        public Vector2 LookAtDirection { get; private set; } = Vector2.right;
+        public Vector2 Direction { get; private set; } = Vector2.right;
 
         [SerializeField] private float _detectionRadius = 1f;
         [SerializeField] private LayerMask _mask;
@@ -37,13 +37,13 @@ namespace Game.Scripts
         private void UpdateLookAtDirection(Vector2 direction)
         {
             if (direction == Vector2.right || direction == Vector2.left) 
-                LookAtDirection = direction;
+                Direction = direction;
         }
 
         private bool IsLookingAtObject(Vector3 objectPosition)
         {
             Vector2 toObject = (objectPosition - transform.position).normalized;
-            return Vector2.Dot(LookAtDirection, toObject) > 0;
+            return Vector2.Dot(Direction, toObject) > 0;
         }
     }
 }

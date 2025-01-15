@@ -1,11 +1,15 @@
-using Game.Scripts;
 using UnityEngine;
 
-namespace Components.Core
+namespace Game.Scripts.Components
 {
     public class StandingComponent : MonoBehaviour
     {
-        [SerializeField] private GroundComponent _groundComponent;
+        private GroundComponent _groundComponent;
+
+        private void Awake()
+        {
+            _groundComponent = GetComponent<GroundComponent>();
+        }
 
         private Transform _worldTransform;
 

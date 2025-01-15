@@ -1,6 +1,8 @@
+using Game.Scripts.Components;
+using Game.Scripts.Objects;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Controllers
 {
     public sealed class MoveController : MonoBehaviour
     {
@@ -15,7 +17,7 @@ namespace Game.Scripts
 
         private void Update()
         {
-            Vector2 direction = Vector2.zero;
+            var direction = Vector2.zero;
 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {

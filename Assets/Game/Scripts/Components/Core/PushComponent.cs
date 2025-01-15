@@ -1,10 +1,9 @@
 using System;
+using Game.Scripts.Common;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Components
 {
-    // TODO: Змея при дамаге толкает вверх
-
     public class PushComponent : MonoBehaviour
     {
         public event Action OnPushed;
@@ -13,6 +12,7 @@ namespace Game.Scripts
         [SerializeField] private float _forceStrength;
 
         private LookAtComponent _lookAtComponent;
+        private GamePhysics _gamePhysics;
 
         private void Awake()
         {
@@ -21,22 +21,22 @@ namespace Game.Scripts
 
         public void Push()
         {
-            ApplyForceToInteractable(_lookAtComponent.LookAtDirection);
+            AddForceToInteractable(_lookAtComponent.Direction);
             OnPushed?.Invoke();
         }
 
         public void Toss()
         {
-            ApplyForceToInteractable(Vector2.up);
+            AddForceToInteractable(Vector2.up);
             OnTossed?.Invoke();
         }
 
-        private void ApplyForceToInteractable(Vector2 direction)
+        private void AddForceToInteractable(Vector2 direction)
         {
             foreach (var interactable in _lookAtComponent.GetInteractables())
             {
                 interactable.TryGetComponent(out Rigidbody2D rigidbody);
-                rigidbody.AddForce(direction.normalized * (_forceStrength * 100));
+                GamePhysics.AddForce(rigidbody, direction, _forceStrength);
             }
         }
     }

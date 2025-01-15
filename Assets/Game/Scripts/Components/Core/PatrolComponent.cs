@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Components
 {
     public class PatrolComponent : MonoBehaviour
     {
@@ -20,6 +20,7 @@ namespace Game.Scripts
         {
             if (Vector2.Distance(_moveComponent.Transform.position, _target.position) < _stoppingThreshold)
                 _target = _target == _waypoint1 ? _waypoint2 : _waypoint1;
+            
             _moveComponent.Direction = _target.position - _moveComponent.Transform.position;
         }
     }

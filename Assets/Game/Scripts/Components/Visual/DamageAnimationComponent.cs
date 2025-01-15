@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Components
 {
     public class DamageAnimationComponent : MonoBehaviour
     {

@@ -1,7 +1,8 @@
 using System;
+using Game.Scripts.Common;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Components
 {
     public sealed class ThrowComponent : MonoBehaviour
     {
@@ -10,8 +11,8 @@ namespace Game.Scripts
         [SerializeField] private Vector2 _forceDirection = Vector2.up;
         [SerializeField] private float _forceStrength = 10f;
         
-        private const float _multiplier = 100;
-
+        private GamePhysics _gamePhysics;
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.TryGetComponent(out Rigidbody2D rigidbody)) 
@@ -21,7 +22,7 @@ namespace Game.Scripts
 
         private void Throw(Vector2 direction, float force, Rigidbody2D rigidbody)
         {
-            rigidbody.AddForce(direction.normalized * force * _multiplier);
+            GamePhysics.AddForce(rigidbody, direction, force);
             OnThrown?.Invoke();
         }
     }

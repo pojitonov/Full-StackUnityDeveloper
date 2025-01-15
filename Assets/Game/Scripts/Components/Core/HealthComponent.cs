@@ -1,8 +1,9 @@
 using System;
+using Game.Scripts.Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Components
 {
     public class HealthComponent : MonoBehaviour
     {

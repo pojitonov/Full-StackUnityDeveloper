@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Components
 {
     // TODO: Не должен зависеть от MoveComponent и быть универсальным
 

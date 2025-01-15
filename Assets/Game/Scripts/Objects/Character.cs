@@ -1,6 +1,7 @@
+using Game.Scripts.Components;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Objects
 {
     // TODO: Перечитать ТЗ сделать доп условия для толкания подкидывания
 

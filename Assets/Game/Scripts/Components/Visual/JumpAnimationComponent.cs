@@ -1,7 +1,8 @@
 using DG.Tweening;
+using Game.Scripts.Components;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Components
 {
     public class JumpAnimationComponent : MonoBehaviour
     {

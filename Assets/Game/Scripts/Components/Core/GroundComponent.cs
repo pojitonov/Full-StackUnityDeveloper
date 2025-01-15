@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Game.Scripts
+namespace Game.Scripts.Components
 {
     public class GroundComponent : MonoBehaviour
     {
@@ -9,7 +10,7 @@ namespace Game.Scripts
 
         [SerializeField] private float _detectDistance = 0.1f;
         [SerializeField] private Transform _feetTransform;
-        [SerializeField] private LayerMask _mask;
+        [SerializeField] private LayerMask _layerMask;
 
         private void Update()
         {
@@ -20,7 +21,7 @@ namespace Game.Scripts
 
         public bool CheckGround()
         {
-            var raycast =  Physics2D.Raycast(_feetTransform.position, Vector2.down, _detectDistance, _mask);
+            var raycast =  Physics2D.Raycast(_feetTransform.position, Vector2.down, _detectDistance, _layerMask);
             RaycastTransform = raycast.transform;
             return raycast;
         }
