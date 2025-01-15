@@ -7,11 +7,8 @@ namespace Game.Scripts
     {
         public event Action OnStateChanged;
 
-        [SerializeField]
-        private float _force = 8f;
-
-        [SerializeField]
-        private Rigidbody2D _rigidbody;
+        [SerializeField] private float _force = 8f;
+        [SerializeField] private Rigidbody2D _rigidbody;
         
         private readonly CompositeCondition _condition = new();
 

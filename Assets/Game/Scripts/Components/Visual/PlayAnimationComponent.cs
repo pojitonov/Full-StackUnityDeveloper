@@ -5,11 +5,8 @@ namespace Game.Scripts
 {
     public class PlayParticleComponent : MonoBehaviour
     {
-        [SerializeField]
-        private ParticleSystem _particleSource;
-
-        [SerializeField]
-        private MonoBehaviour _component;
+        [SerializeField] private ParticleSystem _particleSource;
+        [SerializeField] private MonoBehaviour _component;
 
         private ITriggerable _trigger;
 

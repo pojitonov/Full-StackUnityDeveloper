@@ -4,9 +4,8 @@ namespace Game.Scripts
 {
     public sealed class PushController : MonoBehaviour
     {
-        [SerializeField]
-        private Character _character;
-
+        [SerializeField] private Character _character;
+        
         private PushComponent _pushComponent;
         private LookAtComponent _lookAtComponent;
 

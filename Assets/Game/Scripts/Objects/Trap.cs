@@ -4,8 +4,7 @@ namespace Game.Scripts
 {
     public sealed class Trap : MonoBehaviour, IInteractable
     {
-        [SerializeField]
-        private Rigidbody2D _rigidbody;
+        [SerializeField] private Rigidbody2D _rigidbody;
         
         private PushMechanic _pushMechanic;
 

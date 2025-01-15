@@ -4,8 +4,14 @@ namespace Game.Scripts
 {
     public sealed class MoveController : MonoBehaviour
     {
-        [SerializeField]
-        private Character _character;
+        [SerializeField] private Character _character;
+        
+        private MoveComponent _moveComponent;
+
+        private void Awake()
+        {
+            _moveComponent = _character.GetComponent<MoveComponent>();
+        }
 
         private void Update()
         {
@@ -20,7 +26,7 @@ namespace Game.Scripts
                 direction = Vector2.right;
             }
 
-            _character.MoveDirection = direction;
+            _moveComponent.MoveDirection = direction;
         }
     }
 }

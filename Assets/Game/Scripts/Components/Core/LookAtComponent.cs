@@ -6,24 +6,21 @@ namespace Game.Scripts
     public class LookAtComponent : MonoBehaviour
     {
         public Vector2 LookAtDirection => _lookAtDirection;
-        
-        [SerializeField]
-        private float _detectionRadius = 1f;
 
-        [SerializeField]
-        private LayerMask _mask;
-        
+        [SerializeField] private float _detectionRadius = 1f;
+        [SerializeField] private LayerMask _mask;
+
         private Vector2 _lookAtDirection = Vector2.right;
-        private Character _character;
+        private MoveComponent _moveComponent;
 
         private void Awake()
         {
-            _character = GetComponent<Character>();
+            _moveComponent = GetComponent<MoveComponent>();
         }
 
         private void Update()
         {
-            UpdateFacingDirection(_character.MoveDirection);
+            UpdateFacingDirection(_moveComponent.MoveDirection);
         }
 
         private void UpdateFacingDirection(Vector2 direction)

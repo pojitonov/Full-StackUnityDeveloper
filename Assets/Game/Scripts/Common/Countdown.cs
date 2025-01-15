@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts
 {
@@ -9,9 +8,9 @@ namespace Game.Scripts
     {
         public event Action OnTimeIsUp;
 
-        [SerializeField]
+        [SerializeField] 
         private float _duration;
-
+        
         private float time;
 
         public bool IsTimeUp() => time <= 0;

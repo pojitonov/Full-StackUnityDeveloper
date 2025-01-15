@@ -4,8 +4,7 @@ namespace Game.Scripts
 {
     public class FlipComponent : MonoBehaviour
     {
-        [SerializeField]
-        private Transform _transform;
+        [SerializeField] private Transform _transform;
         
         private MoveComponent _moveComponent;
 
@@ -16,7 +15,7 @@ namespace Game.Scripts
 
         public void Update()
         {
-            var direction = _moveComponent.Direction;
+            var direction = _moveComponent.MoveDirection;
             
             if (direction.x > 0)
             {

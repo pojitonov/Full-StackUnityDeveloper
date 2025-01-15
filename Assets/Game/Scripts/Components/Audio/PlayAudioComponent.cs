@@ -5,14 +5,9 @@ namespace Game.Scripts
 {
     public class PlayAudioComponent : MonoBehaviour
     {
-        [SerializeField]
-        private AudioSource _audioSource;
-
-        [SerializeField]
-        private AudioClip _sourceClip;
-
-        [SerializeField]
-        private MonoBehaviour _component;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _sourceClip;
+        [SerializeField] private MonoBehaviour _component;
 
         private ITriggerable _trigger;
 

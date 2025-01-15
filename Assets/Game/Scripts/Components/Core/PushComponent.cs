@@ -7,16 +7,13 @@ namespace Game.Scripts
     {
         public event Action OnStateChanged;
 
-        [SerializeField]
-        private float _forceStrength;
+        [SerializeField] private float _forceStrength;
 
-        private Character _character;
         private LookAtComponent _lookAtComponent;
 
         private void Awake()
         {
-            _character = GetComponent<Character>();
-            _lookAtComponent = _character.GetComponent<LookAtComponent>();
+            _lookAtComponent = GetComponent<LookAtComponent>();
         }
 
         public void Push(Vector2 direction)

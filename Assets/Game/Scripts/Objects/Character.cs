@@ -4,8 +4,6 @@ namespace Game.Scripts
 {
     public sealed class Character : MonoBehaviour
     {
-        public Vector2 MoveDirection { get; set; }
-
         [SerializeField] private MoveComponent _moveComponent;
         [SerializeField] private JumpComponent _jumpComponent;
         [SerializeField] private PushComponent _pushComponent;
@@ -17,11 +15,6 @@ namespace Game.Scripts
         {
             _moveComponent.AddCondition(() => _healthComponent.IsAlive);
             _jumpComponent.AddCondition(() => _groundComponent.IsGrounded && _healthComponent.IsAlive);
-        }
-
-        private void FixedUpdate()
-        {
-            _moveComponent.Move(MoveDirection);
         }
     }
 }

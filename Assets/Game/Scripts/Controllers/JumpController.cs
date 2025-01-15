@@ -4,8 +4,7 @@ namespace Game.Scripts
 {
     public class JumpController : MonoBehaviour
     {
-        [SerializeField]
-        private Character _character;
+        [SerializeField] private Character _character;
         
         private JumpComponent _jumpComponent;
 

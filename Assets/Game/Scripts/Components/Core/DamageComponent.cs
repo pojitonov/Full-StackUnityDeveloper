@@ -7,16 +7,10 @@ namespace Game.Scripts
     {
         public event Action OnStateChanged;
 
-        [SerializeField]
-        private int _damageValue = 1;
-
-        [SerializeField]
-        private bool _colliderIsTrigger;
-
-        [SerializeField]
-        private Countdown _delay;
-        
-        private readonly float _pushBackForce = 5f;
+        [SerializeField] private int _damageValue = 1;
+        [SerializeField] private bool _colliderIsTrigger;
+        [SerializeField] private Countdown _delay;
+        [SerializeField] private float _pushBackForce = 5f;
         
         private void Update()
         {

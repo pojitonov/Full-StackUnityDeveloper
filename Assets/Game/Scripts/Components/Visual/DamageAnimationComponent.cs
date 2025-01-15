@@ -5,14 +5,9 @@ namespace Game.Scripts
 {
     public class DamageAnimationComponent : MonoBehaviour
     {
-        [SerializeField]
-        private SpriteRenderer spriteRenderer;
-
-        [SerializeField]
-        private Color _damagedColor = Color.magenta;
-
-        [SerializeField]
-        private HealthComponent _healthComponent;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Color _damagedColor = Color.magenta;
+        [SerializeField] private HealthComponent _healthComponent;
 
         private Tween _tween;
         private Color _originalColor;

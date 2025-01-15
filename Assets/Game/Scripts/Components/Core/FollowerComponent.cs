@@ -5,8 +5,7 @@ namespace Components.Core
 {
     public class FollowerComponent : MonoBehaviour
     {
-        [SerializeField]
-        private GroundComponent _groundComponent;
+        [SerializeField] private GroundComponent _groundComponent;
 
         private Transform _worldTransform;
 

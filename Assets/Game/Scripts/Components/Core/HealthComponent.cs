@@ -7,18 +7,11 @@ namespace Game.Scripts
     public class HealthComponent : MonoBehaviour, ITriggerable
     {
         public event Action OnStateChanged;
-
-        [field: ShowInInspector]
-        public bool IsAlive { get; private set; } = true;
-
-        [SerializeField]
-        private int _lifePoints = 5;
-
-        [SerializeField]
-        private int _damagePoints;
-
-        [SerializeField]
-        private Countdown _delay;
+        [field: ShowInInspector] public bool IsAlive { get; private set; } = true;
+        
+        [SerializeField] private int _lifePoints = 5;
+        [SerializeField] private int _damagePoints;
+        [SerializeField] private Countdown _delay;
 
         private void Awake()
         {

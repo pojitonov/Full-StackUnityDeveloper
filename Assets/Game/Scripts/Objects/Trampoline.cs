@@ -7,11 +7,8 @@ namespace Game.Scripts
     {
         public event Action OnStateChanged;
 
-        [SerializeField]
-        private Vector2 _forceDirection = Vector2.up;
-
-        [SerializeField]
-        private float _forceStrength = 10f;
+        [SerializeField] private Vector2 _forceDirection = Vector2.up;
+        [SerializeField] private float _forceStrength = 10f;
 
         private PushMechanic _pushMechanic;
 
