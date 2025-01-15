@@ -926,7 +926,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.0999985, y: 6.700001, z: -10}
+  m_LocalPosition: {x: 29, y: 5.3999996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5651,11 +5651,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5692,18 +5692,6 @@ PrefabInstance:
     - target: {fileID: 7490323295220271620, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_Name
       value: Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705098180684878821, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
-      propertyPath: _delay._duration
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705098180684878821, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
-      propertyPath: _countdown._duration
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705098180684878821, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
-      propertyPath: _countdown.delayToDie
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

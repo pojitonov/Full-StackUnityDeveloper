@@ -6,12 +6,19 @@ namespace Game.Scripts
     {
         [SerializeField]
         private Character _character;
+        
+        private JumpComponent _jumpComponent;
+
+        private void Awake()
+        {
+            _jumpComponent = _character.GetComponent<JumpComponent>();
+        }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                _character.GetComponent<JumpComponent>().Jump();
+                _jumpComponent.Jump();
             }
         }
     }

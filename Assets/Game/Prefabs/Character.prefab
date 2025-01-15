@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSource: {fileID: 7586124585203602957}
-  _component: {fileID: 4500392856088775936}
+  _component: {fileID: 438063799118009260}
 --- !u!114 &2803689355287759373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,7 +346,6 @@ GameObject:
   - component: {fileID: 1674429860930161243}
   - component: {fileID: 6991238943733658325}
   - component: {fileID: 438063799118009260}
-  - component: {fileID: 4500392856088775936}
   - component: {fileID: 5814930138478287487}
   - component: {fileID: 8705098180684878821}
   - component: {fileID: 946704862140120437}
@@ -492,7 +491,6 @@ MonoBehaviour:
   _moveComponent: {fileID: 1674429860930161243}
   _jumpComponent: {fileID: 6991238943733658325}
   _pushComponent: {fileID: 438063799118009260}
-  _tossComponent: {fileID: 4500392856088775936}
   _groundComponent: {fileID: 946704862140120437}
   _lookAtComponent: {fileID: 8606975443487328141}
   _healthComponent: {fileID: 8705098180684878821}
@@ -537,19 +535,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceStrength: 5
---- !u!114 &4500392856088775936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7490323295220271620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96e45d02208a406e83ef696eb922234b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _forceStrength: 4
 --- !u!114 &5814930138478287487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +548,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageValue: 1
+  _colliderIsTrigger: 0
+  _delay:
+    _duration: 0
 --- !u!114 &8705098180684878821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,8 +565,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifePoints: 5
   _damagePoints: 0
-  _countdown:
-    _duration: 0
+  _delay:
+    _duration: 0.5
 --- !u!114 &946704862140120437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -829,7 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 3053905989913550054}
   _sourceClip: {fileID: 8300000, guid: a2fb8d4706a16468592a6e50aa24de65, type: 3}
-  _component: {fileID: 4500392856088775936}
+  _component: {fileID: 0}
 --- !u!1 &8298308173651655035
 GameObject:
   m_ObjectHideFlags: 0

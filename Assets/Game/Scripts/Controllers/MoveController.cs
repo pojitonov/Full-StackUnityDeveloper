@@ -7,8 +7,6 @@ namespace Game.Scripts
         [SerializeField]
         private Character _character;
 
-        private MoveComponent _moveComponent;
-
         private void Update()
         {
             Vector2 direction = Vector2.zero;

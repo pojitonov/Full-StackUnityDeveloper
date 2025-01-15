@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 
@@ -12,22 +11,22 @@ namespace Game.Scripts
         private float _forceStrength;
 
         private Character _character;
+        private LookAtComponent _lookAtComponent;
 
         private void Awake()
         {
             _character = GetComponent<Character>();
+            _lookAtComponent = _character.GetComponent<LookAtComponent>();
         }
 
-        public void Push()
+        public void Push(Vector2 direction)
         {
-            var direction = _character.GetComponent<LookAtComponent>().LookAtDirection;
-
-            OnStateChanged?.Invoke();
-            
-            foreach (var interactable in _character.GetComponent<LookAtComponent>().GetInteractableInFront())
+            foreach (var interactable in _lookAtComponent.GetInteractableInFront())
             {
                 interactable.Push(direction, _forceStrength);
             }
+
+            OnStateChanged?.Invoke();
         }
     }
 }

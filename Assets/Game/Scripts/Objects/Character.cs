@@ -9,7 +9,6 @@ namespace Game.Scripts
         [SerializeField] private MoveComponent _moveComponent;
         [SerializeField] private JumpComponent _jumpComponent;
         [SerializeField] private PushComponent _pushComponent;
-        [SerializeField] private TossComponent _tossComponent;
         [SerializeField] private GroundComponent _groundComponent;
         [SerializeField] private LookAtComponent _lookAtComponent;
         [SerializeField] private HealthComponent _healthComponent;
