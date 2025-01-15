@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    // TODO: Перепелить LookAtComponent метод Push выглядит странно
+    // TODO: Змея при дамаге толкает вверх
+
     public class PushComponent : MonoBehaviour
     {
         public event Action OnPushed;
@@ -20,21 +21,22 @@ namespace Game.Scripts
 
         public void Push()
         {
-            ApplyForce(_lookAtComponent.LookAtDirection);
+            ApplyForceToInteractable(_lookAtComponent.LookAtDirection);
             OnPushed?.Invoke();
         }
 
         public void Toss()
         {
-            ApplyForce(Vector2.up);
+            ApplyForceToInteractable(Vector2.up);
             OnTossed?.Invoke();
         }
 
-        private void ApplyForce(Vector2 direction)
+        private void ApplyForceToInteractable(Vector2 direction)
         {
-            foreach (var interactable in _lookAtComponent.GetInteractableInFront())
+            foreach (var interactable in _lookAtComponent.GetInteractables())
             {
-                interactable.Push(direction, _forceStrength);
+                interactable.TryGetComponent(out Rigidbody2D rigidbody);
+                rigidbody.AddForce(direction.normalized * (_forceStrength * 100));
             }
         }
     }

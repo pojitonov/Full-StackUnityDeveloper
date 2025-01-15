@@ -2,7 +2,7 @@
 //
 // namespace Game.Scripts
 // {
-//     public sealed class Spider : MonoBehaviour, IInteractable
+//     public sealed class Snake : MonoBehaviour
 //     {
 //         [SerializeField] private Rigidbody2D _rigidbody;
 //         
@@ -11,11 +11,6 @@
 //         private void Awake()
 //         {
 //             _pushMechanic = new PushMechanic(_rigidbody);
-//         }
-//         
-//         public void Push(Vector2 direction, float force)
-//         {
-//             _pushMechanic.Invoke(direction, force);
 //         }
 //     }
 // }

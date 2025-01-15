@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
+    // TODO: Перечитать ТЗ сделать доп условия для толкания подкидывания
+
     public sealed class Character : MonoBehaviour
     {
-        // TODO: Перечитать ТЗ сделать доп условия для толкания подкидывания
-
         [SerializeField] private MoveComponent _moveComponent;
         [SerializeField] private JumpComponent _jumpComponent;
         [SerializeField] private PushComponent _pushComponent;

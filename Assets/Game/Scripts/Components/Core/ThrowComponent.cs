@@ -18,7 +18,7 @@ namespace Game.Scripts
                 return;
             Throw(_forceDirection, _forceStrength, rigidbody);
         }
-        
+
         private void Throw(Vector2 direction, float force, Rigidbody2D rigidbody)
         {
             rigidbody.AddForce(direction.normalized * force * _multiplier);

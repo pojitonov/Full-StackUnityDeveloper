@@ -2,8 +2,7 @@
 //
 // namespace Game.Scripts
 // {
-//     // TODO: Змея при дамаге толкает вверх
-//     public sealed class Snake : MonoBehaviour, IInteractable
+//     public sealed class Trap : MonoBehaviour
 //     {
 //         [SerializeField] private Rigidbody2D _rigidbody;
 //         
@@ -12,11 +11,6 @@
 //         private void Awake()
 //         {
 //             _pushMechanic = new PushMechanic(_rigidbody);
-//         }
-//         
-//         public void Push(Vector2 direction, float force)
-//         {
-//             _pushMechanic.Invoke(direction, force);
 //         }
 //     }
 // }
