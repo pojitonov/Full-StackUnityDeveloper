@@ -19,7 +19,7 @@ namespace Game.Scripts.Components
 
         private void Update()
         {
-            UpdateLookAtDirection(_moveComponent.Direction);
+            UpdateLookAtDirection(_moveComponent.MoveDirection);
         }
 
         public IEnumerable<GameObject> GetInteractables()

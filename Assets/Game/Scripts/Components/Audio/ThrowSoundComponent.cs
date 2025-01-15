@@ -1,22 +1,21 @@
-using Game.Scripts.Components;
 using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class PlayDestroyerSound : MonoBehaviour
+    public class ThrowSoundComponent : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
-        [SerializeField] private DestroyerComponent _destroyerComponent;
+        [SerializeField] private ThrowComponent _throwComponent;
 
         private void OnEnable()
         {
-            _destroyerComponent.OnDestroyed += Play;
+            _throwComponent.OnThrown += Play;
         }
 
         private void OnDisable()
         {
-            _destroyerComponent.OnDestroyed -= Play;
+            _throwComponent.OnThrown -= Play;
         }
 
         private void Play()

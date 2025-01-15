@@ -1,22 +1,21 @@
-using Game.Scripts.Components;
 using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class PlayTossSound : MonoBehaviour
+    public class DamageSoundComponent : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
-        [SerializeField] private PushComponent _pushComponent;
+        [SerializeField] private HealthComponent _healthComponent;
 
         private void OnEnable()
         {
-            _pushComponent.OnTossed += Play;
+            _healthComponent.OnDamaged += Play;
         }
 
         private void OnDisable()
         {
-            _pushComponent.OnTossed -= Play;
+            _healthComponent.OnDamaged -= Play;
         }
 
         private void Play()

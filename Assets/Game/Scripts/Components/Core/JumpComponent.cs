@@ -8,17 +8,18 @@ namespace Game.Scripts.Components
     {
         public event Action OnJumped;
 
-        [SerializeField] private float _forceStrength = 8f;
+        [SerializeField] private float _forceStrength = 10f;
         [SerializeField] private Rigidbody2D _rigidbody;
         
-        private readonly CompositeCondition _condition = new();
+        private readonly Condition _condition = new();
+        private GamePhysics _physics;
 
         public void Jump()
         {
             if (!_condition.IsTrue())
                 return;
 
-            _rigidbody.AddForce(new Vector2(0, _forceStrength), ForceMode2D.Impulse);
+            GamePhysics.AddForce(_rigidbody, Vector2.up, _forceStrength, ForceMode2D.Impulse);
             OnJumped?.Invoke();
         }
 

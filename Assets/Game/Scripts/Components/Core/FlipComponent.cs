@@ -17,7 +17,7 @@ namespace Game.Scripts.Components
 
         public void Update()
         {
-            var direction = _moveComponent.Direction;
+            var direction = _moveComponent.MoveDirection;
             
             if (direction.x > 0)
             {

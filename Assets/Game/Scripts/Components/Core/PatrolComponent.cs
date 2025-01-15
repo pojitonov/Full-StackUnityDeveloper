@@ -21,7 +21,7 @@ namespace Game.Scripts.Components
             if (Vector2.Distance(_moveComponent.Transform.position, _target.position) < _stoppingThreshold)
                 _target = _target == _waypoint1 ? _waypoint2 : _waypoint1;
             
-            _moveComponent.Direction = _target.position - _moveComponent.Transform.position;
+            _moveComponent.MoveDirection = _target.position - _moveComponent.Transform.position;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Game.Scripts.Common
 {
-    public class CompositeCondition
+    public class Condition
     {
         private readonly List<Func<bool>> _conditions = new();
 

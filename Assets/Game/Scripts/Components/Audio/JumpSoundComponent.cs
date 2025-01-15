@@ -1,22 +1,21 @@
-using Game.Scripts.Components;
 using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class PlayPushSound : MonoBehaviour
+    public class JumpSoundComponent : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
-        [SerializeField] private PushComponent _pushComponent;
+        [SerializeField] private JumpComponent _jumpComponent;
 
         private void OnEnable()
         {
-            _pushComponent.OnPushed += Play;
+            _jumpComponent.OnJumped += Play;
         }
 
         private void OnDisable()
         {
-            _pushComponent.OnPushed -= Play;
+            _jumpComponent.OnJumped -= Play;
         }
 
         private void Play()

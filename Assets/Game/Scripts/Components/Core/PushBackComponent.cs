@@ -18,6 +18,7 @@ namespace Game.Scripts.Components
             _rigidbody = GetComponent<Rigidbody2D>();
             _healthComponent = GetComponent<HealthComponent>();
             _lookAtComponent = GetComponent<LookAtComponent>();
+            
             _healthComponent.OnDamaged += PushBack;
         }
 

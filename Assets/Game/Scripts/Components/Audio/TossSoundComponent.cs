@@ -2,20 +2,20 @@ using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class PlayThrowSound : MonoBehaviour
+    public class TossSoundComponent : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
-        [SerializeField] private ThrowComponent _throwComponent;
+        [SerializeField] private PushComponent _pushComponent;
 
         private void OnEnable()
         {
-            _throwComponent.OnThrown += Play;
+            _pushComponent.OnTossed += Play;
         }
 
         private void OnDisable()
         {
-            _throwComponent.OnThrown -= Play;
+            _pushComponent.OnTossed -= Play;
         }
 
         private void Play()

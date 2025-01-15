@@ -7,25 +7,20 @@ namespace Game.Scripts.Components
 {
     public class MoveComponent : MonoBehaviour
     {
-        public Vector2 Direction
-        {
-            get => _moveDirection;
-            set => _moveDirection = value;
-        }
+        [field: ShowInInspector, ReadOnly] public Vector2 MoveDirection { get; set; }
         public Transform Transform => _transform;
 
-        [ShowInInspector, ReadOnly] private Vector2 _moveDirection;
         [SerializeField] private float _speed = 5f;
         [SerializeField] private Transform _transform;
 
-        private readonly CompositeCondition _condition = new();
+        private readonly Condition _condition = new();
 
         public void FixedUpdate()
         {
             if (!_condition.IsTrue())
                 return;
 
-            _transform.position += (Vector3)_moveDirection.normalized * (_speed * Time.deltaTime);
+            _transform.position += (Vector3)MoveDirection.normalized * (_speed * Time.deltaTime);
         }
 
         public void AddCondition(Func<bool> condition)

@@ -1,14 +1,11 @@
 using Game.Scripts.Common;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts.Components
 {
     // TODO: Змея при дамаге толкает вверх
     public class DamageComponent : MonoBehaviour
     {
-        [FormerlySerializedAs("_damage")]
-        [FormerlySerializedAs("_damageValue")]
         [SerializeField] private int _damagePoints = 1;
         [SerializeField] private bool _colliderIsTrigger;
         [SerializeField] private Countdown _delay;

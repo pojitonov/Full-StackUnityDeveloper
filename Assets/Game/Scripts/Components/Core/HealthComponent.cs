@@ -8,15 +8,17 @@ namespace Game.Scripts.Components
     public class HealthComponent : MonoBehaviour
     {
         public event Action OnDamaged;
+        
         [field: ShowInInspector] public bool IsAlive { get; private set; } = true;
         
-        [SerializeField] private int _lifePoints = 5;
-        [SerializeField] private int _damagePoints;
+        [SerializeField] private int _maxLife = 5;
+        [SerializeField] private int _currentLife;
         [SerializeField] private Countdown _delay;
 
         private void Awake()
         {
             _delay.OnTimeIsUp += Destroy;
+            _currentLife = _maxLife;
         }
 
         private void OnDestroy()
@@ -31,10 +33,10 @@ namespace Game.Scripts.Components
 
         public void TakeDamage(int damage)
         {
-            _damagePoints += damage;
+            _currentLife -= damage;
             OnDamaged?.Invoke();
 
-            if (_damagePoints < _lifePoints) return;
+            if (_currentLife > 0) return;
             IsAlive = false;
             _delay.Reset();
         }

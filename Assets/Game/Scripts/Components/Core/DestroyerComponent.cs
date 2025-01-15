@@ -9,7 +9,9 @@ namespace Game.Scripts.Components
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.TryGetComponent<HealthComponent>(out var component)) return;
+            if (!other.TryGetComponent<HealthComponent>(out var component))
+                return;
+            
             component.Destroy();
             OnDestroyed?.Invoke();
         }

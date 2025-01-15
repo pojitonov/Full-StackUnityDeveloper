@@ -446,7 +446,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1
   _transform: {fileID: 3105770917179402914}
-  _flipComponent: {fileID: 0}
 --- !u!114 &8828846598355375344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,8 +623,8 @@ GameObject:
   - component: {fileID: 4015829716640782646}
   - component: {fileID: 7422560000825944449}
   - component: {fileID: 7073503754261842485}
-  - component: {fileID: 4750874094732761688}
   - component: {fileID: 3278977000280703393}
+  - component: {fileID: 4750874094732761688}
   - component: {fileID: 3657696452733654929}
   m_Layer: 8
   m_Name: <Spider>
@@ -768,23 +767,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &4750874094732761688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8665529919726988981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 127104d701894c0aa0cd8d9c684beda7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damageValue: 2
-  _colliderIsTrigger: 1
-  _delay:
-    _duration: 1
-  _pushBackForce: 5
 --- !u!114 &3278977000280703393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,10 +779,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e5c155787a4204bb1eeee8bebfe8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifePoints: 3
-  _damagePoints: 0
+  _maxLife: 3
+  _currentLife: 0
   _delay:
     _duration: 0.5
+--- !u!114 &4750874094732761688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8665529919726988981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127104d701894c0aa0cd8d9c684beda7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damagePoints: 1
+  _colliderIsTrigger: 1
+  _delay:
+    _duration: 1
 --- !u!114 &3657696452733654929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,3 +814,4 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3123733364965956949}
   _damagedColor: {r: 1, g: 0, b: 1, a: 1}
   _healthComponent: {fileID: 3278977000280703393}
+  _animationDuration: 0.2

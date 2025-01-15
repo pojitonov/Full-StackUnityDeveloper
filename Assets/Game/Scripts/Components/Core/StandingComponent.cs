@@ -1,3 +1,4 @@
+using Game.Scripts.Common;
 using UnityEngine;
 
 namespace Game.Scripts.Components
@@ -5,6 +6,7 @@ namespace Game.Scripts.Components
     public class StandingComponent : MonoBehaviour
     {
         private GroundComponent _groundComponent;
+        private GamePhysics _physics;
 
         private void Awake()
         {
@@ -15,9 +17,9 @@ namespace Game.Scripts.Components
 
         public void FixedUpdate()
         {
-            var groundTransform = _groundComponent.RaycastTransform;
+            var groundTransform = _groundComponent.GroundTransform;
 
-            transform.SetParent(_groundComponent.CheckGround() ? groundTransform : _worldTransform);
+            transform.SetParent(_groundComponent.IsGrounded ? groundTransform : _worldTransform);
         }
     }
 }
