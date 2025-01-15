@@ -1,12 +1,11 @@
-using System;
 using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class DamageComponent : MonoBehaviour, ITriggerable
-    {
-        public event Action OnStateChanged;
+    // TODO: нарушение SRP должен быть только _damageValue и TakeDamage, PushBack вынести в отдельный компонент
 
+    public class DamageComponent : MonoBehaviour
+    {
         [SerializeField] private int _damageValue = 1;
         [SerializeField] private bool _colliderIsTrigger;
         [SerializeField] private Countdown _delay;
@@ -41,7 +40,6 @@ namespace Game.Scripts
             
             healthComponent.TakeDamage(_damageValue);
             PushBack(other);
-            OnStateChanged?.Invoke();
         }
 
         private void PushBack(GameObject other)

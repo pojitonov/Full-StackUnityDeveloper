@@ -14,12 +14,12 @@ namespace Game.Scripts
 
         private void OnEnable()
         {
-            _jumpComponent.OnStateChanged += Animate;
+            _jumpComponent.OnJumped += Animate;
         }
 
         private void OnDisable()
         {
-            _jumpComponent.OnStateChanged -= Animate;
+            _jumpComponent.OnJumped -= Animate;
         }
 
         private void Animate()

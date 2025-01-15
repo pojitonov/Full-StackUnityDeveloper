@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
+    // TODO: Распилить на более мелкие компоненты и возможно что то упразднить
     public class LookAtComponent : MonoBehaviour
     {
         public Vector2 LookAtDirection => _lookAtDirection;

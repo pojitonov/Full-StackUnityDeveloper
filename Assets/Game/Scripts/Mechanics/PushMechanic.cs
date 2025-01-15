@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
+    // TODO: Перепилить в компоненты
+
     public class PushMechanic
     {
         private const float _multiplier = 100;

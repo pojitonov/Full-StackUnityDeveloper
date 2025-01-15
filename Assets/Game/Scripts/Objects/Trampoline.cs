@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public sealed class Trampoline : MonoBehaviour, ITriggerable
+    public sealed class Trampoline : MonoBehaviour
     {
         public event Action OnStateChanged;
 

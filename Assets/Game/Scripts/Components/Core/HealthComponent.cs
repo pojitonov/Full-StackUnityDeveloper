@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class HealthComponent : MonoBehaviour, ITriggerable
+    public class HealthComponent : MonoBehaviour
     {
-        public event Action OnStateChanged;
+        public event Action OnDamaged;
         [field: ShowInInspector] public bool IsAlive { get; private set; } = true;
         
         [SerializeField] private int _lifePoints = 5;
@@ -31,7 +31,7 @@ namespace Game.Scripts
         public void TakeDamage(int damage)
         {
             _damagePoints += damage;
-            OnStateChanged?.Invoke();
+            OnDamaged?.Invoke();
 
             if (_damagePoints < _lifePoints) return;
             IsAlive = false;

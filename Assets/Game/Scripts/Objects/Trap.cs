@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
+    // TODO: Переделать логику как подкидываем без IInteractable и Push в каждом компоненте
     public sealed class Trap : MonoBehaviour, IInteractable
     {
         [SerializeField] private Rigidbody2D _rigidbody;

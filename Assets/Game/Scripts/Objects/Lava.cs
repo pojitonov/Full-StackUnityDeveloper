@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public sealed class Lava : MonoBehaviour, ITriggerable
+    public sealed class Lava : MonoBehaviour
     {
         public event Action OnStateChanged;
         

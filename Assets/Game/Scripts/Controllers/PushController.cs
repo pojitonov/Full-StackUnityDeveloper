@@ -7,25 +7,22 @@ namespace Game.Scripts
         [SerializeField] private Character _character;
         
         private PushComponent _pushComponent;
-        private LookAtComponent _lookAtComponent;
 
         private void Awake()
         {
             _pushComponent = _character.GetComponent<PushComponent>();
-            _lookAtComponent = _character.GetComponent<LookAtComponent>();
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                _pushComponent.Push(Vector2.up);
+                _pushComponent.Toss();
             }
 
-            var direction = _lookAtComponent.LookAtDirection;
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
             {
-                _pushComponent.Push(direction);
+                _pushComponent.Push();
             }
         }
     }

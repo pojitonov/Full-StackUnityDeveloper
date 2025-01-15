@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class JumpComponent : MonoBehaviour, ITriggerable
+    public class JumpComponent : MonoBehaviour
     {
-        public event Action OnStateChanged;
+        public event Action OnJumped;
 
         [SerializeField] private float _force = 8f;
         [SerializeField] private Rigidbody2D _rigidbody;
@@ -18,7 +18,7 @@ namespace Game.Scripts
                 return;
 
             _rigidbody.AddForce(new Vector2(0, _force), ForceMode2D.Impulse);
-            OnStateChanged?.Invoke();
+            OnJumped?.Invoke();
         }
 
         public void AddCondition(Func<bool> condition)

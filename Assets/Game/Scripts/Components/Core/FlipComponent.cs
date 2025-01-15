@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
+    // TODO: Не должен зависеть от MoveComponent и быть универсальным
+
     public class FlipComponent : MonoBehaviour
     {
         [SerializeField] private Transform _transform;

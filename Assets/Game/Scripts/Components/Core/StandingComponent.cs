@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Components.Core
 {
-    public class FollowerComponent : MonoBehaviour
+    public class StandingComponent : MonoBehaviour
     {
         [SerializeField] private GroundComponent _groundComponent;
 

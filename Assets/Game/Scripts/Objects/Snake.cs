@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
+    // TODO: Змея при дамаге толкает вверх
     public sealed class Snake : MonoBehaviour, IInteractable
     {
         [SerializeField] private Rigidbody2D _rigidbody;
