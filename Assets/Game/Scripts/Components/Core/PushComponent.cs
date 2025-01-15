@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts
 {
+    // TODO: Перепелить LookAtComponent метод Push выглядит странно
     public class PushComponent : MonoBehaviour
     {
         public event Action OnPushed;
