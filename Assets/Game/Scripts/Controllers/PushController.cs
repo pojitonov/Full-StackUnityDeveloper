@@ -11,12 +11,12 @@ namespace Game.Scripts
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                _character._tossComponent.Toss();
+                _character.GetComponent<TossComponent>().Toss();
             }
 
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
             {
-                _character._pushComponent.Push();
+                _character.GetComponent<PushComponent>().Push();
             }
         }
     }

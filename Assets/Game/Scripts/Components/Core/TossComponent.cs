@@ -21,7 +21,7 @@ namespace Game.Scripts
         {
             OnStateChanged?.Invoke();
             
-            foreach (var interactable in _character._lookAtComponent.GetInteractableInFront())
+            foreach (var interactable in _character.GetComponent<LookAtComponent>().GetInteractableInFront())
             {
                 interactable.Push(Vector2.up, _forceStrength);
             }

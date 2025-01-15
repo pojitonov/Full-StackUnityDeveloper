@@ -5,15 +5,15 @@ namespace Game.Scripts
     public sealed class Character : MonoBehaviour
     {
         public Vector2 MoveDirection { get; set; }
-        
-        public MoveComponent _moveComponent;
-        public JumpComponent _jumpComponent;
-        public PushComponent _pushComponent;
-        public TossComponent _tossComponent;
-        public GroundComponent _groundComponent;
-        public LookAtComponent _lookAtComponent;
-        public HealthComponent _healthComponent;
-        
+
+        [SerializeField] private MoveComponent _moveComponent;
+        [SerializeField] private JumpComponent _jumpComponent;
+        [SerializeField] private PushComponent _pushComponent;
+        [SerializeField] private TossComponent _tossComponent;
+        [SerializeField] private GroundComponent _groundComponent;
+        [SerializeField] private LookAtComponent _lookAtComponent;
+        [SerializeField] private HealthComponent _healthComponent;
+
         private void Awake()
         {
             _moveComponent.AddCondition(() => _healthComponent.IsAlive);

@@ -11,7 +11,7 @@ namespace Game.Scripts
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                _character._jumpComponent.Jump();
+                _character.GetComponent<JumpComponent>().Jump();
             }
         }
     }

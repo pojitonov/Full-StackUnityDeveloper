@@ -20,11 +20,11 @@ namespace Game.Scripts
 
         public void Push()
         {
-            var direction = _character._lookAtComponent.LookAtDirection;
+            var direction = _character.GetComponent<LookAtComponent>().LookAtDirection;
 
             OnStateChanged?.Invoke();
             
-            foreach (var interactable in _character._lookAtComponent.GetInteractableInFront())
+            foreach (var interactable in _character.GetComponent<LookAtComponent>().GetInteractableInFront())
             {
                 interactable.Push(direction, _forceStrength);
             }
