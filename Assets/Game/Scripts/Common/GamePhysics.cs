@@ -15,12 +15,6 @@ namespace Game.Scripts.Common
                 rigidbody.AddForce(direction.normalized * force, forceMode);
         }
 
-        public static Transform GetRaycastTransform(Transform transform, Vector2 direction, float distance, LayerMask layerMask)
-        {
-            var raycast = Physics2D.Raycast(transform.position, direction, distance, layerMask);
-            return raycast.transform;
-        }
-        
         public static void AddForceToInteractable(IEnumerable<GameObject> items, Vector2 direction, float force)
         {
             foreach (var item in items)
@@ -30,6 +24,12 @@ namespace Game.Scripts.Common
                     AddForce(rigidbody, direction, force);
                 }
             }
+        }
+
+        public static Transform GetRaycastTransform(Transform transform, Vector2 direction, float distance, LayerMask layerMask)
+        {
+            var raycast = Physics2D.Raycast(transform.position, direction, distance, layerMask);
+            return raycast.transform;
         }
     }
 }
