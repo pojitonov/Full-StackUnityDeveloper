@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Scripts.Common
@@ -11,29 +10,31 @@ namespace Game.Scripts.Common
         public static void AddForce(Rigidbody2D rigidbody, Vector2 direction, float force,
             ForceMode2D forceMode = ForceMode2D.Force)
         {
+            if (!rigidbody) return;
             if (forceMode == ForceMode2D.Force)
                 rigidbody.AddForce(direction.normalized * (force * _forceMultiplier), forceMode);
-            else if (forceMode == ForceMode2D.Impulse)
+            if (forceMode == ForceMode2D.Impulse)
                 rigidbody.AddForce(direction.normalized * (force * _impulseMultiplier), forceMode);
         }
 
         public static void AddForceToInteractable(GameObject item, Vector2 direction, float force)
         {
+            if (!item) return;
             if (item.TryGetComponent(out Rigidbody2D rigidbody))
-            {
                 AddForce(rigidbody, direction, force);
-            }
         }
 
-        public static void AddForceToInteractable(IEnumerable<GameObject> items, Vector2 direction, float force)
+        public static GameObject GetInteractable(Vector2 position, float radius, LayerMask mask, Vector2 lookDirection)
         {
-            foreach (var item in items)
-            {
-                if (item.TryGetComponent(out Rigidbody2D rigidbody))
-                {
-                    AddForce(rigidbody, direction, force);
-                }
-            }
+            var collider = Physics2D.OverlapCircle(position, radius, mask);
+            if (!collider) return null;
+            
+            GameObject interactable = collider.gameObject;
+            
+            Vector2 toObject = (collider.transform.position - (Vector3)position).normalized;
+            if (Vector2.Dot(lookDirection, toObject) > 0)
+                return interactable;
+            return null;
         }
 
         public static Transform GetRaycastTransform(Transform transform, Vector2 direction, float distance,

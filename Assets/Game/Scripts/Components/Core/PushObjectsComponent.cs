@@ -30,10 +30,13 @@ namespace Game.Scripts.Components
                 return;
             _countdown.Reset();
 
-            var items = _lookAtComponent.GetInteractable();
-            var direction = _lookAtComponent.Direction;
-            
-            GamePhysics.AddForceToInteractable(items, direction, _forceStrength);
+            var item = GamePhysics.GetInteractable(
+                transform.position, 
+                _lookAtComponent.GetDetectionRadius(), 
+                _lookAtComponent.GetLayerMask(), 
+                _lookAtComponent.Direction);
+
+            GamePhysics.AddForceToInteractable(item, _lookAtComponent.Direction, _forceStrength);
             OnPushed?.Invoke();
         }
 

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Scripts.Components
@@ -21,18 +20,9 @@ namespace Game.Scripts.Components
         {
             UpdateLookAtDirection(_moveComponent.Direction);
         }
-
-        public IEnumerable<GameObject> GetInteractable()
-        {
-            var colliders = Physics2D.OverlapCircleAll(transform.position, _detectionRadius, _mask);
-
-            foreach (var collider in colliders)
-            {
-                GameObject interactable = collider.gameObject;
-                if (interactable && IsLookingAtObject(collider.transform.position))
-                    yield return interactable;
-            }
-        }
+        
+        public float GetDetectionRadius() => _detectionRadius;
+        public LayerMask GetLayerMask() => _mask;
 
         private void UpdateLookAtDirection(Vector2 direction)
         {
