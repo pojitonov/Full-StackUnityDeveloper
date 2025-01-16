@@ -6,7 +6,7 @@ namespace Game.Scripts.Components
 {
     public class HealthComponent : MonoBehaviour
     {
-        public event Action OnDamaged;
+        public event Action OnHealthTaken;
         
         [field: ShowInInspector] public bool IsAlive { get; private set; } = true;
         
@@ -21,7 +21,7 @@ namespace Game.Scripts.Components
         public void TakeDamage(int damage)
         {
             _currentLife -= damage;
-            OnDamaged?.Invoke();
+            OnHealthTaken?.Invoke();
 
             if (_currentLife > 0) 
                 return;

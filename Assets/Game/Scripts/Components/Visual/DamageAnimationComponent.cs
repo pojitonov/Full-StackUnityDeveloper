@@ -20,12 +20,12 @@ namespace Game.Scripts.Components
 
         private void OnEnable()
         {
-            _healthComponent.OnDamaged += Animate;
+            _healthComponent.OnHealthTaken += Animate;
         }
 
         private void OnDisable()
         {
-            _healthComponent.OnDamaged -= Animate;
+            _healthComponent.OnHealthTaken -= Animate;
         }
 
         private void Animate()

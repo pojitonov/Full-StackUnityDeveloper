@@ -716,6 +716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pushType: 1
   _forceStrength: 5
+  _damageComponent: {fileID: 1381897775955246070}
 --- !u!1 &9168432786817898581
 GameObject:
   m_ObjectHideFlags: 0

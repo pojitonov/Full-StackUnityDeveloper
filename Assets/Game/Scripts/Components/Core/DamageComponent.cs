@@ -1,3 +1,4 @@
+using System;
 using Game.Scripts.Common;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace Game.Scripts.Components
 {
     public class DamageComponent : MonoBehaviour
     {
+        public event Action<GameObject> OnDamaged;
+
         [SerializeField] private int _damagePoints = 1;
         [SerializeField] private bool _colliderIsTrigger;
         [SerializeField] private Countdown _countdown;
@@ -35,6 +38,7 @@ namespace Game.Scripts.Components
                 return;
             health.TakeDamage(_damagePoints);
             _countdown.Reset();
+            OnDamaged?.Invoke(other);
         }
     }
 }

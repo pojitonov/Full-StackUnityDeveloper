@@ -829,3 +829,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pushType: 0
   _forceStrength: 5
+  _damageComponent: {fileID: 5293290729788845784}
