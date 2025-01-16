@@ -395,7 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 4485897333727555696}
   _audioClip: {fileID: 8300000, guid: 49fd8f26329a7d447b6232131cfd5e71, type: 3}
-  _healthComponent: {fileID: 3278977000280703393}
+  _healthComponent: {fileID: 6605907901023207316}
 --- !u!1 &5554046834176312192
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1114773270552738056}
+  - component: {fileID: 6605907901023207316}
   - component: {fileID: 5352395781337772132}
   - component: {fileID: 8828846598355375344}
   m_Layer: 0
@@ -432,6 +433,20 @@ Transform:
   - {fileID: 4629981065635871775}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6605907901023207316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e5c155787a4204bb1eeee8bebfe8aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxLife: 3
+  _currentLife: 0
 --- !u!114 &5352395781337772132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,8 +638,7 @@ GameObject:
   - component: {fileID: 4015829716640782646}
   - component: {fileID: 7422560000825944449}
   - component: {fileID: 7073503754261842485}
-  - component: {fileID: 3278977000280703393}
-  - component: {fileID: 4750874094732761688}
+  - component: {fileID: 5293290729788845784}
   - component: {fileID: 3657696452733654929}
   m_Layer: 8
   m_Name: <Spider>
@@ -767,24 +781,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &3278977000280703393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8665529919726988981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5e5c155787a4204bb1eeee8bebfe8aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxLife: 3
-  _currentLife: 0
-  _countdown:
-    _duration: 1
-    elapsedTime: 0
---- !u!114 &4750874094732761688
+--- !u!114 &5293290729788845784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -815,5 +812,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3123733364965956949}
   _damagedColor: {r: 1, g: 0.7933302, b: 0, a: 1}
-  _healthComponent: {fileID: 3278977000280703393}
+  _healthComponent: {fileID: 6605907901023207316}
   _animationDuration: 0.2

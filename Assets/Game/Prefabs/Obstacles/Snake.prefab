@@ -379,6 +379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7302201298826456237}
+  - component: {fileID: 5910213366078086609}
   - component: {fileID: 3949016449701737424}
   - component: {fileID: 8612971960247362864}
   - component: {fileID: 291620296381687433}
@@ -407,6 +408,20 @@ Transform:
   - {fileID: 3188779134163127405}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5910213366078086609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630584940079141506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e5c155787a4204bb1eeee8bebfe8aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxLife: 6
+  _currentLife: 0
 --- !u!114 &3949016449701737424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,7 +508,6 @@ GameObject:
   - component: {fileID: 1745589832700849}
   - component: {fileID: 519640766865834813}
   - component: {fileID: 464711613102087323}
-  - component: {fileID: 1460607820475782585}
   - component: {fileID: 1381897775955246070}
   - component: {fileID: 2249509657768813407}
   - component: {fileID: 386810357049540602}
@@ -638,23 +652,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &1460607820475782585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8521204571576199944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5e5c155787a4204bb1eeee8bebfe8aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxLife: 6
-  _currentLife: 0
-  _countdown:
-    _duration: 1
-    elapsedTime: 0
 --- !u!114 &1381897775955246070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,7 +683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7937140358218983994}
   _damagedColor: {r: 1, g: 0.7921569, b: 0, a: 1}
-  _healthComponent: {fileID: 1460607820475782585}
+  _healthComponent: {fileID: 5910213366078086609}
   _animationDuration: 0.2
 --- !u!114 &386810357049540602
 MonoBehaviour:
@@ -702,7 +699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7125585022512431628}
   _damagedColor: {r: 1, g: 0.7921569, b: 0, a: 1}
-  _healthComponent: {fileID: 1460607820475782585}
+  _healthComponent: {fileID: 5910213366078086609}
   _animationDuration: 0.2
 --- !u!1 &9168432786817898581
 GameObject:
@@ -847,4 +844,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 7373436372039092287}
   _audioClip: {fileID: 8300000, guid: 49fd8f26329a7d447b6232131cfd5e71, type: 3}
-  _healthComponent: {fileID: 1460607820475782585}
+  _healthComponent: {fileID: 5910213366078086609}

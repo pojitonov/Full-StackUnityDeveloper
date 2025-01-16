@@ -32,9 +32,10 @@ namespace Game.Scripts.Components
 
         private void ApplyDamage(GameObject other)
         {
-            if (!other.TryGetComponent<HealthComponent>(out var healthComponent))
+            var healthComponent = other.GetComponentInParent<HealthComponent>();
+            if (healthComponent == null)
                 return;
-
+            
             healthComponent.TakeDamage(_damagePoints);
             _countdown.Reset();
         }
