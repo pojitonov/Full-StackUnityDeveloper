@@ -7,21 +7,21 @@ namespace Game.Scripts.Components
     {
         [SerializeField] private ParticleSystem _particleSource;
         
-        private PushComponent _pushComponent;
+        private TossObjectsComponent _tossObjectsComponent;
 
         private void Awake()
         {
-            _pushComponent = GetComponentInParent<PushComponent>();
+            _tossObjectsComponent = GetComponentInParent<TossObjectsComponent>();
         }
 
         private void OnEnable()
         {
-            _pushComponent.OnTossed += Play;
+            _tossObjectsComponent.OnTossed += Play;
         }
 
         private void OnDisable()
         {
-            _pushComponent.OnTossed -= Play;
+            _tossObjectsComponent.OnTossed -= Play;
         }
 
         private void Play()

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Scripts.Common
@@ -18,6 +19,17 @@ namespace Game.Scripts.Common
         {
             var raycast = Physics2D.Raycast(transform.position, direction, distance, layerMask);
             return raycast.transform;
+        }
+        
+        public static void AddForceToInteractable(IEnumerable<GameObject> items, Vector2 direction, float force)
+        {
+            foreach (var item in items)
+            {
+                if (item.TryGetComponent(out Rigidbody2D rigidbody))
+                {
+                    AddForce(rigidbody, direction, force);
+                }
+            }
         }
     }
 }

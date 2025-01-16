@@ -6,16 +6,16 @@ namespace Game.Scripts.Components
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
-        [SerializeField] private PushComponent _pushComponent;
+        [SerializeField] private PushObjectsComponent _pushObjectsComponent;
 
         private void OnEnable()
         {
-            _pushComponent.OnPushed += Play;
+            _pushObjectsComponent.OnPushed += Play;
         }
 
         private void OnDisable()
         {
-            _pushComponent.OnPushed -= Play;
+            _pushObjectsComponent.OnPushed -= Play;
         }
 
         private void Play()

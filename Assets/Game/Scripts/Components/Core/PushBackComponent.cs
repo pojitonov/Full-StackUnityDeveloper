@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace Game.Scripts.Components
 {
+    // TODO: Змея при дамаге толкает вверх
+
     public class PushBackComponent : MonoBehaviour
     {
         [SerializeField] private float _forceStrength = 5f;

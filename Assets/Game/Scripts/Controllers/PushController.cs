@@ -8,23 +8,25 @@ namespace Game.Scripts.Controllers
     {
         [SerializeField] private Character _character;
         
-        private PushComponent _pushComponent;
+        private PushObjectsComponent _pushObjectsComponent;
+        private TossObjectsComponent _tossObjectsComponent;
 
         private void Awake()
         {
-            _pushComponent = _character.GetComponent<PushComponent>();
+            _pushObjectsComponent = _character.GetComponent<PushObjectsComponent>();
+            _tossObjectsComponent = _character.GetComponent<TossObjectsComponent>();
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                _pushComponent.Toss();
+                _tossObjectsComponent.Toss();
             }
 
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
             {
-                _pushComponent.Push();
+                _pushObjectsComponent.Push();
             }
         }
     }

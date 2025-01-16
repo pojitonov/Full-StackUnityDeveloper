@@ -29,17 +29,19 @@ namespace Game.Scripts.Components
 
         public void Update()
         {
-            if (!IsAlive) _countdown.Tick(Time.deltaTime);
+            if (!IsAlive) 
+                _countdown.Tick(Time.deltaTime);
         }
 
         public void TakeDamage(int damage)
         {
             _currentLife -= damage;
             OnDamaged?.Invoke();
-
-            if (_currentLife > 0) return;
-            IsAlive = false;
             _countdown.Reset();
+
+            if (_currentLife > 0) 
+                return;
+            IsAlive = false;
         }
 
         public void Destroy()

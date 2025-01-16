@@ -1,10 +1,8 @@
 using Game.Scripts.Common;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts.Components
 {
-    // TODO: Змея при дамаге толкает вверх
     public class DamageComponent : MonoBehaviour
     {
         [SerializeField] private int _damagePoints = 1;
@@ -20,17 +18,16 @@ namespace Game.Scripts.Components
         {
             if (!_colliderIsTrigger || !_countdown.IsTimeUp())
                 return;
-            
+
             ApplyDamage(other.gameObject);
-            _countdown.Reset();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (!_colliderIsTrigger)
-            {
-                ApplyDamage(other.gameObject);
-            }
+            if (!_colliderIsTrigger || !_countdown.IsTimeUp())
+                return;
+
+            ApplyDamage(other.gameObject);
         }
 
         private void ApplyDamage(GameObject other)
@@ -39,6 +36,7 @@ namespace Game.Scripts.Components
                 return;
 
             healthComponent.TakeDamage(_damagePoints);
+            _countdown.Reset();
         }
     }
 }

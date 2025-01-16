@@ -342,9 +342,10 @@ GameObject:
   - component: {fileID: 4859882623022117604}
   - component: {fileID: 7533625333521889301}
   - component: {fileID: 4934349892132163987}
+  - component: {fileID: 6185922206645064792}
   - component: {fileID: 6991238943733658325}
   - component: {fileID: 438063799118009260}
-  - component: {fileID: 6185922206645064792}
+  - component: {fileID: 276442129847125461}
   - component: {fileID: 1674429860930161243}
   - component: {fileID: 5715988289400761378}
   - component: {fileID: 5814930138478287487}
@@ -490,10 +491,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1674429860930161243}
   _jumpComponent: {fileID: 6991238943733658325}
-  _pushComponent: {fileID: 438063799118009260}
+  _pushObjectsComponent: {fileID: 438063799118009260}
+  _tossObjectsComponent: {fileID: 276442129847125461}
   _groundComponent: {fileID: 946704862140120437}
   _lookAtComponent: {fileID: 8606975443487328141}
   _healthComponent: {fileID: 8705098180684878821}
+--- !u!114 &6185922206645064792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490323295220271620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5ebea41bfe49b8a150f846d886d93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _forceStrength: 5
 --- !u!114 &6991238943733658325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,9 +523,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _forceStrength: 10
   _rigidbody: {fileID: 8342082945872629457}
-  _delay:
-    _duration: 1
-    time: 0
+  _countdown:
+    _duration: 2
+    elapsedTime: 0
 --- !u!114 &438063799118009260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,7 +539,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceStrength: 5
---- !u!114 &6185922206645064792
+  _countdown:
+    _duration: 1
+    elapsedTime: 0
+--- !u!114 &276442129847125461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -533,10 +551,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7490323295220271620}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5ebea41bfe49b8a150f846d886d93d, type: 3}
+  m_Script: {fileID: 11500000, guid: d1efcca890bc45dc8f8dce3f434fa9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceStrength: 5
+  _forceStrength: 3
+  _countdown:
+    _duration: 2
+    elapsedTime: 0
 --- !u!114 &1674429860930161243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,9 +599,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damagePoints: 1
   _colliderIsTrigger: 0
-  _delay:
-    _duration: 0
-    time: 0
+  _countdown:
+    _duration: 1
+    elapsedTime: 0
 --- !u!114 &8705098180684878821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,9 +616,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLife: 5
   _currentLife: 0
-  _delay:
-    _duration: 0.5
-    time: 0
+  _countdown:
+    _duration: 1
+    elapsedTime: 0
 --- !u!114 &946704862140120437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,7 +825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 3053905989913550054}
   _audioClip: {fileID: 8300000, guid: 3dbd84c2bfae847229cd1013f68c0da7, type: 3}
-  _pushComponent: {fileID: 438063799118009260}
+  _pushObjectsComponent: {fileID: 438063799118009260}
 --- !u!114 &2957224103547375639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,7 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 3053905989913550054}
   _audioClip: {fileID: 8300000, guid: a2fb8d4706a16468592a6e50aa24de65, type: 3}
-  _pushComponent: {fileID: 438063799118009260}
+  _tossObjectsComponent: {fileID: 276442129847125461}
 --- !u!114 &892683033834009399
 MonoBehaviour:
   m_ObjectHideFlags: 0

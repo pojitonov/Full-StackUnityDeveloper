@@ -781,8 +781,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLife: 3
   _currentLife: 0
-  _delay:
-    _duration: 0.5
+  _countdown:
+    _duration: 1
+    elapsedTime: 0
 --- !u!114 &4750874094732761688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,8 +798,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damagePoints: 1
   _colliderIsTrigger: 1
-  _delay:
+  _countdown:
     _duration: 1
+    elapsedTime: 0
 --- !u!114 &3657696452733654929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,6 +814,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3123733364965956949}
-  _damagedColor: {r: 1, g: 0, b: 1, a: 1}
+  _damagedColor: {r: 1, g: 0.7933302, b: 0, a: 1}
   _healthComponent: {fileID: 3278977000280703393}
   _animationDuration: 0.2

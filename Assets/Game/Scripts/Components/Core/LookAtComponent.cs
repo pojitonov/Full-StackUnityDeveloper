@@ -22,7 +22,7 @@ namespace Game.Scripts.Components
             UpdateLookAtDirection(_moveComponent.MoveDirection);
         }
 
-        public IEnumerable<GameObject> GetInteractables()
+        public IEnumerable<GameObject> GetInteractable()
         {
             var colliders = Physics2D.OverlapCircleAll(transform.position, _detectionRadius, _mask);
 
