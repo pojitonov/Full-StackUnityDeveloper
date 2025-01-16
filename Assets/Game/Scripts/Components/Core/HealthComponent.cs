@@ -26,12 +26,12 @@ namespace Game.Scripts.Components
             if (_currentLife > 0) 
                 return;
             
-            IsAlive = false;
             Destroy();
         }
 
         public void Destroy()
         {
+            IsAlive = false;
             gameObject.SetActive(false);
         }
     }

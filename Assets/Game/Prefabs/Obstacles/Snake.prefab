@@ -380,9 +380,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7302201298826456237}
   - component: {fileID: 5910213366078086609}
-  - component: {fileID: 3949016449701737424}
   - component: {fileID: 8612971960247362864}
+  - component: {fileID: 3949016449701737424}
   - component: {fileID: 291620296381687433}
+  - component: {fileID: 1526838323422755212}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -422,6 +423,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLife: 6
   _currentLife: 0
+--- !u!114 &8612971960247362864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630584940079141506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5fbf4340684141a3f41a9a2962b999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _transform: {fileID: 1819249752555060710}
 --- !u!114 &3949016449701737424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,20 +453,6 @@ MonoBehaviour:
   _stoppingThreshold: 0.5
   _waypoint1: {fileID: 7836685165928915669}
   _waypoint2: {fileID: 3188779134163127405}
---- !u!114 &8612971960247362864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6630584940079141506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a5fbf4340684141a3f41a9a2962b999, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 3
-  _transform: {fileID: 1819249752555060710}
 --- !u!114 &291620296381687433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,6 +466,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 1819249752555060710}
+--- !u!114 &1526838323422755212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630584940079141506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5ebea41bfe49b8a150f846d886d93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pushType: 1
+  _forceStrength: 5
+  _damageComponent: {fileID: 3156629092182825470}
 --- !u!1 &7469774354018702093
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,10 +524,9 @@ GameObject:
   - component: {fileID: 1745589832700849}
   - component: {fileID: 519640766865834813}
   - component: {fileID: 464711613102087323}
-  - component: {fileID: 1381897775955246070}
   - component: {fileID: 2249509657768813407}
   - component: {fileID: 386810357049540602}
-  - component: {fileID: 4746590492079633479}
+  - component: {fileID: 3156629092182825470}
   m_Layer: 8
   m_Name: <Snake>
   m_TagString: Untagged
@@ -653,23 +668,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &1381897775955246070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8521204571576199944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 127104d701894c0aa0cd8d9c684beda7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damagePoints: 1
-  _colliderIsTrigger: 1
-  _countdown:
-    _duration: 3.5
-    elapsedTime: 0
 --- !u!114 &2249509657768813407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,7 +700,7 @@ MonoBehaviour:
   _damagedColor: {r: 1, g: 0.7921569, b: 0, a: 1}
   _healthComponent: {fileID: 5910213366078086609}
   _animationDuration: 0.2
---- !u!114 &4746590492079633479
+--- !u!114 &3156629092182825470
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -711,12 +709,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8521204571576199944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5ebea41bfe49b8a150f846d886d93d, type: 3}
+  m_Script: {fileID: 11500000, guid: 127104d701894c0aa0cd8d9c684beda7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pushType: 1
-  _forceStrength: 5
-  _damageComponent: {fileID: 1381897775955246070}
+  _damagePoints: 1
+  _colliderIsTrigger: 1
+  _countdown:
+    _duration: 3.5
+    elapsedTime: 0
 --- !u!1 &9168432786817898581
 GameObject:
   m_ObjectHideFlags: 0

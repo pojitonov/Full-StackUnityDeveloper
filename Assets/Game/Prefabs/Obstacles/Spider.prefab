@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 6605907901023207316}
   - component: {fileID: 5352395781337772132}
   - component: {fileID: 8828846598355375344}
+  - component: {fileID: 839492495396028738}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -477,6 +478,21 @@ MonoBehaviour:
   _stoppingThreshold: 0.5
   _waypoint1: {fileID: 3929516699554365295}
   _waypoint2: {fileID: 4629981065635871775}
+--- !u!114 &839492495396028738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5ebea41bfe49b8a150f846d886d93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pushType: 0
+  _forceStrength: 5
+  _damageComponent: {fileID: 5293290729788845784}
 --- !u!1 &7187152835411801990
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +656,6 @@ GameObject:
   - component: {fileID: 7073503754261842485}
   - component: {fileID: 5293290729788845784}
   - component: {fileID: 3657696452733654929}
-  - component: {fileID: 720399603981432396}
   m_Layer: 8
   m_Name: <Spider>
   m_TagString: Untagged
@@ -815,18 +830,3 @@ MonoBehaviour:
   _damagedColor: {r: 1, g: 0.7933302, b: 0, a: 1}
   _healthComponent: {fileID: 6605907901023207316}
   _animationDuration: 0.2
---- !u!114 &720399603981432396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8665529919726988981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5ebea41bfe49b8a150f846d886d93d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pushType: 0
-  _forceStrength: 5
-  _damageComponent: {fileID: 5293290729788845784}
