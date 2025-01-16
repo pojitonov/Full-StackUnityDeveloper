@@ -5,7 +5,8 @@ namespace Game.Scripts.Components
 {
     public class StandingComponent : MonoBehaviour
     {
-        private GroundComponent _groundComponent;
+        [SerializeField] private GroundComponent _groundComponent;
+        
         private Transform _worldTransform;
 
         private void Awake()

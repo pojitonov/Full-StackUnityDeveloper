@@ -18,25 +18,22 @@ namespace Game.Scripts.Components
         {
             if (!_colliderIsTrigger || !_countdown.IsTimeUp())
                 return;
-
             ApplyDamage(other.gameObject);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (!_colliderIsTrigger || !_countdown.IsTimeUp())
+            if (_colliderIsTrigger || !_countdown.IsTimeUp())
                 return;
-
             ApplyDamage(other.gameObject);
         }
 
         private void ApplyDamage(GameObject other)
         {
-            var healthComponent = other.GetComponentInParent<HealthComponent>();
-            if (healthComponent == null)
+            var health = other.GetComponentInParent<HealthComponent>();
+            if (health == null)
                 return;
-            
-            healthComponent.TakeDamage(_damagePoints);
+            health.TakeDamage(_damagePoints);
             _countdown.Reset();
         }
     }
