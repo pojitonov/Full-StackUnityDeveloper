@@ -7,7 +7,7 @@ namespace Game.Scripts.Components
 {
     public class MoveComponent : MonoBehaviour
     {
-        [field: ShowInInspector, ReadOnly] public Vector2 MoveDirection { get; set; }
+        [field: ShowInInspector, ReadOnly] public Vector2 Direction { get; set; }
         public Transform Transform => _transform;
 
         [SerializeField] private float _speed = 5f;
@@ -20,7 +20,7 @@ namespace Game.Scripts.Components
             if (!_condition.IsTrue())
                 return;
 
-            _transform.position += (Vector3)MoveDirection.normalized * (_speed * Time.deltaTime);
+            _transform.position += (Vector3)Direction.normalized * (_speed * Time.deltaTime);
         }
 
         public void AddCondition(Func<bool> condition)

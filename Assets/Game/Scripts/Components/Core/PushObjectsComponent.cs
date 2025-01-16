@@ -13,7 +13,6 @@ namespace Game.Scripts.Components
 
         private LookAtComponent _lookAtComponent;
         private readonly Condition _condition = new();
-        private GamePhysics _gamePhysics;
 
         private void Awake()
         {

@@ -13,7 +13,6 @@ namespace Game.Scripts.Components
         [SerializeField] private Countdown _countdown;
 
         private readonly Condition _condition = new();
-        private GamePhysics _physics;
 
         private void Update()
         {

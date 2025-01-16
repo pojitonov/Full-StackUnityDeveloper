@@ -10,9 +10,7 @@ namespace Game.Scripts.Components
 
         [SerializeField] private Vector2 _forceDirection = Vector2.up;
         [SerializeField] private float _forceStrength = 10f;
-
-        private GamePhysics _gamePhysics;
-
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.TryGetComponent(out Rigidbody2D rigidbody))
