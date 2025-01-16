@@ -2,6 +2,7 @@ using System;
 using Game.Scripts.Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts.Components
 {
@@ -13,22 +14,22 @@ namespace Game.Scripts.Components
         
         [SerializeField] private int _maxLife = 5;
         [SerializeField] private int _currentLife;
-        [SerializeField] private Countdown _delay;
+        [SerializeField] private Countdown _countdown;
 
         private void Awake()
         {
-            _delay.OnTimeIsUp += Destroy;
+            _countdown.OnTimeIsUp += Destroy;
             _currentLife = _maxLife;
         }
 
         private void OnDestroy()
         {
-            _delay.OnTimeIsUp -= Destroy;
+            _countdown.OnTimeIsUp -= Destroy;
         }
 
         public void Update()
         {
-            if (!IsAlive) _delay.Tick(Time.deltaTime);
+            if (!IsAlive) _countdown.Tick(Time.deltaTime);
         }
 
         public void TakeDamage(int damage)
@@ -38,7 +39,7 @@ namespace Game.Scripts.Components
 
             if (_currentLife > 0) return;
             IsAlive = false;
-            _delay.Reset();
+            _countdown.Reset();
         }
 
         public void Destroy()

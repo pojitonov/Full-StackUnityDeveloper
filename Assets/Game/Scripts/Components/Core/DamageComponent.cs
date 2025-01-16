@@ -1,5 +1,6 @@
 using Game.Scripts.Common;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts.Components
 {
@@ -8,20 +9,20 @@ namespace Game.Scripts.Components
     {
         [SerializeField] private int _damagePoints = 1;
         [SerializeField] private bool _colliderIsTrigger;
-        [SerializeField] private Countdown _delay;
+        [SerializeField] private Countdown _countdown;
 
         private void Update()
         {
-            _delay.Tick(Time.deltaTime);
+            _countdown.Tick(Time.deltaTime);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_colliderIsTrigger && _delay.IsTimeUp())
-            {
-                ApplyDamage(other.gameObject);
-                _delay.Reset();
-            }
+            if (!_colliderIsTrigger || !_countdown.IsTimeUp())
+                return;
+            
+            ApplyDamage(other.gameObject);
+            _countdown.Reset();
         }
 
         private void OnCollisionEnter2D(Collision2D other)

@@ -101,6 +101,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 5973739499012079652}
   _damagedColor: {r: 1, g: 0, b: 0, a: 1}
   _healthComponent: {fileID: 8705098180684878821}
+  _animationDuration: 0.2
 --- !u!114 &1709153038273197071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,6 +508,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _forceStrength: 10
   _rigidbody: {fileID: 8342082945872629457}
+  _delay:
+    _duration: 1
+    time: 0
 --- !u!114 &438063799118009260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,6 +580,7 @@ MonoBehaviour:
   _colliderIsTrigger: 0
   _delay:
     _duration: 0
+    time: 0
 --- !u!114 &8705098180684878821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +597,7 @@ MonoBehaviour:
   _currentLife: 0
   _delay:
     _duration: 0.5
+    time: 0
 --- !u!114 &946704862140120437
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,7 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts.Common
 {
@@ -11,9 +13,10 @@ namespace Game.Scripts.Common
         [SerializeField] 
         private float _duration;
         
-        private float time;
+        [SerializeField, ReadOnly] 
+        private float elapsedTime;
 
-        public bool IsTimeUp() => time <= 0;
+        public bool IsTimeUp() => elapsedTime <= 0;
 
         public void SetDuration(float duration)
         {
@@ -23,10 +26,10 @@ namespace Game.Scripts.Common
 
         public void Tick(float deltaTime)
         {
-            if (time <= 0) return;
+            if (elapsedTime <= 0) return;
 
-            time -= deltaTime;
-            if (time <= 0)
+            elapsedTime -= deltaTime;
+            if (elapsedTime <= 0)
             {
                 OnTimeIsUp?.Invoke();
             }
@@ -34,8 +37,8 @@ namespace Game.Scripts.Common
 
         public void Reset()
         {
-            time = _duration;
-            if (time <= 0)
+            elapsedTime = _duration;
+            if (elapsedTime <= 0)
             {
                 OnTimeIsUp?.Invoke();
             }
