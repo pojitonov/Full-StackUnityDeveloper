@@ -96,9 +96,11 @@ GameObject:
   - component: {fileID: 1650171991482105198}
   - component: {fileID: 8320438562223812922}
   - component: {fileID: 9086488212919646905}
+  - component: {fileID: 4002432658537633424}
   - component: {fileID: 5353495280700337263}
   - component: {fileID: 7280537044973331671}
   - component: {fileID: 1397027944515369323}
+  - component: {fileID: 598596195528597246}
   m_Layer: 8
   m_Name: Trap
   m_TagString: Untagged
@@ -211,6 +213,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLife: 1
   _currentLife: 0
+--- !u!114 &4002432658537633424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331236207197526835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c72d4a6ea164745882f437f93772e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colliderIsTrigger: 0
 --- !u!114 &5353495280700337263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,10 +239,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damagePoints: 1
-  _colliderIsTrigger: 0
-  _countdown:
+  cooldown:
     _duration: 1
     elapsedTime: 0
+  collisionEventListener: {fileID: 4002432658537633424}
 --- !u!114 &7280537044973331671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,3 +273,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundComponent: {fileID: 7280537044973331671}
+--- !u!114 &598596195528597246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331236207197526835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e194ac0c1ff341ae98cdb1b361adb1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthComponent: {fileID: 9086488212919646905}
+  cooldown:
+    _duration: 0.1
+    elapsedTime: 0

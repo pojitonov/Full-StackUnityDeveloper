@@ -1,6 +1,7 @@
 using System;
 using Game.Scripts.Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts.Components
 {
@@ -9,24 +10,37 @@ namespace Game.Scripts.Components
         public event Action<GameObject> OnDamaged;
 
         [SerializeField] private int _damagePoints = 1;
-        [SerializeField] private bool _colliderIsTrigger;
-        [SerializeField] private Countdown _countdown;
+        [FormerlySerializedAs("_countdown")]
+        [SerializeField] private Cooldown cooldown;
+        [SerializeField] private CollisionEventListener collisionEventListener;
 
         private void Update()
         {
-            _countdown.Tick(Time.deltaTime);
+            cooldown.Tick(Time.deltaTime);
         }
-
-        private void OnTriggerEnter2D(Collider2D other)
+        
+        private void OnEnable()
         {
-            if (!_colliderIsTrigger || !_countdown.IsTimeUp())
+            collisionEventListener.OnTrigger += OnTrigger;
+            collisionEventListener.OnCollision += OnCollision;
+        }
+        
+        private void OnDisable()
+        {
+            collisionEventListener.OnTrigger -= OnTrigger;
+            collisionEventListener.OnCollision -= OnCollision;
+        }
+        
+        private void OnTrigger(Collider2D other)
+        {
+            if (!cooldown.IsTimeUp())
                 return;
             ApplyDamage(other.gameObject);
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnCollision(Collision2D other)
         {
-            if (_colliderIsTrigger || !_countdown.IsTimeUp())
+            if (!cooldown.IsTimeUp())
                 return;
             ApplyDamage(other.gameObject);
         }
@@ -37,7 +51,7 @@ namespace Game.Scripts.Components
             if (health == null)
                 return;
             health.TakeDamage(_damagePoints);
-            _countdown.Reset();
+            cooldown.Reset();
             OnDamaged?.Invoke(other);
         }
     }

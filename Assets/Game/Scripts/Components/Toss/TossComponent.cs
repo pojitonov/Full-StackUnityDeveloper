@@ -1,6 +1,7 @@
 using System;
 using Game.Scripts.Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts.Components
 {
@@ -9,21 +10,21 @@ namespace Game.Scripts.Components
         public event Action OnTossed;
 
         [SerializeField] private float _forceStrength;
-        [SerializeField] private Countdown _countdown;
+        [SerializeField] private Cooldown cooldown;
         [SerializeField] private LookAtComponent _lookAtComponent;
         
         private readonly Condition _condition = new();
 
         private void Update()
         {
-            _countdown.Tick(Time.deltaTime);
+            cooldown.Tick(Time.deltaTime);
         }
 
         public void Toss()
         {
-            if (!_condition.IsTrue() || !_countdown.IsTimeUp())
+            if (!_condition.IsTrue() || !cooldown.IsTimeUp())
                 return;
-            _countdown.Reset();
+            cooldown.Reset();
 
             var item = GamePhysics.GetInteractable(
                 transform.position,

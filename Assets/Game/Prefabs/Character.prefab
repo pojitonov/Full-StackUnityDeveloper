@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 4934349892132163987}
   - component: {fileID: 8705098180684878821}
   - component: {fileID: 8606975443487328141}
+  - component: {fileID: 1201764019363012222}
   - component: {fileID: 6991238943733658325}
   - component: {fileID: 438063799118009260}
   - component: {fileID: 276442129847125461}
@@ -352,6 +353,7 @@ GameObject:
   - component: {fileID: 5814930138478287487}
   - component: {fileID: 946704862140120437}
   - component: {fileID: 649709588814713679}
+  - component: {fileID: 7084083767893602095}
   m_Layer: 9
   m_Name: Character
   m_TagString: Character
@@ -526,6 +528,19 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &1201764019363012222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490323295220271620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c72d4a6ea164745882f437f93772e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colliderIsTrigger: 0
 --- !u!114 &6991238943733658325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,8 +555,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _forceStrength: 10
   _rigidbody: {fileID: 8342082945872629457}
-  _countdown:
-    _duration: 2
+  cooldown:
+    _duration: 0
     elapsedTime: 0
 --- !u!114 &438063799118009260
 MonoBehaviour:
@@ -556,8 +571,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceStrength: 5
-  _countdown:
-    _duration: 1
+  cooldown:
+    _duration: 0
     elapsedTime: 0
   _lookAtComponent: {fileID: 8606975443487328141}
 --- !u!114 &276442129847125461
@@ -573,8 +588,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceStrength: 5
-  _countdown:
-    _duration: 1
+  cooldown:
+    _duration: 0
     elapsedTime: 0
   _lookAtComponent: {fileID: 8606975443487328141}
 --- !u!114 &1674429860930161243
@@ -617,10 +632,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damagePoints: 1
-  _colliderIsTrigger: 0
-  _countdown:
+  cooldown:
     _duration: 1
     elapsedTime: 0
+  collisionEventListener: {fileID: 1201764019363012222}
 --- !u!114 &946704862140120437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,6 +666,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundComponent: {fileID: 946704862140120437}
+--- !u!114 &7084083767893602095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490323295220271620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e194ac0c1ff341ae98cdb1b361adb1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthComponent: {fileID: 8705098180684878821}
+  cooldown:
+    _duration: 2
+    elapsedTime: 0
 --- !u!1 &7801279227858408424
 GameObject:
   m_ObjectHideFlags: 0

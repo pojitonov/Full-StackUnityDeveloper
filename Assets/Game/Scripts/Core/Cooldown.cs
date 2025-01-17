@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Game.Scripts.Core
 {
     [Serializable]
-    public class Countdown
+    public class Cooldown
     {
         public event Action OnTimeIsUp;
 

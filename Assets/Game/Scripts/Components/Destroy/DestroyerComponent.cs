@@ -9,16 +9,10 @@ namespace Game.Scripts.Components
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Destroy(other.gameObject);
-        }
-
-        private void Destroy(GameObject other)
-        {
-            var component = other.GetComponentInParent<HealthComponent>();
-            if (component == null)
+            HealthComponent health = other.gameObject.GetComponentInParent<HealthComponent>();
+            if (health == null)
                 return;
-
-            component.Destroy();
+            health.IsAlive = false;
             OnDestroyed?.Invoke();
         }
     }

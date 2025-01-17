@@ -7,8 +7,9 @@ namespace Game.Scripts.Components
     public class HealthComponent : MonoBehaviour
     {
         public event Action OnHealthTaken;
+        public event Action OnDied;
         
-        [field: ShowInInspector] public bool IsAlive { get; private set; } = true;
+        [field: ShowInInspector] public bool IsAlive { get; set; } = true;
         
         [SerializeField] private int _maxLife = 5;
         [SerializeField] private int _currentLife;
@@ -26,13 +27,8 @@ namespace Game.Scripts.Components
             if (_currentLife > 0) 
                 return;
             
-            Destroy();
-        }
-
-        public void Destroy()
-        {
             IsAlive = false;
-            gameObject.SetActive(false);
+            OnDied?.Invoke();
         }
     }
 }

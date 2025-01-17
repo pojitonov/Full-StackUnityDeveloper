@@ -406,9 +406,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1114773270552738056}
   - component: {fileID: 6605907901023207316}
+  - component: {fileID: 5490028809158620207}
   - component: {fileID: 5352395781337772132}
   - component: {fileID: 8828846598355375344}
   - component: {fileID: 839492495396028738}
+  - component: {fileID: 4215505569129028564}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -448,6 +450,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLife: 3
   _currentLife: 0
+--- !u!114 &5490028809158620207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127104d701894c0aa0cd8d9c684beda7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damagePoints: 2
+  cooldown:
+    _duration: 1
+    elapsedTime: 0
+  collisionEventListener: {fileID: 6685517084176634021}
 --- !u!114 &5352395781337772132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,10 +493,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98503b933b346c394ddc93cf84a9020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveComponent: {fileID: 5352395781337772132}
   _stoppingThreshold: 0.5
   _waypoint1: {fileID: 3929516699554365295}
   _waypoint2: {fileID: 4629981065635871775}
+  _moveComponent: {fileID: 5352395781337772132}
 --- !u!114 &839492495396028738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,7 +511,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pushType: 0
   _forceStrength: 5
-  _damageComponent: {fileID: 5293290729788845784}
+  _damageComponent: {fileID: 5490028809158620207}
+--- !u!114 &4215505569129028564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e194ac0c1ff341ae98cdb1b361adb1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthComponent: {fileID: 6605907901023207316}
+  cooldown:
+    _duration: 2
+    elapsedTime: 0
 --- !u!1 &7187152835411801990
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 797735510629636468}
   - component: {fileID: 3123733364965956949}
+  - component: {fileID: 1984195912208987115}
   m_Layer: 0
   m_Name: <Sprite>
   m_TagString: Untagged
@@ -642,6 +678,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1984195912208987115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7932063033819321340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edaf767649f048c78e91096e16a4b497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 3123733364965956949}
+  _damagedColor: {r: 1, g: 0.7933302, b: 0, a: 1}
+  _healthComponent: {fileID: 6605907901023207316}
+  _animationDuration: 0.2
 --- !u!1 &8665529919726988981
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,8 +706,7 @@ GameObject:
   - component: {fileID: 4015829716640782646}
   - component: {fileID: 7422560000825944449}
   - component: {fileID: 7073503754261842485}
-  - component: {fileID: 5293290729788845784}
-  - component: {fileID: 3657696452733654929}
+  - component: {fileID: 6685517084176634021}
   m_Layer: 8
   m_Name: <Spider>
   m_TagString: Untagged
@@ -797,7 +848,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &5293290729788845784
+--- !u!114 &6685517084176634021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -806,27 +857,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8665529919726988981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 127104d701894c0aa0cd8d9c684beda7, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c72d4a6ea164745882f437f93772e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damagePoints: 1
   _colliderIsTrigger: 1
-  _countdown:
-    _duration: 1
-    elapsedTime: 0
---- !u!114 &3657696452733654929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8665529919726988981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edaf767649f048c78e91096e16a4b497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 3123733364965956949}
-  _damagedColor: {r: 1, g: 0.7933302, b: 0, a: 1}
-  _healthComponent: {fileID: 6605907901023207316}
-  _animationDuration: 0.2
