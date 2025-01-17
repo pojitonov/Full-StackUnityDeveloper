@@ -25,6 +25,7 @@ namespace Game.Scripts.Objects
         private void Update()
         {
             _flipComponent.Direction = _moveComponent.Direction;
+            _lookAtComponent.SetDirection(_moveComponent.Direction);
         }
     }
 }

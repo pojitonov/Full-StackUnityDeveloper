@@ -6,14 +6,9 @@ namespace Game.Scripts.Components
     public class StandingComponent : MonoBehaviour
     {
         [SerializeField] private GroundComponent _groundComponent;
-        
+
         private Transform _worldTransform;
 
-        private void Awake()
-        {
-            _groundComponent = GetComponent<GroundComponent>();
-        }
-        
         public void FixedUpdate()
         {
             var groundTransform = _groundComponent.Transform;

@@ -4,10 +4,10 @@ namespace Game.Scripts.Components
 {
     public class PatrolComponent : MonoBehaviour
     {
-        [SerializeField] private MoveComponent _moveComponent;
         [SerializeField] private float _stoppingThreshold = 0.5f;
         [SerializeField] private Transform _waypoint1;
         [SerializeField] private Transform _waypoint2;
+        [SerializeField] private MoveComponent _moveComponent;
 
         private Transform _target;
 

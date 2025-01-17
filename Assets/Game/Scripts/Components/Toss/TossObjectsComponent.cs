@@ -10,14 +10,9 @@ namespace Game.Scripts.Components
 
         [SerializeField] private float _forceStrength;
         [SerializeField] private Countdown _countdown;
-
-        private LookAtComponent _lookAtComponent;
+        [SerializeField] private LookAtComponent _lookAtComponent;
+        
         private readonly Condition _condition = new();
-
-        private void Awake()
-        {
-            _lookAtComponent = GetComponent<LookAtComponent>();
-        }
 
         private void Update()
         {
@@ -29,11 +24,11 @@ namespace Game.Scripts.Components
             if (!_condition.IsTrue() || !_countdown.IsTimeUp())
                 return;
             _countdown.Reset();
-            
+
             var item = GamePhysics.GetInteractable(
-                transform.position, 
-                _lookAtComponent.GetDetectionRadius(), 
-                _lookAtComponent.GetLayerMask(), 
+                transform.position,
+                _lookAtComponent.DetectionRadius,
+                _lookAtComponent.LayerLayerMask,
                 _lookAtComponent.Direction);
 
             GamePhysics.AddForceToInteractable(item, Vector2.up, _forceStrength);
