@@ -4,24 +4,17 @@ namespace Game.Scripts.Components
 {
     public class FlipComponent : MonoBehaviour
     {
-        [SerializeField] private Transform _transform;
-        
-        private MoveComponent _moveComponent;
+        public Vector2 Direction { get; set; }
 
-        private void Awake()
-        {
-            _moveComponent = GetComponent<MoveComponent>();
-        }
+        [SerializeField] private Transform _transform;
 
         public void Update()
         {
-            var direction = _moveComponent.Direction;
-            
-            if (direction.x > 0)
+            if (Direction.x > 0)
             {
                 _transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            else if (direction.x < 0)
+            else if (Direction.x < 0)
             {
                 _transform.rotation = Quaternion.Euler(0, 180, 0);
             }

@@ -6,6 +6,7 @@ namespace Game.Scripts.Objects
     public sealed class Character : MonoBehaviour
     {
         [SerializeField] private MoveComponent _moveComponent;
+        [SerializeField] private FlipComponent _flipComponent;
         [SerializeField] private JumpComponent _jumpComponent;
         [SerializeField] private PushObjectsComponent _pushObjectsComponent;
         [SerializeField] private TossObjectsComponent _tossObjectsComponent;
@@ -19,6 +20,11 @@ namespace Game.Scripts.Objects
             _pushObjectsComponent.AddCondition(() => _healthComponent.IsAlive);
             _tossObjectsComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
             _jumpComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
+        }
+        
+        private void Update()
+        {
+            _flipComponent.Direction = _moveComponent.Direction;
         }
     }
 }

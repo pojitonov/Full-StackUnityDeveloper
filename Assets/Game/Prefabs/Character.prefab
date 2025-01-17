@@ -489,6 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: 1674429860930161243}
+  _flipComponent: {fileID: 5715988289400761378}
   _jumpComponent: {fileID: 6991238943733658325}
   _pushObjectsComponent: {fileID: 438063799118009260}
   _tossObjectsComponent: {fileID: 276442129847125461}
