@@ -1,5 +1,6 @@
 using Game.Scripts.Components;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts.Objects
 {
@@ -8,8 +9,10 @@ namespace Game.Scripts.Objects
         [SerializeField] private MoveComponent _moveComponent;
         [SerializeField] private FlipComponent _flipComponent;
         [SerializeField] private JumpComponent _jumpComponent;
-        [SerializeField] private PushObjectsComponent _pushObjectsComponent;
-        [SerializeField] private TossObjectsComponent _tossObjectsComponent;
+        [FormerlySerializedAs("_pushObjectsComponent")]
+        [SerializeField] private PushComponent pushComponent;
+        [FormerlySerializedAs("_tossObjectsComponent")]
+        [SerializeField] private TossComponent tossComponent;
         [SerializeField] private GroundComponent _groundComponent;
         [SerializeField] private LookAtComponent _lookAtComponent;
         [SerializeField] private HealthComponent _healthComponent;
@@ -17,8 +20,8 @@ namespace Game.Scripts.Objects
         private void Awake()
         {
             _moveComponent.AddCondition(() => _healthComponent.IsAlive);
-            _pushObjectsComponent.AddCondition(() => _healthComponent.IsAlive);
-            _tossObjectsComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
+            pushComponent.AddCondition(() => _healthComponent.IsAlive);
+            tossComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
             _jumpComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
         }
         

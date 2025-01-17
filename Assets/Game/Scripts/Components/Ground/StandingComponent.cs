@@ -1,4 +1,4 @@
-using Game.Scripts.Common;
+using Game.Scripts.Core;
 using UnityEngine;
 
 namespace Game.Scripts.Components
@@ -12,7 +12,6 @@ namespace Game.Scripts.Components
         public void FixedUpdate()
         {
             var groundTransform = _groundComponent.Transform;
-
             transform.SetParent(_groundComponent.IsGrounded ? groundTransform : _worldTransform);
         }
     }

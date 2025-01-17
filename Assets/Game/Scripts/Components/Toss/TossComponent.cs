@@ -1,10 +1,10 @@
 using System;
-using Game.Scripts.Common;
+using Game.Scripts.Core;
 using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class TossObjectsComponent : MonoBehaviour
+    public class TossComponent : MonoBehaviour
     {
         public event Action OnTossed;
 

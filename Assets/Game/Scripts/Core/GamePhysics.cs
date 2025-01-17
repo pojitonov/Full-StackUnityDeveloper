@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Scripts.Common
+namespace Game.Scripts.Core
 {
     public static class GamePhysics
     {

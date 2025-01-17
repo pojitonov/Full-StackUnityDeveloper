@@ -1,9 +1,8 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.Scripts.Common
+namespace Game.Scripts.Core
 {
     [Serializable]
     public class Countdown

@@ -1,4 +1,3 @@
-using Game.Scripts.Components;
 using UnityEngine;
 
 namespace Game.Scripts.Components
@@ -7,21 +6,21 @@ namespace Game.Scripts.Components
     {
         [SerializeField] private ParticleSystem _particleSource;
         
-        private TossObjectsComponent _tossObjectsComponent;
+        private TossComponent _tossComponent;
 
         private void Awake()
         {
-            _tossObjectsComponent = GetComponentInParent<TossObjectsComponent>();
+            _tossComponent = GetComponentInParent<TossComponent>();
         }
 
         private void OnEnable()
         {
-            _tossObjectsComponent.OnTossed += Play;
+            _tossComponent.OnTossed += Play;
         }
 
         private void OnDisable()
         {
-            _tossObjectsComponent.OnTossed -= Play;
+            _tossComponent.OnTossed -= Play;
         }
 
         private void Play()

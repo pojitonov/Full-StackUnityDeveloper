@@ -491,8 +491,8 @@ MonoBehaviour:
   _moveComponent: {fileID: 1674429860930161243}
   _flipComponent: {fileID: 5715988289400761378}
   _jumpComponent: {fileID: 6991238943733658325}
-  _pushObjectsComponent: {fileID: 438063799118009260}
-  _tossObjectsComponent: {fileID: 276442129847125461}
+  pushComponent: {fileID: 438063799118009260}
+  tossComponent: {fileID: 276442129847125461}
   _groundComponent: {fileID: 946704862140120437}
   _lookAtComponent: {fileID: 8606975443487328141}
   _healthComponent: {fileID: 8705098180684878821}
@@ -525,7 +525,7 @@ MonoBehaviour:
   _detectionRadius: 1.5
   _layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!114 &6991238943733658325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,7 +812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 3053905989913550054}
   _audioClip: {fileID: 8300000, guid: 3dbd84c2bfae847229cd1013f68c0da7, type: 3}
-  _pushObjectsComponent: {fileID: 438063799118009260}
+  _pushComponent: {fileID: 438063799118009260}
 --- !u!114 &2957224103547375639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 3053905989913550054}
   _audioClip: {fileID: 8300000, guid: a2fb8d4706a16468592a6e50aa24de65, type: 3}
-  _tossObjectsComponent: {fileID: 276442129847125461}
+  _tossComponent: {fileID: 276442129847125461}
 --- !u!114 &892683033834009399
 MonoBehaviour:
   m_ObjectHideFlags: 0

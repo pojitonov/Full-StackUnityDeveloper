@@ -1,5 +1,5 @@
 using System;
-using Game.Scripts.Common;
+using Game.Scripts.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

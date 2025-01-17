@@ -6,16 +6,16 @@ namespace Game.Scripts.Components
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
-        [SerializeField] private TossObjectsComponent _tossObjectsComponent;
+        [SerializeField] private TossComponent _tossComponent;
 
         private void OnEnable()
         {
-            _tossObjectsComponent.OnTossed += Play;
+            _tossComponent.OnTossed += Play;
         }
 
         private void OnDisable()
         {
-            _tossObjectsComponent.OnTossed -= Play;
+            _tossComponent.OnTossed -= Play;
         }
 
         private void Play()

@@ -1,9 +1,9 @@
-using Game.Scripts.Common;
+using Game.Scripts.Core;
 using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class PushOnDamageComponent : MonoBehaviour
+    public class DamagePushComponent : MonoBehaviour
     {
         [SerializeField] private PushType _pushType;
         [SerializeField] private float _forceStrength = 5f;

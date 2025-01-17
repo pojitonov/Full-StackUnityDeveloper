@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts.Components
 {
@@ -6,16 +7,16 @@ namespace Game.Scripts.Components
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
-        [SerializeField] private PushObjectsComponent _pushObjectsComponent;
+        [SerializeField] private PushComponent _pushComponent;
 
         private void OnEnable()
         {
-            _pushObjectsComponent.OnPushed += Play;
+            _pushComponent.OnPushed += Play;
         }
 
         private void OnDisable()
         {
-            _pushObjectsComponent.OnPushed -= Play;
+            _pushComponent.OnPushed -= Play;
         }
 
         private void Play()
