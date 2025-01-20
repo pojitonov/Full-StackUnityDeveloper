@@ -4,17 +4,17 @@ namespace Game.Scripts.Core
 {
     public static class GamePhysics
     {
-        private const float _forceMultiplier = 100;
-        private const float _impulseMultiplier = 1;
+        private const float FORCE_MULTIPLIER = 100;
+        private const float IMPULSE_MULTIPLIER = 1;
 
         public static void AddForce(Rigidbody2D rigidbody, Vector2 direction, float force,
             ForceMode2D forceMode = ForceMode2D.Force)
         {
             if (!rigidbody) return;
             if (forceMode == ForceMode2D.Force)
-                rigidbody.AddForce(direction.normalized * (force * _forceMultiplier), forceMode);
+                rigidbody.AddForce(direction.normalized * (force * FORCE_MULTIPLIER), forceMode);
             if (forceMode == ForceMode2D.Impulse)
-                rigidbody.AddForce(direction.normalized * (force * _impulseMultiplier), forceMode);
+                rigidbody.AddForce(direction.normalized * (force * IMPULSE_MULTIPLIER), forceMode);
         }
 
         public static void AddForceToInteractable(GameObject item, Vector2 direction, float force)
