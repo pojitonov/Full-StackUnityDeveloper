@@ -4245,6 +4245,51 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.509991, y: 3.0119958, z: 1}
   m_Center: {x: -1.2499998, y: 1.5, z: 0}
+--- !u!1 &317064069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 317064071}
+  - component: {fileID: 317064070}
+  m_Layer: 0
+  m_Name: '[System]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &317064070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317064069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87145881ab444a29391a7ee2592de97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _character: {fileID: 9048405937420967253}
+--- !u!4 &317064071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317064069}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.500147, y: 0.8923479, z: -12.011924}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &319358580
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28007,11 +28052,23 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25ded69825984498db7dacfedbed37a1, type: 3}
+--- !u!114 &9048405937420967253 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3276317001686774650, guid: 25ded69825984498db7dacfedbed37a1, type: 3}
+  m_PrefabInstance: {fileID: 9048405937420967252}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3142498ee69840069f3a93c11b1e1f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 4616498620599230045}
+  - {fileID: 317064071}
   - {fileID: 9048405937420967252}
   - {fileID: 1225762019}
   - {fileID: 1676091983}
