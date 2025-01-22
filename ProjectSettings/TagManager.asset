@@ -3,21 +3,26 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Melee
+  - Enemy
+  - Missile
+  - Range
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
+  - Wall
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Character
+  - Enemy
+  - PickableItem
+  - Projectile
   - 
   - 
   - 
@@ -40,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: VFX
+    uniqueID: 3917833625
     locked: 0
