@@ -1,0 +1,20 @@
+header: EntityAPI
+entityType: IEntity
+aggressiveInlining: true
+
+namespace: Game.Gameplay
+className: EntityAPI
+directory: Assets/Game/Scripts/Gameplay/Entity/Character/Codegen
+
+imports:
+- System
+- UnityEngine
+- Atomic.Entities
+- Atomic.Elements
+
+values:
+- Transform: Transform
+- MoveSpeed: IValue<float>
+- AngularSpeed: IValue<float>
+- MoveAction: IAction<Vector3, float> #direction, deltaTime
+- Health: IValue<int>

@@ -31,8 +31,7 @@ namespace Game.Gameplay
         private void Move(Vector3 direction)
         {
             float deltaTime = Time.deltaTime;
-            _character.MoveTowards(direction, deltaTime);
-            _character.RotateTowards(direction, deltaTime);
+            _character.GetMoveAction().Invoke(direction, deltaTime);
         }
     }
 }

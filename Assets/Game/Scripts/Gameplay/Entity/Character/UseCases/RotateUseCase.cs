@@ -16,7 +16,7 @@ namespace Game.Gameplay
 
         public static void RotateTowards(this IEntity entity, in Quaternion targetRotation, in float deltaTime)
         {
-            float speed = entity.GetAngularSpeed();
+            float speed = entity.GetAngularSpeed().Value;
             Transform transform = entity.GetTransform();
             transform.rotation = RotateTowards(transform.rotation, targetRotation, speed);
         }
