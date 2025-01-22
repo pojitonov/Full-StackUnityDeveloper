@@ -31,8 +31,8 @@ namespace Game.Gameplay
         private void Move(Vector3 direction)
         {
             float deltaTime = Time.deltaTime;
-            MoveUseCase.MoveTowards(_character, direction, deltaTime);
-            RotateUseCase.RotateTowards(_character, direction, deltaTime);
+            _character.MoveTowards(direction, deltaTime);
+            _character.RotateTowards(direction, deltaTime);
         }
     }
 }

@@ -5,11 +5,11 @@ namespace Game.Gameplay
 {
     public static class MoveUseCase
     {
-        public static void MoveTowards(IEntity entity, in Vector3 direction, in float deltaTime)
+        public static void MoveTowards(this IEntity entity, in Vector3 direction, in float deltaTime)
         {
-            Transform transform = entity.GetValue<Transform>("Transform");
-            float speed = entity.GetValue<float>("MoveSpeed");
-            transform.position += direction * deltaTime * speed;
+            Transform transform = entity.GetTransform();
+            float speed = entity.GetMoveSpeed();
+            transform.position += direction * (deltaTime * speed);
         }
     }
 }

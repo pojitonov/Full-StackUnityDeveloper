@@ -10,9 +10,9 @@ namespace Game.Gameplay
 
         public override void Install(IEntity entity)
         {
-            entity.AddValue("Transform", transform);
-            entity.AddValue("MoveSpeed", _moveSpeed);
-            entity.AddValue("RotationSpeed", _rotationSpeed);
+            entity.AddTransform(transform);
+            entity.AddMoveSpeed(_moveSpeed);
+            entity.AddAngularSpeed(_rotationSpeed);
         }
     }
 }

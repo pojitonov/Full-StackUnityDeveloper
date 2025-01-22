@@ -5,7 +5,7 @@ namespace Game.Gameplay
 {
     public static class RotateUseCase
     {
-        public static void RotateTowards(IEntity entity, in Vector3 direction, in float deltaTime)
+        public static void RotateTowards(this IEntity entity, in Vector3 direction, in float deltaTime)
         {
             if (direction == Vector3.zero)
                 return;
@@ -14,10 +14,10 @@ namespace Game.Gameplay
             RotateTowards(entity, targetRotation, deltaTime);
         }
 
-        public static void RotateTowards(IEntity entity, in Quaternion targetRotation, in float deltaTime)
+        public static void RotateTowards(this IEntity entity, in Quaternion targetRotation, in float deltaTime)
         {
-            float speed = entity.GetValue<float>("RotationSpeed");
-            Transform transform = entity.GetValue<Transform>("Transform");
+            float speed = entity.GetAngularSpeed();
+            Transform transform = entity.GetTransform();
             transform.rotation = RotateTowards(transform.rotation, targetRotation, speed);
         }
 
