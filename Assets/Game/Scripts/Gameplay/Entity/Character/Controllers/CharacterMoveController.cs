@@ -15,16 +15,16 @@ namespace Game.Gameplay
 
         private void HandleKeyboard()
         {
-            if (Input.GetKey(KeyCode.UpArrow)) 
+            if (Input.GetKey(KeyCode.W)) 
                 Move(Vector3.forward);
 
-            if (Input.GetKey(KeyCode.DownArrow)) 
+            if (Input.GetKey(KeyCode.S)) 
                 Move(Vector3.back);
 
-            if (Input.GetKey(KeyCode.LeftArrow)) 
+            if (Input.GetKey(KeyCode.A)) 
                 Move(Vector3.left);
 
-            if (Input.GetKey(KeyCode.RightArrow)) 
+            if (Input.GetKey(KeyCode.D)) 
                 Move(Vector3.right);
         }
 

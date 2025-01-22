@@ -16,14 +16,34 @@ namespace Game.Gameplay
 
 
 		///Values
+		public const int GameObject = 1482111001; // GameObject
 		public const int Transform = -180157682; // Transform
 		public const int MoveSpeed = 526065662; // IValue<float>
-		public const int AngularSpeed = -1089183267; // IValue<float>
+		public const int MoveCondition = 1466174948; // IExpression<bool>
 		public const int MoveAction = 1225226561; // IAction<Vector3, float>
-		public const int Health = -915003867; // IValue<int>
+		public const int AngularSpeed = -1089183267; // IValue<float>
+		public const int Health = -915003867; // IReactiveValue<int>
 
 
 		///Value Extensions
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static GameObject GetGameObject(this IEntity obj) => obj.GetValue<GameObject>(GameObject);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetGameObject(this IEntity obj, out GameObject value) => obj.TryGetValue(GameObject, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddGameObject(this IEntity obj, GameObject value) => obj.AddValue(GameObject, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasGameObject(this IEntity obj) => obj.HasValue(GameObject);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelGameObject(this IEntity obj) => obj.DelValue(GameObject);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetGameObject(this IEntity obj, GameObject value) => obj.SetValue(GameObject, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Transform GetTransform(this IEntity obj) => obj.GetValue<Transform>(Transform);
@@ -62,22 +82,22 @@ namespace Game.Gameplay
 		public static void SetMoveSpeed(this IEntity obj, IValue<float> value) => obj.SetValue(MoveSpeed, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IValue<float> GetAngularSpeed(this IEntity obj) => obj.GetValue<IValue<float>>(AngularSpeed);
+		public static IExpression<bool> GetMoveCondition(this IEntity obj) => obj.GetValue<IExpression<bool>>(MoveCondition);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetAngularSpeed(this IEntity obj, out IValue<float> value) => obj.TryGetValue(AngularSpeed, out value);
+		public static bool TryGetMoveCondition(this IEntity obj, out IExpression<bool> value) => obj.TryGetValue(MoveCondition, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddAngularSpeed(this IEntity obj, IValue<float> value) => obj.AddValue(AngularSpeed, value);
+		public static bool AddMoveCondition(this IEntity obj, IExpression<bool> value) => obj.AddValue(MoveCondition, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasAngularSpeed(this IEntity obj) => obj.HasValue(AngularSpeed);
+		public static bool HasMoveCondition(this IEntity obj) => obj.HasValue(MoveCondition);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelAngularSpeed(this IEntity obj) => obj.DelValue(AngularSpeed);
+		public static bool DelMoveCondition(this IEntity obj) => obj.DelValue(MoveCondition);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetAngularSpeed(this IEntity obj, IValue<float> value) => obj.SetValue(AngularSpeed, value);
+		public static void SetMoveCondition(this IEntity obj, IExpression<bool> value) => obj.SetValue(MoveCondition, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IAction<Vector3, float> GetMoveAction(this IEntity obj) => obj.GetValue<IAction<Vector3, float>>(MoveAction);
@@ -98,13 +118,31 @@ namespace Game.Gameplay
 		public static void SetMoveAction(this IEntity obj, IAction<Vector3, float> value) => obj.SetValue(MoveAction, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IValue<int> GetHealth(this IEntity obj) => obj.GetValue<IValue<int>>(Health);
+		public static IValue<float> GetAngularSpeed(this IEntity obj) => obj.GetValue<IValue<float>>(AngularSpeed);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetHealth(this IEntity obj, out IValue<int> value) => obj.TryGetValue(Health, out value);
+		public static bool TryGetAngularSpeed(this IEntity obj, out IValue<float> value) => obj.TryGetValue(AngularSpeed, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddHealth(this IEntity obj, IValue<int> value) => obj.AddValue(Health, value);
+		public static bool AddAngularSpeed(this IEntity obj, IValue<float> value) => obj.AddValue(AngularSpeed, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasAngularSpeed(this IEntity obj) => obj.HasValue(AngularSpeed);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelAngularSpeed(this IEntity obj) => obj.DelValue(AngularSpeed);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetAngularSpeed(this IEntity obj, IValue<float> value) => obj.SetValue(AngularSpeed, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IReactiveValue<int> GetHealth(this IEntity obj) => obj.GetValue<IReactiveValue<int>>(Health);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetHealth(this IEntity obj, out IReactiveValue<int> value) => obj.TryGetValue(Health, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddHealth(this IEntity obj, IReactiveValue<int> value) => obj.AddValue(Health, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasHealth(this IEntity obj) => obj.HasValue(Health);
@@ -113,6 +151,6 @@ namespace Game.Gameplay
 		public static bool DelHealth(this IEntity obj) => obj.DelValue(Health);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetHealth(this IEntity obj, IValue<int> value) => obj.SetValue(Health, value);
+		public static void SetHealth(this IEntity obj, IReactiveValue<int> value) => obj.SetValue(Health, value);
     }
 }

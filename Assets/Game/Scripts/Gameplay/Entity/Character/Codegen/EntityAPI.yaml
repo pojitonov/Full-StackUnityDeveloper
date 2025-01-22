@@ -13,8 +13,10 @@ imports:
 - Atomic.Elements
 
 values:
+- GameObject: GameObject
 - Transform: Transform
 - MoveSpeed: IValue<float>
-- AngularSpeed: IValue<float>
+- MoveCondition: IExpression<bool>
 - MoveAction: IAction<Vector3, float> #direction, deltaTime
-- Health: IValue<int>
+- AngularSpeed: IValue<float>
+- Health: IReactiveValue<int>
