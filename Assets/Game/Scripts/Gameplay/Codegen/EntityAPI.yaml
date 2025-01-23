@@ -3,12 +3,16 @@ entityType: IEntity
 aggressiveInlining: true
 
 namespace: Game.Gameplay
-className: CharacterEntityAPI
+className: EntityAPI
 directory: Assets/Game/Scripts/Gameplay/Codegen
 
 imports:
 - UnityEngine
 - Atomic.Elements
+- Modules.Gameplay
+
+tags:
+- Damageable
 
 values:
 - GameObject: GameObject
@@ -17,6 +21,8 @@ values:
 - MoveCondition: IExpression<bool>
 - MoveAction: IAction<Vector3, float> #direction, deltaTime
 - AngularSpeed: IValue<float>
-- Health: IReactiveValue<int>
+- Health: IReactiveVariable<int>
 - Weapon: IWeaponEntity
 - MoveDirection: IReactiveVariable<Vector3>
+- Damage: IValue<int>
+- Collision: CollisionEventReceiver

@@ -6,11 +6,14 @@ using Atomic.Entities;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using Atomic.Elements;
+using Modules.Gameplay;
 
 namespace Game.Gameplay
 {
-	public static class CharacterEntityAPI
+	public static class EntityAPI
 	{
+		///Tags
+		public const int Damageable = 563499515;
 
 
 		///Values
@@ -20,9 +23,23 @@ namespace Game.Gameplay
 		public const int MoveCondition = 1466174948; // IExpression<bool>
 		public const int MoveAction = 1225226561; // IAction<Vector3, float>
 		public const int AngularSpeed = -1089183267; // IValue<float>
-		public const int Health = -915003867; // IReactiveValue<int>
+		public const int Health = -915003867; // IReactiveVariable<int>
 		public const int Weapon = 1855955664; // IWeaponEntity
 		public const int MoveDirection = -721923052; // IReactiveVariable<Vector3>
+		public const int Damage = 375673178; // IValue<int>
+		public const int Collision = -650338019; // CollisionEventReceiver
+
+
+		///Tag Extensions
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasDamageableTag(this IEntity obj) => obj.HasTag(Damageable);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddDamageableTag(this IEntity obj) => obj.AddTag(Damageable);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelDamageableTag(this IEntity obj) => obj.DelTag(Damageable);
 
 
 		///Value Extensions
@@ -136,13 +153,13 @@ namespace Game.Gameplay
 		public static void SetAngularSpeed(this IEntity obj, IValue<float> value) => obj.SetValue(AngularSpeed, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IReactiveValue<int> GetHealth(this IEntity obj) => obj.GetValue<IReactiveValue<int>>(Health);
+		public static IReactiveVariable<int> GetHealth(this IEntity obj) => obj.GetValue<IReactiveVariable<int>>(Health);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetHealth(this IEntity obj, out IReactiveValue<int> value) => obj.TryGetValue(Health, out value);
+		public static bool TryGetHealth(this IEntity obj, out IReactiveVariable<int> value) => obj.TryGetValue(Health, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddHealth(this IEntity obj, IReactiveValue<int> value) => obj.AddValue(Health, value);
+		public static bool AddHealth(this IEntity obj, IReactiveVariable<int> value) => obj.AddValue(Health, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasHealth(this IEntity obj) => obj.HasValue(Health);
@@ -151,7 +168,7 @@ namespace Game.Gameplay
 		public static bool DelHealth(this IEntity obj) => obj.DelValue(Health);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetHealth(this IEntity obj, IReactiveValue<int> value) => obj.SetValue(Health, value);
+		public static void SetHealth(this IEntity obj, IReactiveVariable<int> value) => obj.SetValue(Health, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IWeaponEntity GetWeapon(this IEntity obj) => obj.GetValue<IWeaponEntity>(Weapon);
@@ -188,5 +205,41 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetMoveDirection(this IEntity obj, IReactiveVariable<Vector3> value) => obj.SetValue(MoveDirection, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IValue<int> GetDamage(this IEntity obj) => obj.GetValue<IValue<int>>(Damage);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetDamage(this IEntity obj, out IValue<int> value) => obj.TryGetValue(Damage, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddDamage(this IEntity obj, IValue<int> value) => obj.AddValue(Damage, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasDamage(this IEntity obj) => obj.HasValue(Damage);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelDamage(this IEntity obj) => obj.DelValue(Damage);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetDamage(this IEntity obj, IValue<int> value) => obj.SetValue(Damage, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static CollisionEventReceiver GetCollision(this IEntity obj) => obj.GetValue<CollisionEventReceiver>(Collision);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetCollision(this IEntity obj, out CollisionEventReceiver value) => obj.TryGetValue(Collision, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddCollision(this IEntity obj, CollisionEventReceiver value) => obj.AddValue(Collision, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasCollision(this IEntity obj) => obj.HasValue(Collision);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelCollision(this IEntity obj) => obj.DelValue(Collision);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetCollision(this IEntity obj, CollisionEventReceiver value) => obj.SetValue(Collision, value);
     }
 }
