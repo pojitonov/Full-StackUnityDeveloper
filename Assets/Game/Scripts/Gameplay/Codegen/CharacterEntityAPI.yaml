@@ -7,9 +7,7 @@ className: CharacterEntityAPI
 directory: Assets/Game/Scripts/Gameplay/Codegen
 
 imports:
-- System
 - UnityEngine
-- Atomic.Entities
 - Atomic.Elements
 
 values:
@@ -21,3 +19,4 @@ values:
 - AngularSpeed: IValue<float>
 - Health: IReactiveValue<int>
 - Weapon: IWeaponEntity
+- MoveDirection: IReactiveVariable<Vector3>

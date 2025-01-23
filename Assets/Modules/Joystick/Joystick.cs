@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Modules.Common
 {
-    public sealed class Joystick : MonoBehaviour,
+    public class Joystick : MonoBehaviour,
         IPointerDownHandler,
         IDragHandler,
         IPointerUpHandler

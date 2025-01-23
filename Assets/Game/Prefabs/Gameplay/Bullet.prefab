@@ -76,6 +76,8 @@ GameObject:
   - component: {fileID: 2852948263122311593}
   - component: {fileID: 7006393198650432515}
   - component: {fileID: -7389732882356062355}
+  - component: {fileID: -5904136953363652877}
+  - component: {fileID: 7163841976804205022}
   m_Layer: 12
   m_Name: Bullet
   m_TagString: Bullet
@@ -173,10 +175,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   installOnAwake: 1
   installInEditMode: 0
-  installers: []
+  installers:
+  - {fileID: -5904136953363652877}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
   gizmoses: []
+--- !u!114 &-5904136953363652877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829669804357326195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1cc77f206744e6a0cb24387188a639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 5
+--- !u!114 &7163841976804205022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829669804357326195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603a745f80e14d1d8cd57cf70a50187f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entities:
+  - {fileID: -7389732882356062355}
 --- !u!1001 &2426699191576222108
 PrefabInstance:
   m_ObjectHideFlags: 0

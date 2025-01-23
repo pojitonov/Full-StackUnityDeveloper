@@ -15,7 +15,7 @@ namespace Game.Gameplay
 
         private void HandleKeyboard()
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
                 _character.GetWeapon().FireBullet();
         }
     }

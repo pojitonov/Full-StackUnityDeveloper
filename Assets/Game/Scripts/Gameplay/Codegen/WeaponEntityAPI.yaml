@@ -7,10 +7,7 @@ className: WeaponEntityAPI
 directory: Assets/Game/Scripts/Gameplay/Codegen
  
 imports:
-- System
 - UnityEngine
-- Atomic.Entities
-- Atomic.Elements
 
 values:
 - BulletPrefab: SceneEntity

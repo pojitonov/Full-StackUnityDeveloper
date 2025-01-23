@@ -4,10 +4,7 @@
 
 using Atomic.Entities;
 using System.Runtime.CompilerServices;
-using System;
 using UnityEngine;
-using Atomic.Entities;
-using Atomic.Elements;
 
 namespace Game.Gameplay
 {

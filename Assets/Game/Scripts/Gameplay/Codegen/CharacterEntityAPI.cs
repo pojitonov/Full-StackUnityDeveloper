@@ -4,9 +4,7 @@
 
 using Atomic.Entities;
 using System.Runtime.CompilerServices;
-using System;
 using UnityEngine;
-using Atomic.Entities;
 using Atomic.Elements;
 
 namespace Game.Gameplay
@@ -24,6 +22,7 @@ namespace Game.Gameplay
 		public const int AngularSpeed = -1089183267; // IValue<float>
 		public const int Health = -915003867; // IReactiveValue<int>
 		public const int Weapon = 1855955664; // IWeaponEntity
+		public const int MoveDirection = -721923052; // IReactiveVariable<Vector3>
 
 
 		///Value Extensions
@@ -171,5 +170,23 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetWeapon(this IEntity obj, IWeaponEntity value) => obj.SetValue(Weapon, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IReactiveVariable<Vector3> GetMoveDirection(this IEntity obj) => obj.GetValue<IReactiveVariable<Vector3>>(MoveDirection);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetMoveDirection(this IEntity obj, out IReactiveVariable<Vector3> value) => obj.TryGetValue(MoveDirection, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddMoveDirection(this IEntity obj, IReactiveVariable<Vector3> value) => obj.AddValue(MoveDirection, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasMoveDirection(this IEntity obj) => obj.HasValue(MoveDirection);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelMoveDirection(this IEntity obj) => obj.DelValue(MoveDirection);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetMoveDirection(this IEntity obj, IReactiveVariable<Vector3> value) => obj.SetValue(MoveDirection, value);
     }
 }
