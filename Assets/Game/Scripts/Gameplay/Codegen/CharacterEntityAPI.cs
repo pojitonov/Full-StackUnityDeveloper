@@ -11,7 +11,7 @@ using Atomic.Elements;
 
 namespace Game.Gameplay
 {
-	public static class EntityAPI
+	public static class CharacterEntityAPI
 	{
 
 
@@ -23,6 +23,7 @@ namespace Game.Gameplay
 		public const int MoveAction = 1225226561; // IAction<Vector3, float>
 		public const int AngularSpeed = -1089183267; // IValue<float>
 		public const int Health = -915003867; // IReactiveValue<int>
+		public const int Weapon = 1855955664; // IWeaponEntity
 
 
 		///Value Extensions
@@ -152,5 +153,23 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetHealth(this IEntity obj, IReactiveValue<int> value) => obj.SetValue(Health, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IWeaponEntity GetWeapon(this IEntity obj) => obj.GetValue<IWeaponEntity>(Weapon);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetWeapon(this IEntity obj, out IWeaponEntity value) => obj.TryGetValue(Weapon, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddWeapon(this IEntity obj, IWeaponEntity value) => obj.AddValue(Weapon, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasWeapon(this IEntity obj) => obj.HasValue(Weapon);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelWeapon(this IEntity obj) => obj.DelValue(Weapon);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetWeapon(this IEntity obj, IWeaponEntity value) => obj.SetValue(Weapon, value);
     }
 }

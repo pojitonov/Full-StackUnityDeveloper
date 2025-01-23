@@ -3,8 +3,8 @@ entityType: IEntity
 aggressiveInlining: true
 
 namespace: Game.Gameplay
-className: EntityAPI
-directory: Assets/Game/Scripts/Gameplay/Entity/Character/Codegen
+className: CharacterEntityAPI
+directory: Assets/Game/Scripts/Gameplay/Codegen
 
 imports:
 - System
@@ -20,3 +20,4 @@ values:
 - MoveAction: IAction<Vector3, float> #direction, deltaTime
 - AngularSpeed: IValue<float>
 - Health: IReactiveValue<int>
+- Weapon: IWeaponEntity

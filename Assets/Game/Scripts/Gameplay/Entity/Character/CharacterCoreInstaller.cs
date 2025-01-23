@@ -11,6 +11,7 @@ namespace Game.Gameplay
         [SerializeField] private int _health = 5;
         [SerializeField] private GameObject _gameObject;
         [SerializeField] private Transform _transform;
+        [SerializeField] private WeaponEntity _weapon;
 
         public override void Install(IEntity entity)
         {
@@ -20,6 +21,7 @@ namespace Game.Gameplay
             entity.AddMoveSpeed(new BaseFunction<float>(() => _moveSpeed));
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
             entity.AddHealth(new ReactiveVariable<int>(_health));
+            entity.AddWeapon(_weapon);
 
             //Actions:
             entity.AddMoveAction(new BaseAction<Vector3, float>((direction, deltaTime) =>
