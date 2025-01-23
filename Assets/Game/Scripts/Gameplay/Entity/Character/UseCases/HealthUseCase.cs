@@ -16,11 +16,12 @@ namespace Game.Gameplay
                 return false;
      
             var health = entity.GetHealth();
-            
-            if (health.Value < 0)
+
+            var currentHealth = health.Value;
+            if (currentHealth < 0)
                 return false;
             
-            health.Value -= Math.Max(0, health.Value - damage);
+            health.Value = Math.Max(0, currentHealth - damage);
             return true;
         }
     }
