@@ -1744,6 +1744,7 @@ MonoBehaviour:
   _gameObject: {fileID: 6355162821186015845}
   _transform: {fileID: 4361596233082998913}
   _health: 3
+  _target: {fileID: 0}
 --- !u!114 &7744097162708376624
 MonoBehaviour:
   m_ObjectHideFlags: 0

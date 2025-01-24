@@ -28,6 +28,7 @@ namespace Game.Gameplay
 		public const int MoveDirection = -721923052; // IReactiveVariable<Vector3>
 		public const int Damage = 375673178; // IValue<int>
 		public const int Collision = -650338019; // CollisionEventReceiver
+		public const int Target = 1103309514; // IReactiveVariable<IEntity>
 
 
 		///Tag Extensions
@@ -241,5 +242,23 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetCollision(this IEntity obj, CollisionEventReceiver value) => obj.SetValue(Collision, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IReactiveVariable<IEntity> GetTarget(this IEntity obj) => obj.GetValue<IReactiveVariable<IEntity>>(Target);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetTarget(this IEntity obj, out IReactiveVariable<IEntity> value) => obj.TryGetValue(Target, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddTarget(this IEntity obj, IReactiveVariable<IEntity> value) => obj.AddValue(Target, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasTarget(this IEntity obj) => obj.HasValue(Target);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelTarget(this IEntity obj) => obj.DelValue(Target);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetTarget(this IEntity obj, IReactiveVariable<IEntity> value) => obj.SetValue(Target, value);
     }
 }
