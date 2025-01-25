@@ -15,15 +15,29 @@ tags:
 - Damageable
 
 values:
+# Main
 - GameObject: GameObject
 - Transform: Transform
+
+# Life
+- Health: IReactiveVariable<int>
+- Damage: IValue<int>
+
+# Move
 - MoveSpeed: IValue<float>
 - MoveCondition: IExpression<bool>
-- MoveAction: IAction<Vector3, float> #direction, deltaTime
-- AngularSpeed: IValue<float>
-- Health: IReactiveVariable<int>
-- Weapon: IWeaponEntity
+- MoveAction: IAction<Vector3, float> # direction, deltaTime
 - MoveDirection: IReactiveVariable<Vector3>
-- Damage: IValue<int>
-- Collision: CollisionEventReceiver
+
+# Rotation
+- AngularSpeed: IValue<float>
+
+# Combat
 - Target: IReactiveVariable<IEntity>
+- Weapon: IWeaponEntity
+
+# Physics
+- Collision: CollisionEventReceiver
+
+# Visual
+- Animator: Animator

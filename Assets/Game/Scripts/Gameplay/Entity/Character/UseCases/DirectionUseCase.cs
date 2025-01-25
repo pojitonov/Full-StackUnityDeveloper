@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public static class VectorUseCase
+    public static class DirectionUseCase
     {
         public static Vector3 GetDirectionAt(this IEntity entity, in IEntity target)
         {

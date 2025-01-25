@@ -24,7 +24,7 @@ namespace Game.Gameplay
 
             //Behaviours:
             entity.AddBehaviour<DeathBehaviour>();
-            entity.AddBehaviour<EnemyAttackBehaviour>();
+            entity.AddBehaviour<EnemyLookAtBehaviour>();
         }
     }
 }

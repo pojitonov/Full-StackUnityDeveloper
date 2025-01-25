@@ -19,6 +19,7 @@ namespace Game.Gameplay
             entity.AddGameObject(_gameObject);
             entity.AddTransform(_transform);
             entity.AddHealth(new ReactiveVariable<int>(_health));
+            entity.AddMoveDirection(new ReactiveVector3());
             entity.AddMoveSpeed(new BaseFunction<float>(() => _moveSpeed));
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
             entity.AddWeapon(_weapon);

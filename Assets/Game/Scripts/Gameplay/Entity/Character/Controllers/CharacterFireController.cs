@@ -5,8 +5,7 @@ namespace Game.Gameplay
 {
     public class CharacterFireController : MonoBehaviour
     {
-        [SerializeField]
-        private SceneEntity _character;
+        [SerializeField] private SceneEntity _character;
 
         private void Update()
         {

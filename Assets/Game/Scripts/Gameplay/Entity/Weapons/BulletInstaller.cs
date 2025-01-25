@@ -5,7 +5,6 @@ using Modules.Gameplay;
 
 namespace Game.Gameplay
 {
-    // TODO: Fix bug with bullet move
     public class BulletInstaller : SceneEntityInstaller
     {
         [SerializeField] private float _moveSpeed = 5;

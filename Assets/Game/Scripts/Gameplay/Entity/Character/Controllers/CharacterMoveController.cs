@@ -5,8 +5,7 @@ namespace Game.Gameplay
 {
     public class CharacterMoveController : MonoBehaviour
     {
-        [SerializeField]
-        private SceneEntity _character;
+        [SerializeField] private SceneEntity _character;
 
         private void Update()
         {
@@ -30,8 +29,10 @@ namespace Game.Gameplay
 
         private void Move(Vector3 direction)
         {
+            
             float deltaTime = Time.deltaTime;
             _character.GetMoveAction().Invoke(direction, deltaTime);
+            // _character.GetMoveDirection().Value = direction.normalized;
         }
     }
 }
