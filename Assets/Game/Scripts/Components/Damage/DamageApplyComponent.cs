@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class DamageApplierComponent : MonoBehaviour
+    public class DamageApplyComponent : MonoBehaviour
     {
         public event Action<GameObject> OnDamaged;
 

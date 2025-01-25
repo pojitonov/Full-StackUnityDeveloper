@@ -407,12 +407,12 @@ GameObject:
   - component: {fileID: 1114773270552738056}
   - component: {fileID: 6506747504731968586}
   - component: {fileID: 6605907901023207316}
-  - component: {fileID: 839492495396028738}
   - component: {fileID: 5352395781337772132}
   - component: {fileID: 8828846598355375344}
-  - component: {fileID: 4215505569129028564}
   - component: {fileID: 4643577223385722002}
   - component: {fileID: 1986092096939806028}
+  - component: {fileID: 839492495396028738}
+  - component: {fileID: 4215505569129028564}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -450,9 +450,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6698ad2175b841d7a24815999da2bbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthComponent: {fileID: 6605907901023207316}
+  _moveComponent: {fileID: 5352395781337772132}
+  _patrolComponent: {fileID: 8828846598355375344}
   _damageTriggerComponent: {fileID: 4643577223385722002}
   _damageApplierComponent: {fileID: 1986092096939806028}
   _damagePushComponent: {fileID: 839492495396028738}
+  _deathHandler: {fileID: 4215505569129028564}
 --- !u!114 &6605907901023207316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,20 +471,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLife: 3
   _currentLife: 0
---- !u!114 &839492495396028738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5554046834176312192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5ebea41bfe49b8a150f846d886d93d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pushType: 0
-  _forceStrength: 5
 --- !u!114 &5352395781337772132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,22 +501,6 @@ MonoBehaviour:
   _waypoint1: {fileID: 3929516699554365295}
   _waypoint2: {fileID: 4629981065635871775}
   _moveComponent: {fileID: 5352395781337772132}
---- !u!114 &4215505569129028564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5554046834176312192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e194ac0c1ff341ae98cdb1b361adb1a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthComponent: {fileID: 6605907901023207316}
-  cooldown:
-    _duration: 2
-    elapsedTime: 0
 --- !u!114 &4643577223385722002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,6 +529,35 @@ MonoBehaviour:
   _damagePoints: 2
   cooldown:
     _duration: 1
+    elapsedTime: 0
+--- !u!114 &839492495396028738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5ebea41bfe49b8a150f846d886d93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pushType: 0
+  _forceStrength: 5
+--- !u!114 &4215505569129028564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e194ac0c1ff341ae98cdb1b361adb1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown:
+    _duration: 2
     elapsedTime: 0
 --- !u!1 &7187152835411801990
 GameObject:
@@ -720,8 +723,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3123733364965956949}
   _damagedColor: {r: 1, g: 0.7933302, b: 0, a: 1}
-  _healthComponent: {fileID: 6605907901023207316}
   _animationDuration: 0.2
+  _healthComponent: {fileID: 6605907901023207316}
 --- !u!1 &8665529919726988981
 GameObject:
   m_ObjectHideFlags: 0

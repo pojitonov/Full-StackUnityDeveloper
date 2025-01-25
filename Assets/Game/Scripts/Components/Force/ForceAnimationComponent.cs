@@ -1,5 +1,6 @@
 using Game.Scripts.Objects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts.Components
 {
@@ -7,18 +8,19 @@ namespace Game.Scripts.Components
     {
         [SerializeField] private ParticleSystem _pushParticleSource;
         [SerializeField] private ParticleSystem _tossParticleSource;
-        [SerializeField] private ForceActionComponent _forceActionComponent;
+        [FormerlySerializedAs("_forceActionComponent")]
+        [SerializeField] private ForceComponent _forceComponent;
 
         private void OnEnable()
         {
-            _forceActionComponent.OnPush += () => Play(_pushParticleSource);
-            _forceActionComponent.OnToss += () => Play(_tossParticleSource);
+            _forceComponent.OnPush += () => Play(_pushParticleSource);
+            _forceComponent.OnToss += () => Play(_tossParticleSource);
         }
 
         private void OnDisable()
         {
-            _forceActionComponent.OnPush -= () => Play(_pushParticleSource);
-            _forceActionComponent.OnToss -= () => Play(_tossParticleSource);
+            _forceComponent.OnPush -= () => Play(_pushParticleSource);
+            _forceComponent.OnToss -= () => Play(_tossParticleSource);
         }
 
         private void Play(ParticleSystem particleSystem)

@@ -1,36 +1,30 @@
 using Game.Scripts.Core;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts.Components
 {
     public class DeathHandler : MonoBehaviour
     {
-        [SerializeField] private HealthComponent _healthComponent;
         [SerializeField] private Cooldown cooldown;
 
-        private void OnEnable()
-        {
-            _healthComponent.OnDied += Destroy;
-        }
-
-        private void OnDisable()
-        {
-            _healthComponent.OnDied -= Destroy;
-        }
+        private bool _isDead;
 
         private void Update()
         {
-            cooldown.Tick(Time.deltaTime);
-
-            if (cooldown.IsTimeUp() && !_healthComponent.IsAlive)
+            if (_isDead)
             {
-                Destroy(gameObject);
+                cooldown.Tick(Time.deltaTime);
+
+                if (cooldown.IsTimeUp())
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 
-        private void Destroy()
+        public void TriggerDeath()
         {
+            _isDead = true;
             cooldown.Reset();
         }
     }

@@ -8,12 +8,12 @@ namespace Game.Scripts.Controllers
     {
         [SerializeField] private Character _character;
         
-        private ForceActionComponent _forceActionComponent;
+        private ForceComponent _forceComponent;
         private LookAtComponent _lookAtComponent;
 
         private void Awake()
         {
-            _forceActionComponent = _character.GetComponent<ForceActionComponent>();
+            _forceComponent = _character.GetComponent<ForceComponent>();
             _lookAtComponent = _character.GetComponent<LookAtComponent>();
         }
 
@@ -23,12 +23,12 @@ namespace Game.Scripts.Controllers
             
             if (Input.GetKeyDown(KeyCode.W))
             {
-                _forceActionComponent.ApplyForce(Vector3.up, lookDirection);
+                _forceComponent.ApplyForce(Vector3.up, lookDirection);
             }
 
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
             {
-                _forceActionComponent.ApplyForce(lookDirection, lookDirection);
+                _forceComponent.ApplyForce(lookDirection, lookDirection);
             }
         }
     }

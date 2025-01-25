@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class ForceActionComponent : MonoBehaviour
+    public class ForceComponent : MonoBehaviour
     {
         private const float FORCE_MULTIPLIER = 100;
 

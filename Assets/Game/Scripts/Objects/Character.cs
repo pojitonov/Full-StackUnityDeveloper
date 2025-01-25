@@ -6,31 +6,35 @@ namespace Game.Scripts.Objects
 {
     public sealed class Character : MonoBehaviour
     {
+        [SerializeField] private HealthComponent _healthComponent;
+        [SerializeField] private LookAtComponent _lookAtComponent;
+        [SerializeField] private StandingComponent _standingComponent;
+        [SerializeField] private GroundComponent _groundComponent;
         [SerializeField] private MoveComponent _moveComponent;
         [SerializeField] private FlipComponent _flipComponent;
         [SerializeField] private JumpComponent _jumpComponent;
-        [SerializeField] private ForceActionComponent _forceActionComponent;
-        [SerializeField] private LookAtComponent _lookAtComponent;
-        [SerializeField] private HealthComponent _healthComponent;
+        [SerializeField] private ForceComponent _forceComponent;
         [SerializeField] private DamageTriggerComponent _damageTriggerComponent;
-        [SerializeField] private DamageApplierComponent _damageApplierComponent;
-        [SerializeField] private GroundComponent _groundComponent;
-        [SerializeField] private StandingComponent _standingComponent;
+        [FormerlySerializedAs("_damageApplierComponent")]
+        [SerializeField] private DamageApplyComponent _damageApplyComponent;
+        [SerializeField] private DeathHandler _deathHandler;
         
-
         private void Awake()
         {
             _moveComponent.AddCondition(() => _healthComponent.IsAlive);
             _jumpComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
-            _forceActionComponent.AddCondition(() => _healthComponent.IsAlive, ForceType.Push);
-            _forceActionComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded, ForceType.Toss);
+            _forceComponent.AddCondition(() => _healthComponent.IsAlive, ForceType.Push);
+            _forceComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded,
+                ForceType.Toss);
 
-            _damageTriggerComponent.OnDamageTriggered += HandleDamage;
+            _healthComponent.OnDied += _deathHandler.TriggerDeath;
+            _damageTriggerComponent.OnDamageTriggered += target => _damageApplyComponent.TryApplyDamage(target);
         }
 
         private void OnDestroy()
         {
-            _damageTriggerComponent.OnDamageTriggered -= HandleDamage;
+            _healthComponent.OnDied -= _deathHandler.TriggerDeath;
+            _damageTriggerComponent.OnDamageTriggered -= target => _damageApplyComponent.TryApplyDamage(target);
         }
 
         private void Update()
@@ -38,12 +42,6 @@ namespace Game.Scripts.Objects
             _flipComponent.Direction = _moveComponent.Direction;
             _lookAtComponent.SetDirection(_moveComponent.Direction);
             _standingComponent.UpdateStanding(_groundComponent.IsGrounded, _groundComponent.Transform);
-
-        }
-
-        private void HandleDamage(GameObject target)
-        {
-            _damageApplierComponent.TryApplyDamage(target);
         }
     }
 }
