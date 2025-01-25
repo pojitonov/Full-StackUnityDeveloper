@@ -24,13 +24,11 @@ namespace Game.Scripts.Controllers
             if (Input.GetKeyDown(KeyCode.W))
             {
                 _forceActionComponent.ApplyForce(Vector3.up, lookDirection);
-                _forceActionComponent.InvokeToss();
             }
 
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
             {
                 _forceActionComponent.ApplyForce(lookDirection, lookDirection);
-                _forceActionComponent.InvokePush();
             }
         }
     }

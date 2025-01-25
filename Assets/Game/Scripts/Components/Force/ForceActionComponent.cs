@@ -14,7 +14,8 @@ namespace Game.Scripts.Components
         [SerializeField] private float _detectionRadius = 1f;
         [SerializeField] private Cooldown cooldown;
         
-        private readonly Condition _condition = new();
+        private readonly Condition _pushCondition = new();
+        private readonly Condition _tossCondition = new();
 
         private void Update()
         {
@@ -23,32 +24,53 @@ namespace Game.Scripts.Components
 
         public void ApplyForce(Vector2 forceDirection, Vector2 lookAtDirection)
         {
-            if (!_condition.IsTrue() || !cooldown.IsTimeUp())
+            var forceType = GetForceType(forceDirection);
+            var condition = GetCondition(forceType);
+            
+            if (!condition.IsTrue() || !cooldown.IsTimeUp())
                 return;
             cooldown.Reset();
 
-            var item = GamePhysics.GetInteractable(
-                transform.position,
-                _detectionRadius,
-                _layerMask,
-                lookAtDirection);
+            var target = GamePhysics.GetInteractable(
+                transform.position, 
+                _detectionRadius, 
+                _layerMask, 
+                lookAtDirection
+            );
 
-            GamePhysics.AddForceToInteractable(item, forceDirection, _forceStrength);
+            GamePhysics.AddForceToInteractable(target, forceDirection, _forceStrength);
+            
+            InvokeForceEvent(forceType);
         }
         
-        public void InvokePush()
+        private void InvokeForceEvent(ForceType forceType)
         {
-            OnPush?.Invoke();
+            if (forceType == ForceType.Push)
+                OnPush?.Invoke();
+            else
+                OnToss?.Invoke();
         }
 
-        public void InvokeToss()
+        private ForceType GetForceType(Vector2 forceDirection)
         {
-            OnToss?.Invoke();
+            return forceDirection == Vector2.up ? ForceType.Toss : ForceType.Push;
         }
 
-        public void AddCondition(Func<bool> condition)
+        private Condition GetCondition(ForceType forceType)
         {
-            _condition.Add(condition);
+            return forceType == ForceType.Push ? _pushCondition : _tossCondition;
         }
+        
+        public void AddCondition(Func<bool> condition, ForceType forceType)
+        {
+            var targetCondition = GetCondition(forceType);
+            targetCondition.Add(condition);
+        }
+    }
+    
+    public enum ForceType
+    {
+        Push,
+        Toss
     }
 }

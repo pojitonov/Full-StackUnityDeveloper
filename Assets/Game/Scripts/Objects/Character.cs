@@ -19,9 +19,9 @@ namespace Game.Scripts.Objects
         private void Awake()
         {
             _moveComponent.AddCondition(() => _healthComponent.IsAlive);
-            _forceActionComponent.AddCondition(() => _healthComponent.IsAlive);
-            // _tossComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
             _jumpComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
+            _forceActionComponent.AddCondition(() => _healthComponent.IsAlive, ForceType.Push);
+            _forceActionComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded, ForceType.Toss);
 
             _damageTriggerComponent.OnDamageTriggered += HandleDamage;
         }
