@@ -350,10 +350,11 @@ GameObject:
   - component: {fileID: 276442129847125461}
   - component: {fileID: 1674429860930161243}
   - component: {fileID: 5715988289400761378}
-  - component: {fileID: 5814930138478287487}
   - component: {fileID: 946704862140120437}
   - component: {fileID: 649709588814713679}
   - component: {fileID: 7084083767893602095}
+  - component: {fileID: 6521815000005297019}
+  - component: {fileID: 7463682178743865062}
   m_Layer: 9
   m_Name: Character
   m_TagString: Character
@@ -493,11 +494,13 @@ MonoBehaviour:
   _moveComponent: {fileID: 1674429860930161243}
   _flipComponent: {fileID: 5715988289400761378}
   _jumpComponent: {fileID: 6991238943733658325}
-  pushComponent: {fileID: 438063799118009260}
-  tossComponent: {fileID: 276442129847125461}
+  _pushComponent: {fileID: 438063799118009260}
+  _tossComponent: {fileID: 276442129847125461}
   _groundComponent: {fileID: 946704862140120437}
   _lookAtComponent: {fileID: 8606975443487328141}
   _healthComponent: {fileID: 8705098180684878821}
+  _damageTriggerComponent: {fileID: 6521815000005297019}
+  _damageApplierComponent: {fileID: 7463682178743865062}
 --- !u!114 &8705098180684878821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,23 +622,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 4102650447071868940}
---- !u!114 &5814930138478287487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7490323295220271620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 127104d701894c0aa0cd8d9c684beda7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damagePoints: 1
-  cooldown:
-    _duration: 1
-    elapsedTime: 0
-  collisionEventListener: {fileID: 1201764019363012222}
 --- !u!114 &946704862140120437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,6 +667,35 @@ MonoBehaviour:
   _healthComponent: {fileID: 8705098180684878821}
   cooldown:
     _duration: 2
+    elapsedTime: 0
+--- !u!114 &6521815000005297019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490323295220271620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217de3c0e1554748a56ce857b079c318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionEventListener: {fileID: 1201764019363012222}
+--- !u!114 &7463682178743865062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490323295220271620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a07325883a4de39abd0c4333e6b916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damagePoints: 1
+  cooldown:
+    _duration: 0
     elapsedTime: 0
 --- !u!1 &7801279227858408424
 GameObject:

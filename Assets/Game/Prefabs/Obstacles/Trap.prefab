@@ -95,12 +95,14 @@ GameObject:
   - component: {fileID: 3075001735327464809}
   - component: {fileID: 1650171991482105198}
   - component: {fileID: 8320438562223812922}
+  - component: {fileID: 8940028979578863937}
   - component: {fileID: 9086488212919646905}
   - component: {fileID: 4002432658537633424}
-  - component: {fileID: 5353495280700337263}
   - component: {fileID: 7280537044973331671}
   - component: {fileID: 1397027944515369323}
   - component: {fileID: 598596195528597246}
+  - component: {fileID: 4383446982448143665}
+  - component: {fileID: 2173013687465421712}
   m_Layer: 8
   m_Name: Trap
   m_TagString: Untagged
@@ -199,6 +201,20 @@ PolygonCollider2D:
       - {x: -0.5644675, y: 0.0016976148}
       - {x: 0.5652342, y: 0.0005790591}
   m_UseDelaunayMesh: 0
+--- !u!114 &8940028979578863937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331236207197526835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7185fdb8ad479da1e2e91b55103706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageTriggerComponent: {fileID: 4383446982448143665}
+  _damageApplierComponent: {fileID: 2173013687465421712}
 --- !u!114 &9086488212919646905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,23 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colliderIsTrigger: 0
---- !u!114 &5353495280700337263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4331236207197526835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 127104d701894c0aa0cd8d9c684beda7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damagePoints: 1
-  cooldown:
-    _duration: 1
-    elapsedTime: 0
-  collisionEventListener: {fileID: 4002432658537633424}
 --- !u!114 &7280537044973331671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,4 +287,33 @@ MonoBehaviour:
   _healthComponent: {fileID: 9086488212919646905}
   cooldown:
     _duration: 0.1
+    elapsedTime: 0
+--- !u!114 &4383446982448143665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331236207197526835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217de3c0e1554748a56ce857b079c318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionEventListener: {fileID: 4002432658537633424}
+--- !u!114 &2173013687465421712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331236207197526835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a07325883a4de39abd0c4333e6b916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damagePoints: 1
+  cooldown:
+    _duration: 1
     elapsedTime: 0

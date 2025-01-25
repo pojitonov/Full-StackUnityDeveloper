@@ -405,12 +405,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1114773270552738056}
+  - component: {fileID: 6506747504731968586}
   - component: {fileID: 6605907901023207316}
-  - component: {fileID: 5490028809158620207}
+  - component: {fileID: 839492495396028738}
   - component: {fileID: 5352395781337772132}
   - component: {fileID: 8828846598355375344}
-  - component: {fileID: 839492495396028738}
   - component: {fileID: 4215505569129028564}
+  - component: {fileID: 4643577223385722002}
+  - component: {fileID: 1986092096939806028}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -436,6 +438,21 @@ Transform:
   - {fileID: 4629981065635871775}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6506747504731968586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6698ad2175b841d7a24815999da2bbf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageTriggerComponent: {fileID: 4643577223385722002}
+  _damageApplierComponent: {fileID: 1986092096939806028}
+  _damagePushComponent: {fileID: 839492495396028738}
 --- !u!114 &6605907901023207316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,7 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLife: 3
   _currentLife: 0
---- !u!114 &5490028809158620207
+--- !u!114 &839492495396028738
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -459,14 +476,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5554046834176312192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 127104d701894c0aa0cd8d9c684beda7, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e5ebea41bfe49b8a150f846d886d93d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damagePoints: 2
-  cooldown:
-    _duration: 1
-    elapsedTime: 0
-  collisionEventListener: {fileID: 6685517084176634021}
+  _pushType: 0
+  _forceStrength: 5
 --- !u!114 &5352395781337772132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,21 +511,6 @@ MonoBehaviour:
   _waypoint1: {fileID: 3929516699554365295}
   _waypoint2: {fileID: 4629981065635871775}
   _moveComponent: {fileID: 5352395781337772132}
---- !u!114 &839492495396028738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5554046834176312192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5ebea41bfe49b8a150f846d886d93d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pushType: 0
-  _forceStrength: 5
-  _damageComponent: {fileID: 5490028809158620207}
 --- !u!114 &4215505569129028564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +526,35 @@ MonoBehaviour:
   _healthComponent: {fileID: 6605907901023207316}
   cooldown:
     _duration: 2
+    elapsedTime: 0
+--- !u!114 &4643577223385722002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217de3c0e1554748a56ce857b079c318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionEventListener: {fileID: 6685517084176634021}
+--- !u!114 &1986092096939806028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a07325883a4de39abd0c4333e6b916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damagePoints: 2
+  cooldown:
+    _duration: 1
     elapsedTime: 0
 --- !u!1 &7187152835411801990
 GameObject:

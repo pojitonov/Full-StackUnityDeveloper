@@ -1,6 +1,5 @@
 using Game.Scripts.Components;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts.Objects
 {
@@ -9,26 +8,38 @@ namespace Game.Scripts.Objects
         [SerializeField] private MoveComponent _moveComponent;
         [SerializeField] private FlipComponent _flipComponent;
         [SerializeField] private JumpComponent _jumpComponent;
-        [FormerlySerializedAs("_pushObjectsComponent")]
-        [SerializeField] private PushComponent pushComponent;
-        [FormerlySerializedAs("_tossObjectsComponent")]
-        [SerializeField] private TossComponent tossComponent;
+        [SerializeField] private PushComponent _pushComponent;
+        [SerializeField] private TossComponent _tossComponent;
         [SerializeField] private GroundComponent _groundComponent;
         [SerializeField] private LookAtComponent _lookAtComponent;
         [SerializeField] private HealthComponent _healthComponent;
+        [SerializeField] private DamageTriggerComponent _damageTriggerComponent;
+        [SerializeField] private DamageApplierComponent _damageApplierComponent;
 
         private void Awake()
         {
             _moveComponent.AddCondition(() => _healthComponent.IsAlive);
-            pushComponent.AddCondition(() => _healthComponent.IsAlive);
-            tossComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
+            _pushComponent.AddCondition(() => _healthComponent.IsAlive);
+            _tossComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
             _jumpComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
+
+            _damageTriggerComponent.OnDamageTriggered += HandleDamage;
         }
-        
+
+        private void OnDestroy()
+        {
+            _damageTriggerComponent.OnDamageTriggered -= HandleDamage;
+        }
+
         private void Update()
         {
             _flipComponent.Direction = _moveComponent.Direction;
             _lookAtComponent.SetDirection(_moveComponent.Direction);
+        }
+
+        private void HandleDamage(GameObject target)
+        {
+            _damageApplierComponent.TryApplyDamage(target);
         }
     }
 }
