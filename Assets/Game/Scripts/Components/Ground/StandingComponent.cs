@@ -1,4 +1,3 @@
-using Game.Scripts.Core;
 using UnityEngine;
 
 namespace Game.Scripts.Components
@@ -9,10 +8,9 @@ namespace Game.Scripts.Components
 
         private Transform _worldTransform;
 
-        public void FixedUpdate()
+        public void UpdateStanding(bool isGrounded, Transform groundTransform)
         {
-            var groundTransform = _groundComponent.Transform;
-            transform.SetParent(_groundComponent.IsGrounded ? groundTransform : _worldTransform);
+            transform.SetParent(isGrounded ? groundTransform : _worldTransform);
         }
     }
 }

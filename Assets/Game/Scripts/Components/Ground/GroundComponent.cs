@@ -15,10 +15,7 @@ namespace Game.Scripts.Components
         private void Update()
         {
             Transform = GamePhysics.GetRaycastTransform(_feetTransform, Vector2.down, _detectDistance, _layerMask);
-            if (Transform == IsGrounded) 
-                return;
-            
-            IsGrounded = Transform;
+            IsGrounded = Transform is not null;
         }
     }
 }

@@ -10,11 +10,13 @@ namespace Game.Scripts.Objects
         [SerializeField] private FlipComponent _flipComponent;
         [SerializeField] private JumpComponent _jumpComponent;
         [SerializeField] private ForceActionComponent _forceActionComponent;
-        [SerializeField] private GroundComponent _groundComponent;
         [SerializeField] private LookAtComponent _lookAtComponent;
         [SerializeField] private HealthComponent _healthComponent;
         [SerializeField] private DamageTriggerComponent _damageTriggerComponent;
         [SerializeField] private DamageApplierComponent _damageApplierComponent;
+        [SerializeField] private GroundComponent _groundComponent;
+        [SerializeField] private StandingComponent _standingComponent;
+        
 
         private void Awake()
         {
@@ -35,6 +37,8 @@ namespace Game.Scripts.Objects
         {
             _flipComponent.Direction = _moveComponent.Direction;
             _lookAtComponent.SetDirection(_moveComponent.Direction);
+            _standingComponent.UpdateStanding(_groundComponent.IsGrounded, _groundComponent.Transform);
+
         }
 
         private void HandleDamage(GameObject target)

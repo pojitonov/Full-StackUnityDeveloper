@@ -333,12 +333,12 @@ GameObject:
   - component: {fileID: 8705098180684878821}
   - component: {fileID: 8606975443487328141}
   - component: {fileID: 1201764019363012222}
+  - component: {fileID: 649709588814713679}
   - component: {fileID: 6991238943733658325}
   - component: {fileID: 438063799118009260}
   - component: {fileID: 1674429860930161243}
   - component: {fileID: 5715988289400761378}
   - component: {fileID: 946704862140120437}
-  - component: {fileID: 649709588814713679}
   - component: {fileID: 7084083767893602095}
   - component: {fileID: 6521815000005297019}
   - component: {fileID: 7463682178743865062}
@@ -482,11 +482,12 @@ MonoBehaviour:
   _flipComponent: {fileID: 5715988289400761378}
   _jumpComponent: {fileID: 6991238943733658325}
   _forceActionComponent: {fileID: 438063799118009260}
-  _groundComponent: {fileID: 946704862140120437}
   _lookAtComponent: {fileID: 8606975443487328141}
   _healthComponent: {fileID: 8705098180684878821}
   _damageTriggerComponent: {fileID: 6521815000005297019}
   _damageApplierComponent: {fileID: 7463682178743865062}
+  _groundComponent: {fileID: 946704862140120437}
+  _standingComponent: {fileID: 649709588814713679}
 --- !u!114 &8705098180684878821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,6 +526,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c72d4a6ea164745882f437f93772e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &649709588814713679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490323295220271620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861a142e4509479a88f210650af9c386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundComponent: {fileID: 946704862140120437}
 --- !u!114 &6991238943733658325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,7 +572,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
-  _detectionRadius: 1
+  _detectionRadius: 2
   cooldown:
     _duration: 1
     elapsedTime: 0
@@ -606,19 +620,6 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &649709588814713679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7490323295220271620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 861a142e4509479a88f210650af9c386, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _groundComponent: {fileID: 946704862140120437}
 --- !u!114 &7084083767893602095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,7 +663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damagePoints: 1
   cooldown:
-    _duration: 0
+    _duration: 1
     elapsedTime: 0
 --- !u!1 &7801279227858408424
 GameObject:

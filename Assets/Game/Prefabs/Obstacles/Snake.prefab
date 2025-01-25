@@ -302,8 +302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7125585022512431628}
   _damagedColor: {r: 1, g: 0.7921569, b: 0, a: 1}
-  _healthComponent: {fileID: 5910213366078086609}
   _animationDuration: 0.2
+  _healthComponent: {fileID: 5910213366078086609}
 --- !u!114 &643251435965957581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,8 +318,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7937140358218983994}
   _damagedColor: {r: 1, g: 0.7921569, b: 0, a: 1}
-  _healthComponent: {fileID: 5910213366078086609}
   _animationDuration: 0.2
+  _healthComponent: {fileID: 5910213366078086609}
 --- !u!1 &6460365143824586839
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damagePoints: 3
   cooldown:
-    _duration: 1
+    _duration: 2
     elapsedTime: 0
 --- !u!1 &7469774354018702093
 GameObject:
