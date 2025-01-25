@@ -1513,10 +1513,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap
       objectReference: {fileID: 0}
-    - target: {fileID: 7280537044973331671, guid: dbffaeed802d5423ca044ce2c4c34f55, type: 3}
-      propertyPath: _layerMask.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

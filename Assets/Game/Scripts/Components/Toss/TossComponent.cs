@@ -9,8 +9,10 @@ namespace Game.Scripts.Components
         public event Action OnTossed;
 
         [SerializeField] private float _forceStrength;
-        [SerializeField] private Cooldown cooldown;
+        [SerializeField] private LayerMask _layerMask;
+        [SerializeField] private float _detectionRadius = 1f;
         [SerializeField] private LookAtComponent _lookAtComponent;
+        [SerializeField] private Cooldown cooldown;
         
         private readonly Condition _condition = new();
 
@@ -27,8 +29,8 @@ namespace Game.Scripts.Components
 
             var item = GamePhysics.GetInteractable(
                 transform.position,
-                _lookAtComponent.DetectionRadius,
-                _lookAtComponent.LayerLayerMask,
+                _detectionRadius,
+                _layerMask,
                 _lookAtComponent.Direction);
 
             GamePhysics.AddForceToInteractable(item, Vector2.up, _forceStrength);

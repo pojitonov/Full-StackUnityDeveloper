@@ -539,7 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217de3c0e1554748a56ce857b079c318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionEventListener: {fileID: 6685517084176634021}
+  _eventListener: {fileID: 5957079899212416302}
 --- !u!114 &1986092096939806028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 4015829716640782646}
   - component: {fileID: 7422560000825944449}
   - component: {fileID: 7073503754261842485}
-  - component: {fileID: 6685517084176634021}
+  - component: {fileID: 5957079899212416302}
   m_Layer: 8
   m_Name: <Spider>
   m_TagString: Untagged
@@ -876,7 +876,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &6685517084176634021
+--- !u!114 &5957079899212416302
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -885,7 +885,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8665529919726988981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c72d4a6ea164745882f437f93772e65, type: 3}
+  m_Script: {fileID: 11500000, guid: f2cb0c3c4c8146079495d6c7c1cb9a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colliderIsTrigger: 1

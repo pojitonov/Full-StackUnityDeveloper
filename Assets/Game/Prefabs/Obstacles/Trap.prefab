@@ -241,7 +241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c72d4a6ea164745882f437f93772e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colliderIsTrigger: 0
 --- !u!114 &7280537044973331671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217de3c0e1554748a56ce857b079c318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionEventListener: {fileID: 4002432658537633424}
+  _eventListener: {fileID: 4002432658537633424}
 --- !u!114 &2173013687465421712
 MonoBehaviour:
   m_ObjectHideFlags: 0

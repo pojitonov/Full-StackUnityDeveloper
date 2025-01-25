@@ -527,10 +527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fafc791c0dd041f9bd691d1f0e4f934a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectionRadius: 1.5
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &1201764019363012222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,7 +539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c72d4a6ea164745882f437f93772e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colliderIsTrigger: 0
 --- !u!114 &6991238943733658325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,10 +569,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceStrength: 5
-  cooldown:
-    _duration: 0
-    elapsedTime: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _detectionRadius: 1
   _lookAtComponent: {fileID: 8606975443487328141}
+  cooldown:
+    _duration: 1
+    elapsedTime: 0
 --- !u!114 &276442129847125461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,10 +590,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceStrength: 5
-  cooldown:
-    _duration: 0
-    elapsedTime: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _detectionRadius: 1
   _lookAtComponent: {fileID: 8606975443487328141}
+  cooldown:
+    _duration: 1
+    elapsedTime: 0
 --- !u!114 &1674429860930161243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,7 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217de3c0e1554748a56ce857b079c318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionEventListener: {fileID: 1201764019363012222}
+  _eventListener: {fileID: 1201764019363012222}
 --- !u!114 &7463682178743865062
 MonoBehaviour:
   m_ObjectHideFlags: 0

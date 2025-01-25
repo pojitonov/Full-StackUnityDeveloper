@@ -8,28 +8,30 @@ namespace Game.Scripts.Components
     {
         public event Action<GameObject> OnDamageTriggered;
 
-        [SerializeField] private CollisionEventListener _collisionEventListener;
+        [SerializeField] private MonoBehaviour _eventListener;
+        private IEventListener _listener;
+
+        private void Awake()
+        {
+            if (_eventListener is IEventListener eventListener) 
+                _listener = eventListener;
+            else
+                Debug.LogWarning($"The {_eventListener} component does not implement IEventListener!");
+        }
 
         private void OnEnable()
         {
-            _collisionEventListener.OnTrigger += OnTrigger;
-            _collisionEventListener.OnCollision += OnCollision;
+            _listener.OnEventTriggered += HandleEventTriggered;
         }
 
         private void OnDisable()
         {
-            _collisionEventListener.OnTrigger -= OnTrigger;
-            _collisionEventListener.OnCollision -= OnCollision;
+            _listener.OnEventTriggered -= HandleEventTriggered;
         }
 
-        private void OnTrigger(Collider2D other)
+        private void HandleEventTriggered(GameObject other)
         {
-            OnDamageTriggered?.Invoke(other.gameObject);
-        }
-
-        private void OnCollision(Collision2D other)
-        {
-            OnDamageTriggered?.Invoke(other.gameObject);
+            OnDamageTriggered?.Invoke(other);
         }
     }
 }

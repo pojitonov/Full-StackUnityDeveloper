@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class DamageAnimationComponent : MonoBehaviour
+    public class TakeDamageAnimationComponent : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private Color _damagedColor = Color.magenta;
+        [SerializeField] private Color _damagedColor = Color.red;
         [SerializeField] private HealthComponent _healthComponent;
         [SerializeField] private float _animationDuration = 0.2f;
 

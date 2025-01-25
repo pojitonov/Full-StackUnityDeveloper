@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Game.Scripts.Core
 {
-    public class CollisionEventListener : MonoBehaviour, IEventListener
+    public class TriggerEventListener : MonoBehaviour, IEventListener
     {
         public event Action<GameObject> OnEventTriggered;
         
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             OnEventTriggered?.Invoke(other.gameObject);
         }
