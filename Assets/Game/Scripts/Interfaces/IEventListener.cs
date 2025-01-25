@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game.Scripts.Core
+namespace Game.Scripts.Interfaces
 {
     public interface IEventListener
     {

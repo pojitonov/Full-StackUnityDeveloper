@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts.Components
 {
@@ -8,7 +7,6 @@ namespace Game.Scripts.Components
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _pushAudioClip;
         [SerializeField] private AudioClip _tossAudioClip;
-        [FormerlySerializedAs("_forceActionComponent")]
         [SerializeField] private ForceComponent _forceComponent;
         
         private void OnEnable()

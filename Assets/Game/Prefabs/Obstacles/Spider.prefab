@@ -454,7 +454,7 @@ MonoBehaviour:
   _moveComponent: {fileID: 5352395781337772132}
   _patrolComponent: {fileID: 8828846598355375344}
   _damageTriggerComponent: {fileID: 4643577223385722002}
-  _damageApplierComponent: {fileID: 1986092096939806028}
+  _damageApplyComponent: {fileID: 1986092096939806028}
   _damagePushComponent: {fileID: 839492495396028738}
   _deathHandler: {fileID: 4215505569129028564}
 --- !u!114 &6605907901023207316
@@ -500,7 +500,6 @@ MonoBehaviour:
   _stoppingThreshold: 0.5
   _waypoint1: {fileID: 3929516699554365295}
   _waypoint2: {fileID: 4629981065635871775}
-  _moveComponent: {fileID: 5352395781337772132}
 --- !u!114 &4643577223385722002
 MonoBehaviour:
   m_ObjectHideFlags: 0

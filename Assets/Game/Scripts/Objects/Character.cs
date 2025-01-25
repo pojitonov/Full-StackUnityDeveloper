@@ -15,7 +15,6 @@ namespace Game.Scripts.Objects
         [SerializeField] private JumpComponent _jumpComponent;
         [SerializeField] private ForceComponent _forceComponent;
         [SerializeField] private DamageTriggerComponent _damageTriggerComponent;
-        [FormerlySerializedAs("_damageApplierComponent")]
         [SerializeField] private DamageApplyComponent _damageApplyComponent;
         [SerializeField] private DeathHandler _deathHandler;
         

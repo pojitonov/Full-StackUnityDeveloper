@@ -1,14 +1,15 @@
 using System;
 using Game.Scripts.Core;
+using Game.Scripts.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class MoveComponent : MonoBehaviour
+    public class MoveComponent : MonoBehaviour, IMoveable
     {
         [field: ShowInInspector, ReadOnly] public Vector2 Direction { get; set; }
-        public Transform Transform => _transform;
+        public Vector3 Position => _transform.position;
 
         [SerializeField] private float _speed = 5f;
         [SerializeField] private Transform _transform;

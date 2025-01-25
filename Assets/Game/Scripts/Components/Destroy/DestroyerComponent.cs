@@ -10,8 +10,10 @@ namespace Game.Scripts.Components
         private void OnTriggerEnter2D(Collider2D other)
         {
             HealthComponent health = other.gameObject.GetComponentInParent<HealthComponent>();
+            
             if (health == null)
                 return;
+            
             health.IsAlive = false;
             OnDestroyed?.Invoke();
         }

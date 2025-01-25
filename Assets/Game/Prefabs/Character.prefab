@@ -487,7 +487,7 @@ MonoBehaviour:
   _jumpComponent: {fileID: 6991238943733658325}
   _forceComponent: {fileID: 438063799118009260}
   _damageTriggerComponent: {fileID: 6521815000005297019}
-  _damageApplierComponent: {fileID: 7463682178743865062}
+  _damageApplyComponent: {fileID: 7463682178743865062}
   _deathHandler: {fileID: 7084083767893602095}
 --- !u!114 &8705098180684878821
 MonoBehaviour:

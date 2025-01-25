@@ -8,7 +8,6 @@ namespace Game.Scripts.Components
     {
         [SerializeField] private ParticleSystem _pushParticleSource;
         [SerializeField] private ParticleSystem _tossParticleSource;
-        [FormerlySerializedAs("_forceActionComponent")]
         [SerializeField] private ForceComponent _forceComponent;
 
         private void OnEnable()
