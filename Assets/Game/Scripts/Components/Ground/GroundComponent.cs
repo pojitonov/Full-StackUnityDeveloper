@@ -11,11 +11,18 @@ namespace Game.Scripts.Components
         [SerializeField] private float _detectDistance = 0.1f;
         [SerializeField] private Transform _feetTransform;
         [SerializeField] private LayerMask _layerMask;
-        
+
         private void Update()
         {
-            Transform = GamePhysics.GetRaycastTransform(_feetTransform, Vector2.down, _detectDistance, _layerMask);
+            Transform = GetRaycastTransform(_feetTransform, Vector2.down, _detectDistance, _layerMask);
             IsGrounded = Transform is not null;
+        }
+
+        private Transform GetRaycastTransform(Transform transform, Vector2 direction, float distance,
+            LayerMask layerMask)
+        {
+            var raycast = Physics2D.Raycast(transform.position, direction, distance, layerMask);
+            return raycast.transform;
         }
     }
 }

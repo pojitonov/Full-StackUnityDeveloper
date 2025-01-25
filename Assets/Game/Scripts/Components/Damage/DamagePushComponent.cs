@@ -17,7 +17,14 @@ namespace Game.Scripts.Components
             else if (_pushType == PushType.Vertical) 
                 _direction = Vector2.up;
 
-            GamePhysics.AddForceToInteractable(other.gameObject, _direction, _forceStrength);
+            AddForceToInteractable(other.gameObject, _direction, _forceStrength);
+        }
+        
+        private void AddForceToInteractable(GameObject item, Vector2 direction, float force)
+        {
+            if (!item) return;
+            if (item.TryGetComponent(out Rigidbody2D rigidbody))
+                rigidbody.AddForce(direction.normalized * force);
         }
     }
 

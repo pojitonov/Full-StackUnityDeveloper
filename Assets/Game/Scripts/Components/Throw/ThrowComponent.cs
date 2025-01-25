@@ -16,7 +16,7 @@ namespace Game.Scripts.Components
             if (!other.TryGetComponent(out Rigidbody2D rigidbody))
                 return;
 
-            GamePhysics.AddForce(rigidbody, _forceDirection, _forceStrength);
+            rigidbody.AddForce(_forceDirection * _forceStrength, ForceMode2D.Impulse);
             OnThrown?.Invoke();
         }
     }

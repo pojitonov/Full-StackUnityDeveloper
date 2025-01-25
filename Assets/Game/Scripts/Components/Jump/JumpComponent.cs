@@ -12,6 +12,7 @@ namespace Game.Scripts.Components
         [SerializeField] private float _forceStrength = 10f;
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Cooldown cooldown;
+        
 
         private readonly Condition _condition = new();
 
@@ -25,8 +26,8 @@ namespace Game.Scripts.Components
             if (!_condition.IsTrue() || !cooldown.IsTimeUp())
                 return;
             cooldown.Reset();
-
-            GamePhysics.AddForce(_rigidbody, Vector2.up, _forceStrength, ForceMode2D.Impulse);
+            
+            _rigidbody.AddForce(Vector2.up * _forceStrength, ForceMode2D.Impulse);
             OnJumped?.Invoke();
         }
 
