@@ -7,8 +7,8 @@ namespace Game.Scripts.Components
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Color _damagedColor = Color.red;
-        [SerializeField] private HealthComponent _healthComponent;
         [SerializeField] private float _animationDuration = 0.2f;
+        [SerializeField] private HealthComponent _healthComponent;
 
         private Tween _tween;
         private Color _originalColor;

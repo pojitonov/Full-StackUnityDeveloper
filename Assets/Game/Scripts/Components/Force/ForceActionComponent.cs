@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class TossComponent : MonoBehaviour
+    public class ForceActionComponent : MonoBehaviour
     {
-        public event Action OnTossed;
+        public event Action OnPush;
+        public event Action OnToss;
 
         [SerializeField] private float _forceStrength;
         [SerializeField] private LayerMask _layerMask;
         [SerializeField] private float _detectionRadius = 1f;
-        [SerializeField] private LookAtComponent _lookAtComponent;
         [SerializeField] private Cooldown cooldown;
         
         private readonly Condition _condition = new();
@@ -21,7 +21,7 @@ namespace Game.Scripts.Components
             cooldown.Tick(Time.deltaTime);
         }
 
-        public void Toss()
+        public void ApplyForce(Vector2 forceDirection, Vector2 lookAtDirection)
         {
             if (!_condition.IsTrue() || !cooldown.IsTimeUp())
                 return;
@@ -31,10 +31,19 @@ namespace Game.Scripts.Components
                 transform.position,
                 _detectionRadius,
                 _layerMask,
-                _lookAtComponent.Direction);
+                lookAtDirection);
 
-            GamePhysics.AddForceToInteractable(item, Vector2.up, _forceStrength);
-            OnTossed?.Invoke();
+            GamePhysics.AddForceToInteractable(item, forceDirection, _forceStrength);
+        }
+        
+        public void InvokePush()
+        {
+            OnPush?.Invoke();
+        }
+
+        public void InvokeToss()
+        {
+            OnToss?.Invoke();
         }
 
         public void AddCondition(Func<bool> condition)
