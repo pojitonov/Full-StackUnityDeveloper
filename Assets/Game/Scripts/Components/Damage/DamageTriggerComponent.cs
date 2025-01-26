@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Game.Scripts.Interfaces;
 using UnityEngine;
 
@@ -8,26 +9,33 @@ namespace Game.Scripts.Components
     {
         public event Action<GameObject> OnDamageTriggered;
 
-        [SerializeField] private MonoBehaviour _eventListener;
-        
-        private IEventListener _listener;
+        [SerializeField] private List<MonoBehaviour> _eventListeners;
+
+        private readonly List<IEventListener> _listeners = new();
 
         private void Awake()
         {
-            if (_eventListener is IEventListener eventListener) 
-                _listener = eventListener;
-            else
-                Debug.LogWarning($"The {_eventListener} component does not implement IEventListener!");
+            foreach (var monoBehaviour in _eventListeners)
+            {
+                if (monoBehaviour is IEventListener eventListener)
+                    _listeners.Add(eventListener);
+            }
         }
 
         private void OnEnable()
         {
-            _listener.OnEventTriggered += HandleEvent;
+            foreach (var listener in _listeners)
+            {
+                listener.OnEventTriggered += HandleEvent;
+            }
         }
 
         private void OnDisable()
         {
-            _listener.OnEventTriggered -= HandleEvent;
+            foreach (var listener in _listeners)
+            {
+                listener.OnEventTriggered -= HandleEvent;
+            }
         }
 
         private void HandleEvent(GameObject other)

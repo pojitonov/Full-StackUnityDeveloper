@@ -10,7 +10,7 @@ namespace Game.Scripts.Objects
         [SerializeField] private PatrolComponent _patrolComponent;
         [SerializeField] private FlipComponent _flipComponent;
         [SerializeField] private DamageTriggerComponent _damageTriggerComponent;
-        [SerializeField] private DamageApplyComponent _damageApplyComponent;
+        [SerializeField] private DamageComponent _damageComponent;
         [SerializeField] private DamagePushComponent _damagePushComponent;
         [SerializeField] private DeathHandlerComponent _deathHandlerComponent;
 
@@ -19,15 +19,15 @@ namespace Game.Scripts.Objects
             _patrolComponent.Init(_moveComponent);
             
             _healthComponent.OnDied += _deathHandlerComponent.TriggerDeath;
-            _damageTriggerComponent.OnDamageTriggered += target => _damageApplyComponent.TryApplyDamage(target);
-            _damageApplyComponent.OnDamagedApplied += target => _damagePushComponent.ApplyPush(target);
+            _damageTriggerComponent.OnDamageTriggered += target => _damageComponent.TryApplyDamage(target);
+            _damageComponent.OnDamagedApplied += target => _damagePushComponent.ApplyPush(target);
         }
 
         private void OnDestroy()
         {
             _healthComponent.OnDied -= _deathHandlerComponent.TriggerDeath;
-            _damageTriggerComponent.OnDamageTriggered -= _damageApplyComponent.TryApplyDamage;
-            _damageApplyComponent.OnDamagedApplied -= _damagePushComponent.ApplyPush;
+            _damageTriggerComponent.OnDamageTriggered -= _damageComponent.TryApplyDamage;
+            _damageComponent.OnDamagedApplied -= _damagePushComponent.ApplyPush;
         }
 
         private void Update()

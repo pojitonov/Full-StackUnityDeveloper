@@ -217,16 +217,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 1625251630}
     m_Modifications:
     - target: {fileID: 2752152966563070290, guid: b12d48f7b934943239d57d70cddd96e7, type: 3}
-      propertyPath: _direction.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2752152966563070290, guid: b12d48f7b934943239d57d70cddd96e7, type: 3}
       propertyPath: _forceStrength
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2752152966563070290, guid: b12d48f7b934943239d57d70cddd96e7, type: 3}
-      propertyPath: _forceDirection.y
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4979841302588641904, guid: b12d48f7b934943239d57d70cddd96e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -890,7 +882,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 121.16, y: 42.29, z: -10}
+  m_LocalPosition: {x: 29.900002, y: 5.700001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2003,6 +1995,7 @@ GameObject:
   - component: {fileID: 985800781}
   - component: {fileID: 985800780}
   - component: {fileID: 985800782}
+  - component: {fileID: 985800783}
   m_Layer: 0
   m_Name: '[System]'
   m_TagString: Untagged
@@ -2064,6 +2057,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _character: {fileID: 9176129389965680747}
+--- !u!114 &985800783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985800778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad77bbde6124a57878443e15b964391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1000631199
 GameObject:
   m_ObjectHideFlags: 0
@@ -3554,7 +3559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2752152966563070290, guid: b12d48f7b934943239d57d70cddd96e7, type: 3}
       propertyPath: _forceStrength
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2752152966563070290, guid: b12d48f7b934943239d57d70cddd96e7, type: 3}
       propertyPath: _forceDirection.x
@@ -5339,11 +5344,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 117.16
+      value: 25.9
       objectReference: {fileID: 0}
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37.29
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4102650447071868940, guid: 059a7ddbcfb4f4b51a6fd1d2b168a503, type: 3}
       propertyPath: m_LocalPosition.z

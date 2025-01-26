@@ -15,7 +15,7 @@ namespace Game.Scripts.Objects
         [SerializeField] private JumpComponent _jumpComponent;
         [SerializeField] private ForceComponent _forceComponent;
         [SerializeField] private DamageTriggerComponent _damageTriggerComponent;
-        [SerializeField] private DamageApplyComponent _damageApplyComponent;
+        [SerializeField] private DamageComponent _damageComponent;
         [SerializeField] private DeathHandlerComponent _deathHandlerComponent;
         
         private void Awake()
@@ -29,13 +29,13 @@ namespace Game.Scripts.Objects
                 ForceType.Toss);
 
             _healthComponent.OnDied += _deathHandlerComponent.TriggerDeath;
-            _damageTriggerComponent.OnDamageTriggered += target => _damageApplyComponent.TryApplyDamage(target);
+            _damageTriggerComponent.OnDamageTriggered += target => _damageComponent.TryApplyDamage(target);
         }
 
         private void OnDestroy()
         {
             _healthComponent.OnDied -= _deathHandlerComponent.TriggerDeath;
-            _damageTriggerComponent.OnDamageTriggered -= _damageApplyComponent.TryApplyDamage;
+            _damageTriggerComponent.OnDamageTriggered -= _damageComponent.TryApplyDamage;
         }
 
         private void Update()

@@ -409,8 +409,8 @@ GameObject:
   - component: {fileID: 6605907901023207316}
   - component: {fileID: 5352395781337772132}
   - component: {fileID: 8828846598355375344}
-  - component: {fileID: 4643577223385722002}
-  - component: {fileID: 1986092096939806028}
+  - component: {fileID: 6219341282584217592}
+  - component: {fileID: 5587648893758995040}
   - component: {fileID: 839492495396028738}
   - component: {fileID: 4215505569129028564}
   m_Layer: 0
@@ -453,8 +453,8 @@ MonoBehaviour:
   _healthComponent: {fileID: 6605907901023207316}
   _moveComponent: {fileID: 5352395781337772132}
   _patrolComponent: {fileID: 8828846598355375344}
-  _damageTriggerComponent: {fileID: 4643577223385722002}
-  _damageApplyComponent: {fileID: 1986092096939806028}
+  _damageTriggerComponent: {fileID: 6219341282584217592}
+  _damageComponent: {fileID: 5587648893758995040}
   _damagePushComponent: {fileID: 839492495396028738}
   _deathHandlerComponent: {fileID: 4215505569129028564}
 --- !u!114 &6605907901023207316
@@ -500,7 +500,7 @@ MonoBehaviour:
   _stoppingThreshold: 0.5
   _waypoint1: {fileID: 3929516699554365295}
   _waypoint2: {fileID: 4629981065635871775}
---- !u!114 &4643577223385722002
+--- !u!114 &6219341282584217592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -512,8 +512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217de3c0e1554748a56ce857b079c318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventListener: {fileID: 5957079899212416302}
---- !u!114 &1986092096939806028
+  _eventListeners:
+  - {fileID: 4394429183411324311}
+  - {fileID: 8158345124177884546}
+--- !u!114 &5587648893758995040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -522,7 +524,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5554046834176312192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a07325883a4de39abd0c4333e6b916, type: 3}
+  m_Script: {fileID: 11500000, guid: e5429b82436b11c4bbec84aa863cdaff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _damagePoints: 2
@@ -542,7 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pushType: 0
-  _forceStrength: 1
+  _forceStrength: 2
 --- !u!114 &4215505569129028564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,7 +738,8 @@ GameObject:
   - component: {fileID: 4015829716640782646}
   - component: {fileID: 7422560000825944449}
   - component: {fileID: 7073503754261842485}
-  - component: {fileID: 5957079899212416302}
+  - component: {fileID: 4394429183411324311}
+  - component: {fileID: 8158345124177884546}
   m_Layer: 8
   m_Name: <Spider>
   m_TagString: Untagged
@@ -848,7 +851,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -878,7 +881,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &5957079899212416302
+--- !u!114 &4394429183411324311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8665529919726988981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c72d4a6ea164745882f437f93772e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8158345124177884546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

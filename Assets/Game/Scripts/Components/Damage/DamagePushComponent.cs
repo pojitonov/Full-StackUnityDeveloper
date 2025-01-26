@@ -20,7 +20,7 @@ namespace Game.Scripts.Components
 
             if (!other) return;
             if (other.TryGetComponent(out Rigidbody2D rigidbody))
-                rigidbody.AddForce(forceDirection * (_forceStrength * FORCE_MULTIPLIER));
+                rigidbody.AddForce(forceDirection.normalized * (_forceStrength * FORCE_MULTIPLIER));
         }
     }
 }
