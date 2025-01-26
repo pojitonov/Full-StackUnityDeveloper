@@ -1,6 +1,5 @@
 using Game.Scripts.Components;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts
 {
@@ -12,20 +11,20 @@ namespace Game.Scripts
         [SerializeField] private DamageTriggerComponent _damageTriggerComponent;
         [SerializeField] private DamageApplyComponent _damageApplyComponent;
         [SerializeField] private DamagePushComponent _damagePushComponent;
-        [SerializeField] private DeathHandler _deathHandler;
+        [SerializeField] private DeathHandlerComponent _deathHandlerComponent;
         
         private void Awake()
         {
             _patrolComponent.Init(_moveComponent);
             
-            _healthComponent.OnDied += _deathHandler.TriggerDeath;
+            _healthComponent.OnDied += _deathHandlerComponent.TriggerDeath;
             _damageTriggerComponent.OnDamageTriggered += target => _damageApplyComponent.TryApplyDamage(target);
             _damageTriggerComponent.OnDamageTriggered += target => _damagePushComponent.ApplyPush(target);
         }
 
         private void OnDestroy()
         {
-            _healthComponent.OnDied -= _deathHandler.TriggerDeath;
+            _healthComponent.OnDied -= _deathHandlerComponent.TriggerDeath;
             _damageTriggerComponent.OnDamageTriggered -= target => _damageApplyComponent.TryApplyDamage(target);
             _damageTriggerComponent.OnDamageTriggered -= target => _damagePushComponent.ApplyPush(target);
         }

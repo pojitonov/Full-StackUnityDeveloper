@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Components
 {
-    public class DeathHandler : MonoBehaviour
+    public class DeathHandlerComponent : MonoBehaviour
     {
         [SerializeField] private Cooldown cooldown;
 

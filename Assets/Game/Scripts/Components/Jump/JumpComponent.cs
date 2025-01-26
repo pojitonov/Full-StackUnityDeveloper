@@ -1,7 +1,6 @@
 using System;
 using Game.Scripts.Core;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts.Components
 {
@@ -12,7 +11,6 @@ namespace Game.Scripts.Components
         [SerializeField] private float _forceStrength = 10f;
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Cooldown cooldown;
-        
 
         private readonly Condition _condition = new();
 

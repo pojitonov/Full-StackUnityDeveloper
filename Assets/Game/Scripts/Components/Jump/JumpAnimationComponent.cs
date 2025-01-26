@@ -1,5 +1,4 @@
 using DG.Tweening;
-using Game.Scripts.Components;
 using UnityEngine;
 
 namespace Game.Scripts.Components

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Core
 {
-    public class CollisionEventListener : MonoBehaviour, IEventListener
+    public class ColliderEventsListener : MonoBehaviour, IEventListener
     {
         public event Action<GameObject> OnEventTriggered;
         

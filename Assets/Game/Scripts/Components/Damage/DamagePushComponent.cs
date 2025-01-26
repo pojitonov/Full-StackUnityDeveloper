@@ -1,20 +1,19 @@
-using Game.Scripts.Core;
 using UnityEngine;
 
 namespace Game.Scripts.Components
 {
     public class DamagePushComponent : MonoBehaviour
     {
-        [SerializeField] private PushType _pushType;
+        [SerializeField] private DamagePushType _pushType;
         [SerializeField] private float _forceStrength = 5f;
 
         private Vector2 _direction;
         
         public void ApplyPush(GameObject other)
         {
-            if (_pushType == PushType.Horizontal)
+            if (_pushType == DamagePushType.Horizontal)
                 _direction = -(transform.position - other.transform.position);
-            else if (_pushType == PushType.Vertical) 
+            else if (_pushType == DamagePushType.Vertical) 
                 _direction = Vector2.up;
 
             AddForceToInteractable(other.gameObject, _direction, _forceStrength);
@@ -26,11 +25,5 @@ namespace Game.Scripts.Components
             if (item.TryGetComponent(out Rigidbody2D rigidbody))
                 rigidbody.AddForce(direction.normalized * force);
         }
-    }
-
-    internal enum PushType
-    {
-        Horizontal,
-        Vertical
     }
 }

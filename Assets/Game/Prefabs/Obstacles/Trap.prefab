@@ -217,8 +217,8 @@ MonoBehaviour:
   _standingComponent: {fileID: 1397027944515369323}
   _groundComponent: {fileID: 7280537044973331671}
   _damageTriggerComponent: {fileID: 4383446982448143665}
-  _damageApplierComponent: {fileID: 2173013687465421712}
-  _deathHandler: {fileID: 598596195528597246}
+  _damageApplyComponent: {fileID: 2173013687465421712}
+  _deathHandlerComponent: {fileID: 598596195528597246}
 --- !u!114 &4002432658537633424
 MonoBehaviour:
   m_ObjectHideFlags: 0

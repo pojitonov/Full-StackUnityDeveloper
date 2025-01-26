@@ -9,6 +9,7 @@ namespace Game.Scripts.Components
         public event Action<GameObject> OnDamageTriggered;
 
         [SerializeField] private MonoBehaviour _eventListener;
+        
         private IEventListener _listener;
 
         private void Awake()

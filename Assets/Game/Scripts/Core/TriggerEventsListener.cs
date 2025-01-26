@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Core
 {
-    public class TriggerEventListener : MonoBehaviour, IEventListener
+    public class TriggerEventsListener : MonoBehaviour, IEventListener
     {
         public event Action<GameObject> OnEventTriggered;
         

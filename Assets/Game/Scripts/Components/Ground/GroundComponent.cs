@@ -1,4 +1,3 @@
-using Game.Scripts.Core;
 using UnityEngine;
 
 namespace Game.Scripts.Components

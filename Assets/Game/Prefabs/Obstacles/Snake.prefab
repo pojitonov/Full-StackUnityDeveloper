@@ -466,7 +466,7 @@ MonoBehaviour:
   _damageTriggerComponent: {fileID: 7720542168181275499}
   _damageApplyComponent: {fileID: 55654013237049243}
   _damagePushComponent: {fileID: 1526838323422755212}
-  _deathHandler: {fileID: 8667794810316014454}
+  _deathHandlerComponent: {fileID: 8667794810316014454}
 --- !u!114 &5910213366078086609
 MonoBehaviour:
   m_ObjectHideFlags: 0

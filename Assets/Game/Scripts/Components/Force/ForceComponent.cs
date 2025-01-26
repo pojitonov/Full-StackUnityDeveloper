@@ -12,13 +12,17 @@ namespace Game.Scripts.Components
         public event Action OnToss;
 
         [SerializeField] private float _forceStrength;
-        [SerializeField] private LayerMask _layerMask;
-        [SerializeField] private float _detectionRadius = 1f;
         [SerializeField] private Cooldown cooldown;
 
         private readonly Condition _pushCondition = new();
         private readonly Condition _tossCondition = new();
+        private InteractableDetectorComponent _interactableDetector;
 
+        public void Init(InteractableDetectorComponent interactableDetector)
+        {
+            _interactableDetector = interactableDetector;
+        }
+        
         private void Update()
         {
             cooldown.Tick(Time.deltaTime);
@@ -39,22 +43,11 @@ namespace Game.Scripts.Components
             else
                 OnToss?.Invoke();
 
-            var target = GetInteractable(transform.position, _detectionRadius, _layerMask, lookAtDirection);
+            var target = _interactableDetector.GetInteractable(transform.position, lookAtDirection);
             if (target && target.TryGetComponent(out Rigidbody2D rigidbody))
             {
                 rigidbody.AddForce(forceDirection * (_forceStrength * FORCE_MULTIPLIER));
             }
-        }
-
-        private GameObject GetInteractable(Vector2 position, float radius, LayerMask mask, Vector2 lookDirection)
-        {
-            var collider = Physics2D.OverlapCircle(position, radius, mask);
-            if (!collider) return null;
-
-            var interactable = collider.gameObject;
-            Vector2 toObject = (collider.transform.position - (Vector3)position).normalized;
-
-            return Vector2.Dot(lookDirection, toObject) > 0 ? interactable : null;
         }
 
         private ForceType GetForceType(Vector2 forceDirection)
@@ -72,11 +65,5 @@ namespace Game.Scripts.Components
             var targetCondition = GetCondition(forceType);
             targetCondition.Add(condition);
         }
-    }
-
-    public enum ForceType
-    {
-        Push,
-        Toss
     }
 }
