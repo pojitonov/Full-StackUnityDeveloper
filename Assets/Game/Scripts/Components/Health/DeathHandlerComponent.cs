@@ -15,10 +15,8 @@ namespace Game.Scripts.Components
             {
                 cooldown.Tick(Time.deltaTime);
 
-                if (cooldown.IsTimeUp())
-                {
+                if (cooldown.IsTimeUp()) 
                     gameObject.SetActive(false);
-                }
             }
         }
 

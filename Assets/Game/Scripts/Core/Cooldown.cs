@@ -28,19 +28,15 @@ namespace Game.Scripts.Core
             if (elapsedTime <= 0) return;
 
             elapsedTime -= deltaTime;
-            if (elapsedTime <= 0)
-            {
+            if (elapsedTime <= 0) 
                 OnTimeIsUp?.Invoke();
-            }
         }
 
         public void Reset()
         {
             elapsedTime = _duration;
-            if (elapsedTime <= 0)
-            {
+            if (elapsedTime <= 0) 
                 OnTimeIsUp?.Invoke();
-            }
         }
     }
 }

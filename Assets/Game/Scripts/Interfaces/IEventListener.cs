@@ -7,5 +7,4 @@ namespace Game.Scripts.Interfaces
     {
         event Action<GameObject> OnEventTriggered;
     }
-
 }
