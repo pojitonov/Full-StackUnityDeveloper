@@ -26,8 +26,8 @@ namespace Game.Scripts.Objects
         private void OnDestroy()
         {
             _healthComponent.OnDied -= _deathHandlerComponent.TriggerDeath;
-            _damageTriggerComponent.OnDamageTriggered -= target => _damageApplyComponent.TryApplyDamage(target);
-            _damageTriggerComponent.OnDamageTriggered -= target => _damagePushComponent.ApplyPush(target);
+            _damageTriggerComponent.OnDamageTriggered -= _damageApplyComponent.TryApplyDamage;
+            _damageTriggerComponent.OnDamageTriggered -= _damagePushComponent.ApplyPush;
         }
 
         private void Update()

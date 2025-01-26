@@ -22,15 +22,15 @@ namespace Game.Scripts.Components
 
         private void OnEnable()
         {
-            _listener.OnEventTriggered += HandleEventTriggered;
+            _listener.OnEventTriggered += HandleEvent;
         }
 
         private void OnDisable()
         {
-            _listener.OnEventTriggered -= HandleEventTriggered;
+            _listener.OnEventTriggered -= HandleEvent;
         }
 
-        private void HandleEventTriggered(GameObject other)
+        private void HandleEvent(GameObject other)
         {
             OnDamageTriggered?.Invoke(other);
         }

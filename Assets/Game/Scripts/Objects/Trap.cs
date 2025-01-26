@@ -20,7 +20,7 @@ namespace Game.Scripts
 
         private void OnDestroy()
         {
-            _damageTriggerComponent.OnDamageTriggered -= target => _damageApplyComponent.TryApplyDamage(target);
+            _damageTriggerComponent.OnDamageTriggered -= _damageApplyComponent.TryApplyDamage;
             _healthComponent.OnDied -= _deathHandlerComponent.TriggerDeath;
         }
         

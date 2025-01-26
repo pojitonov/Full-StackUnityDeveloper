@@ -17,7 +17,7 @@ namespace Game.Scripts.Components
 
                 if (cooldown.IsTimeUp())
                 {
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
                 }
             }
         }

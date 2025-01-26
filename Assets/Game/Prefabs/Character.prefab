@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 6521815000005297019}
   - component: {fileID: 7463682178743865062}
   - component: {fileID: 7084083767893602095}
+  - component: {fileID: 3632202630547513429}
   m_Layer: 9
   m_Name: Character
   m_TagString: Character
@@ -491,6 +492,7 @@ MonoBehaviour:
   _damageTriggerComponent: {fileID: 6521815000005297019}
   _damageApplyComponent: {fileID: 7463682178743865062}
   _deathHandlerComponent: {fileID: 7084083767893602095}
+  _destroyerComponent: {fileID: 3632202630547513429}
 --- !u!114 &8705098180684878821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,6 +681,18 @@ MonoBehaviour:
   cooldown:
     _duration: 2
     elapsedTime: 0
+--- !u!114 &3632202630547513429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490323295220271620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf2881d45024dfea6d4f5c4298829d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7801279227858408424
 GameObject:
   m_ObjectHideFlags: 0
