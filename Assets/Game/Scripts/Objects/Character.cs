@@ -1,6 +1,5 @@
 using Game.Scripts.Components;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts.Objects
 {

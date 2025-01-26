@@ -527,7 +527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damagePoints: 2
   cooldown:
-    _duration: 1
+    _duration: 2
     elapsedTime: 0
 --- !u!114 &839492495396028738
 MonoBehaviour:
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pushType: 0
-  _forceStrength: 5
+  _forceStrength: 1
 --- !u!114 &4215505569129028564
 MonoBehaviour:
   m_ObjectHideFlags: 0

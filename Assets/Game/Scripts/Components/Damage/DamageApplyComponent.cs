@@ -6,7 +6,7 @@ namespace Game.Scripts.Components
 {
     public class DamageApplyComponent : MonoBehaviour
     {
-        public event Action<GameObject> OnDamaged;
+        public event Action<GameObject> OnDamagedApplied;
 
         [SerializeField] private int _damagePoints = 1;
         [SerializeField] private Cooldown cooldown;
@@ -23,7 +23,7 @@ namespace Game.Scripts.Components
                 return;
             health.TakeDamage(_damagePoints);
             cooldown.Reset();
-            OnDamaged?.Invoke(other);
+            OnDamagedApplied?.Invoke(other);
         }
     }
 }
