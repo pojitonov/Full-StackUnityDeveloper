@@ -9,13 +9,10 @@ namespace Game.Gameplay
 
         private void Update()
         {
-            HandleKeyboard();
-        }
-
-        private void HandleKeyboard()
-        {
             if (Input.GetKeyDown(KeyCode.E))
+            {
                 _character.GetWeapon().FireBullet();
+            }
         }
     }
 }

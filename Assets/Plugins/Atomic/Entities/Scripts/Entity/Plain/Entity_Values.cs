@@ -18,7 +18,7 @@ namespace Atomic.Entities
         {
             return this.values.TryGetValue(id, out object value)
                 ? (T) value
-                : throw new KeyNotFoundException($"The given id {EntityUtils.IdToName(id)} was not present in the values");
+                : throw new KeyNotFoundException($"The given id {EntityUtils.IdToName(id)} was not present in the values. Entity: {name}");
         }
 
         public bool TryGetValue<T>(in int id, out T value)
@@ -37,7 +37,7 @@ namespace Atomic.Entities
         {
             return this.values.TryGetValue(id, out object value)
                 ? value
-                : throw new KeyNotFoundException($"The given id {EntityUtils.IdToName(id)} was not present in the values");
+                : throw new KeyNotFoundException($"The given id {EntityUtils.IdToName(id)} was not present in the values. Entity: {name}");
         }
 
         public bool TryGetValue(in int id, out object value)

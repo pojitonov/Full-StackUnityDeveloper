@@ -15,10 +15,6 @@ namespace Atomic.Entities
         [SerializeField]
         private bool _onlyEditModeGizmos;
 
-        [Tooltip("Specify the gizmos in editor mode")]
-        [Space, SerializeField]
-        private List<SceneEntityGizmos> gizmoses;
-
         private void OnDrawGizmos()
         {
             if (!_onlySelectedGizmos)
@@ -30,31 +26,21 @@ namespace Atomic.Entities
             if (EditorApplication.isPlaying && _onlyEditModeGizmos)
                 return;
 
-            if (this.gizmoses == null)
+            IReadOnlyCollection<IEntityBehaviour> behaviours = this.entity.Behaviours;
+            if (behaviours.Count == 0)
                 return;
 
-            int count = this.gizmoses.Count;
-            if (count == 0)
-                return;
-            
-            for (int i = 0; i < count; i++)
+            try
             {
-                SceneEntityGizmos gizmos = this.gizmoses[i];
-                if (gizmos == null)
+                foreach (IEntityBehaviour behaviour in behaviours)
                 {
-                    Debug.LogWarning("SceneEntity: Ops! Detected null gizmos!", this);
-                }
-                else
-                {
-                    try
-                    {
+                    if (behaviour is IEntityGizmos gizmos) 
                         gizmos.OnGizmosDraw(this.entity);
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.LogWarning($"Ops: detected exception in gizmos: {e.Message}");
-                    }
                 }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"Ops: detected exception in gizmos: {e.Message}");
             }
         }
     }

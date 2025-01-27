@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Atomic.Entities
 {
-    public abstract class ScriptableEntityInstaller : ScriptableObject
+    public abstract class ScriptableEntityInstaller : ScriptableObject, IEntityInstaller
     {
         public abstract void Install(IEntity entity);
     }

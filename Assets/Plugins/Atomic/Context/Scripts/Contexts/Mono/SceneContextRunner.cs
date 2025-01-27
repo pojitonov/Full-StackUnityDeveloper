@@ -22,7 +22,7 @@ namespace Atomic.Contexts
 #endif
         [Tooltip("If enabled then dependency injection will happened before initialization")]
         [SerializeField]
-        private bool dependencyInjectionEnabled = true;
+        private bool diEnabled = true;
         
         [Space, SerializeField]
         private SceneContext[] contexts;
@@ -48,7 +48,7 @@ namespace Atomic.Contexts
 
         private void Start()
         {
-            if (this.dependencyInjectionEnabled) 
+            if (this.diEnabled) 
                 this.Construct();
 
             for (int i = 0, count = this.contexts.Length; i < count; i++)

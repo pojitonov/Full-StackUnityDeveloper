@@ -26,7 +26,7 @@ namespace Atomic.Entities
 #endif
         }
 
-        protected bool IsPlayMode()
+        protected static bool IsPlayMode()
         {
 #if UNITY_EDITOR
             return EditorApplication.isPlaying;
@@ -35,7 +35,7 @@ namespace Atomic.Entities
 #endif
         }
 
-        protected bool IsEditMode()
+        protected static bool IsEditMode()
         {
 #if UNITY_EDITOR
             return !EditorApplication.isPlaying && !EditorApplication.isCompiling;

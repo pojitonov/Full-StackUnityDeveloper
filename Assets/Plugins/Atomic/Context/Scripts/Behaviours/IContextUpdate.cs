@@ -1,6 +1,6 @@
 namespace Atomic.Contexts
 {
-    public interface IContextUpdate : IContextSystem
+    public interface IContextUpdate : IContextController
     {
         void OnUpdate(IContext context, float deltaTime);
     }

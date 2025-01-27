@@ -26,8 +26,8 @@ values:
 # Move
 - MoveSpeed: IValue<float>
 - MoveCondition: IExpression<bool>
-- MoveAction: IAction<Vector3, float> # direction, deltaTime
 - MoveDirection: IReactiveVariable<Vector3>
+#- MoveAction: IAction<Vector3, float> # direction, deltaTime
 
 # Rotation
 - AngularSpeed: IValue<float>
@@ -39,5 +39,5 @@ values:
 # Physics
 - Collision: CollisionEventReceiver
 
-# Visual
+# Animation
 - Animator: Animator

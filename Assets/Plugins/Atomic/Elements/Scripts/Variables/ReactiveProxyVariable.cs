@@ -68,5 +68,10 @@ namespace Atomic.Elements
             this.subscribe = subscribe;
             this.unsubscribe = unsubscribe;
         }
+        
+        public override string ToString()
+        {
+            return this.Value.ToString();
+        }
     }
 }

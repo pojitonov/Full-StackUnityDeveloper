@@ -8,7 +8,8 @@ namespace Atomic.Elements
         event ChangeItemHandler<T> OnItemUpdated;
         event InsertItemHandler<T> OnItemInserted;
         event DeleteItemHandler<T> OnItemDeleted;
-        
+        event ClearHandler OnCleared;
+
         void Update(int index, T value);
         void CopyTo(T[] array);
     }

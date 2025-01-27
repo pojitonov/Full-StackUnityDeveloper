@@ -23,7 +23,7 @@ namespace Atomic.Contexts
 
         [Space(12)]
         [SerializeReference]
-        private IContextSystem[] systems = default;
+        private IContextController[] systems = default;
         
         public void Install(IContext context)
         {
@@ -40,10 +40,10 @@ namespace Atomic.Contexts
             {
                 for (int i = 0, count = this.systems.Length; i < count; i++)
                 {
-                    IContextSystem system = this.systems[i];
-                    if (system != null)
+                    IContextController controller = this.systems[i];
+                    if (controller != null)
                     {
-                        context.AddSystem(system);
+                        context.AddController(controller);
                     }
                 }
             }

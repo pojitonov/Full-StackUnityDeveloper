@@ -64,13 +64,6 @@ namespace Atomic.Contexts
         [Space, SerializeField]
         private List<SceneContext> children;
 
-#if ODIN_INSPECTOR
-        [HideInPlayMode]
-#endif
-        [Tooltip("Add actions when Install() completed")]
-        [Space, SerializeField]
-        private UnityEvent onInstalled;
-        
         private readonly Context context;
         
         private bool installed;
@@ -92,6 +85,8 @@ namespace Atomic.Contexts
             this.context = new Context(owner: this);
         }
 
+
+        
         public void Install()
         {
             this.Install(this.initialParent);
@@ -123,8 +118,6 @@ namespace Atomic.Contexts
 
             foreach (SceneContext child in this.children)
                 child.Install(this);
-
-            this.onInstalled?.Invoke();
         }
 
         protected virtual void Awake()
@@ -142,6 +135,8 @@ namespace Atomic.Contexts
             this.InstallInEditMode();
 #endif
         }
+
+        public void Clear() => this.context.Clear();
 
 #if UNITY_EDITOR
 

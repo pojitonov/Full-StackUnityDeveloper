@@ -27,7 +27,7 @@ namespace Atomic.Entities
 
             //Act:
 
-            SceneEntity entity = SceneEntity.Instantiate("123",
+            SceneEntity entity = SceneEntity.Create("123",
                 new[] {tag1, tag2},
                 new Dictionary<int, object>
                 {
@@ -88,11 +88,11 @@ namespace Atomic.Entities
         public void NotEquals()
         {
             //Arrange:
-            var entity1 = SceneEntity.Instantiate("1");
+            var entity1 = SceneEntity.Create("1");
             var proxy1 = entity1.gameObject.AddComponent<SceneEntityProxy>();
             proxy1.source = entity1;
             
-            var entity2 = SceneEntity.Instantiate("2");
+            var entity2 = SceneEntity.Create("2");
             var proxy2 = entity2.gameObject.AddComponent<SceneEntityProxy>();
             proxy2.source = entity2;
         
@@ -104,7 +104,7 @@ namespace Atomic.Entities
         [Test]
         public void HashCodeTest()
         {
-            var entity1 = SceneEntity.Instantiate("1");
+            var entity1 = SceneEntity.Create("1");
             var proxy1 = entity1.gameObject.AddComponent<SceneEntityProxy>();
             proxy1.source = entity1;
 
@@ -115,11 +115,11 @@ namespace Atomic.Entities
         public void WhenSourcesEqualsThenEquals()
         {
             //Arrange:
-            var entity1 = SceneEntity.Instantiate("1");
+            var entity1 = SceneEntity.Create("1");
             var proxy1 = entity1.gameObject.AddComponent<SceneEntityProxy>();
             proxy1.source = entity1;
             
-            var entity2 = SceneEntity.Instantiate("2");
+            var entity2 = SceneEntity.Create("2");
             var proxy2 = entity2.gameObject.AddComponent<SceneEntityProxy>();
             proxy2.source = entity1;
             

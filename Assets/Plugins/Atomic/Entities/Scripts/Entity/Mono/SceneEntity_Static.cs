@@ -1,24 +1,23 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Atomic.Entities
 {
     public partial class SceneEntity
     {
-        private static readonly Dictionary<IEntity, SceneEntity> _entityMap = new();
+        private static readonly Dictionary<IEntity, SceneEntity> s_entities = new();
 
-        public static SceneEntity Instantiate(
+        public static SceneEntity Create(
             string name = null,
             IEnumerable<int> tags = null,
             IReadOnlyDictionary<int, object> values = null,
-            IEnumerable<IEntityBehaviour> behaviours = null,
-            bool installOnAwake = false
+            IEnumerable<IEntityBehaviour> behaviours = null
         )
         {
             GameObject gameObject = new GameObject(name);
             SceneEntity sceneEntity = gameObject.AddComponent<SceneEntity>();
             sceneEntity.Name = name;
-            sceneEntity.installOnAwake = installOnAwake;
 
             sceneEntity.AddTags(tags);
             sceneEntity.AddValues(values);
@@ -28,16 +27,29 @@ namespace Atomic.Entities
             return sceneEntity;
         }
 
-        public static SceneEntity Instantiate(
+        public static SceneEntity Create(SceneEntity prefab, Transform parent)
+        {
+            SceneEntity entity = Instantiate(prefab, parent);
+            entity.Install();
+            return entity;
+        }
+
+        public static SceneEntity Create(
             SceneEntity prefab,
             Vector3 position,
             Quaternion rotation,
             Transform parent = null
         )
         {
-            SceneEntity entity = GameObject.Instantiate(prefab, position, rotation, parent);
+            SceneEntity entity = Instantiate(prefab, position, rotation, parent);
             entity.Install();
             return entity;
+        }
+
+        public static void Destroy(IEntity entity, float t = 0)
+        {
+            if (TryCast(entity, out SceneEntity sceneEntity))
+                Destroy(sceneEntity.gameObject, t);
         }
 
         public static SceneEntity Cast(IEntity entity)
@@ -51,7 +63,7 @@ namespace Atomic.Entities
             if (entity is SceneEntityProxy proxy)
                 return proxy.source;
 
-            _entityMap.TryGetValue(entity, out sceneEntity);
+            s_entities.TryGetValue(entity, out sceneEntity);
             return sceneEntity;
         }
 
@@ -75,7 +87,15 @@ namespace Atomic.Entities
                 return true;
             }
 
-            return _entityMap.TryGetValue(entity, out result);
+            return s_entities.TryGetValue(entity, out result);
         }
+
+#if UNITY_EDITOR
+        [InitializeOnEnterPlayMode]
+        private static void OnEnterPlayMode()
+        {
+            s_entities.Clear();
+        }
+#endif
     }
 }

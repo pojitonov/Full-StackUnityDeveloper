@@ -23,7 +23,6 @@ namespace Game.Gameplay
 		public const int Damage = 375673178; // IValue<int>
 		public const int MoveSpeed = 526065662; // IValue<float>
 		public const int MoveCondition = 1466174948; // IExpression<bool>
-		public const int MoveAction = 1225226561; // IAction<Vector3, float>
 		public const int MoveDirection = -721923052; // IReactiveVariable<Vector3>
 		public const int AngularSpeed = -1089183267; // IValue<float>
 		public const int Target = 1103309514; // IReactiveVariable<IEntity>
@@ -153,24 +152,6 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetMoveCondition(this IEntity obj, IExpression<bool> value) => obj.SetValue(MoveCondition, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IAction<Vector3, float> GetMoveAction(this IEntity obj) => obj.GetValue<IAction<Vector3, float>>(MoveAction);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetMoveAction(this IEntity obj, out IAction<Vector3, float> value) => obj.TryGetValue(MoveAction, out value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddMoveAction(this IEntity obj, IAction<Vector3, float> value) => obj.AddValue(MoveAction, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasMoveAction(this IEntity obj) => obj.HasValue(MoveAction);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelMoveAction(this IEntity obj) => obj.DelValue(MoveAction);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetMoveAction(this IEntity obj, IAction<Vector3, float> value) => obj.SetValue(MoveAction, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IReactiveVariable<Vector3> GetMoveDirection(this IEntity obj) => obj.GetValue<IReactiveVariable<Vector3>>(MoveDirection);

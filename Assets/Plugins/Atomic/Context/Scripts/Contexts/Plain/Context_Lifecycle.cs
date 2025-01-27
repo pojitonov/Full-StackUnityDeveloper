@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,9 +38,9 @@ namespace Atomic.Contexts
                 return;
             }
 
-            foreach (IContextSystem system in this.systems)
-                if (system is IContextInit initSystem)
-                    initSystem.Init(this.owner);
+            foreach (IContextController system in this.controllers)
+                if (system is IContextInit initController)
+                    initController.Init(this.owner);
 
             this.initialized = true;
             this.OnInitiazized?.Invoke();
@@ -59,9 +60,9 @@ namespace Atomic.Contexts
                 return;
             }
 
-            foreach (IContextSystem system in this.systems)
-                if (system is IContextEnable enableSystem)
-                    enableSystem.Enable(this.owner);
+            foreach (IContextController system in this.controllers)
+                if (system is IContextEnable enableController)
+                    enableController.Enable(this.owner);
 
             this.enabled = true;
             this.OnEnabled?.Invoke();
@@ -75,9 +76,9 @@ namespace Atomic.Contexts
                 return;
             }
 
-            foreach (IContextSystem system in this.systems)
-                if (system is IContextDisable disableSystem)
-                    disableSystem.Disable(this.owner);
+            foreach (IContextController system in this.controllers)
+                if (system is IContextDisable disableController)
+                    disableController.Disable(this.owner);
 
             this.enabled = false;
             this.OnDisabled?.Invoke();
@@ -88,9 +89,9 @@ namespace Atomic.Contexts
             if (!this.initialized) Debug.LogWarning($"Context with name {name} is not initialized!");
             if (this.enabled) this.Disable();
 
-            foreach (IContextSystem system in this.systems)
-                if (system is IContextDispose destroySystem)
-                    destroySystem.Dispose(this.owner);
+            foreach (IContextController system in this.controllers)
+                if (system is IContextDispose destroyController)
+                    destroyController.Dispose(this.owner);
 
             this.initialized = false;
             this.OnDisposed?.Invoke();
@@ -136,8 +137,8 @@ namespace Atomic.Contexts
 
                 for (int i = 0; i < count; i++)
                 {
-                    IContextFixedUpdate updateSystem = _fixedUpdateCache[i];
-                    updateSystem.OnFixedUpdate(this.owner, deltaTime);
+                    IContextFixedUpdate updateController = _fixedUpdateCache[i];
+                    updateController.OnFixedUpdate(this.owner, deltaTime);
                 }
             }
 
@@ -160,8 +161,8 @@ namespace Atomic.Contexts
 
                 for (int i = 0; i < count; i++)
                 {
-                    IContextLateUpdate updateSystem = _lateUpdateCache[i];
-                    updateSystem.OnLateUpdate(this.owner, deltaTime);
+                    IContextLateUpdate updateController = _lateUpdateCache[i];
+                    updateController.OnLateUpdate(this.owner, deltaTime);
                 }
             }
 

@@ -113,7 +113,7 @@ namespace Atomic.Entities
 
         private static bool IsEditModeSupported(IEntityBehaviour behaviour)
         {
-            return behaviour.GetType().IsDefined(typeof(EditModeAttribute));
+            return behaviour.GetType().IsDefined(typeof(EditModeBehaviourAttribute));
         }
     }
 }

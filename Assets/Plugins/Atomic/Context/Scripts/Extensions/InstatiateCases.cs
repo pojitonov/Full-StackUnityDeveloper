@@ -63,7 +63,7 @@ namespace Atomic.Contexts
 
                 if (value == null)
                 {
-                    Debug.LogError($"Can't resolve parameter with key {ContextUtils.IdToString(valueId)}");
+                    Debug.LogError($"Can't resolve parameter with key {ContextUtils.IdToName(valueId)}");
                 }
                 else
                 {

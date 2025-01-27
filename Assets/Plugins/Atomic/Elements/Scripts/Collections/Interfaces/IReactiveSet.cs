@@ -7,6 +7,7 @@ namespace Atomic.Elements
         event StateChangedHandler OnStateChanged;
         event AddItemHandler<T> OnItemAdded;
         event RemoveItemHandler<T> OnItemRemoved;
+        event ClearHandler OnCleared;
 
         void CopyTo(T[] array);
 

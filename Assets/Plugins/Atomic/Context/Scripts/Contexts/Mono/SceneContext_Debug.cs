@@ -75,7 +75,7 @@ namespace Atomic.Contexts
 
                 foreach ((int id, object value) in values)
                 {
-                    string name = ContextUtils.IdToString(id);
+                    string name = ContextUtils.IdToName(id);
                     _valueElementsCache.Add(new ValueElement(name, value, id));
                 }
 
@@ -99,17 +99,17 @@ namespace Atomic.Contexts
         }
 
         ///Logics
-        private static readonly List<SystemElement> _systemElementsCache = new();
+        private static readonly List<ControllerElement> _controllerElementsCache = new();
 
         [InlineProperty]
-        private struct SystemElement
+        private struct ControllerElement
         {
             [ShowInInspector, ReadOnly, HideLabel]
             public string name;
 
-            internal readonly IContextSystem value;
+            internal readonly IContextController value;
 
-            public SystemElement(IContextSystem value)
+            public ControllerElement(IContextController value)
             {
                 this.name = value.GetType().Name;
                 this.value = value;
@@ -118,26 +118,26 @@ namespace Atomic.Contexts
 
         [Searchable]
         [FoldoutGroup("Debug")]
-        [LabelText("Systems")]
+        [LabelText("Controllers")]
         [ShowInInspector, PropertyOrder(100)]
         [ListDrawerSettings(
-            CustomRemoveElementFunction = nameof(RemoveSystemElement),
-            CustomRemoveIndexFunction = nameof(RemoveSystemElementAt)
+            CustomRemoveElementFunction = nameof(RemoveControllerDebug),
+            CustomRemoveIndexFunction = nameof(RemoveControllerDebugAt)
         )]
-        private List<SystemElement> SystemsDebug
+        private List<ControllerElement> ControllersDebug
         {
             get
             {
-                _systemElementsCache.Clear();
+                _controllerElementsCache.Clear();
 
-                IReadOnlyCollection<IContextSystem> logics = this.context?.Systems;
-                if (logics == null)
-                    return _systemElementsCache;
+                IReadOnlyCollection<IContextController> controllers = this.context?.Controllers;
+                if (controllers == null)
+                    return _controllerElementsCache;
 
-                foreach (var system in logics) 
-                    _systemElementsCache.Add(new SystemElement(system));
+                foreach (var controller in controllers) 
+                    _controllerElementsCache.Add(new ControllerElement(controller));
 
-                return _systemElementsCache;
+                return _controllerElementsCache;
             }
             set
             {
@@ -147,22 +147,22 @@ namespace Atomic.Contexts
         
         [FoldoutGroup("Debug")]
         [ShowInInspector, PropertyOrder(100)]
-        [Button("Add System"), HideInEditorMode]
-        private void AddSystemDebug(IContextSystem system) => this.context.AddSystem(system);
+        [Button("Add Controller"), HideInEditorMode]
+        private void AddControllerDebug(IContextController controller) => this.context.AddController(controller);
 
         [FoldoutGroup("Debug")]
         [ShowInInspector, PropertyOrder(100)]
         [Button("Add Value"), HideInEditorMode]
         private void AddValueDebug(int key, object value) => this.context.AddValue(key, value);
 
-        private void RemoveSystemElement(SystemElement systemElement)
+        private void RemoveControllerDebug(ControllerElement controllerElement)
         {
-            if (this.context != null) this.DelSystem(systemElement.value);
+            if (this.context != null) this.DelController(controllerElement.value);
         }
 
-        private void RemoveSystemElementAt(int index)
+        private void RemoveControllerDebugAt(int index)
         {
-            if (this.context != null) this.DelSystem(this.SystemsDebug[index].value);
+            if (this.context != null) this.DelController(this.ControllersDebug[index].value);
         }
 
         [ShowInInspector, PropertyOrder(100)]

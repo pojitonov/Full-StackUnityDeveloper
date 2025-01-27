@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using UnityEngine;
 
 #if ODIN_INSPECTOR
@@ -15,7 +16,7 @@ namespace Atomic.Elements
     public class ReactiveFloat : IReactiveVariable<float>, IDisposable
     {
         public event System.Action<float> OnValueChanged;
-        
+
 #if ODIN_INSPECTOR
         [HideLabel, OnValueChanged(nameof(InvokeEvent))]
 #endif
@@ -69,6 +70,11 @@ namespace Atomic.Elements
         public void Dispose()
         {
             DelegateUtils.Dispose(ref this.OnValueChanged);
+        }
+
+        public override string ToString()
+        {
+            return this.value.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

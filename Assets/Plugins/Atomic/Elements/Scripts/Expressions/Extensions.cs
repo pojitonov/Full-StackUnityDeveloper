@@ -13,9 +13,7 @@ namespace Atomic.Elements
             {
                 Func<T> member = members[i];
                 if (member != null)
-                {
                     it.Append(member);
-                }
             }
         }
 
@@ -26,17 +24,11 @@ namespace Atomic.Elements
         )
         {
             if (predicates == null)
-            {
                 return;
-            }
 
             foreach (IFunction<bool> predicate in predicates)
-            {
                 if (predicate != null)
-                {
                     expression.Append(predicate.Invoke);
-                }
-            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -46,35 +38,21 @@ namespace Atomic.Elements
         )
         {
             if (predicates == null)
-            {
                 return;
-            }
 
             foreach (IFunction<T, bool> predicate in predicates)
-            {
                 if (predicate != null)
-                {
                     expression.Append(predicate.Invoke);
-                }
-            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Append<T, R>(this IExpression<T, R> it, IFunction<R> member)
-        {
+        public static void Append<T, R>(this IExpression<T, R> it, IFunction<R> member) =>
             it.Append(_ => member.Invoke());
-        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Append<T>(this IExpression<T> it, IFunction<T> member)
-        {
-            it.Append(member.Invoke);
-        }
+        public static void Append<T>(this IExpression<T> it, IFunction<T> member) => it.Append(member.Invoke);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Remove<T>(this IExpression<T> it, IFunction<T> member)
-        {
-            it.Remove(member.Invoke);
-        }
+        public static void Remove<T>(this IExpression<T> it, IFunction<T> member) => it.Remove(member.Invoke);
     }
 }

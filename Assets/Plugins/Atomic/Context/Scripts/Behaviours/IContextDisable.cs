@@ -1,6 +1,6 @@
 namespace Atomic.Contexts
 {
-    public interface IContextDisable : IContextSystem
+    public interface IContextDisable : IContextController
     {
         void Disable(IContext context);
     }

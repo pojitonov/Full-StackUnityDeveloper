@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -35,6 +36,17 @@ namespace Atomic.Entities
 
             foreach (IEntityBehaviour behaviour in behaviours)
                 entity.AddBehaviour(behaviour);
+        }
+        
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void DelBehaviours(this IEntity entity, in IEnumerable<IEntityBehaviour> behaviours)
+        {
+            if (behaviours == null)
+                return;
+
+            foreach (IEntityBehaviour behaviour in behaviours)
+                entity.DelBehaviour(behaviour);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -187,8 +199,7 @@ namespace Atomic.Entities
             installer.Install(obj);
             return obj;
         }
-
-
+        
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasTag(this IEntity entity, string tag)
         {
@@ -306,26 +317,13 @@ namespace Atomic.Entities
 
             return false;
         }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void AddComponent(this IEntity obj, string id, IEntityBehaviour element)
+        
+        public static void DisposeValues(this IEntity entity)
         {
-            if (obj.AddValue(id, element))
-                obj.AddBehaviour(element);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DelComponent(this IEntity obj, string id)
-        {
-            if (obj.DelValue(id, out object removed))
-                obj.DelBehaviour(removed as IEntityBehaviour);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetComponent(this IEntity obj, string id, IEntityBehaviour element)
-        {
-            obj.SetValue(id, element);
-            obj.AddBehaviour(element);
+            IEnumerable<object> values = entity.Values.Values;
+            foreach (object value in values)
+                if (value is IDisposable disposable)
+                    disposable.Dispose();
         }
     }
 }

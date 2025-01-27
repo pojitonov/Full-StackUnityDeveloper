@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
-
 
 namespace Atomic.Entities
 {
@@ -11,7 +9,7 @@ namespace Atomic.Entities
         private static SceneEntityUpdater _instance;
         private static bool installed;
 
-        private readonly List<IEntity> entities = new();
+        private readonly HashSet<IEntity> entities = new();
         private readonly List<IEntity> _entities = new();
         
         private static SceneEntityUpdater instance
@@ -115,5 +113,13 @@ namespace Atomic.Entities
         }
 
         #endregion
+        
+#if UNITY_EDITOR
+        [InitializeOnEnterPlayMode]
+        private static void OnEnterPlayMode()
+        {
+            installed = false;
+        }
+#endif
     }
 }

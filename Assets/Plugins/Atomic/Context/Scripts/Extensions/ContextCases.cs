@@ -25,53 +25,31 @@ namespace Atomic.Contexts
             {
                 SceneContextInstaller[] installers = gameObject
                     .GetComponentsInChildren<SceneContextInstaller>(includeInactive);
-                foreach (var installer in installers)
-                {
+              
+                foreach (SceneContextInstaller installer in installers) 
                     installer.Install(context);
-                }
             }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void WhenInit(this IContext context, Action action)
-        {
-            context.OnInitiazized += action;
-        }
+        public static void WhenInit(this IContext context, Action action) => context.OnInitiazized += action;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void WhenEnable(this IContext context, Action action)
-        {
-            context.OnEnabled += action;
-        }
+        public static void WhenEnable(this IContext context, Action action) => context.OnEnabled += action;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void WhenDisable(this IContext context, Action action)
-        {
-            context.OnDisabled += action;
-        }
+        public static void WhenDisable(this IContext context, Action action) => context.OnDisabled += action;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void WhenDispose(this IContext context, Action action)
-        {
-            context.OnDisposed += action;
-        }
+        public static void WhenDispose(this IContext context, Action action) => context.OnDisposed += action;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void WhenUpdate(this IContext context, Action<float> action)
-        {
-            context.OnUpdated += action;
-        }
+        public static void WhenUpdate(this IContext context, Action<float> action) => context.OnUpdated += action;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void WhenFixedUpdate(this IContext context, Action<float> action)
-        {
-            context.OnFixedUpdated += action;
-        }
+        public static void WhenFixedUpdate(this IContext context, Action<float> action) => context.OnFixedUpdated += action;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void WhenLateUpdate(this IContext context, Action<float> action)
-        {
-            context.OnLateUpdated += action;
-        }
+        public static void WhenLateUpdate(this IContext context, Action<float> action) => context.OnLateUpdated += action;
     }
 }

@@ -1,6 +1,6 @@
 namespace Atomic.Contexts
 {
-    public interface IContextDispose : IContextSystem
+    public interface IContextDispose : IContextController
     {
         void Dispose(IContext context);
     }

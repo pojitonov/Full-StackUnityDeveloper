@@ -15,7 +15,7 @@ namespace Atomic.Elements
     public class ReactiveBool : IReactiveVariable<bool>, IDisposable
     {
         public event System.Action<bool> OnValueChanged;
-        
+
 #if ODIN_INSPECTOR
         [HideLabel, OnValueChanged(nameof(InvokeEvent))]
 #endif
@@ -44,7 +44,7 @@ namespace Atomic.Elements
         {
             this.value = value;
         }
-        
+
         public static implicit operator ReactiveBool(bool value)
         {
             return new ReactiveBool(value);
@@ -60,7 +60,7 @@ namespace Atomic.Elements
         {
             this.OnValueChanged -= listener;
         }
-        
+
         private void InvokeEvent(bool value)
         {
             this.OnValueChanged?.Invoke(value);
@@ -69,6 +69,11 @@ namespace Atomic.Elements
         public void Dispose()
         {
             DelegateUtils.Dispose(ref this.OnValueChanged);
+        }
+        
+        public override string ToString()
+        {
+            return this.Value.ToString();
         }
     }
 }

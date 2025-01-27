@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEditor;
+using UnityEngine;
 
 namespace Atomic.Contexts
 {
@@ -65,7 +67,7 @@ namespace Atomic.Contexts
             );
 
             using StreamWriter writer = new StreamWriter(filePath);
-            writer.Write(ContextAPIUtils.AssetContent);
+            writer.Write(ContextAPITemplate.Value);
 
             AssetDatabase.Refresh();
             AssetDatabase.SaveAssets();
@@ -75,7 +77,7 @@ namespace Atomic.Contexts
         {
             string[] assetPaths = AssetDatabase.FindAssets(ASSET_NAME)
                 .Select(AssetDatabase.GUIDToAssetPath)
-                .Where(path => path.EndsWith($"{ASSET_NAME}.yaml") || path.EndsWith($"{ASSET_NAME}.yml"))
+                .Where(IsContextAPIFile)
                 .ToArray();
 
             int count = assetPaths.Length;
@@ -86,6 +88,19 @@ namespace Atomic.Contexts
                 string filePath = assetPaths[i];
                 _assets.Add(new ContextAPIAsset(filePath));
             }
+        }
+
+        private static bool IsContextAPIFile(string path)
+        {
+            if (!path.EndsWith(".yaml") && !path.EndsWith(".yml"))
+                return false;
+
+            IEnumerable<string> lines = File.ReadLines(path);
+            string first = lines.FirstOrDefault();
+            if (string.IsNullOrEmpty(first))
+                return false;
+
+            return first != null && Regex.IsMatch(first, @"^header\s*:\s*ContextAPI$");
         }
     }
 }

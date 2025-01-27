@@ -7,13 +7,13 @@ namespace Atomic.Entities
     {
         public static void AddEntities(this IEntityWorld it, params IEntity[] entities)
         {
-            for (int i = 0, count = entities.Length; i < count; i++) 
+            for (int i = 0, count = entities.Length; i < count; i++)
                 it.AddEntity(entities[i]);
         }
 
         public static void AddEntities(this IEntityWorld it, in IEnumerable<IEntity> entities)
         {
-            foreach (IEntity entity in entities) 
+            foreach (IEntity entity in entities)
                 it.AddEntity(entity);
         }
 
@@ -23,17 +23,17 @@ namespace Atomic.Entities
             it.AddEntities(in sceneEntities);
         }
 
-        public static SceneEntity InstantiateEntity(
+        public static SceneEntity CreateEntity(
             this IEntityWorld world,
             in SceneEntity prefab,
             in Vector3 position,
             in Quaternion rotation,
-            in Transform parent,
+            in Transform parent = null,
             in bool init = true,
             in bool enabled = true
         )
         {
-            SceneEntity entity = GameObject.Instantiate(prefab, position, rotation, parent);
+            SceneEntity entity = SceneEntity.Create(prefab, position, rotation, parent);
             world.AttachEntity(in entity, in init, in enabled);
             return entity;
         }
@@ -41,9 +41,9 @@ namespace Atomic.Entities
         public static void AttachEntity(this IEntityWorld world,
             in SceneEntity entity,
             in bool init = true,
-            in bool enabled = true)
+            in bool enabled = true
+        )
         {
-            if (!entity.Installed) entity.Install();
             if (init) entity.Init();
             if (enabled) entity.Enable();
             world.AddEntity(entity);

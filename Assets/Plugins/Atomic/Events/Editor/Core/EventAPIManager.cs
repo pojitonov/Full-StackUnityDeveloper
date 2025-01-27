@@ -64,7 +64,7 @@ namespace Atomic.Events
             );
 
             using StreamWriter writer = new StreamWriter(filePath);
-            writer.Write(EventAPIUtils.AssetContent);
+            writer.Write(EventAPITemplate.Value);
 
             AssetDatabase.Refresh();
             AssetDatabase.SaveAssets();

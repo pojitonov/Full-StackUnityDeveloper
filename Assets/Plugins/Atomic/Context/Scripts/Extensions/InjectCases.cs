@@ -12,17 +12,12 @@ namespace Atomic.Contexts
         private static readonly Type OBJECT_TYPE = typeof(object);
         private static readonly Type MONO_BEHAVIOUR_TYPE = typeof(MonoBehaviour);
 
-        public static void Construct(this IContext context)
-        {
-            context.InjectAll(context.Systems);
-        }
-        
+        public static void Construct(this IContext context) => context.InjectAll(context.Controllers);
+
         public static void InjectAll(this IContext context, IEnumerable<object> targets)
         {
-            foreach (object target in targets)
-            {
+            foreach (object target in targets) 
                 context.Inject(target);
-            }
         }
 
         public static void Inject(this IContext context, object target)
@@ -32,9 +27,7 @@ namespace Atomic.Contexts
             while (true)
             {
                 if (type == null || type == OBJECT_TYPE || type == MONO_BEHAVIOUR_TYPE)
-                {
                     break;
-                }
 
                 context.InjectByFields(target, type);
                 context.InjectByProperties(target, type);
@@ -64,13 +57,9 @@ namespace Atomic.Contexts
                 object value = context.ResolveValue(valueId);
 
                 if (value == null)
-                {
-                    Debug.LogError($"Can't resolve field with key {ContextUtils.IdToString(valueId)}");
-                }
+                    Debug.LogError($"Can't resolve field with key {ContextUtils.IdToName(valueId)}");
                 else
-                {
                     field.SetValue(target, value);
-                }
             }
         }
 
@@ -86,21 +75,15 @@ namespace Atomic.Contexts
                 PropertyInfo property = properties[i];
                 ContextInjectAttribute attribute = property.GetCustomAttribute<ContextInjectAttribute>();
                 if (attribute == null)
-                {
                     continue;
-                }
 
                 int valueId = attribute.key;
                 object value = context.ResolveValue(valueId);
 
                 if (value == null)
-                {
-                    Debug.LogError($"Can't resolve property with key {ContextUtils.IdToString(valueId)}");
-                }
+                    Debug.LogError($"Can't resolve property with key {ContextUtils.IdToName(valueId)}");
                 else
-                {
                     property.SetValue(target, value);
-                }
             }
         }
 
@@ -115,10 +98,8 @@ namespace Atomic.Contexts
             for (int i = 0, count = methods.Length; i < count; i++)
             {
                 MethodInfo method = methods[i];
-                if (method.IsDefined(typeof(ContextInjectAttribute)))
-                {
+                if (method.IsDefined(typeof(ContextInjectAttribute))) 
                     context.InjectByMethod(target, method);
-                }
             }
         }
         
@@ -133,21 +114,15 @@ namespace Atomic.Contexts
                 ParameterInfo parameter = parameters[i];
                 ContextInjectAttribute attribute = parameter.GetCustomAttribute<ContextInjectAttribute>();
                 if (attribute == null)
-                {
                     throw new Exception($"Exprected parameter {parameter.Name} with [Inject] attribute!");
-                }
-                
+
                 int valueId = attribute.key;
                 object value = context.ResolveValue(valueId);
 
                 if (value == null)
-                {
-                    Debug.LogError($"Can't resolve parameter with key {ContextUtils.IdToString(valueId)}");
-                }
+                    Debug.LogError($"Can't resolve parameter with key {ContextUtils.IdToName(valueId)}");
                 else
-                {
                     args[i] = value;
-                }
             }
 
             method.Invoke(target, args);

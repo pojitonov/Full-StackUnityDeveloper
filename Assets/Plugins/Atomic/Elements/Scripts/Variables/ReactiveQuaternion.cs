@@ -66,5 +66,10 @@ namespace Atomic.Elements
         {
             DelegateUtils.Dispose(ref this.OnValueChanged);
         }
+        
+        public override string ToString()
+        {
+            return this.Value.ToString();
+        }
     }
 }

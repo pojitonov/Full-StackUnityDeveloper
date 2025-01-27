@@ -16,15 +16,9 @@ namespace Atomic.Elements
     [Serializable]
     public class Const<T> : IValue<T>
     {
-        public T Invoke()
-        {
-            return this.value;
-        }
+        public T Invoke() => this.value;
 
-        public T Value
-        {
-            get { return this.value; }
-        }
+        public T Value => this.value;
 
 #if ODIN_INSPECTOR
         [HideLabel]
@@ -36,14 +30,10 @@ namespace Atomic.Elements
         {
         }
 
-        public Const(T value)
-        {
-            this.value = value;
-        }
-        
-        public static implicit operator Const<T>(T value)
-        {
-            return new Const<T>(value);
-        }
+        public Const(T value) => this.value = value;
+
+        public static implicit operator Const<T>(T value) => new Const<T>(value);
+
+        public override string ToString() => this.value.ToString();
     }
 }

@@ -17,7 +17,7 @@ namespace Atomic.Contexts
             var wasEvent = new Reference<bool>();
             var initSystem = new InitSystemStub();
 
-            context.AddSystem(initSystem);
+            context.AddController(initSystem);
             context.OnInitiazized += () => wasEvent.value = true;
 
             //Act
@@ -38,7 +38,7 @@ namespace Atomic.Contexts
             var enabledEvent = new Reference<bool>();
             var systemStub = new CommonSystemStub();
 
-            context.AddSystem(systemStub);
+            context.AddController(systemStub);
             context.OnInitiazized += () => initEvent.value = true;
             context.OnEnabled += () => enabledEvent.value = true;
 
@@ -66,7 +66,7 @@ namespace Atomic.Contexts
             var wasEvent = new Reference<bool>();
             var disableSystem = new DisableSystemStub();
 
-            context.AddSystem(disableSystem);
+            context.AddController(disableSystem);
             context.OnDisabled += () => wasEvent.value = true;
 
             //Act
@@ -88,7 +88,7 @@ namespace Atomic.Contexts
             var wasEvent = new Reference<bool>();
             var systemStub = new DisposeSystemStub();
 
-            context.AddSystem(systemStub);
+            context.AddController(systemStub);
             context.OnDisposed += () => wasEvent.value = true;
 
             //Act
@@ -110,7 +110,7 @@ namespace Atomic.Contexts
             //Arrange
             var context = new Context();
             var updateSystem = new UpdateSystemStub();
-            context.AddSystem(updateSystem);
+            context.AddController(updateSystem);
 
             //Act
             context.Init();
@@ -134,7 +134,7 @@ namespace Atomic.Contexts
             var wasEvent = new Reference<bool>();
             var enableSystem = new EnableSystemStub();
 
-            context.AddSystem(enableSystem);
+            context.AddController(enableSystem);
             context.OnEnabled += () => wasEvent.value = true;
 
             //Act
@@ -154,7 +154,7 @@ namespace Atomic.Contexts
             //Arrange
             var context = new Context("123");
             var updateSystem = new UpdateSystemStub();
-            context.AddSystem(updateSystem);
+            context.AddController(updateSystem);
 
             //Act
             context.OnUpdate(deltaTime: 0);
@@ -247,20 +247,20 @@ namespace Atomic.Contexts
         {
             //Arrange:
             var context = new Context();
-            var wasEvent = new Reference<IContextSystem>();
-            var systemStub = new SystemStub();
-            context.OnSystemAdded += system => wasEvent.value = system;
+            var wasEvent = new Reference<IContextController>();
+            var systemStub = new ControllerStub();
+            context.OnControllerAdded += system => wasEvent.value = system;
 
             //Act:
-            bool success = context.AddSystem(systemStub);
+            bool success = context.AddController(systemStub);
 
             //Assert:
             Assert.IsTrue(success);
-            Assert.IsTrue(context.HasSystem(systemStub));
-            Assert.IsTrue(context.HasSystem<SystemStub>());
+            Assert.IsTrue(context.HasController(systemStub));
+            Assert.IsTrue(context.HasController<ControllerStub>());
 
             Assert.AreEqual(systemStub, wasEvent.value);
-            Assert.AreEqual(systemStub, context.GetSystem<SystemStub>());
+            Assert.AreEqual(systemStub, context.GetController<ControllerStub>());
         }
 
         [Test]
@@ -268,17 +268,17 @@ namespace Atomic.Contexts
         {
             //Arrange:
             var context = new Context();
-            var wasEvent = new Reference<IContextSystem>();
-            var systemStub = new SystemStub();
-            context.AddSystem(systemStub);
-            context.OnSystemRemoved += system => wasEvent.value = system;
+            var wasEvent = new Reference<IContextController>();
+            var systemStub = new ControllerStub();
+            context.AddController(systemStub);
+            context.OnControllerRemoved += system => wasEvent.value = system;
 
             //Act:
-            bool removed = context.DelSystem<SystemStub>();
+            bool removed = context.DelController<ControllerStub>();
 
             //Assert:
             Assert.IsTrue(removed);
-            Assert.IsFalse(context.HasSystem<SystemStub>());
+            Assert.IsFalse(context.HasController<ControllerStub>());
             Assert.AreEqual(systemStub, wasEvent.value);
         }
 
@@ -292,13 +292,13 @@ namespace Atomic.Contexts
 
             //Act:
             var systemStub = new CommonSystemStub();
-            context.AddSystem(systemStub);
+            context.AddController(systemStub);
 
             context.OnUpdate(deltaTime: 0);
             context.OnFixedUpdate(deltaTime: 0);
             context.OnLateUpdate(deltaTime: 0);
 
-            context.DelSystem<CommonSystemStub>();
+            context.DelController<CommonSystemStub>();
 
             //Assert:
             Assert.IsTrue(systemStub.initialized);

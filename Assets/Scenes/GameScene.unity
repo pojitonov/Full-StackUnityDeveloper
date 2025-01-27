@@ -4300,7 +4300,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 317064069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a95aba3bff74e3880ce531c205df9bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dca5f7933e487b45b67b48395a2e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _character: {fileID: 9048405937420967253}
@@ -15964,7 +15964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   installOnAwake: 0
-  dependencyInjectionEnabled: 1
+  diEnabled: 1
   contexts:
   - {fileID: 0}
 --- !u!114 &1225762023
@@ -15985,9 +15985,6 @@ MonoBehaviour:
   initialParent: {fileID: 0}
   installers: []
   children: []
-  onInstalled:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &1228514620
 PrefabInstance:
   m_ObjectHideFlags: 0

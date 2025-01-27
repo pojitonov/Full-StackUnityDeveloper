@@ -10,7 +10,7 @@ namespace Atomic.Contexts
     {
         public abstract void Install(IContext context);
         
-        protected bool IsPlayMode()
+        protected static bool IsPlayMode()
         {
 #if UNITY_EDITOR
             return EditorApplication.isPlaying;
@@ -19,7 +19,7 @@ namespace Atomic.Contexts
 #endif
         }
 
-        protected bool IsEditMode()
+        protected static bool IsEditMode()
         {
 #if UNITY_EDITOR
             return !EditorApplication.isPlaying && !EditorApplication.isCompiling;

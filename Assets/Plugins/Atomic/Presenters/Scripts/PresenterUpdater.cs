@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Atomic.Presenters
@@ -91,5 +92,14 @@ namespace Atomic.Presenters
             for (int i = 0; i < count; i++) 
                 _lateUpdateCache[i].OnLateUpdate(deltaTime);
         }
+        
+        
+#if UNITY_EDITOR
+        [InitializeOnEnterPlayMode]
+        private static void OnEnterPlayMode()
+        {
+            _created = false;
+        }
+#endif
     }
 }

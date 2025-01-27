@@ -28,7 +28,7 @@ namespace Atomic.Contexts
         public void Clear()
         {
             this.ClearValues();
-            this.ClearSystems();
+            this.ClearControllers();
         }
     }
 }

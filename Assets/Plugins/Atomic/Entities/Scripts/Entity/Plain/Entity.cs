@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 
 // ReSharper disable UnusedMember.Global
 
@@ -74,5 +75,13 @@ namespace Atomic.Entities
             this.ClearValues();
             this.ClearBehaviours();
         }
+        
+#if UNITY_EDITOR
+        [InitializeOnEnterPlayMode]
+        private static void OnEnterPlayMode()
+        {
+            idGenerator = 0;
+        }
+#endif
     }
 }

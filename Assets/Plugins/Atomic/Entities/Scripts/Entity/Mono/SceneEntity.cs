@@ -37,7 +37,7 @@ namespace Atomic.Entities
         private bool installOnAwake = true;
         
 #if ODIN_INSPECTOR
-        [PropertySpace(SpaceBefore = 0, SpaceAfter = 12)]
+        [PropertySpace(SpaceBefore = 0)]
         [GUIColor(1f, 0.92156863f, 0.015686275f)]
         [HideInPlayMode]
         [InfoBox(
@@ -53,9 +53,17 @@ namespace Atomic.Entities
 #if ODIN_INSPECTOR
         [HideInPlayMode]
 #endif
+        [Tooltip("Should dispose values when OnDestroy() called")]
+        [SerializeField]
+        private bool disposeValues = true;
+        
+#if ODIN_INSPECTOR
+        [HideInPlayMode]
+#endif
         [Tooltip("Specify the installers that will put values and systems to this context")]
         [Space, SerializeField]
         private List<SceneEntityInstaller> installers;
+
 
         internal readonly IEntity entity;
 
@@ -89,7 +97,7 @@ namespace Atomic.Entities
                         Debug.LogWarning("SceneEntity: Ops! Detected null installer!", this);
                 }
             
-            _entityMap.TryAdd(this.entity, this);
+            s_entities.TryAdd(this.entity, this);
         }
 
         protected virtual void Awake()
@@ -99,7 +107,8 @@ namespace Atomic.Entities
 
         protected virtual void OnDestroy()
         {
-            _entityMap.Remove(this.entity);
+            if (this.disposeValues) this.entity.DisposeValues();
+            s_entities.Remove(this.entity);
         }
 
         public override string ToString()

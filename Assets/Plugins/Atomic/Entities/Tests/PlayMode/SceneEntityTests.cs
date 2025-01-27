@@ -33,7 +33,7 @@ namespace Atomic.Entities
 
             //Act:
 
-            var entity = SceneEntity.Instantiate("123",
+            var entity = SceneEntity.Create("123",
                 new[] {tag1, tag2},
                 new Dictionary<int, object>
                 {
@@ -83,8 +83,8 @@ namespace Atomic.Entities
         public void NotEquals()
         {
             //Arrange:
-            var entity1 = SceneEntity.Instantiate("1");
-            var entity2 = SceneEntity.Instantiate("2");
+            var entity1 = SceneEntity.Create("1");
+            var entity2 = SceneEntity.Create("2");
 
             //Assert:
             Assert.IsFalse(entity1.Equals(entity2));
@@ -93,7 +93,7 @@ namespace Atomic.Entities
         [Test]
         public void HashCodeTest()
         {
-            var entity1 = SceneEntity.Instantiate("1");
+            var entity1 = SceneEntity.Create("1");
             Assert.AreEqual(entity1.InstanceId, entity1.GetHashCode());
         }
 
@@ -101,8 +101,8 @@ namespace Atomic.Entities
         public void WhenInstanceIdEqualsThenEquals()
         {
             //Arrange:
-            var entity1 = SceneEntity.Instantiate("1");
-            var entity2 = SceneEntity.Instantiate("2");
+            var entity1 = SceneEntity.Create("1");
+            var entity2 = SceneEntity.Create("2");
 
             //Act:
             FieldInfo field = typeof(SceneEntity)
@@ -125,7 +125,7 @@ namespace Atomic.Entities
             const int tag2 = 2;
             const int tag3 = 3;
 
-            var e = SceneEntity.Instantiate("123", new[] {tag1, tag2});
+            var e = SceneEntity.Create("123", new[] {tag1, tag2});
 
             Assert.IsTrue(e.HasTag(tag1));
             Assert.IsTrue(e.HasTag(tag2));
@@ -142,7 +142,7 @@ namespace Atomic.Entities
 
             int addedTag = -1;
 
-            var e = SceneEntity.Instantiate("123", new[] {tag1, tag2});
+            var e = SceneEntity.Create("123", new[] {tag1, tag2});
             e.OnTagAdded += (_, t) => addedTag = t;
 
             //Act:
@@ -166,7 +166,7 @@ namespace Atomic.Entities
 
             int removedTag = -1;
 
-            var e = SceneEntity.Instantiate("123", new[] {tag1, tag2});
+            var e = SceneEntity.Create("123", new[] {tag1, tag2});
             e.OnTagDeleted += (_, t) => removedTag = t;
 
             //Act & Assert:
@@ -188,7 +188,7 @@ namespace Atomic.Entities
             const int tag2 = 2;
             bool wasClear = false;
 
-            var e = SceneEntity.Instantiate("123", new[] {tag1, tag2});
+            var e = SceneEntity.Create("123", new[] {tag1, tag2});
             e.OnTagsCleared += _ => wasClear = true;
 
             //Act:
@@ -206,7 +206,7 @@ namespace Atomic.Entities
             //Arrange:
             bool wasClear = false;
 
-            var e = SceneEntity.Instantiate("123");
+            var e = SceneEntity.Create("123");
             e.OnTagsCleared += _ => wasClear = true;
 
             //Act:
@@ -227,7 +227,7 @@ namespace Atomic.Entities
             const int key = 1;
             string foo = new string("Foo");
 
-            SceneEntity e = SceneEntity.Instantiate("123", values: new Dictionary<int, object>
+            SceneEntity e = SceneEntity.Create("123", values: new Dictionary<int, object>
             {
                 {key, foo}
             });
@@ -246,7 +246,7 @@ namespace Atomic.Entities
             const int key = 1;
             string foo = new string("Foo");
 
-            var e = SceneEntity.Instantiate("123", values: new Dictionary<int, object>
+            var e = SceneEntity.Create("123", values: new Dictionary<int, object>
             {
                 {key, foo}
             });
@@ -263,7 +263,7 @@ namespace Atomic.Entities
         public void WhenTryGetAbsentValueThenReturnFalse()
         {
             //Arrange:
-            var e = SceneEntity.Instantiate("123");
+            var e = SceneEntity.Create("123");
 
             //Act:
             bool success = e.TryGetValue(0, out string foo);
@@ -277,7 +277,7 @@ namespace Atomic.Entities
         public void WhenGetAbsentValueThenThrowKeyNotFoundException()
         {
             //Arrange:
-            var e = SceneEntity.Instantiate("123");
+            var e = SceneEntity.Create("123");
 
             //Act:
             Assert.Catch<KeyNotFoundException>(() => e.GetValue<string>(0));
@@ -289,7 +289,7 @@ namespace Atomic.Entities
             //Arrange:
             const int key = 1;
             string foo = new string("Foo");
-            var e = SceneEntity.Instantiate("123");
+            var e = SceneEntity.Create("123");
 
             var wasChangeEvent = false;
             object addedValue = null;
@@ -325,7 +325,7 @@ namespace Atomic.Entities
             var changedKey = -1;
             object changedValue = null;
 
-            SceneEntity e = SceneEntity.Instantiate("123", values: new Dictionary<int, object>
+            SceneEntity e = SceneEntity.Create("123", values: new Dictionary<int, object>
             {
                 {key, foo}
             });
@@ -360,7 +360,7 @@ namespace Atomic.Entities
             int addedKey = -1;
             object addedValue = null;
 
-            SceneEntity e = SceneEntity.Instantiate("123");
+            SceneEntity e = SceneEntity.Create("123");
 
             e.OnValueAdded += (_, k, v) =>
             {
@@ -390,7 +390,7 @@ namespace Atomic.Entities
             string foo1 = new string("Foo1");
             string foo2 = new string("Foo2");
 
-            SceneEntity e = SceneEntity.Instantiate("123", values: new Dictionary<int, object>
+            SceneEntity e = SceneEntity.Create("123", values: new Dictionary<int, object>
             {
                 {key, foo1}
             });
@@ -414,7 +414,7 @@ namespace Atomic.Entities
             object foo1 = new object();
             object foo2 = new object();
 
-            SceneEntity e = SceneEntity.Instantiate("123", values: new Dictionary<int, object>
+            SceneEntity e = SceneEntity.Create("123", values: new Dictionary<int, object>
             {
                 {key1, foo1},
                 {key2, foo2}
@@ -440,7 +440,7 @@ namespace Atomic.Entities
             object foo1 = new object();
             object foo2 = new object();
 
-            SceneEntity e = SceneEntity.Instantiate("123", values: new Dictionary<int, object>
+            SceneEntity e = SceneEntity.Create("123", values: new Dictionary<int, object>
             {
                 {key1, foo1},
                 {key2, foo2}
@@ -463,7 +463,7 @@ namespace Atomic.Entities
             //Arrange:
             const int key1 = 1;
 
-            SceneEntity e = SceneEntity.Instantiate("123");
+            SceneEntity e = SceneEntity.Create("123");
 
             //Act:
             bool success = e.DelValue(key1, out object removed);
@@ -483,7 +483,7 @@ namespace Atomic.Entities
             object foo1 = new object();
             object foo2 = new object();
 
-            SceneEntity e = SceneEntity.Instantiate("123", values: new Dictionary<int, object>
+            SceneEntity e = SceneEntity.Create("123", values: new Dictionary<int, object>
             {
                 {key1, foo1},
                 {key2, foo2}
@@ -504,7 +504,7 @@ namespace Atomic.Entities
         public void WhenClearEmptyValuesThenNothingHappened()
         {
             //Arrange:
-            SceneEntity e = SceneEntity.Instantiate("123");
+            SceneEntity e = SceneEntity.Create("123");
 
             //Act:
             bool success = e.ClearValues();
@@ -521,7 +521,7 @@ namespace Atomic.Entities
         public void Init()
         {
             //Arrange
-            var entity = SceneEntity.Instantiate();
+            var entity = SceneEntity.Create();
             var wasEvent = false;
             var behaviourStub = new EntityBehaviourStub();
 
@@ -542,7 +542,7 @@ namespace Atomic.Entities
         public void Enable()
         {
             //Arrange
-            var entity = SceneEntity.Instantiate();
+            var entity = SceneEntity.Create();
             var initEvent = false;
             var enabledEvent = false;
             var behaviourStub = new EntityBehaviourStub();
@@ -573,7 +573,7 @@ namespace Atomic.Entities
         public void Disable()
         {
             //Arrange
-            var entity = SceneEntity.Instantiate();
+            var entity = SceneEntity.Create();
             var wasEvent = false;
             var behaviourStub = new EntityBehaviourStub();
 
@@ -595,7 +595,7 @@ namespace Atomic.Entities
         public void Dispose()
         {
             //Arrange
-            var entity = SceneEntity.Instantiate();
+            var entity = SceneEntity.Create();
             var wasEvent = false;
             var behaviourStub = new EntityBehaviourStub();
 
@@ -619,7 +619,7 @@ namespace Atomic.Entities
         public void Update()
         {
             //Arrange
-            var entity = SceneEntity.Instantiate();
+            var entity = SceneEntity.Create();
             var behaviourStub = new EntityBehaviourStub();
             var wasUpdate = false;
 
@@ -639,7 +639,7 @@ namespace Atomic.Entities
         public void FixedUpdate()
         {
             //Arrange
-            var entity = SceneEntity.Instantiate();
+            var entity = SceneEntity.Create();
             var behaviourStub = new EntityBehaviourStub();
             var wasUpdate = false;
 
@@ -659,7 +659,7 @@ namespace Atomic.Entities
         public void LateUpdate()
         {
             //Arrange
-            var entity = SceneEntity.Instantiate();
+            var entity = SceneEntity.Create();
             var behaviourStub = new EntityBehaviourStub();
             var wasUpdate = false;
 
@@ -687,7 +687,7 @@ namespace Atomic.Entities
             var initStub = new EntityInitStub();
             var behaviourStub = new EntityBehaviourStub();
 
-            var entity = SceneEntity.Instantiate(behaviours: new IEntityBehaviour[]
+            var entity = SceneEntity.Create(behaviours: new IEntityBehaviour[]
             {
                 updateStub,
                 initStub,
@@ -714,7 +714,7 @@ namespace Atomic.Entities
             var initStub = new EntityInitStub();
             var behaviourStub = new EntityBehaviourStub();
 
-            var entity = SceneEntity.Instantiate(behaviours: new IEntityBehaviour[]
+            var entity = SceneEntity.Create(behaviours: new IEntityBehaviour[]
             {
                 updateStub,
                 initStub
@@ -735,7 +735,7 @@ namespace Atomic.Entities
             var updateStub = new EntityUpdateStub();
             var initStub = new EntityInitStub();
 
-            var entity = SceneEntity.Instantiate(behaviours: new IEntityBehaviour[]
+            var entity = SceneEntity.Create(behaviours: new IEntityBehaviour[]
             {
                 updateStub
             });
@@ -763,7 +763,7 @@ namespace Atomic.Entities
             var initStub = new EntityInitStub();
             var behaviourStub = new EntityBehaviourStub();
 
-            var entity = SceneEntity.Instantiate(behaviours: new IEntityBehaviour[]
+            var entity = SceneEntity.Create(behaviours: new IEntityBehaviour[]
             {
                 updateStub,
                 initStub
@@ -788,7 +788,7 @@ namespace Atomic.Entities
             //Arrange:
             var behaviourStub = new EntityBehaviourStub();
 
-            var entity = SceneEntity.Instantiate();
+            var entity = SceneEntity.Create();
             entity.Init();
 
             //Act
@@ -805,7 +805,7 @@ namespace Atomic.Entities
             //Arrange:
             var behaviourStub = new EntityBehaviourStub();
 
-            var entity = SceneEntity.Instantiate();
+            var entity = SceneEntity.Create();
             entity.Init();
             entity.Enable();
 
@@ -824,7 +824,7 @@ namespace Atomic.Entities
             //Arrange:
             var behaviourStub = new EntityBehaviourStub();
 
-            var entity = SceneEntity.Instantiate(behaviours: new IEntityBehaviour[] {behaviourStub});
+            var entity = SceneEntity.Create(behaviours: new IEntityBehaviour[] {behaviourStub});
             entity.Init();
 
             //Act
@@ -840,7 +840,7 @@ namespace Atomic.Entities
             //Arrange:
             var behaviourStub = new EntityBehaviourStub();
 
-            var entity = SceneEntity.Instantiate(behaviours: new IEntityBehaviour[] {behaviourStub});
+            var entity = SceneEntity.Create(behaviours: new IEntityBehaviour[] {behaviourStub});
             entity.Init();
             entity.Enable();
 
@@ -860,7 +860,7 @@ namespace Atomic.Entities
             var initStub = new EntityInitStub();
             var wasClear = false;
 
-            var entity = SceneEntity.Instantiate(behaviours: new IEntityBehaviour[]
+            var entity = SceneEntity.Create(behaviours: new IEntityBehaviour[]
             {
                 updateStub,
                 initStub
@@ -880,7 +880,7 @@ namespace Atomic.Entities
         {
             //Arrange:
             var wasClear = false;
-            var entity = SceneEntity.Instantiate();
+            var entity = SceneEntity.Create();
 
             entity.OnBehavioursCleared += _ => wasClear = true;
 

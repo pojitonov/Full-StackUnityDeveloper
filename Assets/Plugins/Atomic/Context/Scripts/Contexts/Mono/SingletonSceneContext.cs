@@ -14,7 +14,7 @@ namespace Atomic.Contexts
                 _instance = FindObjectOfType<T>();
                 
                 if (_instance == null)
-                    throw new NullReferenceException("Can't find Scene context on scene!");
+                    throw new NullReferenceException($"Can't find Scene Context of type {typeof(T).Name} on scene!");
 
                 return _instance;
             }

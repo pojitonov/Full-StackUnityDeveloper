@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Game.Gameplay;
 using UnityEngine;
 
 namespace Modules.Gameplay

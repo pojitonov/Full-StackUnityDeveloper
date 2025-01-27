@@ -40,5 +40,10 @@ namespace Atomic.Elements
         {
             return new BaseVariable<T>(value);
         }
+
+        public override string ToString()
+        {
+            return this.value.ToString();
+        }
     }
 }

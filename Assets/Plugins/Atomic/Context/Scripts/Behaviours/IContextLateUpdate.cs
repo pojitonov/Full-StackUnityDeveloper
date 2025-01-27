@@ -1,6 +1,6 @@
 namespace Atomic.Contexts
 {
-    public interface IContextLateUpdate : IContextSystem
+    public interface IContextLateUpdate : IContextController
     {
         void OnLateUpdate(IContext context, float deltaTime);
     }

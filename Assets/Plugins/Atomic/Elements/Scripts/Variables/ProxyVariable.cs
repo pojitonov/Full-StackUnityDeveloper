@@ -39,5 +39,10 @@ namespace Atomic.Elements
             this.getter = getter;
             this.setter = setter;
         }
+        
+        public override string ToString()
+        {
+            return this.Value.ToString();
+        }
     }
 }
