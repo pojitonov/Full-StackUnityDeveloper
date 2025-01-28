@@ -6,14 +6,14 @@ namespace Game.Gameplay
 {
     public sealed class CharacterAnimInstaller : SceneEntityInstaller
     {
+        // private const string FIRE_EVENT = "fire_event";
+        // [SerializeField] private AnimationEventReceiver _animationReceiver;
+        
         [SerializeField] private Animator _animator;
         [SerializeField] private string _movingKey = "IsMoving";
         [SerializeField] private string _fireKey = "Attack";
         [SerializeField] private string _damageKey = "TakeDamage";
-
-        // private const string FIRE_EVENT = "fire_event";
-        // [SerializeField] private AnimationEventReceiver _animationReceiver;
-
+        
         public override void Install(IEntity entity)
         {
             //Data:

@@ -1900,6 +1900,10 @@ PrefabInstance:
       propertyPath: _initialTarget
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (9)
@@ -3503,6 +3507,10 @@ PrefabInstance:
       propertyPath: _initialTarget
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (10)
@@ -9985,6 +9993,10 @@ PrefabInstance:
       propertyPath: _initialTarget
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (7)
@@ -10058,10 +10070,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6213630575608684104, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _initialTarget
+    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
+      propertyPath: _target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (2)
@@ -10978,6 +10990,10 @@ PrefabInstance:
       propertyPath: _initialTarget
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (5)
@@ -12399,6 +12415,10 @@ PrefabInstance:
       propertyPath: _initialTarget
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (3)
@@ -17519,6 +17539,10 @@ PrefabInstance:
       propertyPath: _initialTarget
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (6)
@@ -17596,6 +17620,10 @@ PrefabInstance:
       propertyPath: _initialTarget
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (8)
@@ -17673,6 +17701,10 @@ PrefabInstance:
       propertyPath: _initialTarget
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (4)

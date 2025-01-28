@@ -9,7 +9,7 @@ namespace Game.Gameplay
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetMouseButtonDown(0))
             {
                 _character.GetFireAction().Invoke();
             }

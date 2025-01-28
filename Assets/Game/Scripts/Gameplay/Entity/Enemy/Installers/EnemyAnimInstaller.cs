@@ -1,22 +1,26 @@
 using Atomic.Entities;
-using Modules.Gameplay;
 using UnityEngine;
 
 namespace Game.Gameplay
 {
     public sealed class EnemyAnimInstaller : SceneEntityInstaller
     {
-        private const string fireEvent = "fire_event";
+        // private const string FIRE_EVENT = "fire_event";
+        // [SerializeField] private AnimationEventReceiver _animationReceiver;
 
-        [SerializeField]
-        private Animator _animator;
-
-        [SerializeField]
-        private AnimationEventReceiver _animationReceiver;
+        [SerializeField] private Animator _animator;
+        [SerializeField] private string _damageKey = "TakeDamage";
+        [SerializeField] private string _deathKey = "Death";
         
         public override void Install(IEntity entity)
         {
-            //TODO
+            //Data:
+            entity.AddAnimator(_animator);
+
+            //Behaviours:
+            entity.AddBehaviour(new TakeDamageAnimBehaviour(_damageKey));
+            entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
+
         }
     }
 }

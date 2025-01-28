@@ -10,18 +10,19 @@ namespace Game.Gameplay
             return entity.GetHealth().Value > 0;
         }
 
-        public static bool TakeDamage(this IEntity entity, in int damage)
+        public static bool TakeDamage(this IEntity target, in int damage)
         {
-            if (!entity.HasDamageableTag())
+            if (!target.HasDamageableTag())
                 return false;
      
-            var health = entity.GetHealth();
+            var health = target.GetHealth();
 
             var currentHealth = health.Value;
             if (currentHealth < 0)
                 return false;
             
             health.Value = Math.Max(0, currentHealth - damage);
+            target.GetTakeDamageEvent().Invoke(damage);
             return true;
         }
     }

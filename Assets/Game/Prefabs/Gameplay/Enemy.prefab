@@ -1655,6 +1655,7 @@ GameObject:
   - component: {fileID: 7744097162708376624}
   - component: {fileID: 8179233504444308434}
   - component: {fileID: 6234676926731276874}
+  - component: {fileID: 6462368927767535755}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -1697,11 +1698,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   installOnAwake: 1
   installInEditMode: 0
+  disposeValues: 1
   installers:
   - {fileID: 6234676926731276874}
+  - {fileID: 6462368927767535755}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
-  gizmoses: []
 --- !u!114 &7744097162708376624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1760,6 +1762,21 @@ MonoBehaviour:
   _health: 3
   _angularSpeed: 3
   _target: {fileID: 0}
+--- !u!114 &6462368927767535755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355162821186015845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf3370d1ce343859cef743b45bbb7bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 2415962780172116089}
+  _damageKey: TakeDamage
+  _deathKey: Death
 --- !u!1 &6519369982854541961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,7 +2091,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2415962780172116089}
-  _animationReceiver: {fileID: 2316574847488464730}
+  _damageKey: TakeDamage
+  _deathKey: TakeDamage
 --- !u!1 &7369059967829061964
 GameObject:
   m_ObjectHideFlags: 0

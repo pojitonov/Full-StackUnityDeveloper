@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class TakeDamageAnimBehaviour : IEntityInit, IEntityDispose
+    public class DeathAnimBehaviour : IEntityInit, IEntityDispose
     {
         private readonly int _hash;
         private Animator _animator;
-        private IReactive<DamageArgs> _damageEvent;
+        private IReactive _deathEvent;
         
-        public TakeDamageAnimBehaviour(string hash)
+        public DeathAnimBehaviour(string hash)
         {
             _hash = Animator.StringToHash(hash);
         }
@@ -18,16 +18,16 @@ namespace Game.Gameplay
         public void Init(in IEntity entity)
         {
             _animator = entity.GetAnimator();
-            _damageEvent = entity.GetTakeDamageEvent();
-            _damageEvent.Subscribe(OnDamageTaken);
+            _deathEvent = entity.GetDeathEvent();
+            _deathEvent.Subscribe(OnDeathHappen);
         }
 
         public void Dispose(in IEntity entity)
         {
-            _damageEvent.Unsubscribe(OnDamageTaken);
+            _deathEvent.Unsubscribe(OnDeathHappen);
         }
 
-        private void OnDamageTaken(DamageArgs args)
+        private void OnDeathHappen()
         {
             _animator.SetTrigger(_hash);
         }

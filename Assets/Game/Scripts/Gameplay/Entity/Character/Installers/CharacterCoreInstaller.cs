@@ -35,7 +35,7 @@ namespace Game.Gameplay
             entity.AddBehaviour<RotateTowardsBehaviour>();
             
             //Events:
-            entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());
+            entity.AddTakeDamageEvent(new BaseEvent<int>());
         }
     }
 }

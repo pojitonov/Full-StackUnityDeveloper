@@ -22,7 +22,8 @@ values:
 # Life
 - Health: IReactiveVariable<int>
 - Damage: IValue<int>
-- TakeDamageEvent: IEvent<DamageArgs>
+- TakeDamageEvent: IEvent<int>
+- DeathEvent: IEvent
 
 # Move
 - MoveSpeed: IValue<float>
