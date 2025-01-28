@@ -23,7 +23,7 @@ namespace Game.Gameplay
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
             entity.AddWeapon(_weapon);
-
+            
             //Conditions:
             entity.AddMoveCondition(new AndExpression(entity.IsAlive));
             entity.AddFireCondition(new BaseFunction<bool>(() => 
@@ -33,6 +33,9 @@ namespace Game.Gameplay
             entity.AddBehaviour<DeathBehaviour>();
             entity.AddBehaviour<MoveTowardsBehaviour>();
             entity.AddBehaviour<RotateTowardsBehaviour>();
+            
+            //Events:
+            entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());
         }
     }
 }

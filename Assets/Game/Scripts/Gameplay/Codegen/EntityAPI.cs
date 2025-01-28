@@ -21,6 +21,7 @@ namespace Game.Gameplay
 		public const int Transform = -180157682; // Transform
 		public const int Health = -915003867; // IReactiveVariable<int>
 		public const int Damage = 375673178; // IValue<int>
+		public const int TakeDamageEvent = 1486057413; // IEvent<DamageArgs>
 		public const int MoveSpeed = 526065662; // IValue<float>
 		public const int MoveCondition = 1466174948; // IExpression<bool>
 		public const int MoveDirection = -721923052; // IReactiveVariable<Vector3>
@@ -119,6 +120,24 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetDamage(this IEntity obj, IValue<int> value) => obj.SetValue(Damage, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IEvent<DamageArgs> GetTakeDamageEvent(this IEntity obj) => obj.GetValue<IEvent<DamageArgs>>(TakeDamageEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetTakeDamageEvent(this IEntity obj, out IEvent<DamageArgs> value) => obj.TryGetValue(TakeDamageEvent, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddTakeDamageEvent(this IEntity obj, IEvent<DamageArgs> value) => obj.AddValue(TakeDamageEvent, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasTakeDamageEvent(this IEntity obj) => obj.HasValue(TakeDamageEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelTakeDamageEvent(this IEntity obj) => obj.DelValue(TakeDamageEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetTakeDamageEvent(this IEntity obj, IEvent<DamageArgs> value) => obj.SetValue(TakeDamageEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IValue<float> GetMoveSpeed(this IEntity obj) => obj.GetValue<IValue<float>>(MoveSpeed);

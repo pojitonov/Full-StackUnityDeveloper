@@ -9,6 +9,7 @@ namespace Game.Gameplay
         [SerializeField] private Animator _animator;
         [SerializeField] private string _movingKey = "IsMoving";
         [SerializeField] private string _fireKey = "Attack";
+        [SerializeField] private string _damageKey = "TakeDamage";
 
         // private const string FIRE_EVENT = "fire_event";
         // [SerializeField] private AnimationEventReceiver _animationReceiver;
@@ -22,6 +23,7 @@ namespace Game.Gameplay
             //Behaviours:
             entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
             entity.AddBehaviour(new FireAnimBehaviour(_fireKey));
+            entity.AddBehaviour(new TakeDamageAnimBehaviour(_damageKey));
             
             //Actions:
             entity.AddFireAction(new CharacterFireAction(entity));
