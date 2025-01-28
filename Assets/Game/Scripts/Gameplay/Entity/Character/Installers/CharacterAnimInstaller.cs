@@ -1,3 +1,4 @@
+using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
 
@@ -6,7 +7,8 @@ namespace Game.Gameplay
     public sealed class CharacterAnimInstaller : SceneEntityInstaller
     {
         [SerializeField] private Animator _animator;
-        [SerializeField] private string _isMovingKey = "IsMoving";
+        [SerializeField] private string _movingKey = "IsMoving";
+        [SerializeField] private string _fireKey = "Attack";
 
         // private const string FIRE_EVENT = "fire_event";
         // [SerializeField] private AnimationEventReceiver _animationReceiver;
@@ -15,9 +17,11 @@ namespace Game.Gameplay
         {
             //Data:
             entity.AddAnimator(_animator);
+            entity.AddFireEvent(new BaseEvent());
             
             //Behaviours:
-            entity.AddBehaviour(new MoveAnimBehaviour(_isMovingKey));
+            entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
+            entity.AddBehaviour(new FireAnimBehaviour(_fireKey));
         }
     }
 }

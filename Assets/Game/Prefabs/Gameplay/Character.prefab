@@ -1465,12 +1465,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   installOnAwake: 1
   installInEditMode: 0
+  disposeValues: 1
   installers:
   - {fileID: 5824717732116105798}
   - {fileID: 3722878417210388274}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
-  gizmoses: []
 --- !u!114 &4557921822575317893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1528,7 +1528,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 676053041413999030}
-  _isMovingKey: IsMoving
+  _movingKey: IsMoving
+  _fireKey: Attack
 --- !u!1 &3818262767236408140
 GameObject:
   m_ObjectHideFlags: 0

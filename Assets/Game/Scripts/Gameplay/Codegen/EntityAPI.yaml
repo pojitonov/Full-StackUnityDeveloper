@@ -35,6 +35,9 @@ values:
 # Combat
 - Target: IReactiveVariable<IEntity>
 - Weapon: IWeaponEntity
+- FireEvent: IEvent
+- FireAction: IAction
+- FireCondition: IFunction<bool>
 
 # Physics
 - Collision: CollisionEventReceiver

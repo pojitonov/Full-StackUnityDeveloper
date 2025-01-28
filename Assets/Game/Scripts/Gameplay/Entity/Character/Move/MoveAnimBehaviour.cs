@@ -6,13 +6,13 @@ namespace Game.Gameplay
 {
     public class MoveAnimBehaviour: IEntityInit, IEntityDispose
     {
-        private readonly int _isMovingHash;
+        private readonly int _hash;
         private Animator _animator;
         private IReactiveValue<Vector3> _moveDirection;
         
-        public MoveAnimBehaviour(string isMovingHash)
+        public MoveAnimBehaviour(string hash)
         {
-            _isMovingHash = Animator.StringToHash(isMovingHash);
+            _hash = Animator.StringToHash(hash);
         }
         
         public void Init(in IEntity entity)
@@ -29,7 +29,7 @@ namespace Game.Gameplay
 
         private void OnMoveDirectionChanged(Vector3 direction)
         {
-            _animator.SetBool(_isMovingHash, direction != Vector3.zero);
+            _animator.SetBool(_hash, direction != Vector3.zero);
         }
     }
 }

@@ -27,6 +27,9 @@ namespace Game.Gameplay
 		public const int AngularSpeed = -1089183267; // IValue<float>
 		public const int Target = 1103309514; // IReactiveVariable<IEntity>
 		public const int Weapon = 1855955664; // IWeaponEntity
+		public const int FireEvent = -1683597082; // IEvent
+		public const int FireAction = 1186461126; // IAction
+		public const int FireCondition = -280402907; // IFunction<bool>
 		public const int Collision = -650338019; // CollisionEventReceiver
 		public const int Animator = -1714818978; // Animator
 
@@ -224,6 +227,60 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetWeapon(this IEntity obj, IWeaponEntity value) => obj.SetValue(Weapon, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IEvent GetFireEvent(this IEntity obj) => obj.GetValue<IEvent>(FireEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetFireEvent(this IEntity obj, out IEvent value) => obj.TryGetValue(FireEvent, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddFireEvent(this IEntity obj, IEvent value) => obj.AddValue(FireEvent, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasFireEvent(this IEntity obj) => obj.HasValue(FireEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelFireEvent(this IEntity obj) => obj.DelValue(FireEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetFireEvent(this IEntity obj, IEvent value) => obj.SetValue(FireEvent, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IAction GetFireAction(this IEntity obj) => obj.GetValue<IAction>(FireAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetFireAction(this IEntity obj, out IAction value) => obj.TryGetValue(FireAction, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddFireAction(this IEntity obj, IAction value) => obj.AddValue(FireAction, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasFireAction(this IEntity obj) => obj.HasValue(FireAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelFireAction(this IEntity obj) => obj.DelValue(FireAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetFireAction(this IEntity obj, IAction value) => obj.SetValue(FireAction, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IFunction<bool> GetFireCondition(this IEntity obj) => obj.GetValue<IFunction<bool>>(FireCondition);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetFireCondition(this IEntity obj, out IFunction<bool> value) => obj.TryGetValue(FireCondition, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddFireCondition(this IEntity obj, IFunction<bool> value) => obj.AddValue(FireCondition, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasFireCondition(this IEntity obj) => obj.HasValue(FireCondition);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelFireCondition(this IEntity obj) => obj.DelValue(FireCondition);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetFireCondition(this IEntity obj, IFunction<bool> value) => obj.SetValue(FireCondition, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static CollisionEventReceiver GetCollision(this IEntity obj) => obj.GetValue<CollisionEventReceiver>(Collision);

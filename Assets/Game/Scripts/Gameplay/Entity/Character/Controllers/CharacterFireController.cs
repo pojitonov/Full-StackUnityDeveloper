@@ -11,7 +11,7 @@ namespace Game.Gameplay
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                _character.GetWeapon().FireBullet();
+                _character.GetFireAction().Invoke();
             }
         }
     }

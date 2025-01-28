@@ -26,18 +26,15 @@ namespace Game.Gameplay
 
             //Conditions:
             entity.AddMoveCondition(new AndExpression(entity.IsAlive));
-            
+            entity.AddFireCondition(new BaseFunction<bool>(entity.IsAlive));
+
             //Behaviours:
             entity.AddBehaviour<DeathBehaviour>();
             entity.AddBehaviour<MoveTowardsBehaviour>();
             entity.AddBehaviour<RotateTowardsBehaviour>();
-            
+
             //Actions:
-            // entity.AddMoveAction(new BaseAction<Vector3, float>((direction, deltaTime) =>
-            // {
-            //     entity.MoveTowards(direction, deltaTime);
-            //     entity.RotateTowards(direction, deltaTime);
-            // }));
+            entity.AddFireAction(new FireAction(entity));
         }
     }
 }
