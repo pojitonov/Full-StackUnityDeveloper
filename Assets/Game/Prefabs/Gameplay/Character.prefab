@@ -2864,14 +2864,18 @@ PrefabInstance:
     - target: {fileID: 6554975421730638434, guid: 8c9bfd0f9949b4ed0b1b7e6c4a039d83, type: 3}
       propertyPath: installers.Array.data[1]
       value: 
-      objectReference: {fileID: 8699549891831768965}
+      objectReference: {fileID: 454512115772462266}
+    - target: {fileID: 6554975421730638434, guid: 8c9bfd0f9949b4ed0b1b7e6c4a039d83, type: 3}
+      propertyPath: installers.Array.data[2]
+      value: 
+      objectReference: {fileID: 454512115772462266}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2555051196878869353, guid: 8c9bfd0f9949b4ed0b1b7e6c4a039d83, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8699549891831768965}
+      addedObject: {fileID: 454512115772462266}
   m_SourcePrefab: {fileID: 100100000, guid: 8c9bfd0f9949b4ed0b1b7e6c4a039d83, type: 3}
 --- !u!198 &542312931861483368 stripped
 ParticleSystem:
@@ -2905,7 +2909,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2555051196878869353, guid: 8c9bfd0f9949b4ed0b1b7e6c4a039d83, type: 3}
   m_PrefabInstance: {fileID: 4738243663061736236}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8699549891831768965
+--- !u!114 &454512115772462266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2919,6 +2923,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fireParticle: {fileID: 542312931861483368}
   _firePoint: {fileID: 7272988223813815378}
+  _audioSource: {fileID: 7196453617052720464}
+--- !u!82 &7196453617052720464 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2458806991490565756, guid: 8c9bfd0f9949b4ed0b1b7e6c4a039d83, type: 3}
+  m_PrefabInstance: {fileID: 4738243663061736236}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7272988223813815378 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2679439196154746750, guid: 8c9bfd0f9949b4ed0b1b7e6c4a039d83, type: 3}
