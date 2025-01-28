@@ -22,6 +22,9 @@ namespace Game.Gameplay
             //Behaviours:
             entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
             entity.AddBehaviour(new FireAnimBehaviour(_fireKey));
+            
+            //Actions:
+            entity.AddFireAction(new CharacterFireAction(entity));
         }
     }
 }

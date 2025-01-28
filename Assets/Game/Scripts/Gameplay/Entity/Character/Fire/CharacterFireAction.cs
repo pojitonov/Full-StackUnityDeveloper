@@ -3,11 +3,11 @@ using Atomic.Entities;
 
 namespace Game.Gameplay
 {
-    public class FireAction : IAction
+    public class CharacterFireAction : IAction
     {
-        private IEntity _entity;
+        private readonly IEntity _entity;
 
-        public FireAction(IEntity entity)
+        public CharacterFireAction(IEntity entity)
         {
             _entity = entity;
         }
@@ -16,7 +16,7 @@ namespace Game.Gameplay
         {
             if (_entity.GetFireCondition().Invoke())
             {
-                _entity.GetWeapon().FireBullet();
+                _entity.GetWeapon().GetFireAction().Invoke();
                 _entity.GetFireEvent().Invoke();
             }
         }

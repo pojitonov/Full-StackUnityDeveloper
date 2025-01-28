@@ -1,3 +1,4 @@
+using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
 
@@ -13,6 +14,13 @@ namespace Game.Gameplay
             //Data:
             entity.AddBulletPrefab(_bulletPrefab);
             entity.AddFirePoint(_firePoint);
+            entity.AddFireEvent(new BaseEvent());
+            
+            //Conditions:
+            entity.AddFireCondition(new Const<bool>(true));
+            
+            //Actions:
+            entity.AddFireAction(new PistolFireAction(entity));
         }
     }
 }
