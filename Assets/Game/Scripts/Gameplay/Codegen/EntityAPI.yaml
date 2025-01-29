@@ -24,12 +24,13 @@ values:
 - Damage: IValue<int>
 - TakeDamageEvent: IEvent<int>
 - DeathEvent: IEvent
+- Lifetime: Cooldown
+- DestroyAction: IAction
 
 # Move
 - MoveSpeed: IValue<float>
 - MoveCondition: IExpression<bool>
 - MoveDirection: IReactiveVariable<Vector3>
-#- MoveAction: IAction<Vector3, float> # direction, deltaTime
 
 # Rotation
 - AngularSpeed: IValue<float>

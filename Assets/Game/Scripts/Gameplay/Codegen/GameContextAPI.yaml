@@ -1,0 +1,15 @@
+header: ContextAPI
+contextType: IGameContext
+aggressiveInlining: true
+
+namespace: Game.Gameplay
+className: GameContextAPI
+directory: Assets/Game/Scripts/Gameplay/Codegen
+ 
+imports:
+- UnityEngine
+- Atomic.Contexts
+- Atomic.Entities
+
+values:
+- BulletPool: IEntityPool

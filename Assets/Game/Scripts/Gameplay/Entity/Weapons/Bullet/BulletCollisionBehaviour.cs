@@ -7,14 +7,14 @@ namespace Game.Gameplay
 {
     public class BulletCollisionBehaviour : IEntityInit, IEntityDispose
     {
-        private GameObject _gameObject;
         private CollisionEventReceiver _trigger;
+        private IAction _destroyAction;
         private IValue<int> _damage;
         
         public void Init(in IEntity entity)
         {
-            _gameObject = entity.GetGameObject();
             _trigger = entity.GetCollision();
+            _destroyAction = entity.GetDestroyAction();
             _damage = entity.GetDamage();
             
             _trigger.OnEntered += OnCollisionEntered;
@@ -29,7 +29,7 @@ namespace Game.Gameplay
         {
             if (other.TryGetEntity(out IEntity target) && target.TakeDamage(_damage.Value))
             {
-                GameObject.Destroy(_gameObject);
+                _destroyAction.Invoke();
             }
         }
     }

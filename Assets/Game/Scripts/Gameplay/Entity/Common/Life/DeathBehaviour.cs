@@ -4,6 +4,8 @@ using Cysharp.Threading.Tasks;
 
 namespace Game.Gameplay
 {
+    // TODO: Удаления поведений не должно быть.Если здоровье меньше нуля, нужно заблокировать управление зомби и вызвать триггер на смерть
+    
     public class DeathBehaviour : IEntityInit, IEntityDispose
     {
         private IReactiveValue<int> _health;

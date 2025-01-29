@@ -163,11 +163,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   installOnAwake: 1
   installInEditMode: 0
+  disposeValues: 1
   installers:
   - {fileID: -5904136953363652877}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
-  gizmoses: []
 --- !u!114 &7163841976804205022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _damage: 1
+  _lifetime: 3
   _collision: {fileID: -8305679562611865605}
 --- !u!114 &-8305679562611865605
 MonoBehaviour:

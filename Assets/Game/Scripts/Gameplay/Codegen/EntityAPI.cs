@@ -23,6 +23,8 @@ namespace Game.Gameplay
 		public const int Damage = 375673178; // IValue<int>
 		public const int TakeDamageEvent = 1486057413; // IEvent<int>
 		public const int DeathEvent = -1096613677; // IEvent
+		public const int Lifetime = -997109026; // Cooldown
+		public const int DestroyAction = 85938956; // IAction
 		public const int MoveSpeed = 526065662; // IValue<float>
 		public const int MoveCondition = 1466174948; // IExpression<bool>
 		public const int MoveDirection = -721923052; // IReactiveVariable<Vector3>
@@ -157,6 +159,42 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetDeathEvent(this IEntity obj, IEvent value) => obj.SetValue(DeathEvent, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Cooldown GetLifetime(this IEntity obj) => obj.GetValue<Cooldown>(Lifetime);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetLifetime(this IEntity obj, out Cooldown value) => obj.TryGetValue(Lifetime, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddLifetime(this IEntity obj, Cooldown value) => obj.AddValue(Lifetime, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasLifetime(this IEntity obj) => obj.HasValue(Lifetime);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelLifetime(this IEntity obj) => obj.DelValue(Lifetime);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetLifetime(this IEntity obj, Cooldown value) => obj.SetValue(Lifetime, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IAction GetDestroyAction(this IEntity obj) => obj.GetValue<IAction>(DestroyAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetDestroyAction(this IEntity obj, out IAction value) => obj.TryGetValue(DestroyAction, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddDestroyAction(this IEntity obj, IAction value) => obj.AddValue(DestroyAction, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasDestroyAction(this IEntity obj) => obj.HasValue(DestroyAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelDestroyAction(this IEntity obj) => obj.DelValue(DestroyAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetDestroyAction(this IEntity obj, IAction value) => obj.SetValue(DestroyAction, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IValue<float> GetMoveSpeed(this IEntity obj) => obj.GetValue<IValue<float>>(MoveSpeed);

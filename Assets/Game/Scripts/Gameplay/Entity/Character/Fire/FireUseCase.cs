@@ -5,11 +5,12 @@ namespace Game.Gameplay
 {
     public static class FireUseCase
     {
-        public static IEntity FireBullet(this IWeaponEntity entity)
+        public static IEntity FireBullet(this IWeaponEntity entity, in IGameContext context)
         {
-            SceneEntity bulletPrefab = entity.GetBulletPrefab();
-            Transform firePoint = entity.GetFirePoint();
-            return SceneEntity.Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            var firePoint = entity.GetFirePoint();
+            var firePointPosition = firePoint.position;
+            var firePointRotation = firePoint.rotation;
+            return SpawnBulletUseCase.SpawnBullet(context, firePointPosition, firePointRotation);
         }
     }
 }
