@@ -1,6 +1,5 @@
 using Atomic.Elements;
 using Atomic.Entities;
-using Cysharp.Threading.Tasks;
 
 namespace Game.Gameplay
 {

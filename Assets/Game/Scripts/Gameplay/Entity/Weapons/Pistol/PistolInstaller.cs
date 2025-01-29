@@ -8,9 +8,14 @@ namespace Game.Gameplay
     {
         [SerializeField] private SceneEntity _bulletPrefab;
         [SerializeField] private Transform _firePoint;
-
+        
+        private GameContext _context;
+        
         protected override void Install(IWeaponEntity entity)
         {
+            //Context:
+            _context = GameContext.Instance;
+            
             //Data:
             entity.AddBulletPrefab(_bulletPrefab);
             entity.AddFirePoint(_firePoint);
@@ -20,7 +25,7 @@ namespace Game.Gameplay
             entity.AddFireCondition(new Const<bool>(true));
             
             //Actions:
-            entity.AddFireAction(new PistolFireAction(entity));
+            entity.AddFireAction(new PistolFireAction(entity, _context));
         }
     }
 }

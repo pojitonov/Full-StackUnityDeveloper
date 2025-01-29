@@ -17,7 +17,7 @@ namespace Game.Gameplay
             return bullet;
         }
 
-        public static void UnspawnBullet(in IGameContext context, in IEntity bullet)
+        public static void UnspawnBullet(in IEntity bullet, in IGameContext context)
         {
             context.GetBulletPool().Return(bullet);
         }
