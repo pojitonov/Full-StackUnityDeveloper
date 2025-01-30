@@ -17,7 +17,7 @@ namespace Game.Gameplay
 
 		///Values
 		public const int BulletPool = 1915726678; // IEntityPool
-		public const int Target = 1103309514; // IReactiveVariable<IEntity>
+		public const int Character = 294335127; // IEntity
 
 
 		///Value Extensions
@@ -41,21 +41,21 @@ namespace Game.Gameplay
 		public static void SetBulletPool(this IGameContext obj, IEntityPool value) => obj.SetValue(BulletPool, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IReactiveVariable<IEntity> GetTarget(this IGameContext obj) => obj.GetValue<IReactiveVariable<IEntity>>(Target);
+		public static IEntity GetCharacter(this IGameContext obj) => obj.GetValue<IEntity>(Character);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetTarget(this IGameContext obj, out IReactiveVariable<IEntity> value) => obj.TryGetValue(Target, out value);
+		public static bool TryGetCharacter(this IGameContext obj, out IEntity value) => obj.TryGetValue(Character, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddTarget(this IGameContext obj, IReactiveVariable<IEntity> value) => obj.AddValue(Target, value);
+		public static bool AddCharacter(this IGameContext obj, IEntity value) => obj.AddValue(Character, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasTarget(this IGameContext obj) => obj.HasValue(Target);
+		public static bool HasCharacter(this IGameContext obj) => obj.HasValue(Character);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelTarget(this IGameContext obj) => obj.DelValue(Target);
+		public static bool DelCharacter(this IGameContext obj) => obj.DelValue(Character);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetTarget(this IGameContext obj, IReactiveVariable<IEntity> value) => obj.SetValue(Target, value);
+		public static void SetCharacter(this IGameContext obj, IEntity value) => obj.SetValue(Character, value);
     }
 }

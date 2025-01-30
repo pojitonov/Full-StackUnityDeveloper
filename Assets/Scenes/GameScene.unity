@@ -26804,6 +26804,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 1662961120376883895, guid: ec84880a8eeb045f781ce1bd97daf080, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3008561469758032239, guid: ec84880a8eeb045f781ce1bd97daf080, type: 3}
       propertyPath: healthDisplay
       value: 
@@ -27182,6 +27186,10 @@ PrefabInstance:
     - target: {fileID: 230523248208669166, guid: 69a29ff4468e6456e888262b30735f8c, type: 3}
       propertyPath: m_Name
       value: KillsView
+      objectReference: {fileID: 0}
+    - target: {fileID: 230523248208669166, guid: 69a29ff4468e6456e888262b30735f8c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5426925789724831932, guid: 69a29ff4468e6456e888262b30735f8c, type: 3}
       propertyPath: m_Pivot.x
@@ -27849,6 +27857,10 @@ PrefabInstance:
     - target: {fileID: 4210764043333932842, guid: 3033dfc21bce6403880dbcdf0be2ca32, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210764043333932843, guid: 3033dfc21bce6403880dbcdf0be2ca32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7768933299492304279, guid: 3033dfc21bce6403880dbcdf0be2ca32, type: 3}
       propertyPath: defaultIcon

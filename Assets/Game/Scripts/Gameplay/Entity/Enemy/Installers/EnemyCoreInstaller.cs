@@ -10,7 +10,6 @@ namespace Game.Gameplay
         [SerializeField] private Transform _transform;
         [SerializeField] private int _health = 5;
         [SerializeField] private float _angularSpeed = 3;
-        // [SerializeField] private SceneEntity _target;
         
         private GameContext _gameContext;
         
@@ -25,7 +24,7 @@ namespace Game.Gameplay
             entity.AddHealth(new ReactiveVariable<int>(_health));
             entity.AddDamageableTag();
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
-            entity.AddTarget(_gameContext.GetTarget());
+            entity.AddTarget(new ReactiveVariable<IEntity>(_gameContext.GetCharacter()));
 
             //Behaviours:
             entity.AddBehaviour<DeathBehaviour>();

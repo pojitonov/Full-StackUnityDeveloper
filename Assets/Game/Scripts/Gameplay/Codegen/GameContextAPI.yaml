@@ -14,4 +14,4 @@ imports:
 
 values:
 - BulletPool: IEntityPool
-- Target: IReactiveVariable<IEntity>
+- Character: IEntity

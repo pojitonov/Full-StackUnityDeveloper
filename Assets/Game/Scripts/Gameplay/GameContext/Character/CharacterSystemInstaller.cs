@@ -13,7 +13,7 @@ namespace Game.Gameplay
         
         public void Install(IGameContext context)
         {
-            context.AddTarget(new ReactiveVariable<IEntity>(_character));
+            context.AddCharacter(_character);
         }
     }
 }
