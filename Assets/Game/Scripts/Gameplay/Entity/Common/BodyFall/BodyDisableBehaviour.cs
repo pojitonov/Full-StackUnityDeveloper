@@ -23,7 +23,9 @@ namespace Game.Gameplay
         private void OnDeathHappens()
         {
             _entity.DelBehaviour<TakeDamageAnimBehaviour>();
-            _entity.DelBehaviour<EnemyLookAtBehaviour>();
+            
+            if (_entity.HasTag("Enemy"))
+                _entity.DelBehaviour<EnemyLookAtBehaviour>();
         }
     }
 }

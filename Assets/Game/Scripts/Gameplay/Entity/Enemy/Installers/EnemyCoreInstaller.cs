@@ -23,6 +23,7 @@ namespace Game.Gameplay
             entity.AddTransform(_transform);
             entity.AddHealth(new ReactiveVariable<int>(_health));
             entity.AddDamageableTag();
+            entity.AddEnemyTag();
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
             entity.AddTarget(new ReactiveVariable<IEntity>(_gameContext.GetCharacter()));
 

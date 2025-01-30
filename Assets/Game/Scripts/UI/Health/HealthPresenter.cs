@@ -30,7 +30,7 @@ namespace Game.UI
 
         protected override void OnHide()
         {
-            _character.GetHealth().Observe(OnValueChanged);
+            _character.GetHealth().Unsubscribe(OnValueChanged);
         }
 
         private void OnValueChanged(int value)

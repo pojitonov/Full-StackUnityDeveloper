@@ -13,27 +13,25 @@ namespace Game.UI
         [SerializeField] private TextMeshProUGUI _text;
 
         private IGameContext _gameContext;
-        private IEntity _character;
 
         protected override void OnInit()
         {
             _gameContext = GameContext.Instance;
-            _character = _gameContext.GetCharacter();
         }
 
         protected override void OnShow()
         {
-            _character.GetHealth().Observe(OnValueChanged);
+            _gameContext.GetKills().Observe(OnValueChanged);
         }
 
         protected override void OnHide()
         {
-            _character.GetHealth().Observe(OnValueChanged);
+            _gameContext.GetKills().Unsubscribe(OnValueChanged);
         }
 
         private void OnValueChanged(int value)
         {
-            _text.SetText(value.ToString());
+            _text.text = value.ToString();
         }
     }
 }

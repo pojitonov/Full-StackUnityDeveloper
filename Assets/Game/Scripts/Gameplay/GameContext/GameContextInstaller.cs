@@ -1,4 +1,5 @@
 using Atomic.Contexts;
+using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace Game.Gameplay
 
         protected override void Install(IGameContext context)
         {
+            context.SetKills(new ReactiveInt());
+            
             _bulletSystemInstaller.Install(context);
             _characterSystemInstaller.Install(context);
         }

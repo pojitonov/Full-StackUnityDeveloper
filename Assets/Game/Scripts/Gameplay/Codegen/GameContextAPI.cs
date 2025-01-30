@@ -18,6 +18,7 @@ namespace Game.Gameplay
 		///Values
 		public const int BulletPool = 1915726678; // IEntityPool
 		public const int Character = 294335127; // IEntity
+		public const int Kills = -291106651; // IReactiveVariable<int>
 
 
 		///Value Extensions
@@ -57,5 +58,23 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetCharacter(this IGameContext obj, IEntity value) => obj.SetValue(Character, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IReactiveVariable<int> GetKills(this IGameContext obj) => obj.GetValue<IReactiveVariable<int>>(Kills);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetKills(this IGameContext obj, out IReactiveVariable<int> value) => obj.TryGetValue(Kills, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddKills(this IGameContext obj, IReactiveVariable<int> value) => obj.AddValue(Kills, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasKills(this IGameContext obj) => obj.HasValue(Kills);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelKills(this IGameContext obj) => obj.DelValue(Kills);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetKills(this IGameContext obj, IReactiveVariable<int> value) => obj.SetValue(Kills, value);
     }
 }
