@@ -34,6 +34,7 @@ namespace Game.Gameplay
 		public const int FireEvent = -1683597082; // IEvent
 		public const int FireAction = 1186461126; // IAction
 		public const int FireCondition = -280402907; // IFunction<bool>
+		public const int Kills = -291106651; // IReactiveVariable<int>
 		public const int Collision = -650338019; // CollisionEventReceiver
 		public const int Animator = -1714818978; // Animator
 
@@ -357,6 +358,24 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetFireCondition(this IEntity obj, IFunction<bool> value) => obj.SetValue(FireCondition, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IReactiveVariable<int> GetKills(this IEntity obj) => obj.GetValue<IReactiveVariable<int>>(Kills);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetKills(this IEntity obj, out IReactiveVariable<int> value) => obj.TryGetValue(Kills, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddKills(this IEntity obj, IReactiveVariable<int> value) => obj.AddValue(Kills, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasKills(this IEntity obj) => obj.HasValue(Kills);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelKills(this IEntity obj) => obj.DelValue(Kills);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetKills(this IEntity obj, IReactiveVariable<int> value) => obj.SetValue(Kills, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static CollisionEventReceiver GetCollision(this IEntity obj) => obj.GetValue<CollisionEventReceiver>(Collision);

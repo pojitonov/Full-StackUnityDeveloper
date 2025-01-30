@@ -19,15 +19,15 @@ namespace Game.Gameplay
         {
             _animator = entity.GetAnimator();
             _deathEvent = entity.GetDeathEvent();
-            _deathEvent.Subscribe(OnDeathHappen);
+            _deathEvent.Subscribe(OnDeathHappens);
         }
 
         public void Dispose(in IEntity entity)
         {
-            _deathEvent.Unsubscribe(OnDeathHappen);
+            _deathEvent.Unsubscribe(OnDeathHappens);
         }
 
-        private void OnDeathHappen()
+        private void OnDeathHappens()
         {
             _animator.SetTrigger(_hash);
         }

@@ -3,8 +3,6 @@ using Atomic.Entities;
 
 namespace Game.Gameplay
 {
-    // TODO: Удаления поведений не должно быть.Если здоровье меньше нуля, нужно заблокировать управление зомби и вызвать триггер на смерть
-    
     public class DeathBehaviour : IEntityInit, IEntityDispose
     {
         private IReactiveValue<int> _health;
@@ -25,8 +23,6 @@ namespace Game.Gameplay
         private void OnHealthChanged(int health)
         {
             if (health > 0) return;
-            _entity.DelBehaviour<TakeDamageAnimBehaviour>();
-            _entity.DelBehaviour<EnemyLookAtBehaviour>();
             _entity.GetDeathEvent().Invoke();
         }
     }

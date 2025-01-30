@@ -29,6 +29,7 @@ namespace Game.Gameplay
             //Behaviours:
             entity.AddBehaviour<DeathBehaviour>();
             entity.AddBehaviour<EnemyLookAtBehaviour>();
+            entity.AddBehaviour<BodyDisableBehaviour>();
             
             //Events:
             entity.AddTakeDamageEvent(new BaseEvent<int>());

@@ -41,6 +41,7 @@ values:
 - FireEvent: IEvent
 - FireAction: IAction
 - FireCondition: IFunction<bool>
+- Kills: IReactiveVariable<int>
 
 # Physics
 - Collision: CollisionEventReceiver
