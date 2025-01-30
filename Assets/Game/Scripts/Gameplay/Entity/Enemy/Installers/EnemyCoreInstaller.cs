@@ -1,5 +1,6 @@
 using Atomic.Elements;
 using Atomic.Entities;
+using Game.Scripts.Gameplay.Entity.Enemy;
 using UnityEngine;
 
 namespace Game.Gameplay
@@ -29,6 +30,7 @@ namespace Game.Gameplay
 
             //Behaviours:
             entity.AddBehaviour<DeathBehaviour>();
+            entity.AddBehaviour<KillsCountBehaviour>();
             entity.AddBehaviour<EnemyLookAtBehaviour>();
             entity.AddBehaviour<BodyDisableBehaviour>();
             
