@@ -10,6 +10,8 @@ imports:
 - UnityEngine
 - Atomic.Contexts
 - Atomic.Entities
+- Atomic.Elements
 
 values:
 - BulletPool: IEntityPool
+- Target: IReactiveVariable<IEntity>

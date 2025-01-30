@@ -3,11 +3,19 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class EnemyLookAtBehaviour : IEntityFixedUpdate
+    public class EnemyLookAtBehaviour : IEntityFixedUpdate, IEntityInit
     {
+        private IGameContext _gameContext;
+        
+        public void Init(in IEntity entity)
+        {
+            _gameContext = GameContext.Instance;
+        }
+
         public void OnFixedUpdate(in IEntity entity, in float deltaTime)
         {
-            IEntity target = entity.GetTarget().Value;
+            IEntity target = _gameContext.GetTarget().Value;
+            
             if (target == null)
                 return;
             

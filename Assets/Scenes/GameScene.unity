@@ -1927,14 +1927,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6213630575608684104, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _initialTarget
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (9)
@@ -3534,14 +3526,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6213630575608684104, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _initialTarget
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (10)
@@ -4278,6 +4262,8 @@ MonoBehaviour:
   _bulletSystemInstaller:
     _bulletPrefab: {fileID: -7389732882356062355, guid: fc383e20fc5b342059ed5ab71e30da44, type: 3}
     _container: {fileID: 16435744}
+  _characterSystemInstaller:
+    _character: {fileID: 9048405937420967253}
 --- !u!1001 &310103933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10105,14 +10091,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6213630575608684104, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _initialTarget
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (7)
@@ -10186,10 +10164,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (2)
@@ -11102,14 +11076,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6213630575608684104, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _initialTarget
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (5)
@@ -12527,14 +12493,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6213630575608684104, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _initialTarget
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (3)
@@ -17651,14 +17609,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6213630575608684104, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _initialTarget
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (6)
@@ -17732,14 +17682,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6213630575608684104, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _initialTarget
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (8)
@@ -17813,14 +17755,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6213630575608684104, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _initialTarget
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (4)
@@ -25587,10 +25521,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6234676926731276874, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 9048405937420967253}
     - target: {fileID: 6355162821186015845, guid: 851e3fe164bba47c9ac1c74a9fc885ff, type: 3}
       propertyPath: m_Name
       value: Zombie (1)

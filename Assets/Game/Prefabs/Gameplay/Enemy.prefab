@@ -1761,7 +1761,6 @@ MonoBehaviour:
   _transform: {fileID: 4361596233082998913}
   _health: 3
   _angularSpeed: 3
-  _target: {fileID: 0}
 --- !u!114 &6462368927767535755
 MonoBehaviour:
   m_ObjectHideFlags: 0
