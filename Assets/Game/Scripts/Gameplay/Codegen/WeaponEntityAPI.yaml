@@ -8,7 +8,9 @@ directory: Assets/Game/Scripts/Gameplay/Codegen
  
 imports:
 - UnityEngine
+- Modules.Gameplay
 
 values:
 - BulletPrefab: SceneEntity
 - FirePoint: Transform
+- Ammo: Ammo

@@ -13,14 +13,11 @@ namespace Game.UI
 
         private IGameContext _gameContext;
         private IEntity _character;
-        private int _healthMax;
-        private int _healthMin;
 
         protected override void OnInit()
         {
             _gameContext = GameContext.Instance;
             _character = _gameContext.GetCharacter();
-            _healthMax = _character.GetHealth().Value;
         }
 
         protected override void OnShow()
@@ -35,8 +32,10 @@ namespace Game.UI
 
         private void OnValueChanged(int value)
         {
-            _view.SetText(value.ToString());
-            float normalizedValue = (float)(value - _healthMin) / (_healthMax - _healthMin);
+            var healthMax = _character.GetHealth().Value;
+            float normalizedValue = (float)(value - 0) / (healthMax - 0);
+
+            _view.SetText(value.ToString("D2"));
             _view.SetProgress(normalizedValue);
         }
     }

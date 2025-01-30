@@ -18,6 +18,7 @@ namespace Game.Gameplay
             if (_entity.GetFireCondition().Invoke())
             {
                 _entity.FireBullet(_context);
+                _entity.GetAmmo().SpendOne();
                 _entity.GetFireEvent().Invoke();
             }
         }

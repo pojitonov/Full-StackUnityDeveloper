@@ -11,13 +11,11 @@ namespace Game.Gameplay
         [SerializeField] private int _damage = 1;
         [SerializeField] private float _lifetime;
         [SerializeField] private CollisionEventReceiver _collision;
-
-        private GameContext _gameContext;
         
         public override void Install(IEntity entity)
         {
-            //Context:
-            _gameContext = GameContext.Instance;
+            //Contexts:
+            GameContext gameContext = GameContext.Instance;
             
             //Data:
             entity.AddTransform(transform);
@@ -36,7 +34,7 @@ namespace Game.Gameplay
             entity.AddBehaviour<BulletLifetimeBehaviour>();
             
             //Actions:
-            entity.AddDestroyAction(new BulletSpawnAction(entity, _gameContext));
+            entity.AddDestroyAction(new BulletSpawnAction(entity, gameContext));
         }
     }
 }

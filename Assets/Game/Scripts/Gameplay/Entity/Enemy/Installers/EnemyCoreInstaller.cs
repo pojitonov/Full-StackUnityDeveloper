@@ -12,12 +12,10 @@ namespace Game.Gameplay
         [SerializeField] private int _health = 5;
         [SerializeField] private float _angularSpeed = 3;
         
-        private GameContext _gameContext;
-        
         public override void Install(IEntity entity)
         {
-            //Context:
-            _gameContext = GameContext.Instance;
+            //Contexts:
+            GameContext gameContext = GameContext.Instance;
             
             //Data:
             entity.AddGameObject(_gameObject);
@@ -26,7 +24,7 @@ namespace Game.Gameplay
             entity.AddDamageableTag();
             entity.AddEnemyTag();
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
-            entity.AddTarget(new ReactiveVariable<IEntity>(_gameContext.GetCharacter()));
+            entity.AddTarget(new ReactiveVariable<IEntity>(gameContext.GetCharacter()));
 
             //Behaviours:
             entity.AddBehaviour<DeathBehaviour>();

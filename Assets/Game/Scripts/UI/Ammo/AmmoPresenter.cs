@@ -2,6 +2,7 @@ using Atomic.Elements;
 using Atomic.Entities;
 using Atomic.Presenters;
 using Game.Gameplay;
+using Modules.Gameplay;
 using UnityEngine;
 
 namespace Game.UI
@@ -12,30 +13,37 @@ namespace Game.UI
 
         private IGameContext _gameContext;
         private IEntity _character;
-        private int _ammoMax;
-        private int _ammoMin;
+        private Ammo _ammo;
+        private int _ammoCount;
 
         protected override void OnInit()
         {
             _gameContext = GameContext.Instance;
             _character = _gameContext.GetCharacter();
-            _ammoMax = _character.GetHealth().Value;
+            _ammo = _character.GetWeapon().GetAmmo();
+            _ammoCount = _ammo.Count;
+            SetValue(_ammoCount);
         }
 
         protected override void OnShow()
         {
-            _character.GetHealth().Observe(OnValueChanged);
-            
+            _ammo.OnCountChanged += OnValueChanged;
         }
+
         protected override void OnHide()
         {
-            _character.GetHealth().Unsubscribe(OnValueChanged);
+            _ammo.OnCountChanged -= OnValueChanged;
         }
 
         private void OnValueChanged(int value)
         {
-            _view.SetText(value.ToString());
-            float normalizedValue = (float)(value - _ammoMin) / (_ammoMax - _ammoMin);
+            SetValue(value);
+        }
+
+        private void SetValue(int value)
+        {
+            float normalizedValue = (float)(value - 0) / (_ammoCount - 0);
+            _view.SetText(value.ToString("D2"));
             _view.SetProgress(normalizedValue);
         }
     }
