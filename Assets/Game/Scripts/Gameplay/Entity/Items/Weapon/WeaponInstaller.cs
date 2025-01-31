@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public sealed class PistolInstaller : SceneEntityInstaller<IWeaponEntity>
+    public sealed class WeaponInstaller : SceneEntityInstaller<IWeaponEntity>
     {
         [SerializeField] private SceneEntity _bulletPrefab;
         [SerializeField] private Transform _firePoint;
@@ -26,7 +26,7 @@ namespace Game.Gameplay
             entity.AddFireCondition(new BaseFunction<bool>(() => _ammo.Exists()));
             
             //Actions:
-            entity.AddFireAction(new PistolFireAction(entity, gameContext));
+            entity.AddFireAction(new WeaponFireAction(entity, gameContext));
         }
     }
 }

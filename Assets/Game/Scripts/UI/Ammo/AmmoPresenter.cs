@@ -1,4 +1,3 @@
-using Atomic.Elements;
 using Atomic.Entities;
 using Atomic.Presenters;
 using Game.Gameplay;
@@ -14,15 +13,16 @@ namespace Game.UI
         private IGameContext _gameContext;
         private IEntity _character;
         private Ammo _ammo;
-        private int _ammoCount;
-
+        
+        private float NormalizedValue => (float)(_ammo.Count - 0) / (_ammo.Capacity - 0);
+        
         protected override void OnInit()
         {
             _gameContext = GameContext.Instance;
             _character = _gameContext.GetCharacter();
             _ammo = _character.GetWeapon().GetAmmo();
-            _ammoCount = _ammo.Count;
-            SetValue(_ammoCount);
+            
+            UpdateView(_ammo.Count);
         }
 
         protected override void OnShow()
@@ -37,14 +37,13 @@ namespace Game.UI
 
         private void OnValueChanged(int value)
         {
-            SetValue(value);
+            UpdateView(value);
         }
 
-        private void SetValue(int value)
+        private void UpdateView(int value)
         {
-            float normalizedValue = (float)(value - 0) / (_ammoCount - 0);
             _view.SetText(value.ToString("D2"));
-            _view.SetProgress(normalizedValue);
+            _view.SetProgress(NormalizedValue);
         }
     }
 }

@@ -1512,7 +1512,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameObject: {fileID: 3578180279390331970}
   _transform: {fileID: 6992041410405490774}
-  _health: 5
+  _health:
+    current: 30
+    max: 50
   _moveSpeed: 5
   _angularSpeed: 12
   _weapon: {fileID: 1960874445675532622}

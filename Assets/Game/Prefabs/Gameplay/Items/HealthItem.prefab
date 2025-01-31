@@ -203,6 +203,8 @@ GameObject:
   - component: {fileID: 906204727706075558}
   - component: {fileID: 393305246776948499}
   - component: {fileID: 3100126443347532207}
+  - component: {fileID: 4785470457295603494}
+  - component: {fileID: 2923234445879364506}
   m_Layer: 11
   m_Name: HealthItem
   m_TagString: Untagged
@@ -264,6 +266,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.83043134, y: 0.5, z: 0.77526355}
   m_Center: {x: 0.00082963705, y: 0.25, z: 0.016052604}
+--- !u!114 &4785470457295603494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903764127141603557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3142498ee69840069f3a93c11b1e1f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  installOnAwake: 1
+  installInEditMode: 0
+  disposeValues: 1
+  installers:
+  - {fileID: 2923234445879364506}
+  _onlySelectedGizmos: 0
+  _onlyEditModeGizmos: 0
+--- !u!114 &2923234445879364506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903764127141603557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5630c5194048dd8ae7a865547af8b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthAmount: 10
 --- !u!1001 &7860753860947560585
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,4 +1,3 @@
-using System;
 using Atomic.Entities;
 
 namespace Game.Gameplay
@@ -7,22 +6,42 @@ namespace Game.Gameplay
     {
         public static bool IsAlive(this IEntity entity)
         {
-            return entity.GetHealth().Value > 0;
+            var health = entity.GetHealth();
+            return health.GetCurrent() > 0;
         }
 
-        public static bool TakeDamage(this IEntity target, in int damage)
+        public static bool TakeDamage(this IEntity target, in int amount)
         {
+            var health = target.GetHealth();
+            var currentHealth = health.GetCurrent();
+            
             if (!target.HasDamageableTag())
                 return false;
-     
-            var health = target.GetHealth();
-
-            var currentHealth = health.Value;
+            
             if (currentHealth < 0)
                 return false;
             
-            health.Value = Math.Max(0, currentHealth - damage);
-            target.GetTakeDamageEvent().Invoke(damage);
+            health.Reduce(amount);
+            target.GetTakeDamageEvent().Invoke(amount);
+            return true;
+        }
+
+        public static bool AddHealth(this IEntity target, in int amount)
+        {
+            var health = target.GetHealth();
+            var maxHealth = health.GetMax();
+            var currentHealth = health.GetCurrent();
+            
+            if (target == null)
+                return false;
+
+            if (currentHealth < 0)
+                return false;
+
+            if (currentHealth == maxHealth)
+                return false;
+
+            health.Add(amount);
             return true;
         }
     }

@@ -21,7 +21,7 @@ namespace Game.Gameplay
 		///Values
 		public const int GameObject = 1482111001; // GameObject
 		public const int Transform = -180157682; // Transform
-		public const int Health = -915003867; // IReactiveVariable<int>
+		public const int Health = -915003867; // Health
 		public const int Damage = 375673178; // IValue<int>
 		public const int TakeDamageEvent = 1486057413; // IEvent<int>
 		public const int DeathEvent = -1096613677; // IEvent
@@ -111,13 +111,13 @@ namespace Game.Gameplay
 		public static void SetTransform(this IEntity obj, Transform value) => obj.SetValue(Transform, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IReactiveVariable<int> GetHealth(this IEntity obj) => obj.GetValue<IReactiveVariable<int>>(Health);
+		public static Health GetHealth(this IEntity obj) => obj.GetValue<Health>(Health);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetHealth(this IEntity obj, out IReactiveVariable<int> value) => obj.TryGetValue(Health, out value);
+		public static bool TryGetHealth(this IEntity obj, out Health value) => obj.TryGetValue(Health, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddHealth(this IEntity obj, IReactiveVariable<int> value) => obj.AddValue(Health, value);
+		public static bool AddHealth(this IEntity obj, Health value) => obj.AddValue(Health, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasHealth(this IEntity obj) => obj.HasValue(Health);
@@ -126,7 +126,7 @@ namespace Game.Gameplay
 		public static bool DelHealth(this IEntity obj) => obj.DelValue(Health);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetHealth(this IEntity obj, IReactiveVariable<int> value) => obj.SetValue(Health, value);
+		public static void SetHealth(this IEntity obj, Health value) => obj.SetValue(Health, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IValue<int> GetDamage(this IEntity obj) => obj.GetValue<IValue<int>>(Damage);

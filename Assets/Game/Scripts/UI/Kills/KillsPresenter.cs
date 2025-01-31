@@ -1,6 +1,4 @@
-using System;
 using Atomic.Elements;
-using Atomic.Entities;
 using Atomic.Presenters;
 using Game.Gameplay;
 using TMPro;

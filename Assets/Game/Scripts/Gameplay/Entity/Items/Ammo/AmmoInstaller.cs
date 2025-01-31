@@ -6,7 +6,7 @@ namespace Game.Gameplay
 {
     public class AmmoInstaller : SceneEntityInstaller
     {
-        [SerializeField] private int _clipsAmount = 10;
+        [SerializeField] private int _ammoAmount = 10;
 
         public override void Install(IEntity entity)
         {
@@ -16,7 +16,7 @@ namespace Game.Gameplay
             //Action:
             entity.AddInteractAction(new BaseAction<IEntity>(character =>
             {
-                if (WeaponUseCase.AddCLips(character, _clipsAmount)) gameObject.SetActive(false);
+                if (WeaponUseCase.AddAmmo(character, _ammoAmount)) gameObject.SetActive(false);
             }));
         }
     }

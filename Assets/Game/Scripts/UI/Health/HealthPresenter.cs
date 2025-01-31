@@ -1,8 +1,7 @@
-using System;
-using Atomic.Elements;
 using Atomic.Entities;
 using Atomic.Presenters;
 using Game.Gameplay;
+using Modules.Gameplay;
 using UnityEngine;
 
 namespace Game.UI
@@ -13,30 +12,38 @@ namespace Game.UI
 
         private IGameContext _gameContext;
         private IEntity _character;
-
+        private Health _health;
+        
+        private float NormalizedValue => (float)(_health.GetCurrent() - 0) / (_health.GetMax() - 0);
+        
         protected override void OnInit()
         {
             _gameContext = GameContext.Instance;
             _character = _gameContext.GetCharacter();
+            _health = _character.GetHealth();
+            
+            UpdateView(_health.GetCurrent());
         }
 
         protected override void OnShow()
         {
-            _character.GetHealth().Observe(OnValueChanged);
+            _health.OnHealthChanged += OnValueChanged;
         }
 
         protected override void OnHide()
         {
-            _character.GetHealth().Unsubscribe(OnValueChanged);
+            _health.OnHealthChanged -= OnValueChanged;
         }
 
         private void OnValueChanged(int value)
         {
-            var healthMax = _character.GetHealth().Value;
-            float normalizedValue = (float)(value - 0) / (healthMax - 0);
+            UpdateView(value);
+        }
 
+        private void UpdateView(int value)
+        {
             _view.SetText(value.ToString("D2"));
-            _view.SetProgress(normalizedValue);
+            _view.SetProgress(NormalizedValue);
         }
     }
 }

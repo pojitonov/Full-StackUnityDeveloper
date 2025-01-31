@@ -22,7 +22,8 @@ values:
 - Transform: Transform
 
 # Life
-- Health: IReactiveVariable<int>
+#- Health: IReactiveVariable<int>
+- Health: Health
 - Damage: IValue<int>
 - TakeDamageEvent: IEvent<int>
 - DeathEvent: IEvent

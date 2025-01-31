@@ -4,7 +4,7 @@ namespace Game.Gameplay
 {
     public static class WeaponUseCase
     {
-        public static bool AddCLips(in IEntity character, in int amount)
+        public static bool AddAmmo(in IEntity character, in int amount)
         {
             var weapon = character.GetWeapon();
             if (weapon == null) 

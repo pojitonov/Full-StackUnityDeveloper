@@ -9,7 +9,7 @@ namespace Game.Gameplay
     {
         [SerializeField] private GameObject _gameObject;
         [SerializeField] private Transform _transform;
-        [SerializeField] private int _health = 5;
+        [SerializeField] private Health _health;
         [SerializeField] private float _moveSpeed = 5;
         [SerializeField] private float _angularSpeed = 3;
         [SerializeField] private WeaponEntity _weapon;
@@ -20,7 +20,7 @@ namespace Game.Gameplay
             //Data:
             entity.AddGameObject(_gameObject);
             entity.AddTransform(_transform);
-            entity.AddHealth(new ReactiveInt(_health));
+            entity.AddHealth(_health);
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
