@@ -15,6 +15,7 @@ namespace Game.Gameplay
 		///Tags
 		public const int Enemy = 979269037;
 		public const int Damageable = 563499515;
+		public const int Interactable = 1077199658;
 
 
 		///Values
@@ -35,7 +36,9 @@ namespace Game.Gameplay
 		public const int FireEvent = -1683597082; // IEvent
 		public const int FireAction = 1186461126; // IAction
 		public const int FireCondition = -280402907; // IFunction<bool>
+		public const int InteractAction = -1026843572; // IAction<IEntity>
 		public const int Collision = -650338019; // CollisionEventReceiver
+		public const int Trigger = -707381567; // TriggerEventReceiver
 		public const int Animator = -1714818978; // Animator
 
 
@@ -58,6 +61,15 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool DelDamageableTag(this IEntity obj) => obj.DelTag(Damageable);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasInteractableTag(this IEntity obj) => obj.HasTag(Interactable);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddInteractableTag(this IEntity obj) => obj.AddTag(Interactable);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelInteractableTag(this IEntity obj) => obj.DelTag(Interactable);
 
 
 		///Value Extensions
@@ -369,6 +381,24 @@ namespace Game.Gameplay
 		public static void SetFireCondition(this IEntity obj, IFunction<bool> value) => obj.SetValue(FireCondition, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IAction<IEntity> GetInteractAction(this IEntity obj) => obj.GetValue<IAction<IEntity>>(InteractAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetInteractAction(this IEntity obj, out IAction<IEntity> value) => obj.TryGetValue(InteractAction, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddInteractAction(this IEntity obj, IAction<IEntity> value) => obj.AddValue(InteractAction, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasInteractAction(this IEntity obj) => obj.HasValue(InteractAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelInteractAction(this IEntity obj) => obj.DelValue(InteractAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetInteractAction(this IEntity obj, IAction<IEntity> value) => obj.SetValue(InteractAction, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static CollisionEventReceiver GetCollision(this IEntity obj) => obj.GetValue<CollisionEventReceiver>(Collision);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -385,6 +415,24 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetCollision(this IEntity obj, CollisionEventReceiver value) => obj.SetValue(Collision, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static TriggerEventReceiver GetTrigger(this IEntity obj) => obj.GetValue<TriggerEventReceiver>(Trigger);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetTrigger(this IEntity obj, out TriggerEventReceiver value) => obj.TryGetValue(Trigger, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddTrigger(this IEntity obj, TriggerEventReceiver value) => obj.AddValue(Trigger, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasTrigger(this IEntity obj) => obj.HasValue(Trigger);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelTrigger(this IEntity obj) => obj.DelValue(Trigger);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetTrigger(this IEntity obj, TriggerEventReceiver value) => obj.SetValue(Trigger, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Animator GetAnimator(this IEntity obj) => obj.GetValue<Animator>(Animator);

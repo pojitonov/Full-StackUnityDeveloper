@@ -14,6 +14,7 @@ imports:
 tags:
 - Enemy
 - Damageable
+- Interactable
 
 values:
 # Main
@@ -43,8 +44,12 @@ values:
 - FireAction: IAction
 - FireCondition: IFunction<bool>
 
+# Interact
+- InteractAction: IAction<IEntity>
+
 # Physics
 - Collision: CollisionEventReceiver
+- Trigger: TriggerEventReceiver
 
 # Animation
 - Animator: Animator

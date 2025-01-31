@@ -1,5 +1,6 @@
 using Atomic.Elements;
 using Atomic.Entities;
+using Modules.Gameplay;
 using UnityEngine;
 
 namespace Game.Gameplay
@@ -12,6 +13,7 @@ namespace Game.Gameplay
         [SerializeField] private float _moveSpeed = 5;
         [SerializeField] private float _angularSpeed = 3;
         [SerializeField] private WeaponEntity _weapon;
+        [SerializeField] private TriggerEventReceiver _trigger;
 
         public override void Install(IEntity entity)
         {
@@ -23,6 +25,7 @@ namespace Game.Gameplay
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
             entity.AddWeapon(_weapon);
+            entity.AddTrigger(_trigger);
             
             //Conditions:
             entity.AddMoveCondition(new AndExpression(entity.IsAlive));
@@ -33,6 +36,7 @@ namespace Game.Gameplay
             entity.AddBehaviour<DeathBehaviour>();
             entity.AddBehaviour<MoveTowardsBehaviour>();
             entity.AddBehaviour<RotateTowardsBehaviour>();
+            entity.AddBehaviour<InteractBehaviour>();
             
             //Events:
             entity.AddTakeDamageEvent(new BaseEvent<int>());
