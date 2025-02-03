@@ -1,7 +1,6 @@
-using Game.Scripts.Interfaces;
 using UnityEngine;
 
-namespace Game.Scripts.Components
+namespace Game
 {
     public class PatrolComponent : MonoBehaviour
     {
@@ -12,11 +11,6 @@ namespace Game.Scripts.Components
         private Transform _target;
         private IMoveable _moveable;
 
-        public void Init(IMoveable moveable)
-        {
-            _moveable = moveable;
-        }
-        
         private void Start()
         {
             _target = _waypoint1;
@@ -28,6 +22,11 @@ namespace Game.Scripts.Components
                 _target = _target == _waypoint1 ? _waypoint2 : _waypoint1;
             
             _moveable.Direction = _target.position - _moveable.Position;
+        }
+
+        public void SetMoveable(IMoveable moveable)
+        {
+            _moveable = moveable;
         }
     }
 }

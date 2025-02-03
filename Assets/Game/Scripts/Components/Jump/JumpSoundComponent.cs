@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Scripts.Components
+namespace Game
 {
     public class JumpSoundComponent : MonoBehaviour
     {

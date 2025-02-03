@@ -409,9 +409,8 @@ GameObject:
   - component: {fileID: 6605907901023207316}
   - component: {fileID: 5352395781337772132}
   - component: {fileID: 8828846598355375344}
-  - component: {fileID: 6219341282584217592}
   - component: {fileID: 5587648893758995040}
-  - component: {fileID: 839492495396028738}
+  - component: {fileID: 1985713689578144410}
   - component: {fileID: 4215505569129028564}
   m_Layer: 0
   m_Name: Spider
@@ -453,10 +452,11 @@ MonoBehaviour:
   _healthComponent: {fileID: 6605907901023207316}
   _moveComponent: {fileID: 5352395781337772132}
   _patrolComponent: {fileID: 8828846598355375344}
-  _damageTriggerComponent: {fileID: 6219341282584217592}
+  _colliderEventsListener: {fileID: 4394429183411324311}
+  _triggerEventsListener: {fileID: 8158345124177884546}
   _damageComponent: {fileID: 5587648893758995040}
-  _damagePushComponent: {fileID: 839492495396028738}
-  _deathHandlerComponent: {fileID: 4215505569129028564}
+  _forceComponent: {fileID: 1985713689578144410}
+  _deathComponent: {fileID: 4215505569129028564}
 --- !u!114 &6605907901023207316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,21 +500,6 @@ MonoBehaviour:
   _stoppingThreshold: 0.5
   _waypoint1: {fileID: 3929516699554365295}
   _waypoint2: {fileID: 4629981065635871775}
---- !u!114 &6219341282584217592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5554046834176312192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 217de3c0e1554748a56ce857b079c318, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eventListeners:
-  - {fileID: 4394429183411324311}
-  - {fileID: 8158345124177884546}
 --- !u!114 &5587648893758995040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +516,7 @@ MonoBehaviour:
   cooldown:
     _duration: 2
     elapsedTime: 0
---- !u!114 &839492495396028738
+--- !u!114 &1985713689578144410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -540,11 +525,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5554046834176312192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5ebea41bfe49b8a150f846d886d93d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d0caf84d0e690a4aaf3d994848f78f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pushType: 0
-  _forceStrength: 2
+  _forceStrength: 3
 --- !u!114 &4215505569129028564
 MonoBehaviour:
   m_ObjectHideFlags: 0

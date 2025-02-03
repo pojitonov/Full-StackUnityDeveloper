@@ -1,29 +1,26 @@
 using UnityEngine;
 
-namespace Game.Scripts.Components
+namespace Game
 {
     public class ForceSoundComponent : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private AudioClip _pushAudioClip;
-        [SerializeField] private AudioClip _tossAudioClip;
+        [SerializeField] private AudioClip _audioClip;
         [SerializeField] private ForceComponent _forceComponent;
-        
+
         private void OnEnable()
         {
-            _forceComponent.OnPush += () => Play(_pushAudioClip);
-            _forceComponent.OnToss += () => Play(_tossAudioClip);
+            _forceComponent.OnForceApplied += Play;
         }
 
         private void OnDisable()
         {
-            _forceComponent.OnPush -= () => Play(_pushAudioClip);
-            _forceComponent.OnToss -= () => Play(_tossAudioClip);
+            _forceComponent.OnForceApplied -= Play;
         }
 
-        private void Play(AudioClip audioClip)
+        private void Play()
         {
-            _audioSource.PlayOneShot(audioClip);
+            _audioSource.PlayOneShot(_audioClip);
         }
     }
 }

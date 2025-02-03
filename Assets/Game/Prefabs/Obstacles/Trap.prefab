@@ -100,7 +100,6 @@ GameObject:
   - component: {fileID: 4002432658537633424}
   - component: {fileID: 1397027944515369323}
   - component: {fileID: 7280537044973331671}
-  - component: {fileID: 4383446982448143665}
   - component: {fileID: 7640497340136154131}
   - component: {fileID: 598596195528597246}
   m_Layer: 8
@@ -214,11 +213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthComponent: {fileID: 9086488212919646905}
-  _standingComponent: {fileID: 1397027944515369323}
-  _groundComponent: {fileID: 7280537044973331671}
-  _damageTriggerComponent: {fileID: 4383446982448143665}
+  _colliderEventsListener: {fileID: 4002432658537633424}
   _damageComponent: {fileID: 7640497340136154131}
-  _deathHandlerComponent: {fileID: 598596195528597246}
+  _deathComponent: {fileID: 598596195528597246}
 --- !u!114 &9086488212919646905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,20 +272,6 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &4383446982448143665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4331236207197526835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 217de3c0e1554748a56ce857b079c318, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eventListeners:
-  - {fileID: 4002432658537633424}
 --- !u!114 &7640497340136154131
 MonoBehaviour:
   m_ObjectHideFlags: 0

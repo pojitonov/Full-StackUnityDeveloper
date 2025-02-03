@@ -1,8 +1,7 @@
 using System;
-using Game.Scripts.Core;
 using UnityEngine;
 
-namespace Game.Scripts.Components
+namespace Game
 {
     public class DamageComponent : MonoBehaviour
     {
@@ -18,11 +17,16 @@ namespace Game.Scripts.Components
         
         public void TryApplyDamage(GameObject other)
         {
+            if (!cooldown.IsTimeUp())
+                return;
+            
             var health = other.GetComponentInParent<HealthComponent>();
             if (health == null)
                 return;
+            
             health.TakeDamage(_damagePoints);
             cooldown.Reset();
+            
             OnDamagedApplied?.Invoke(other);
         }
     }

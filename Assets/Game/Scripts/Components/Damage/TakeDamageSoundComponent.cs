@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Game.Scripts.Components
+namespace Game
 {
-    public class DamageSoundComponent : MonoBehaviour
+    public class TakeDamageSoundComponent : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;

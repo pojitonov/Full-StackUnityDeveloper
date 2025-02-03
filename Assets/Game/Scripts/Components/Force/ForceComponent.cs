@@ -1,69 +1,25 @@
 using System;
-using Game.Scripts.Core;
 using UnityEngine;
 
-namespace Game.Scripts.Components
+namespace Game
 {
     public class ForceComponent : MonoBehaviour
     {
-        private const float FORCE_MULTIPLIER = 100;
+        public event Action OnForceApplied;
 
-        public event Action OnPush;
-        public event Action OnToss;
+        private const int FORCE_MULTIPLIER = 100;
 
         [SerializeField] private float _forceStrength;
-        [SerializeField] private Cooldown cooldown;
 
-        private readonly Condition _pushCondition = new();
-        private readonly Condition _tossCondition = new();
-        private InteractableDetectorComponent _interactableDetector;
-
-        public void Init(InteractableDetectorComponent interactableDetector)
+        public void ApplyForce(GameObject gameObject, Vector2 forceDirection)
         {
-            _interactableDetector = interactableDetector;
-        }
-        
-        private void Update()
-        {
-            cooldown.Tick(Time.deltaTime);
+            if (!gameObject) return;
+            if (!gameObject.TryGetComponent(out Rigidbody2D rigidbody)) return;
+            
+            rigidbody.AddForce(forceDirection.normalized * (_forceStrength * FORCE_MULTIPLIER));
+            OnForceApplied?.Invoke();
         }
 
-        public void ApplyForce(Vector2 forceDirection, Vector2 lookAtDirection)
-        {
-            var forceType = GetForceType(forceDirection);
-            var condition = GetCondition(forceType);
-
-            if (!condition.IsTrue() || !cooldown.IsTimeUp()) 
-                return;
-
-            cooldown.Reset();
-
-            if (forceType == ForceType.Push)
-                OnPush?.Invoke();
-            else
-                OnToss?.Invoke();
-
-            var target = _interactableDetector.GetInteractable(transform.position, lookAtDirection);
-            if (target && target.TryGetComponent(out Rigidbody2D rigidbody))
-            {
-                rigidbody.AddForce(forceDirection * (_forceStrength * FORCE_MULTIPLIER));
-            }
-        }
-
-        private ForceType GetForceType(Vector2 forceDirection)
-        {
-            return forceDirection == Vector2.up ? ForceType.Toss : ForceType.Push;
-        }
-
-        private Condition GetCondition(ForceType forceType)
-        {
-            return forceType == ForceType.Push ? _pushCondition : _tossCondition;
-        }
-
-        public void AddCondition(Func<bool> condition, ForceType forceType)
-        {
-            var targetCondition = GetCondition(forceType);
-            targetCondition.Add(condition);
-        }
+        public void ApplyForce(GameObject gameObject) => ApplyForce(gameObject, Vector2.up);
     }
 }

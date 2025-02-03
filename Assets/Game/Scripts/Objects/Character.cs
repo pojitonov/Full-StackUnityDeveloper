@@ -1,48 +1,66 @@
-using Game.Scripts.Components;
 using UnityEngine;
 
-namespace Game.Scripts.Objects
+namespace Game
 {
     public sealed class Character : MonoBehaviour
     {
         [SerializeField] private HealthComponent _healthComponent;
         [SerializeField] private LookAtComponent _lookAtComponent;
         [SerializeField] private StandingComponent _standingComponent;
-        [SerializeField] private InteractableDetectorComponent _interactableDetectorComponent;
         [SerializeField] private GroundComponent _groundComponent;
+        [SerializeField] private InteractableComponent _interactableComponent;
+        [SerializeField] private ColliderEventsListener _colliderEventsListener;
         [SerializeField] private MoveComponent _moveComponent;
         [SerializeField] private FlipComponent _flipComponent;
         [SerializeField] private JumpComponent _jumpComponent;
-        [SerializeField] private ForceComponent _forceComponent;
-        [SerializeField] private DamageTriggerComponent _damageTriggerComponent;
+        [SerializeField] private PushComponent _pushComponent;
+        [SerializeField] private TossComponent _tossComponent;
         [SerializeField] private DamageComponent _damageComponent;
-        [SerializeField] private DeathHandlerComponent _deathHandlerComponent;
-        
+        [SerializeField] private DeathComponent _deathComponent;
+
+        private Vector3 LookDirection => _lookAtComponent.Direction;
+
         private void Awake()
         {
-            _forceComponent.Init(_interactableDetectorComponent);
-            
             _moveComponent.AddCondition(() => _healthComponent.IsAlive);
             _jumpComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
-            _forceComponent.AddCondition(() => _healthComponent.IsAlive, ForceType.Push);
-            _forceComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded,
-                ForceType.Toss);
-
-            _healthComponent.OnDied += _deathHandlerComponent.TriggerDeath;
-            _damageTriggerComponent.OnDamageTriggered += target => _damageComponent.TryApplyDamage(target);
+            _pushComponent.AddCondition(() => _healthComponent.IsAlive);
+            _tossComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
+            
+            _healthComponent.OnDied += _deathComponent.TriggerDeath;
+            _colliderEventsListener.OnEventTriggered += target => _damageComponent.TryApplyDamage(target);
         }
 
         private void OnDestroy()
         {
-            _healthComponent.OnDied -= _deathHandlerComponent.TriggerDeath;
-            _damageTriggerComponent.OnDamageTriggered -= _damageComponent.TryApplyDamage;
+            _healthComponent.OnDied -= _deathComponent.TriggerDeath;
+            _colliderEventsListener.OnEventTriggered -= _damageComponent.TryApplyDamage;
         }
 
         private void Update()
         {
             _flipComponent.Direction = _moveComponent.Direction;
             _lookAtComponent.SetDirection(_moveComponent.Direction);
-            _standingComponent.UpdateStanding(_groundComponent.IsGrounded, _groundComponent.Transform);
+        }
+
+        public void Toss()
+        {
+            _tossComponent.Invoke(Vector3.up, LookDirection);
+        }
+
+        public void Push()
+        {
+            _pushComponent.Invoke(LookDirection, LookDirection);
+        }
+
+        public void Jump()
+        {
+            _jumpComponent.Invoke();
+        }
+        
+        public void Move(Vector2 direction)
+        {
+            _moveComponent.Direction = direction;
         }
     }
 }

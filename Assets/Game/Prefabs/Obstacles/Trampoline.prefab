@@ -95,7 +95,8 @@ GameObject:
   - component: {fileID: 4979841302588641904}
   - component: {fileID: 2682617834291874480}
   - component: {fileID: 3471093498005007824}
-  - component: {fileID: 2752152966563070290}
+  - component: {fileID: 7375331568718723639}
+  - component: {fileID: 1782833913586918860}
   - component: {fileID: 2248644428612023608}
   m_Layer: 6
   m_Name: Trampoline
@@ -279,7 +280,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2752152966563070290
+--- !u!114 &7375331568718723639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,11 +289,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 8595837930061912479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a885133e3e437390c3517385913cb3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f6c5845898c414f953bfa782c270369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _forceComponent: {fileID: 1782833913586918860}
+--- !u!114 &1782833913586918860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8595837930061912479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0caf84d0e690a4aaf3d994848f78f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _forceStrength: 10
   _forceDirection: {x: 0, y: 1}
-  _forceStrength: 20
 --- !u!114 &2248644428612023608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,4 +321,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 3471093498005007824}
   _audioClip: {fileID: 8300000, guid: 08ef3735b9527d54ab97d0e9fc9d505d, type: 3}
-  _throwComponent: {fileID: 2752152966563070290}
+  _forceComponent: {fileID: 1782833913586918860}

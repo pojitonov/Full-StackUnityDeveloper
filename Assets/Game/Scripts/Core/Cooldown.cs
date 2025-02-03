@@ -2,7 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Game.Scripts.Core
+namespace Game
 {
     [Serializable]
     public class Cooldown

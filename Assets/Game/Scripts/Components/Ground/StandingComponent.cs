@@ -1,16 +1,16 @@
 using UnityEngine;
 
-namespace Game.Scripts.Components
+namespace Game
 {
     public class StandingComponent : MonoBehaviour
     {
         [SerializeField] private GroundComponent _groundComponent;
-
+        
         private Transform _worldTransform;
 
-        public void UpdateStanding(bool isGrounded, Transform groundTransform)
+        public void FixedUpdate()
         {
-            transform.SetParent(isGrounded ? groundTransform : _worldTransform);
+            transform.SetParent(_groundComponent.IsGrounded ? _groundComponent.Transform : _worldTransform);
         }
     }
 }

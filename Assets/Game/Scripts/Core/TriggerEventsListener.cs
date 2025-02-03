@@ -1,10 +1,9 @@
 using System;
-using Game.Scripts.Interfaces;
 using UnityEngine;
 
-namespace Game.Scripts.Core
+namespace Game
 {
-    public class TriggerEventsListener : MonoBehaviour, IEventListener
+    public class TriggerEventsListener : MonoBehaviour
     {
         public event Action<GameObject> OnEventTriggered;
         

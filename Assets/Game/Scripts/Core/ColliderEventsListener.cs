@@ -1,10 +1,9 @@
 using System;
-using Game.Scripts.Interfaces;
 using UnityEngine;
 
-namespace Game.Scripts.Core
+namespace Game
 {
-    public class ColliderEventsListener : MonoBehaviour, IEventListener
+    public class ColliderEventsListener : MonoBehaviour
     {
         public event Action<GameObject> OnEventTriggered;
         

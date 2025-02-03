@@ -1,10 +1,8 @@
 using System;
-using Game.Scripts.Core;
-using Game.Scripts.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Game.Scripts.Components
+namespace Game
 {
     public class MoveComponent : MonoBehaviour, IMoveable
     {

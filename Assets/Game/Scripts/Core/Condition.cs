@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Game.Scripts.Core
+namespace Game
 {
     public class Condition
     {

@@ -1,7 +1,6 @@
-using Game.Scripts.Components;
 using UnityEngine;
 
-namespace Game.Scripts.Objects
+namespace Game
 {
     public sealed class Snake : MonoBehaviour
     {
@@ -9,25 +8,28 @@ namespace Game.Scripts.Objects
         [SerializeField] private MoveComponent _moveComponent;
         [SerializeField] private PatrolComponent _patrolComponent;
         [SerializeField] private FlipComponent _flipComponent;
-        [SerializeField] private DamageTriggerComponent _damageTriggerComponent;
+        [SerializeField] private ColliderEventsListener _colliderEventsListener;
+        [SerializeField] private TriggerEventsListener _triggerEventsListener;
         [SerializeField] private DamageComponent _damageComponent;
-        [SerializeField] private DamagePushComponent _damagePushComponent;
-        [SerializeField] private DeathHandlerComponent _deathHandlerComponent;
+        [SerializeField] private ForceComponent _forceComponent;
+        [SerializeField] private DeathComponent _deathComponent;
 
         private void Awake()
         {
-            _patrolComponent.Init(_moveComponent);
+            _healthComponent.OnDied += _deathComponent.TriggerDeath;
+            _colliderEventsListener.OnEventTriggered += target => _damageComponent.TryApplyDamage(target);
+            _triggerEventsListener.OnEventTriggered += target => _damageComponent.TryApplyDamage(target);
+            _damageComponent.OnDamagedApplied += target => _forceComponent.ApplyForce(target);
             
-            _healthComponent.OnDied += _deathHandlerComponent.TriggerDeath;
-            _damageTriggerComponent.OnDamageTriggered += target => _damageComponent.TryApplyDamage(target);
-            _damageComponent.OnDamagedApplied += target => _damagePushComponent.ApplyPush(target);
+            _patrolComponent.SetMoveable(_moveComponent);
         }
 
         private void OnDestroy()
         {
-            _healthComponent.OnDied -= _deathHandlerComponent.TriggerDeath;
-            _damageTriggerComponent.OnDamageTriggered -= _damageComponent.TryApplyDamage;
-            _damageComponent.OnDamagedApplied -= _damagePushComponent.ApplyPush;
+            _healthComponent.OnDied -= _deathComponent.TriggerDeath;
+            _colliderEventsListener.OnEventTriggered -= _damageComponent.TryApplyDamage;
+            _triggerEventsListener.OnEventTriggered -= _damageComponent.TryApplyDamage;
+            _damageComponent.OnDamagedApplied -= _forceComponent.ApplyForce;
         }
 
         private void Update()

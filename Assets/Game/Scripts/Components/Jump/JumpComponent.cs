@@ -1,8 +1,7 @@
 using System;
-using Game.Scripts.Core;
 using UnityEngine;
 
-namespace Game.Scripts.Components
+namespace Game
 {
     public class JumpComponent : MonoBehaviour
     {
@@ -19,7 +18,7 @@ namespace Game.Scripts.Components
             cooldown.Tick(Time.deltaTime);
         }
 
-        public void Jump()
+        public void Invoke()
         {
             if (!_condition.IsTrue() || !cooldown.IsTimeUp())
                 return;

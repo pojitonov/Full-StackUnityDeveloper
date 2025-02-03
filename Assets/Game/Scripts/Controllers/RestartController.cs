@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Game.Scripts.Controllers
+namespace Game
 {
     public sealed class RestartController : MonoBehaviour
     {

@@ -1,0 +1,26 @@
+using UnityEngine;
+
+namespace Game
+{
+    public class DestroyerSoundComponent : MonoBehaviour
+    {
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _audioClip;
+        [SerializeField] private DestroyerComponent _destroyerComponent;
+
+        private void OnEnable()
+        {
+            _destroyerComponent.OnDestroyed += Play;
+        }
+
+        private void OnDisable()
+        {
+            _destroyerComponent.OnDestroyed -= Play;
+        }
+
+        private void Play()
+        {
+            _audioSource.PlayOneShot(_audioClip);
+        }
+    }
+}

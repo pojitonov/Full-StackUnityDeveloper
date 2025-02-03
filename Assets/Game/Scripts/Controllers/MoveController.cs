@@ -1,19 +1,10 @@
-using Game.Scripts.Components;
-using Game.Scripts.Objects;
 using UnityEngine;
 
-namespace Game.Scripts.Controllers
+namespace Game
 {
     public sealed class MoveController : MonoBehaviour
     {
         [SerializeField] private Character _character;
-        
-        private MoveComponent _moveComponent;
-
-        private void Awake()
-        {
-            _moveComponent = _character.GetComponent<MoveComponent>();
-        }
 
         private void Update()
         {
@@ -28,7 +19,7 @@ namespace Game.Scripts.Controllers
                 direction = Vector2.right;
             }
 
-            _moveComponent.Direction = direction;
+            _character.Move(direction);
         }
     }
 }
