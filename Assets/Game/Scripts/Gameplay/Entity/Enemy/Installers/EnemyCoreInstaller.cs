@@ -22,6 +22,7 @@ namespace Game.Gameplay
             entity.AddGameObject(_gameObject);
             entity.AddTransform(_transform);
             entity.AddHealth(_health);
+            entity.AddChasing(false);
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddDamageableTag();
@@ -35,11 +36,10 @@ namespace Game.Gameplay
             entity.AddBehaviour<EnemyMoveTowardsBehaviour>();
             entity.AddBehaviour<BodyFallDisableRBBehaviour>();
             entity.AddBehaviour<CountKillsBehaviour>();
-            // entity.AddBehaviour<TargetEnterBehaviour>();
             
             //Conditions:
-            entity.AddMoveCondition(new AndExpression(entity.IsAlive));
-            entity.AddRotateCondition(new AndExpression(entity.IsAlive));
+            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && entity.GetChasing()));
+            entity.AddRotateCondition(new AndExpression(() => entity.IsAlive() && entity.GetChasing()));
             
             //Events:
             entity.AddTakeDamageEvent(new BaseEvent<int>());

@@ -13,11 +13,7 @@ namespace Game.Gameplay
 
         public void OnFixedUpdate(in IEntity entity, in float deltaTime)
         {
-            var currentPosition = entity.GetTransform().position;
             var targetPosition = _gameContext.GetCharacter().GetTransform().position;
-            var direction = (targetPosition - currentPosition).normalized;
-            
-            entity.GetMoveDirection().Value = direction;
             entity.MoveTowardsPosition(targetPosition, deltaTime);
         }
     }

@@ -14,6 +14,7 @@ namespace Game.Gameplay
         {
             foreach (var enemy in _enemies)
             {
+                enemy.SetChasing(true);
             }
         }
 
@@ -21,6 +22,7 @@ namespace Game.Gameplay
         {
             foreach (var enemy in _enemies)
             {
+                enemy.SetChasing(false);
             }
         }
     }

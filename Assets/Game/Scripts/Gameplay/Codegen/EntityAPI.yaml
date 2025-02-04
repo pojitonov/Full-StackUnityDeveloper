@@ -34,6 +34,7 @@ values:
 - MoveSpeed: IValue<float>
 - MoveCondition: IExpression<bool>
 - MoveDirection: IReactiveVariable<Vector3>
+- Chasing : bool
 - ChasingCondition: IExpression<bool>
 
 # Rotation
