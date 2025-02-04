@@ -1,9 +1,10 @@
 using Atomic.Elements;
 using Atomic.Entities;
+using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class BodyDisableBehaviour : IEntityInit, IEntityDispose
+    public class BodyFallDisableRBBehaviour : IEntityInit, IEntityDispose
     {
         private IEntity _entity;
         private IReactive _deathEvent;
@@ -23,10 +24,7 @@ namespace Game.Gameplay
         private void OnDeathHappens()
         {
             _entity.DelBehaviour<TakeDamageAnimBehaviour>();
-            
-            if (_entity.HasTag("Enemy"))
-                _entity.DelBehaviour<EnemyLookAtBehaviour>();
-                _entity.DelBehaviour<EnemyMoveTowardsBehaviour>();
+            _entity.GetGameObject().GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 }

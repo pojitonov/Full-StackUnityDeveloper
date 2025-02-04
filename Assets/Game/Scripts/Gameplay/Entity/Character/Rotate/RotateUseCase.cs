@@ -7,6 +7,9 @@ namespace Game.Gameplay
     {
         public static void RotateTowards(this IEntity entity, in Vector3 direction, in float deltaTime)
         {
+            if (entity.TryGetRotateCondition(out var condition) && !condition.Value)
+                return;
+            
             if (direction == Vector3.zero)
                 return;
 
@@ -20,6 +23,12 @@ namespace Game.Gameplay
             
             entity.RotateTowards(direction.Value, deltaTime);
         }
+        
+        public static void RotateTowardsTarget(this IEntity entity, in IEntity target, in float deltaTime)
+        {
+            Vector3 direction = entity.GetLookAtDirection(target);
+            entity.RotateTowards(direction, deltaTime);
+        }
 
         public static void RotateTowards(this IEntity entity, in Quaternion targetRotation, in float deltaTime)
         {
@@ -32,6 +41,15 @@ namespace Game.Gameplay
             in float speed)
         {
             return Quaternion.Lerp(currentRotation, targetRotation, speed);
+        }
+        
+        public static Vector3 GetLookAtDirection(this IEntity entity, in IEntity target)
+        {
+            Vector3 currentPosition = entity.GetTransform().position;
+            Vector3 targetPosition = target.GetTransform().position;
+            Vector3 vectorToTarget = targetPosition - currentPosition;
+            vectorToTarget.y = 0;
+            return vectorToTarget.normalized;
         }
     }
 }

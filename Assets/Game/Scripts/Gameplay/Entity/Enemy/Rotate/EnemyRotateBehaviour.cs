@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class EnemyLookAtBehaviour : IEntityFixedUpdate
+    public class EnemyRotateBehaviour : IEntityFixedUpdate
     {
         public void OnFixedUpdate(in IEntity entity, in float deltaTime)
         {
@@ -11,8 +11,7 @@ namespace Game.Gameplay
             if (target == null)
                 return;
             
-            Vector3 direction = entity.GetLookAtDirection(target);
-            entity.RotateTowards(direction, deltaTime);
+            entity.RotateTowardsTarget(target, deltaTime);
         }
     }
 }

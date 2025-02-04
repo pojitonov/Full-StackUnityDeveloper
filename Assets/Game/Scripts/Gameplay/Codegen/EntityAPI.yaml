@@ -34,17 +34,19 @@ values:
 - MoveSpeed: IValue<float>
 - MoveCondition: IExpression<bool>
 - MoveDirection: IReactiveVariable<Vector3>
+- ChasingCondition: IExpression<bool>
 
 # Rotation
 - AngularSpeed: IValue<float>
+- RotateCondition: IExpression<bool>
 
 # Combat
-- Target: IReactiveVariable<IEntity>
 - Weapon: IWeaponEntity
+- Target: IReactiveVariable<IEntity>
 - FireEvent: IEvent
 - FireAction: IAction
 - FireCondition: IFunction<bool>
-
+  
 # Interact
 - InteractAction: IAction<IEntity>
 

@@ -31,10 +31,15 @@ namespace Game.Gameplay
 
             //Behaviours:
             entity.AddBehaviour<DeathBehaviour>();
-            entity.AddBehaviour<EnemyLookAtBehaviour>();
+            entity.AddBehaviour<EnemyRotateBehaviour>();
             entity.AddBehaviour<EnemyMoveTowardsBehaviour>();
-            entity.AddBehaviour<BodyDisableBehaviour>();
+            entity.AddBehaviour<BodyFallDisableRBBehaviour>();
             entity.AddBehaviour<CountKillsBehaviour>();
+            // entity.AddBehaviour<TargetEnterBehaviour>();
+            
+            //Conditions:
+            entity.AddMoveCondition(new AndExpression(entity.IsAlive));
+            entity.AddRotateCondition(new AndExpression(entity.IsAlive));
             
             //Events:
             entity.AddTakeDamageEvent(new BaseEvent<int>());

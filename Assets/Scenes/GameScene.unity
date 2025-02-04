@@ -4197,6 +4197,7 @@ GameObject:
   - component: {fileID: 299060141}
   - component: {fileID: 299060143}
   - component: {fileID: 299060139}
+  - component: {fileID: 299060144}
   m_Layer: 0
   m_Name: '[GameContext]'
   m_TagString: Untagged
@@ -4272,6 +4273,24 @@ MonoBehaviour:
     _container: {fileID: 16435744}
   _characterSystemInstaller:
     _character: {fileID: 9048405937420967253}
+--- !u!114 &299060144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299060138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c7ec72f0dfc41099626eca8f3353622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  installOnAwake: 1
+  installInEditMode: 0
+  dontDestroyOnLoad: 0
+  initialParent: {fileID: 0}
+  installers: []
+  children: []
 --- !u!1001 &310103933
 PrefabInstance:
   m_ObjectHideFlags: 0
