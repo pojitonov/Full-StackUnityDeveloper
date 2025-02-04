@@ -9,6 +9,7 @@ namespace Game.Gameplay
         // [SerializeField] private AnimationEventReceiver _animationReceiver;
 
         [SerializeField] private Animator _animator;
+        [SerializeField] private string _movingKey = "IsMoving";
         [SerializeField] private string _damageKey = "TakeDamage";
         [SerializeField] private string _deathKey = "Death";
         
@@ -18,6 +19,7 @@ namespace Game.Gameplay
             entity.AddAnimator(_animator);
 
             //Behaviours:
+            entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
             entity.AddBehaviour(new TakeDamageAnimBehaviour(_damageKey));
             entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
 

@@ -1,6 +1,5 @@
 using Atomic.Elements;
 using Atomic.Entities;
-using Game.Scripts.Gameplay.Entity.Enemy;
 using Modules.Gameplay;
 using UnityEngine;
 
@@ -11,6 +10,7 @@ namespace Game.Gameplay
         [SerializeField] private GameObject _gameObject;
         [SerializeField] private Transform _transform;
         [SerializeField] private Health _health;
+        [SerializeField] private float _moveSpeed = 3;
         [SerializeField] private float _angularSpeed = 3;
         
         public override void Install(IEntity entity)
@@ -22,6 +22,8 @@ namespace Game.Gameplay
             entity.AddGameObject(_gameObject);
             entity.AddTransform(_transform);
             entity.AddHealth(_health);
+            entity.AddMoveSpeed(new Const<float>(_moveSpeed));
+            entity.AddMoveDirection(new ReactiveVector3());
             entity.AddDamageableTag();
             entity.AddEnemyTag();
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
@@ -29,9 +31,10 @@ namespace Game.Gameplay
 
             //Behaviours:
             entity.AddBehaviour<DeathBehaviour>();
-            entity.AddBehaviour<KillsCountBehaviour>();
             entity.AddBehaviour<EnemyLookAtBehaviour>();
+            entity.AddBehaviour<EnemyMoveTowardsBehaviour>();
             entity.AddBehaviour<BodyDisableBehaviour>();
+            entity.AddBehaviour<CountKillsBehaviour>();
             
             //Events:
             entity.AddTakeDamageEvent(new BaseEvent<int>());

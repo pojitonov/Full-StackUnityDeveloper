@@ -1762,6 +1762,7 @@ MonoBehaviour:
   _health:
     current: 3
     max: 3
+  _moveSpeed: 1
   _angularSpeed: 3
 --- !u!114 &6462368927767535755
 MonoBehaviour:
@@ -1776,6 +1777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2415962780172116089}
+  _movingKey: IsMoving
   _damageKey: TakeDamage
   _deathKey: Death
 --- !u!1 &6519369982854541961
@@ -2059,7 +2061,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: cb7def12ed591468ebdc46c5accc3cdb, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -2092,6 +2094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2415962780172116089}
+  _movingKey: IsMoving
   _damageKey: TakeDamage
   _deathKey: TakeDamage
 --- !u!1 &7369059967829061964

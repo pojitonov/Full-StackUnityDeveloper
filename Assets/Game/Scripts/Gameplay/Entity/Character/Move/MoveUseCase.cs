@@ -22,5 +22,12 @@ namespace Game.Gameplay
             
             entity.MoveTowards(direction.Value, deltaTime);
         }
+        
+        public static void MoveTowardsPosition(this IEntity entity, in Vector3 targetPosition, in float deltaTime)
+        {
+            var currentPosition = entity.GetTransform().position;
+            var direction = (targetPosition - currentPosition).normalized;
+            entity.MoveTowards(direction, deltaTime);
+        }
     }
 }

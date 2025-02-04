@@ -10,12 +10,12 @@ namespace Modules.Gameplay
 
         private void OnTriggerEnter(Collider other)
         {
-            this.OnEntered?.Invoke(other);
+            OnEntered?.Invoke(other);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            this.OnExited?.Invoke(other);
+            OnExited?.Invoke(other);
         }
     }
 }

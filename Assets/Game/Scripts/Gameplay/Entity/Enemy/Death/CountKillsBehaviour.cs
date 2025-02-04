@@ -1,10 +1,9 @@
 using Atomic.Elements;
 using Atomic.Entities;
-using Game.Gameplay;
 
-namespace Game.Scripts.Gameplay.Entity.Enemy
+namespace Game.Gameplay
 {
-    public class KillsCountBehaviour : IEntityInit, IEntityDispose
+    public class CountKillsBehaviour : IEntityInit, IEntityDispose
     {
         private IGameContext _gameContext;
         private IReactive _deathEvent;

@@ -26,6 +26,7 @@ namespace Game.Gameplay
             
             if (_entity.HasTag("Enemy"))
                 _entity.DelBehaviour<EnemyLookAtBehaviour>();
+                _entity.DelBehaviour<EnemyMoveTowardsBehaviour>();
         }
     }
 }
