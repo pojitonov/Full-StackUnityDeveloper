@@ -26,20 +26,23 @@ namespace Game.Gameplay
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
             entity.AddWeapon(_weapon);
             entity.AddTrigger(_trigger);
+            entity.AddDamageableTag();
             
             //Conditions:
             entity.AddMoveCondition(new AndExpression(entity.IsAlive));
-            entity.AddFireCondition(new BaseFunction<bool>(() => 
-                entity.IsAlive() && entity.GetWeapon().GetFireCondition().Invoke()));
+            entity.AddAttackCondition(new BaseFunction<bool>(() => 
+                entity.IsAlive() && entity.GetWeapon().GetAttackCondition().Invoke()));
 
             //Behaviours:
             entity.AddBehaviour<DeathBehaviour>();
             entity.AddBehaviour<MoveTowardsBehaviour>();
             entity.AddBehaviour<RotateTowardsBehaviour>();
             entity.AddBehaviour<InteractBehaviour>();
+            entity.AddBehaviour<BodyFallDisableBehaviour>();
             
             //Events:
             entity.AddTakeDamageEvent(new BaseEvent<int>());
+            entity.AddDeathEvent(new BaseEvent());
         }
     }
 }

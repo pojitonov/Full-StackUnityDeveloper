@@ -34,7 +34,6 @@ values:
 - MoveCondition: IExpression<bool>
 - MoveDirection: IReactiveVariable<Vector3>
 - Chasing : IVariable<bool>
-- ChasingCondition: IExpression<bool>
 
 # Rotation
 - AngularSpeed: IValue<float>
@@ -45,7 +44,7 @@ values:
 - Target: IEntity
 - FireEvent: IEvent
 - FireAction: IAction
-- FireCondition: IFunction<bool>
+- AttackCondition: IFunction<bool>
 - AttackingEvent: IEvent
   
 # Interact

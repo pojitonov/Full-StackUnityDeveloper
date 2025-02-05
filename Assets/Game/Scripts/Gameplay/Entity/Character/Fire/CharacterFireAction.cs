@@ -14,7 +14,7 @@ namespace Game.Gameplay
 
         public void Invoke()
         {
-            if (_entity.GetFireCondition().Invoke())
+            if (_entity.GetAttackCondition().Invoke())
             {
                 _entity.GetWeapon().GetFireAction().Invoke();
                 _entity.GetFireEvent().Invoke();

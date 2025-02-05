@@ -10,6 +10,9 @@ namespace Game.Gameplay
         {
             if (target == null)
                 return;
+            
+            if (entity.TryGetAttackCondition(out var condition) && !condition.Invoke())
+                return;
 
             float distance = entity.GetDistance(target);
             bool shouldAttack = distance < attackRange;

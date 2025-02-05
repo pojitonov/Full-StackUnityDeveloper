@@ -1535,6 +1535,7 @@ MonoBehaviour:
   _movingKey: IsMoving
   _fireKey: Attack
   _damageKey: TakeDamage
+  _deathKey: Death
 --- !u!114 &912348638178710385
 MonoBehaviour:
   m_ObjectHideFlags: 0

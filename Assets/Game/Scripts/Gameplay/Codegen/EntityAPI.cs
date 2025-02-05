@@ -31,14 +31,13 @@ namespace Game.Gameplay
 		public const int MoveCondition = 1466174948; // IExpression<bool>
 		public const int MoveDirection = -721923052; // IReactiveVariable<Vector3>
 		public const int Chasing = -1101124001; // IVariable<bool>
-		public const int ChasingCondition = 756683980; // IExpression<bool>
 		public const int AngularSpeed = -1089183267; // IValue<float>
 		public const int RotateCondition = 1109699557; // IExpression<bool>
 		public const int Weapon = 1855955664; // IWeaponEntity
 		public const int Target = 1103309514; // IEntity
 		public const int FireEvent = -1683597082; // IEvent
 		public const int FireAction = 1186461126; // IAction
-		public const int FireCondition = -280402907; // IFunction<bool>
+		public const int AttackCondition = -1481262935; // IFunction<bool>
 		public const int AttackingEvent = 404835167; // IEvent
 		public const int InteractAction = -1026843572; // IAction<IEntity>
 		public const int Collision = -650338019; // CollisionEventReceiver
@@ -295,24 +294,6 @@ namespace Game.Gameplay
 		public static void SetChasing(this IEntity obj, IVariable<bool> value) => obj.SetValue(Chasing, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IExpression<bool> GetChasingCondition(this IEntity obj) => obj.GetValue<IExpression<bool>>(ChasingCondition);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetChasingCondition(this IEntity obj, out IExpression<bool> value) => obj.TryGetValue(ChasingCondition, out value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddChasingCondition(this IEntity obj, IExpression<bool> value) => obj.AddValue(ChasingCondition, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasChasingCondition(this IEntity obj) => obj.HasValue(ChasingCondition);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelChasingCondition(this IEntity obj) => obj.DelValue(ChasingCondition);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetChasingCondition(this IEntity obj, IExpression<bool> value) => obj.SetValue(ChasingCondition, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IValue<float> GetAngularSpeed(this IEntity obj) => obj.GetValue<IValue<float>>(AngularSpeed);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -421,22 +402,22 @@ namespace Game.Gameplay
 		public static void SetFireAction(this IEntity obj, IAction value) => obj.SetValue(FireAction, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IFunction<bool> GetFireCondition(this IEntity obj) => obj.GetValue<IFunction<bool>>(FireCondition);
+		public static IFunction<bool> GetAttackCondition(this IEntity obj) => obj.GetValue<IFunction<bool>>(AttackCondition);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetFireCondition(this IEntity obj, out IFunction<bool> value) => obj.TryGetValue(FireCondition, out value);
+		public static bool TryGetAttackCondition(this IEntity obj, out IFunction<bool> value) => obj.TryGetValue(AttackCondition, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddFireCondition(this IEntity obj, IFunction<bool> value) => obj.AddValue(FireCondition, value);
+		public static bool AddAttackCondition(this IEntity obj, IFunction<bool> value) => obj.AddValue(AttackCondition, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasFireCondition(this IEntity obj) => obj.HasValue(FireCondition);
+		public static bool HasAttackCondition(this IEntity obj) => obj.HasValue(AttackCondition);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelFireCondition(this IEntity obj) => obj.DelValue(FireCondition);
+		public static bool DelAttackCondition(this IEntity obj) => obj.DelValue(AttackCondition);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetFireCondition(this IEntity obj, IFunction<bool> value) => obj.SetValue(FireCondition, value);
+		public static void SetAttackCondition(this IEntity obj, IFunction<bool> value) => obj.SetValue(AttackCondition, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IEvent GetAttackingEvent(this IEntity obj) => obj.GetValue<IEvent>(AttackingEvent);

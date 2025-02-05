@@ -13,6 +13,7 @@ namespace Game.Gameplay
         [SerializeField] private string _movingKey = "IsMoving";
         [SerializeField] private string _fireKey = "Attack";
         [SerializeField] private string _damageKey = "TakeDamage";
+        [SerializeField] private string _deathKey = "Death";
         
         public override void Install(IEntity entity)
         {
@@ -24,6 +25,7 @@ namespace Game.Gameplay
             entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
             entity.AddBehaviour(new FireAnimBehaviour(_fireKey));
             entity.AddBehaviour(new TakeDamageAnimBehaviour(_damageKey));
+            entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
             
             //Actions:
             entity.AddFireAction(new CharacterFireAction(entity));

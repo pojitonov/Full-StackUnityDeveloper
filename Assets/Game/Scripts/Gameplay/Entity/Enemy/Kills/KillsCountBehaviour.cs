@@ -1,17 +1,16 @@
 using Atomic.Elements;
 using Atomic.Entities;
-using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class BodyFallDisableAnimationBehaviour : IEntityInit, IEntityDispose
+    public class KillsCountBehaviour : IEntityInit, IEntityDispose
     {
-        private IEntity _entity;
+        private IGameContext _gameContext;
         private IReactive _deathEvent;
 
         public void Init(in IEntity entity)
         {
-            _entity = entity;
+            _gameContext = GameContext.Instance;
             _deathEvent = entity.GetDeathEvent();
             _deathEvent.Subscribe(OnDeathHappens);
         }
@@ -23,9 +22,7 @@ namespace Game.Gameplay
 
         private void OnDeathHappens()
         {
-            _entity.DelBehaviour<TakeDamageAnimBehaviour>();
-            _entity.DelBehaviour<AttackAnimBehaviour>();
-            _entity.GetGameObject().GetComponent<Rigidbody>().isKinematic = true;
+            _gameContext.GetKills().Value++;
         }
     }
 }
