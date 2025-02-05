@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class BodyFallDisableRBBehaviour : IEntityInit, IEntityDispose
+    public class BodyFallDisableAnimationBehaviour : IEntityInit, IEntityDispose
     {
         private IEntity _entity;
         private IReactive _deathEvent;
@@ -24,6 +24,7 @@ namespace Game.Gameplay
         private void OnDeathHappens()
         {
             _entity.DelBehaviour<TakeDamageAnimBehaviour>();
+            _entity.DelBehaviour<AttackAnimBehaviour>();
             _entity.GetGameObject().GetComponent<Rigidbody>().isKinematic = true;
         }
     }

@@ -10,8 +10,10 @@ namespace Game.Gameplay
         [SerializeField] private GameObject _gameObject;
         [SerializeField] private Transform _transform;
         [SerializeField] private Health _health;
-        [SerializeField] private float _moveSpeed = 3;
-        [SerializeField] private float _angularSpeed = 3;
+        [SerializeField] private float _moveSpeed = 3f;
+        [SerializeField] private float _angularSpeed = 3f;
+        [SerializeField] private float _attackRange = 1f;
+        [SerializeField] private float _attackInterval = 0.1f;
         
         public override void Install(IEntity entity)
         {
@@ -22,28 +24,31 @@ namespace Game.Gameplay
             entity.AddGameObject(_gameObject);
             entity.AddTransform(_transform);
             entity.AddHealth(_health);
-            entity.AddChasing(false);
+            entity.AddChasing(new BaseVariable<bool>(false));
+            // entity.AddAttacking(new ReactiveBool(false));
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddDamageableTag();
             entity.AddEnemyTag();
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
-            entity.AddTarget(new ReactiveVariable<IEntity>(gameContext.GetCharacter()));
+            entity.AddTarget(gameContext.GetCharacter());
 
             //Behaviours:
             entity.AddBehaviour<DeathBehaviour>();
-            entity.AddBehaviour<EnemyRotateBehaviour>();
             entity.AddBehaviour<EnemyMoveTowardsBehaviour>();
-            entity.AddBehaviour<BodyFallDisableRBBehaviour>();
+            entity.AddBehaviour<EnemyRotateBehaviour>();
+            entity.AddBehaviour(new AttackBehaviour(_attackRange, _attackInterval));
             entity.AddBehaviour<CountKillsBehaviour>();
+            entity.AddBehaviour<BodyFallDisableAnimationBehaviour>();
             
             //Conditions:
-            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && entity.GetChasing()));
-            entity.AddRotateCondition(new AndExpression(() => entity.IsAlive() && entity.GetChasing()));
+            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && entity.GetChasing().Value));
+            entity.AddRotateCondition(new AndExpression(() => entity.IsAlive() && entity.GetChasing().Value));
             
             //Events:
             entity.AddTakeDamageEvent(new BaseEvent<int>());
             entity.AddDeathEvent(new BaseEvent());
+            entity.AddAttackingEvent(new BaseEvent());
         }
     }
 }

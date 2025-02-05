@@ -30,15 +30,16 @@ namespace Game.Gameplay
 		public const int MoveSpeed = 526065662; // IValue<float>
 		public const int MoveCondition = 1466174948; // IExpression<bool>
 		public const int MoveDirection = -721923052; // IReactiveVariable<Vector3>
-		public const int Chasing = -1101124001; // bool
+		public const int Chasing = -1101124001; // IVariable<bool>
 		public const int ChasingCondition = 756683980; // IExpression<bool>
 		public const int AngularSpeed = -1089183267; // IValue<float>
 		public const int RotateCondition = 1109699557; // IExpression<bool>
 		public const int Weapon = 1855955664; // IWeaponEntity
-		public const int Target = 1103309514; // IReactiveVariable<IEntity>
+		public const int Target = 1103309514; // IEntity
 		public const int FireEvent = -1683597082; // IEvent
 		public const int FireAction = 1186461126; // IAction
 		public const int FireCondition = -280402907; // IFunction<bool>
+		public const int AttackingEvent = 404835167; // IEvent
 		public const int InteractAction = -1026843572; // IAction<IEntity>
 		public const int Collision = -650338019; // CollisionEventReceiver
 		public const int Trigger = -707381567; // TriggerEventReceiver
@@ -276,13 +277,13 @@ namespace Game.Gameplay
 		public static void SetMoveDirection(this IEntity obj, IReactiveVariable<Vector3> value) => obj.SetValue(MoveDirection, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool GetChasing(this IEntity obj) => obj.GetValue<bool>(Chasing);
+		public static IVariable<bool> GetChasing(this IEntity obj) => obj.GetValue<IVariable<bool>>(Chasing);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetChasing(this IEntity obj, out bool value) => obj.TryGetValue(Chasing, out value);
+		public static bool TryGetChasing(this IEntity obj, out IVariable<bool> value) => obj.TryGetValue(Chasing, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddChasing(this IEntity obj, bool value) => obj.AddValue(Chasing, value);
+		public static bool AddChasing(this IEntity obj, IVariable<bool> value) => obj.AddValue(Chasing, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasChasing(this IEntity obj) => obj.HasValue(Chasing);
@@ -291,7 +292,7 @@ namespace Game.Gameplay
 		public static bool DelChasing(this IEntity obj) => obj.DelValue(Chasing);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetChasing(this IEntity obj, bool value) => obj.SetValue(Chasing, value);
+		public static void SetChasing(this IEntity obj, IVariable<bool> value) => obj.SetValue(Chasing, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IExpression<bool> GetChasingCondition(this IEntity obj) => obj.GetValue<IExpression<bool>>(ChasingCondition);
@@ -366,13 +367,13 @@ namespace Game.Gameplay
 		public static void SetWeapon(this IEntity obj, IWeaponEntity value) => obj.SetValue(Weapon, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IReactiveVariable<IEntity> GetTarget(this IEntity obj) => obj.GetValue<IReactiveVariable<IEntity>>(Target);
+		public static IEntity GetTarget(this IEntity obj) => obj.GetValue<IEntity>(Target);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetTarget(this IEntity obj, out IReactiveVariable<IEntity> value) => obj.TryGetValue(Target, out value);
+		public static bool TryGetTarget(this IEntity obj, out IEntity value) => obj.TryGetValue(Target, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddTarget(this IEntity obj, IReactiveVariable<IEntity> value) => obj.AddValue(Target, value);
+		public static bool AddTarget(this IEntity obj, IEntity value) => obj.AddValue(Target, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasTarget(this IEntity obj) => obj.HasValue(Target);
@@ -381,7 +382,7 @@ namespace Game.Gameplay
 		public static bool DelTarget(this IEntity obj) => obj.DelValue(Target);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetTarget(this IEntity obj, IReactiveVariable<IEntity> value) => obj.SetValue(Target, value);
+		public static void SetTarget(this IEntity obj, IEntity value) => obj.SetValue(Target, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IEvent GetFireEvent(this IEntity obj) => obj.GetValue<IEvent>(FireEvent);
@@ -436,6 +437,24 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetFireCondition(this IEntity obj, IFunction<bool> value) => obj.SetValue(FireCondition, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IEvent GetAttackingEvent(this IEntity obj) => obj.GetValue<IEvent>(AttackingEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetAttackingEvent(this IEntity obj, out IEvent value) => obj.TryGetValue(AttackingEvent, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddAttackingEvent(this IEntity obj, IEvent value) => obj.AddValue(AttackingEvent, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasAttackingEvent(this IEntity obj) => obj.HasValue(AttackingEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelAttackingEvent(this IEntity obj) => obj.DelValue(AttackingEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetAttackingEvent(this IEntity obj, IEvent value) => obj.SetValue(AttackingEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IAction<IEntity> GetInteractAction(this IEntity obj) => obj.GetValue<IAction<IEntity>>(InteractAction);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class AidKitInstaller : SceneEntityInstaller
+    public class AidInstaller : SceneEntityInstaller
     {
         [SerializeField] private int _healthAmount = 10;
 

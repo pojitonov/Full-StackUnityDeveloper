@@ -2,7 +2,7 @@ using Atomic.Entities;
 
 namespace Game.Gameplay
 {
-    public sealed class EnemyMoveTowardsBehaviour : IEntityInit, IEntityFixedUpdate
+    public sealed class EnemyMoveTowardsBehaviour : IEntityInit, IEntityUpdate
     {
         private IGameContext _gameContext;
 
@@ -11,9 +11,10 @@ namespace Game.Gameplay
             _gameContext = GameContext.Instance;
         }
 
-        public void OnFixedUpdate(in IEntity entity, in float deltaTime)
+        public void OnUpdate(in IEntity entity, in float deltaTime)
         {
             var targetPosition = _gameContext.GetCharacter().GetTransform().position;
+            
             entity.MoveTowardsPosition(targetPosition, deltaTime);
         }
     }

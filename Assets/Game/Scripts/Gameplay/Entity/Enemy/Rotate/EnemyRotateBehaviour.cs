@@ -1,13 +1,12 @@
 using Atomic.Entities;
-using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class EnemyRotateBehaviour : IEntityFixedUpdate
+    public class EnemyRotateBehaviour : IEntityUpdate
     {
-        public void OnFixedUpdate(in IEntity entity, in float deltaTime)
+        public void OnUpdate(in IEntity entity, in float deltaTime)
         {
-            IEntity target = entity.GetTarget().Value;
+            IEntity target = entity.GetTarget();
             if (target == null)
                 return;
             

@@ -1,4 +1,3 @@
-using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ namespace Game.Gameplay
         {
             foreach (var enemy in _enemies)
             {
-                enemy.SetChasing(true);
+                enemy.GetChasing().Value = true;
             }
         }
 
@@ -22,7 +21,7 @@ namespace Game.Gameplay
         {
             foreach (var enemy in _enemies)
             {
-                enemy.SetChasing(false);
+                enemy.GetChasing().Value = false;
             }
         }
     }

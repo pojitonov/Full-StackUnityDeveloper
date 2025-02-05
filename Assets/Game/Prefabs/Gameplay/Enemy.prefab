@@ -1762,8 +1762,10 @@ MonoBehaviour:
   _health:
     current: 3
     max: 3
-  _moveSpeed: 0.5
+  _moveSpeed: 1
   _angularSpeed: 3
+  _attackWithinDistance: 1
+  _attackInterval: 3
 --- !u!114 &6462368927767535755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1780,6 +1782,7 @@ MonoBehaviour:
   _movingKey: IsMoving
   _damageKey: TakeDamage
   _deathKey: Death
+  _attackKey: Attack
 --- !u!1 &6519369982854541961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,6 +2100,7 @@ MonoBehaviour:
   _movingKey: IsMoving
   _damageKey: TakeDamage
   _deathKey: TakeDamage
+  _attackKey: Attack
 --- !u!1 &7369059967829061964
 GameObject:
   m_ObjectHideFlags: 0

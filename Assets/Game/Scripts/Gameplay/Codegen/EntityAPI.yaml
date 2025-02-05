@@ -22,7 +22,6 @@ values:
 - Transform: Transform
 
 # Life
-#- Health: IReactiveVariable<int>
 - Health: Health
 - Damage: IValue<int>
 - TakeDamageEvent: IEvent<int>
@@ -34,7 +33,7 @@ values:
 - MoveSpeed: IValue<float>
 - MoveCondition: IExpression<bool>
 - MoveDirection: IReactiveVariable<Vector3>
-- Chasing : bool
+- Chasing : IVariable<bool>
 - ChasingCondition: IExpression<bool>
 
 # Rotation
@@ -43,10 +42,11 @@ values:
 
 # Combat
 - Weapon: IWeaponEntity
-- Target: IReactiveVariable<IEntity>
+- Target: IEntity
 - FireEvent: IEvent
 - FireAction: IAction
 - FireCondition: IFunction<bool>
+- AttackingEvent: IEvent
   
 # Interact
 - InteractAction: IAction<IEntity>
