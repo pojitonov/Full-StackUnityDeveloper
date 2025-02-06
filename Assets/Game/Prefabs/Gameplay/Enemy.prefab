@@ -1758,13 +1758,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameObject: {fileID: 6355162821186015845}
-  _transform: {fileID: 4361596233082998913}
+  _center: {fileID: 4361596233082998913}
   _health:
     current: 3
     max: 3
   _moveSpeed: 0.75
   _angularSpeed: 3
-  _attackRange: 1
+  _attackRadius: 1
   _attackInterval: 1
   _damage: 10
 --- !u!114 &6462368927767535755

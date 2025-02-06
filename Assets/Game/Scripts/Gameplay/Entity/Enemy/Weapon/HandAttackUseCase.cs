@@ -6,7 +6,7 @@ namespace Game.Gameplay
 {
     public static class HandAttackUseCase
     {
-        public static void Attack(in Vector3 position, in int damage, in float radius, in LayerMask targetLayerMask)
+        public static void Attack(in Vector3 position, in float radius, in int damage, in LayerMask targetLayerMask)
         {
             Collider[] hitColliders = Physics.OverlapSphere(position, radius, targetLayerMask);
 

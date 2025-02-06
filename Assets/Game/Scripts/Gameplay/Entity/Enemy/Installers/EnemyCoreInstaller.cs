@@ -8,11 +8,11 @@ namespace Game.Gameplay
     public sealed class EnemyCoreInstaller : SceneEntityInstaller
     {
         [SerializeField] private GameObject _gameObject;
-        [SerializeField] private Transform _transform;
+        [SerializeField] private Transform _center;
         [SerializeField] private Health _health;
         [SerializeField] private float _moveSpeed = 3f;
         [SerializeField] private float _angularSpeed = 3f;
-        [SerializeField] private float _attackRange = 1f;
+        [SerializeField] private float _attackRadius = 1f;
         [SerializeField] private float _attackInterval = 0.1f;
         [SerializeField] private int _damage = 10;
 
@@ -23,7 +23,7 @@ namespace Game.Gameplay
 
             //Data:
             entity.AddGameObject(_gameObject);
-            entity.AddTransform(_transform);
+            entity.AddTransform(_center);
             entity.AddHealth(_health);
             entity.AddChasing(new BaseVariable<bool>(false));
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
@@ -37,10 +37,10 @@ namespace Game.Gameplay
             entity.AddBehaviour<DeathBehaviour>();
             entity.AddBehaviour<EnemyMoveTowardsBehaviour>();
             entity.AddBehaviour<EnemyRotateBehaviour>();
-            entity.AddBehaviour(new AttackBehaviour(_attackRange, _attackInterval));
+            entity.AddBehaviour(new AttackBehaviour(_attackRadius, _attackInterval));
+            entity.AddBehaviour(new HandAttackBehaviour(_attackRadius, _damage, _center));
             entity.AddBehaviour<KillsCountBehaviour>();
             entity.AddBehaviour<BodyFallDisableBehaviour>();
-            entity.AddBehaviour(new HandAttackBehaviour(_attackRange, _damage));
 
             //Conditions:
             entity.AddMoveCondition(new AndExpression(() =>

@@ -3,27 +3,25 @@ using Atomic.Entities;
 using Modules.Gameplay;
 using UnityEngine;
 
-// TODO Fix the MULTIPLIER thing
 namespace Game.Gameplay
 {
-    public class HandAttackBehaviour : IEntityInit, IEntityDispose
+    public class HandAttackBehaviour : IEntityInit, IEntityDispose, IEntityGizmos
     {
         private IEvent _isAttacking;
-        private Vector3 _position;
+        private readonly Transform _center;
         private readonly int _damage;
-        private readonly float _attackRange;
+        private readonly float _attackRadius;
         private static readonly LayerMask LAYER_MASK = LayerMask.GetMask("Character");
-        private const float MULTIPLIER = 10;
 
-        public HandAttackBehaviour(float attackRange, int damage)
+        public HandAttackBehaviour(float attackRadius, int damage, Transform center)
         {
-            _attackRange = attackRange;
+            _attackRadius = attackRadius;
             _damage = damage;
+            _center = center;
         }
 
         public void Init(in IEntity entity)
         {
-            _position = entity.GetTransform().position;
             _isAttacking = entity.GetAttackingEvent();
             _isAttacking.Subscribe(OnAttack);
         }
@@ -35,7 +33,13 @@ namespace Game.Gameplay
 
         private void OnAttack()
         {
-            HandAttackUseCase.Attack(_position, _damage, _attackRange * MULTIPLIER, LAYER_MASK);
+            HandAttackUseCase.Attack(_center.position, _attackRadius, _damage, LAYER_MASK);
+        }
+
+        public void OnGizmosDraw(in IEntity entity)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(_center.position, _attackRadius);
         }
     }
 }

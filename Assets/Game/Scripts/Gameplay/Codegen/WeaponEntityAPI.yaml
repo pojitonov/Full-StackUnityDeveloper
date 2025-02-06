@@ -11,6 +11,6 @@ imports:
 - Modules.Gameplay
 
 values:
+- Transform: Transform
 - BulletPrefab: SceneEntity
-- FirePoint: Transform
 - Ammo: Ammo

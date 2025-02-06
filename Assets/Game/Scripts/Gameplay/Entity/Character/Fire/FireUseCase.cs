@@ -6,7 +6,7 @@ namespace Game.Gameplay
     {
         public static IEntity FireBullet(this IWeaponEntity entity, in IGameContext context)
         {
-            var firePoint = entity.GetFirePoint();
+            var firePoint = entity.GetTransform();
             var firePointPosition = firePoint.position;
             var firePointRotation = firePoint.rotation;
             return SpawnBulletUseCase.SpawnBullet(context, firePointPosition, firePointRotation);

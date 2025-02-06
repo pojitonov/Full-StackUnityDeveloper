@@ -24,8 +24,8 @@ namespace Game.Gameplay
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
-            entity.AddWeapon(_weapon);
             entity.AddTrigger(_trigger);
+            entity.AddWeapon(_weapon);
             entity.AddDamageableTag();
             
             //Conditions:

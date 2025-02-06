@@ -18,7 +18,7 @@ namespace Game.Gameplay
             
             //Data:
             entity.AddBulletPrefab(_bulletPrefab);
-            entity.AddFirePoint(_firePoint);
+            entity.AddTransform(_firePoint);
             entity.AddAmmo(_ammo);
             entity.AddFireEvent(new BaseEvent());
             

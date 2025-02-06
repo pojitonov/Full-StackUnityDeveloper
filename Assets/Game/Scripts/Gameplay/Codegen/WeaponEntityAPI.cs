@@ -14,12 +14,30 @@ namespace Game.Gameplay
 
 
 		///Values
+		public const int Transform = -180157682; // Transform
 		public const int BulletPrefab = -918778767; // SceneEntity
-		public const int FirePoint = 397255013; // Transform
 		public const int Ammo = 1337839892; // Ammo
 
 
 		///Value Extensions
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Transform GetTransform(this IWeaponEntity obj) => obj.GetValue<Transform>(Transform);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetTransform(this IWeaponEntity obj, out Transform value) => obj.TryGetValue(Transform, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddTransform(this IWeaponEntity obj, Transform value) => obj.AddValue(Transform, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasTransform(this IWeaponEntity obj) => obj.HasValue(Transform);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelTransform(this IWeaponEntity obj) => obj.DelValue(Transform);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetTransform(this IWeaponEntity obj, Transform value) => obj.SetValue(Transform, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SceneEntity GetBulletPrefab(this IWeaponEntity obj) => obj.GetValue<SceneEntity>(BulletPrefab);
@@ -38,24 +56,6 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetBulletPrefab(this IWeaponEntity obj, SceneEntity value) => obj.SetValue(BulletPrefab, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Transform GetFirePoint(this IWeaponEntity obj) => obj.GetValue<Transform>(FirePoint);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetFirePoint(this IWeaponEntity obj, out Transform value) => obj.TryGetValue(FirePoint, out value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddFirePoint(this IWeaponEntity obj, Transform value) => obj.AddValue(FirePoint, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasFirePoint(this IWeaponEntity obj) => obj.HasValue(FirePoint);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelFirePoint(this IWeaponEntity obj) => obj.DelValue(FirePoint);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetFirePoint(this IWeaponEntity obj, Transform value) => obj.SetValue(FirePoint, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Ammo GetAmmo(this IWeaponEntity obj) => obj.GetValue<Ammo>(Ammo);

@@ -7,11 +7,11 @@ namespace Game.Gameplay
     {
         private IEntity _target;
         private readonly Cooldown _cooldown;
-        private readonly float _attackRange;
+        private readonly float _attackRadius;
 
-        public AttackBehaviour(float attackRange, float attackInterval)
+        public AttackBehaviour(float attackRadius, float attackInterval)
         {
-            _attackRange = attackRange ;
+            _attackRadius = attackRadius ;
             _cooldown = new Cooldown(attackInterval);
         }
 
@@ -23,7 +23,7 @@ namespace Game.Gameplay
 
         public void OnUpdate(in IEntity entity, in float deltaTime)
         {
-            entity.Attack(_target, _cooldown, _attackRange, deltaTime);
+            entity.Attack(_target, _cooldown, _attackRadius, deltaTime);
         }
     }
 }
