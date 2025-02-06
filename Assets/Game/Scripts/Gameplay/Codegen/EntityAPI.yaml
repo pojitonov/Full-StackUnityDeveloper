@@ -57,3 +57,7 @@ values:
 
 # Animation
 - Animator: Animator
+- AnimationEventReceiver: AnimationEventReceiver
+  
+# Other
+- AudioSource: AudioSource

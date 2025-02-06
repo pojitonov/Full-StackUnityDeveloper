@@ -44,6 +44,8 @@ namespace Game.Gameplay
 		public const int Collision = -650338019; // CollisionEventReceiver
 		public const int Trigger = -707381567; // TriggerEventReceiver
 		public const int Animator = -1714818978; // Animator
+		public const int AnimationEventReceiver = 1837262450; // AnimationEventReceiver
+		public const int AudioSource = 907064781; // AudioSource
 
 
 		///Tag Extensions
@@ -527,5 +529,41 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetAnimator(this IEntity obj, Animator value) => obj.SetValue(Animator, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static AnimationEventReceiver GetAnimationEventReceiver(this IEntity obj) => obj.GetValue<AnimationEventReceiver>(AnimationEventReceiver);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetAnimationEventReceiver(this IEntity obj, out AnimationEventReceiver value) => obj.TryGetValue(AnimationEventReceiver, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddAnimationEventReceiver(this IEntity obj, AnimationEventReceiver value) => obj.AddValue(AnimationEventReceiver, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasAnimationEventReceiver(this IEntity obj) => obj.HasValue(AnimationEventReceiver);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelAnimationEventReceiver(this IEntity obj) => obj.DelValue(AnimationEventReceiver);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetAnimationEventReceiver(this IEntity obj, AnimationEventReceiver value) => obj.SetValue(AnimationEventReceiver, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static AudioSource GetAudioSource(this IEntity obj) => obj.GetValue<AudioSource>(AudioSource);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetAudioSource(this IEntity obj, out AudioSource value) => obj.TryGetValue(AudioSource, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddAudioSource(this IEntity obj, AudioSource value) => obj.AddValue(AudioSource, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasAudioSource(this IEntity obj) => obj.HasValue(AudioSource);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelAudioSource(this IEntity obj) => obj.DelValue(AudioSource);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetAudioSource(this IEntity obj, AudioSource value) => obj.SetValue(AudioSource, value);
     }
 }

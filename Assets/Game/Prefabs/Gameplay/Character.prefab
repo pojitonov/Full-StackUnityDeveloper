@@ -1396,7 +1396,6 @@ GameObject:
   - component: {fileID: 7921063292541329948}
   - component: {fileID: 5824717732116105798}
   - component: {fileID: 3722878417210388274}
-  - component: {fileID: 912348638178710385}
   m_Layer: 9
   m_Name: Character
   m_TagString: Player
@@ -1470,6 +1469,8 @@ MonoBehaviour:
   installers:
   - {fileID: 5824717732116105798}
   - {fileID: 3722878417210388274}
+  - {fileID: 1040517790327775771}
+  - {fileID: 4520065539839169558}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
 --- !u!114 &4557921822575317893
@@ -1537,23 +1538,7 @@ MonoBehaviour:
   _fireKey: Attack
   _damageKey: TakeDamage
   _deathKey: Death
---- !u!114 &912348638178710385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3578180279390331970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e97f8178934f4d14984f6d6c3b2ec91d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bulletBlood: {fileID: 0}
-  _meleeBlood: {fileID: 0}
-  _deadBlood: {fileID: 0}
-  _groundPoint: {fileID: 0}
-  _rootTransform: {fileID: 0}
+  _animationReceiver: {fileID: 2682483842004838925}
 --- !u!1 &3818262767236408140
 GameObject:
   m_ObjectHideFlags: 0

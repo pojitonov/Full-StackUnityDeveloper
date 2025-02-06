@@ -1702,6 +1702,8 @@ MonoBehaviour:
   installers:
   - {fileID: 6234676926731276874}
   - {fileID: 6462368927767535755}
+  - {fileID: 647656227805482429}
+  - {fileID: 4518519460149995683}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
 --- !u!114 &7744097162708376624
@@ -1784,6 +1786,7 @@ MonoBehaviour:
   _attackKey: Attack
   _damageKey: TakeDamage
   _deathKey: Death
+  _animationReceiver: {fileID: 2316574847488464730}
 --- !u!1 &6519369982854541961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,6 +2105,7 @@ MonoBehaviour:
   _attackKey: Attack
   _damageKey: TakeDamage
   _deathKey: TakeDamage
+  _animationReceiver: {fileID: 0}
 --- !u!1 &7369059967829061964
 GameObject:
   m_ObjectHideFlags: 0
