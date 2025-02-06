@@ -19,7 +19,7 @@ namespace Game.Gameplay
             {
                 _entity.FireBullet(_context);
                 _entity.GetAmmo().SpendOne();
-                _entity.GetFireEvent().Invoke();
+                _entity.GetAttackEvent().Invoke();
             }
         }
     }

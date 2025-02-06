@@ -16,8 +16,8 @@ namespace Game.Gameplay
         {
             if (_entity.GetAttackCondition().Invoke())
             {
-                _entity.GetWeapon().GetFireAction().Invoke();
-                _entity.GetFireEvent().Invoke();
+                _entity.GetWeapon().GetAttackAction().Invoke();
+                _entity.GetAttackEvent().Invoke();
             }
         }
     }

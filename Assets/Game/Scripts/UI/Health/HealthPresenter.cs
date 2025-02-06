@@ -9,6 +9,7 @@ namespace Game.UI
     public class HealthPresenter : Presenter
     {
         [SerializeField] private StatView _view;
+        [SerializeField] private HealthScreen _healthScreen;
 
         private IGameContext _gameContext;
         private IEntity _character;
@@ -23,6 +24,7 @@ namespace Game.UI
             _health = _character.GetHealth();
             
             UpdateView(_health.GetCurrent());
+            UpdateHealthScreen(_health.GetCurrent());
         }
 
         protected override void OnShow()
@@ -38,12 +40,20 @@ namespace Game.UI
         private void OnValueChanged(int value)
         {
             UpdateView(value);
+            UpdateHealthScreen(value);
         }
 
         private void UpdateView(int value)
         {
             _view.SetText(value.ToString("D2"));
             _view.SetProgress(NormalizedValue);
+        }
+        
+        private void UpdateHealthScreen(int currentHealth)
+        {
+            float percent = NormalizedValue;
+            _healthScreen.ChangePercent(percent);
+            _healthScreen.TakeDamage(_health.GetMax() - currentHealth);
         }
     }
 }

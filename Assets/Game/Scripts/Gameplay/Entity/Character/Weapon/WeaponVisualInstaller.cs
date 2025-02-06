@@ -11,7 +11,7 @@ namespace Game.Gameplay
 
         protected override void Install(IWeaponEntity entity)
         {
-            entity.GetFireEvent().Subscribe(() =>
+            entity.GetAttackEvent().Subscribe(() =>
                 {
                     _fireParticle.Play();
                     _audioSource.Play();

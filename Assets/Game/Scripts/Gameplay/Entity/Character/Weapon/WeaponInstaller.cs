@@ -20,13 +20,13 @@ namespace Game.Gameplay
             entity.AddBulletPrefab(_bulletPrefab);
             entity.AddTransform(_firePoint);
             entity.AddAmmo(_ammo);
-            entity.AddFireEvent(new BaseEvent());
+            entity.AddAttackEvent(new BaseEvent());
             
             //Conditions:
             entity.AddAttackCondition(new BaseFunction<bool>(() => _ammo.Exists()));
             
             //Actions:
-            entity.AddFireAction(new WeaponFireAction(entity, gameContext));
+            entity.AddAttackAction(new WeaponFireAction(entity, gameContext));
         }
     }
 }

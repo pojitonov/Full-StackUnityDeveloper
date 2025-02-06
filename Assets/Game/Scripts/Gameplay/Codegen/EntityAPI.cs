@@ -35,8 +35,9 @@ namespace Game.Gameplay
 		public const int RotateCondition = 1109699557; // IExpression<bool>
 		public const int Weapon = 1855955664; // IWeaponEntity
 		public const int Target = 1103309514; // IEntity
-		public const int FireEvent = -1683597082; // IEvent
-		public const int FireAction = 1186461126; // IAction
+		public const int FireDuration = 1901187187; // IValue<float>
+		public const int AttackEvent = -691201150; // IEvent
+		public const int AttackAction = 203766724; // IAction
 		public const int AttackCondition = -1481262935; // IFunction<bool>
 		public const int AttackingEvent = 404835167; // IEvent
 		public const int InteractAction = -1026843572; // IAction<IEntity>
@@ -366,40 +367,58 @@ namespace Game.Gameplay
 		public static void SetTarget(this IEntity obj, IEntity value) => obj.SetValue(Target, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IEvent GetFireEvent(this IEntity obj) => obj.GetValue<IEvent>(FireEvent);
+		public static IValue<float> GetFireDuration(this IEntity obj) => obj.GetValue<IValue<float>>(FireDuration);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetFireEvent(this IEntity obj, out IEvent value) => obj.TryGetValue(FireEvent, out value);
+		public static bool TryGetFireDuration(this IEntity obj, out IValue<float> value) => obj.TryGetValue(FireDuration, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddFireEvent(this IEntity obj, IEvent value) => obj.AddValue(FireEvent, value);
+		public static bool AddFireDuration(this IEntity obj, IValue<float> value) => obj.AddValue(FireDuration, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasFireEvent(this IEntity obj) => obj.HasValue(FireEvent);
+		public static bool HasFireDuration(this IEntity obj) => obj.HasValue(FireDuration);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelFireEvent(this IEntity obj) => obj.DelValue(FireEvent);
+		public static bool DelFireDuration(this IEntity obj) => obj.DelValue(FireDuration);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetFireEvent(this IEntity obj, IEvent value) => obj.SetValue(FireEvent, value);
+		public static void SetFireDuration(this IEntity obj, IValue<float> value) => obj.SetValue(FireDuration, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IAction GetFireAction(this IEntity obj) => obj.GetValue<IAction>(FireAction);
+		public static IEvent GetAttackEvent(this IEntity obj) => obj.GetValue<IEvent>(AttackEvent);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetFireAction(this IEntity obj, out IAction value) => obj.TryGetValue(FireAction, out value);
+		public static bool TryGetAttackEvent(this IEntity obj, out IEvent value) => obj.TryGetValue(AttackEvent, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddFireAction(this IEntity obj, IAction value) => obj.AddValue(FireAction, value);
+		public static bool AddAttackEvent(this IEntity obj, IEvent value) => obj.AddValue(AttackEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasFireAction(this IEntity obj) => obj.HasValue(FireAction);
+		public static bool HasAttackEvent(this IEntity obj) => obj.HasValue(AttackEvent);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelFireAction(this IEntity obj) => obj.DelValue(FireAction);
+		public static bool DelAttackEvent(this IEntity obj) => obj.DelValue(AttackEvent);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetFireAction(this IEntity obj, IAction value) => obj.SetValue(FireAction, value);
+		public static void SetAttackEvent(this IEntity obj, IEvent value) => obj.SetValue(AttackEvent, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IAction GetAttackAction(this IEntity obj) => obj.GetValue<IAction>(AttackAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetAttackAction(this IEntity obj, out IAction value) => obj.TryGetValue(AttackAction, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddAttackAction(this IEntity obj, IAction value) => obj.AddValue(AttackAction, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasAttackAction(this IEntity obj) => obj.HasValue(AttackAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelAttackAction(this IEntity obj) => obj.DelValue(AttackAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetAttackAction(this IEntity obj, IAction value) => obj.SetValue(AttackAction, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IFunction<bool> GetAttackCondition(this IEntity obj) => obj.GetValue<IFunction<bool>>(AttackCondition);

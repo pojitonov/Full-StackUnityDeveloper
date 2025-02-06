@@ -1,24 +1,26 @@
-using System;
 using Atomic.Entities;
 using Modules.Common;
+using Modules.Gameplay;
 using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class CharacterMoveController : MonoBehaviour
+    public class CharacterAttackController : MonoBehaviour
     {
         [SerializeField] private SceneEntity _character;
         [SerializeField] private Joystick _joystick;
 
+        private Cooldown _cooldown;
+
         private void Awake()
         {
-            InputUseCase.SetMoveJoystick(_joystick);
+            InputUseCase.SetAttackJoystick(_joystick);
+            _cooldown = new Cooldown(_character.GetFireDuration().Value);
         }
-        
+
         private void Update()
         {
-            var direction = InputUseCase.GetMoveDirection();
-            _character.GetMoveDirection().Value = direction;
+            InputUseCase.Attack(_character, _cooldown);
         }
     }
 }

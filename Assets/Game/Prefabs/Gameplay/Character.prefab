@@ -1516,7 +1516,8 @@ MonoBehaviour:
     current: 30
     max: 50
   _moveSpeed: 5
-  _angularSpeed: 12
+  _angularSpeed: 10
+  _fireDuration: 1
   _weapon: {fileID: 1960874445675532622}
   _trigger: {fileID: 7921063292541329948}
 --- !u!114 &3722878417210388274

@@ -19,7 +19,7 @@ namespace Game.Gameplay
         {
             //Data:
             entity.AddAnimator(_animator);
-            entity.AddFireEvent(new BaseEvent());
+            entity.AddAttackEvent(new BaseEvent());
             
             //Behaviours:
             entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
@@ -28,7 +28,7 @@ namespace Game.Gameplay
             entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
             
             //Actions:
-            entity.AddFireAction(new CharacterFireAction(entity));
+            entity.AddAttackAction(new CharacterFireAction(entity));
         }
     }
 }

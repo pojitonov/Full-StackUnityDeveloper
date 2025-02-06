@@ -39,11 +39,12 @@ values:
 - AngularSpeed: IValue<float>
 - RotateCondition: IExpression<bool>
 
-# Combat
+# Attack
 - Weapon: IWeaponEntity
 - Target: IEntity
-- FireEvent: IEvent
-- FireAction: IAction
+- FireDuration: IValue<float>
+- AttackEvent: IEvent
+- AttackAction: IAction
 - AttackCondition: IFunction<bool>
 - AttackingEvent: IEvent
   

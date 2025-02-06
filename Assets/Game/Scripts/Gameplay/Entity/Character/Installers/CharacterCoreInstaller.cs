@@ -12,6 +12,7 @@ namespace Game.Gameplay
         [SerializeField] private Health _health;
         [SerializeField] private float _moveSpeed = 5;
         [SerializeField] private float _angularSpeed = 3;
+        [SerializeField] private float _fireDuration = 1;
         [SerializeField] private WeaponEntity _weapon;
         [SerializeField] private TriggerEventReceiver _trigger;
 
@@ -24,6 +25,7 @@ namespace Game.Gameplay
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
+            entity.AddFireDuration(new Const<float>(_fireDuration));
             entity.AddTrigger(_trigger);
             entity.AddWeapon(_weapon);
             entity.AddDamageableTag();
