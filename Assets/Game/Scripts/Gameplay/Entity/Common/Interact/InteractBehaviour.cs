@@ -25,7 +25,7 @@ namespace Game.Gameplay
         {
             if (collider.TryGetComponent(out IEntity other))
             {
-                InteractUseCase.Interact(_entity, other);
+                _entity.Interact(other);
             }
         }
     }

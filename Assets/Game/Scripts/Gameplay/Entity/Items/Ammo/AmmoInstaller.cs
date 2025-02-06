@@ -7,6 +7,9 @@ namespace Game.Gameplay
     public class AmmoInstaller : SceneEntityInstaller
     {
         [SerializeField] private int _ammoAmount = 10;
+        [SerializeField] private ParticleSystem _vfx;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private GameObject _visual;
 
         public override void Install(IEntity entity)
         {
@@ -16,7 +19,12 @@ namespace Game.Gameplay
             //Action:
             entity.AddInteractAction(new BaseAction<IEntity>(character =>
             {
-                if (WeaponUseCase.AddAmmo(character, _ammoAmount)) gameObject.SetActive(false);
+                if (character.AddAmmo(_ammoAmount))
+                {
+                    _vfx.Play();
+                    _audioSource.Play();
+                    _visual.SetActive(false);
+                }
             }));
         }
     }

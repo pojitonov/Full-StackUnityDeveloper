@@ -201,10 +201,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 906204727706075558}
-  - component: {fileID: 393305246776948499}
   - component: {fileID: 3100126443347532207}
   - component: {fileID: 4785470457295603494}
-  - component: {fileID: 2923234445879364506}
+  - component: {fileID: 6291344173332137872}
   m_Layer: 11
   m_Name: HealthItem
   m_TagString: Untagged
@@ -230,21 +229,6 @@ Transform:
   - {fileID: 5262532739361100812}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &393305246776948499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5903764127141603557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e957f2852a774d8c81c2c6fda31fc6d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _vfx: {fileID: 3922024436423282089}
-  _visual: {fileID: 1816155109594164265}
-  _audioSource: {fileID: 2298006360191853931}
 --- !u!65 &3100126443347532207
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -282,10 +266,10 @@ MonoBehaviour:
   installInEditMode: 0
   disposeValues: 1
   installers:
-  - {fileID: 2923234445879364506}
+  - {fileID: 6291344173332137872}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
---- !u!114 &2923234445879364506
+--- !u!114 &6291344173332137872
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,6 +282,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthAmount: 10
+  _vfx: {fileID: 3922024436423282089}
+  _audioSource: {fileID: 2298006360191853931}
+  _visual: {fileID: 1816155109594164265}
 --- !u!1001 &7860753860947560585
 PrefabInstance:
   m_ObjectHideFlags: 0

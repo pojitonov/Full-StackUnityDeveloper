@@ -5,7 +5,7 @@ namespace Game.Gameplay
 {
     public static class InteractUseCase
     {
-        public static bool Interact(in IEntity source, in IEntity target)
+        public static bool Interact(this IEntity source, in IEntity target)
         {
             if(source == null) return false;
             if (target == null || !target.HasInteractableTag()) return false;
@@ -13,7 +13,7 @@ namespace Game.Gameplay
             return true;
         }
 
-        public static bool Interact(in IEntity source, in Collider collider)
+        public static bool Interact(this IEntity source, in Collider collider)
         {
             return collider != null && collider.TryGetComponent(out IEntity other) && Interact(source, other);
         }

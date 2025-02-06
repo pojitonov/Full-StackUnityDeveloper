@@ -5,18 +5,13 @@
 // {
 //     public sealed class ItemVisualInstaller : SceneEntityInstaller
 //     {
-//         [SerializeField]
-//         private ParticleSystem _vfx;
-//
-//         [SerializeField]
-//         private GameObject _visual;
-//
-//         [SerializeField]
-//         private AudioSource _audioSource;
+//         [SerializeField] private ParticleSystem _vfx;
+//         [SerializeField] private GameObject _visual;
+//         [SerializeField] private AudioSource _audioSource;
 //         
 //         public override void Install(IEntity entity)
 //         {
-//             //TODO
+//             entity.AddBehaviour(new InteractVisualBehaviour(_vfx, _audioSource, _visual));
 //         }
 //     }
 // }
