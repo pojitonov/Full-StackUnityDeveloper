@@ -15,7 +15,7 @@ namespace Game.Gameplay
         private void Awake()
         {
             InputUseCase.SetAttackJoystick(_joystick);
-            _cooldown = new Cooldown(_character.GetFireDuration().Value);
+            _cooldown = new Cooldown(_character.GetFireDelay().Value);
         }
 
         private void Update()

@@ -7,9 +7,9 @@ namespace Game.Gameplay
 {
     public class BulletInstaller : SceneEntityInstaller
     {
-        [SerializeField] private float _moveSpeed = 5;
+        [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private int _damage = 1;
-        [SerializeField] private float _lifetime;
+        [SerializeField] private float _lifetime = 1f;
         [SerializeField] private CollisionEventReceiver _collision;
         
         public override void Install(IEntity entity)

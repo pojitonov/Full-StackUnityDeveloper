@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+
 // ReSharper disable UnusedVariable
 
 namespace Atomic.Elements

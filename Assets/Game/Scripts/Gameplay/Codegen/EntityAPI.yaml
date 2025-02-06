@@ -42,7 +42,7 @@ values:
 # Attack
 - Weapon: IWeaponEntity
 - Target: IEntity
-- FireDuration: IValue<float>
+- FireDelay: IValue<float>
 - AttackEvent: IEvent
 - AttackAction: IAction
 - AttackCondition: IFunction<bool>

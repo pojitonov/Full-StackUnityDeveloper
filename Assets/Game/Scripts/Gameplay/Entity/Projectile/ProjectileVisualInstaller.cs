@@ -6,8 +6,7 @@ namespace Game.Gameplay
 {
     public sealed class ProjectileVisualInstaller : SceneEntityInstaller
     {
-        [SerializeField]
-        private TrailView _trailView;
+        [SerializeField] private TrailView _trailView;
         
         public override void Install(IEntity entity)
         {

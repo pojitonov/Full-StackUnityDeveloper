@@ -7,11 +7,10 @@ namespace Game.Gameplay
 {
     public sealed class TakeDamageSoundBehaviour : IEntityInit, IEntityDispose
     {
-        private IReactive<int> _damageEvent;
         private AudioSource _audioSource;
-
         private readonly AudioClip[] audioClips;
         private readonly List<AudioClip> availableClips = new();
+        private IReactive<int> _damageEvent;
 
         public TakeDamageSoundBehaviour(AudioClip[] audioClips)
         {
@@ -23,22 +22,22 @@ namespace Game.Gameplay
             _audioSource = entity.GetAudioSource();
             _damageEvent = entity.GetTakeDamageEvent();
 
-            _damageEvent.Subscribe(this.OnDamageTaken);
+            _damageEvent.Subscribe(OnDamageTaken);
         }
 
         public void Dispose(in IEntity entity)
         {
-            _damageEvent.Unsubscribe(this.OnDamageTaken);
+            _damageEvent.Unsubscribe(OnDamageTaken);
         }
 
         private void OnDamageTaken(int _)
         {
             if (this.availableClips.Count == 0)
-                this.availableClips.AddRange(this.audioClips);
+                this.availableClips.AddRange(audioClips);
 
             int randomIndex = Random.Range(0, availableClips.Count);
-            AudioClip targetClip = this.availableClips[randomIndex];
-            this.availableClips.Remove(targetClip);
+            AudioClip targetClip = availableClips[randomIndex];
+            availableClips.Remove(targetClip);
 
             _audioSource.PlayOneShot(targetClip);
         }

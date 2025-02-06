@@ -884,14 +884,12 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 13b31af2aad724759a2073f7c82ec5a6, type: 3}
   _deathClips:
   - {fileID: 8300000, guid: 234139ee661e84bc8a517d097ca63824, type: 3}
+  _bodyFallClip: {fileID: 8300000, guid: 3352ade033aba4780b3044e404093b9a, type: 3}
   _moveStepClips:
   - {fileID: 8300000, guid: c2e920c5e714d4c94a3609a0f440c584, type: 3}
   - {fileID: 8300000, guid: 4cbb8723939a742fcb51cb82e1059928, type: 3}
   - {fileID: 8300000, guid: 3d4e74a0e14cb44f8b06b86fc2811df6, type: 3}
   - {fileID: 8300000, guid: bbb4b8eca821e43398bd4fd4c673a7e1, type: 3}
-  _bodyFallClip: {fileID: 8300000, guid: 3352ade033aba4780b3044e404093b9a, type: 3}
-  _meleeDamageClip: {fileID: 8300000, guid: 27c68b20ba4a5423fbf39c3f0eb4db38, type: 3}
-  _bulletDamageClip: {fileID: 8300000, guid: 9d3eb7466db37493ea798163778d02c3, type: 3}
 --- !u!1 &2158559186464018394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,7 +1516,7 @@ MonoBehaviour:
     max: 50
   _moveSpeed: 5
   _angularSpeed: 10
-  _fireDuration: 1
+  _fireDelay: 1
   _weapon: {fileID: 1960874445675532622}
   _trigger: {fileID: 7921063292541329948}
 --- !u!114 &3722878417210388274

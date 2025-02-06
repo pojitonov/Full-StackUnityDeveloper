@@ -1,7 +1,6 @@
+// ReSharper disable NotAccessedField.Local
 using System;
 using UnityEngine;
-// ReSharper disable NotAccessedField.Local
-
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #endif

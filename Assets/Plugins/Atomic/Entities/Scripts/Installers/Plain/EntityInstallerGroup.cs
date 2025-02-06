@@ -1,8 +1,7 @@
 #if ODIN_INSPECTOR
 using System;
-using UnityEngine;
 using Sirenix.OdinInspector;
-
+using UnityEngine;
 
 namespace Atomic.Entities
 {

@@ -35,7 +35,7 @@ namespace Game.Gameplay
 		public const int RotateCondition = 1109699557; // IExpression<bool>
 		public const int Weapon = 1855955664; // IWeaponEntity
 		public const int Target = 1103309514; // IEntity
-		public const int FireDuration = 1901187187; // IValue<float>
+		public const int FireDelay = 311612122; // IValue<float>
 		public const int AttackEvent = -691201150; // IEvent
 		public const int AttackAction = 203766724; // IAction
 		public const int AttackCondition = -1481262935; // IFunction<bool>
@@ -369,22 +369,22 @@ namespace Game.Gameplay
 		public static void SetTarget(this IEntity obj, IEntity value) => obj.SetValue(Target, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IValue<float> GetFireDuration(this IEntity obj) => obj.GetValue<IValue<float>>(FireDuration);
+		public static IValue<float> GetFireDelay(this IEntity obj) => obj.GetValue<IValue<float>>(FireDelay);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetFireDuration(this IEntity obj, out IValue<float> value) => obj.TryGetValue(FireDuration, out value);
+		public static bool TryGetFireDelay(this IEntity obj, out IValue<float> value) => obj.TryGetValue(FireDelay, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddFireDuration(this IEntity obj, IValue<float> value) => obj.AddValue(FireDuration, value);
+		public static bool AddFireDelay(this IEntity obj, IValue<float> value) => obj.AddValue(FireDelay, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasFireDuration(this IEntity obj) => obj.HasValue(FireDuration);
+		public static bool HasFireDelay(this IEntity obj) => obj.HasValue(FireDelay);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelFireDuration(this IEntity obj) => obj.DelValue(FireDuration);
+		public static bool DelFireDelay(this IEntity obj) => obj.DelValue(FireDelay);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetFireDuration(this IEntity obj, IValue<float> value) => obj.SetValue(FireDuration, value);
+		public static void SetFireDelay(this IEntity obj, IValue<float> value) => obj.SetValue(FireDelay, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IEvent GetAttackEvent(this IEntity obj) => obj.GetValue<IEvent>(AttackEvent);

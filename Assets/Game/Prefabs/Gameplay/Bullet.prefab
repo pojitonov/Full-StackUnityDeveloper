@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: -7389732882356062355}
   - component: {fileID: 7163841976804205022}
   - component: {fileID: -5904136953363652877}
+  - component: {fileID: 5958060931419481276}
   - component: {fileID: -8305679562611865605}
   m_Layer: 12
   m_Name: Bullet
@@ -166,6 +167,7 @@ MonoBehaviour:
   disposeValues: 1
   installers:
   - {fileID: -5904136953363652877}
+  - {fileID: 5958060931419481276}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
 --- !u!114 &7163841976804205022
@@ -196,8 +198,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 20
   _damage: 1
-  _lifetime: 3
+  _lifetime: 1
   _collision: {fileID: -8305679562611865605}
+--- !u!114 &5958060931419481276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829669804357326195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c88a17cfda49079736c665cb4f0afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectileVisualInstaller: {fileID: 486307684219909320}
 --- !u!114 &-8305679562611865605
 MonoBehaviour:
   m_ObjectHideFlags: 0
