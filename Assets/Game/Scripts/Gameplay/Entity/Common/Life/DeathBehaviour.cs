@@ -5,8 +5,8 @@ namespace Game.Gameplay
 {
     public class DeathBehaviour : IEntityInit, IEntityDispose
     {
-        private Health _health;
         private IEntity _entity;
+        private Health _health;
 
         public void Init(in IEntity entity)
         {
@@ -23,7 +23,12 @@ namespace Game.Gameplay
         private void OnValueChanged(int health)
         {
             if (health > 0) return;
-            _entity.GetDeathEvent().Invoke();
+            var damageArgs = new DamageArgs
+            {
+                damage = 0,
+                source = _entity
+            };
+            _entity.GetDeathEvent().Invoke(damageArgs);
         }
     }
 }

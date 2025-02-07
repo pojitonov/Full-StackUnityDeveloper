@@ -6,7 +6,7 @@ namespace Game.Gameplay
     public class KillsCountBehaviour : IEntityInit, IEntityDispose
     {
         private IGameContext _gameContext;
-        private IReactive _deathEvent;
+        private IReactive<DamageArgs> _deathEvent;
 
         public void Init(in IEntity entity)
         {
@@ -20,7 +20,7 @@ namespace Game.Gameplay
             _deathEvent.Unsubscribe(OnDeathHappens);
         }
 
-        private void OnDeathHappens()
+        private void OnDeathHappens(DamageArgs _)
         {
             _gameContext.GetKills().Value++;
         }

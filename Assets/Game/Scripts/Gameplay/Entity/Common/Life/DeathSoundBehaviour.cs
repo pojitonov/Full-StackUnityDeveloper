@@ -8,7 +8,7 @@ namespace Game.Gameplay
     {
         private AudioSource _audioSource;
         private readonly AudioClip[] _clips;
-        private IReactive _deathEvent;
+        private IReactive<DamageArgs> _deathEvent;
 
         public DeathSoundBehaviour(AudioClip[] clips)
         {
@@ -27,7 +27,7 @@ namespace Game.Gameplay
             _deathEvent.Unsubscribe(OnDeath);
         }
 
-        private void OnDeath()
+        private void OnDeath(DamageArgs _)
         {
             if (_clips.Length == 0)
                 return;

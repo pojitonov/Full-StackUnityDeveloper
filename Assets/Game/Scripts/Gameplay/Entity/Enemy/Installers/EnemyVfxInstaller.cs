@@ -15,6 +15,7 @@ namespace Game.Gameplay
         public override void Install(IEntity entity)
         {
             entity.AddBehaviour(new BodyFallBloodBehaviour(_deadBlood, _groundPoint));
+            entity.AddBehaviour(new TakeDamageBloodBehaviour(_bulletBlood, _meleeBlood, _rootTransform));
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Game.Gameplay
     public class BodyFallDisableBehaviour : IEntityInit, IEntityDispose
     {
         private IEntity _entity;
-        private IReactive _deathEvent;
+        private IReactive<DamageArgs> _deathEvent;
 
         public void Init(in IEntity entity)
         {
@@ -21,7 +21,7 @@ namespace Game.Gameplay
             _deathEvent.Unsubscribe(OnDeathHappens);
         }
 
-        private void OnDeathHappens()
+        private void OnDeathHappens(DamageArgs _)
         {
             _entity.DelBehaviour<TakeDamageAnimBehaviour>();
             _entity.DelBehaviour<AttackAnimBehaviour>();

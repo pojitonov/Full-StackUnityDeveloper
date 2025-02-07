@@ -24,7 +24,7 @@ namespace Game.Gameplay
 		public const int Health = -915003867; // Health
 		public const int Damage = 375673178; // IValue<DamageArgs>
 		public const int TakeDamageEvent = 1486057413; // IEvent<DamageArgs>
-		public const int DeathEvent = -1096613677; // IEvent
+		public const int DeathEvent = -1096613677; // IEvent<DamageArgs>
 		public const int Lifetime = -997109026; // Cooldown
 		public const int DestroyAction = 85938956; // IAction
 		public const int MoveSpeed = 526065662; // IValue<float>
@@ -171,13 +171,13 @@ namespace Game.Gameplay
 		public static void SetTakeDamageEvent(this IEntity obj, IEvent<DamageArgs> value) => obj.SetValue(TakeDamageEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IEvent GetDeathEvent(this IEntity obj) => obj.GetValue<IEvent>(DeathEvent);
+		public static IEvent<DamageArgs> GetDeathEvent(this IEntity obj) => obj.GetValue<IEvent<DamageArgs>>(DeathEvent);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetDeathEvent(this IEntity obj, out IEvent value) => obj.TryGetValue(DeathEvent, out value);
+		public static bool TryGetDeathEvent(this IEntity obj, out IEvent<DamageArgs> value) => obj.TryGetValue(DeathEvent, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddDeathEvent(this IEntity obj, IEvent value) => obj.AddValue(DeathEvent, value);
+		public static bool AddDeathEvent(this IEntity obj, IEvent<DamageArgs> value) => obj.AddValue(DeathEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasDeathEvent(this IEntity obj) => obj.HasValue(DeathEvent);
@@ -186,7 +186,7 @@ namespace Game.Gameplay
 		public static bool DelDeathEvent(this IEntity obj) => obj.DelValue(DeathEvent);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetDeathEvent(this IEntity obj, IEvent value) => obj.SetValue(DeathEvent, value);
+		public static void SetDeathEvent(this IEntity obj, IEvent<DamageArgs> value) => obj.SetValue(DeathEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cooldown GetLifetime(this IEntity obj) => obj.GetValue<Cooldown>(Lifetime);

@@ -8,7 +8,7 @@ namespace Game.Gameplay
     {
         private readonly int _hash;
         private Animator _animator;
-        private IReactive _deathEvent;
+        private IReactive<DamageArgs> _deathEvent;
         
         public DeathAnimBehaviour(string hash)
         {
@@ -27,7 +27,7 @@ namespace Game.Gameplay
             _deathEvent.Unsubscribe(OnDeathHappens);
         }
 
-        private void OnDeathHappens()
+        private void OnDeathHappens(DamageArgs _)
         {
             _animator.SetTrigger(_hash);
         }

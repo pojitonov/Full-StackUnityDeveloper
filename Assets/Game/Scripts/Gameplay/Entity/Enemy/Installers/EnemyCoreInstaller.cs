@@ -51,7 +51,7 @@ namespace Game.Gameplay
 
             //Events:
             entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());
-            entity.AddDeathEvent(new BaseEvent());
+            entity.AddDeathEvent(new BaseEvent<DamageArgs>());
             entity.AddAttackingEvent(new BaseEvent());
         }
     }

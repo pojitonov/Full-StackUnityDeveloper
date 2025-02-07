@@ -25,7 +25,7 @@ values:
 - Health: Health
 - Damage: IValue<DamageArgs>
 - TakeDamageEvent: IEvent<DamageArgs>
-- DeathEvent: IEvent
+- DeathEvent: IEvent<DamageArgs>
 - Lifetime: Cooldown
 - DestroyAction: IAction
 

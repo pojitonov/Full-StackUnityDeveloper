@@ -10,9 +10,8 @@ namespace Game.Gameplay
         [SerializeField] private AudioClip[] _deathClips;
         [SerializeField] private AudioClip _bodyFallClip;
         [SerializeField] private AudioClip[] _moveStepClips;
-        
-        // [SerializeField] private AudioClip _meleeDamageClip;
-        // [SerializeField] private AudioClip _bulletDamageClip;
+        [SerializeField] private AudioClip _meleeDamageClip;
+        [SerializeField] private AudioClip _bulletDamageClip;
 
         public override void Install(IEntity entity)
         {
@@ -25,7 +24,7 @@ namespace Game.Gameplay
             entity.AddBehaviour(new BodyFallSoundBehaviour(_bodyFallClip));
             entity.AddBehaviour(new DeathSoundBehaviour(_deathClips));
             entity.AddBehaviour(new MoveStepSoundBehaviour(_moveStepClips));
-            
+            entity.AddBehaviour(new TakeDamageSoundTypeBehaviour(_meleeDamageClip, _bulletDamageClip));
         }
     }
 }
