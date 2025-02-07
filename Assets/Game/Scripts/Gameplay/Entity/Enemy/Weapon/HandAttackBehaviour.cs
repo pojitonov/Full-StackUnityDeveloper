@@ -10,6 +10,7 @@ namespace Game.Gameplay
         private readonly Transform _center;
         private readonly int _damage;
         private readonly float _attackRadius;
+        private IEntity _entity;
         private static readonly LayerMask LAYER_MASK = LayerMask.GetMask("Character");
 
         public HandAttackBehaviour(float attackRadius, int damage, Transform center)
@@ -21,6 +22,7 @@ namespace Game.Gameplay
 
         public void Init(in IEntity entity)
         {
+            _entity = entity;
             _isAttacking = entity.GetAttackingEvent();
             _isAttacking.Subscribe(OnAttack);
         }
@@ -32,7 +34,7 @@ namespace Game.Gameplay
 
         private void OnAttack()
         {
-            HandAttackUseCase.Attack(_center.position, _attackRadius, _damage, LAYER_MASK);
+            HandAttackUseCase.Attack(_entity, _center.position, _attackRadius, _damage, LAYER_MASK);
         }
 
         public void OnGizmosDraw(in IEntity entity)

@@ -2860,7 +2860,7 @@ PrefabInstance:
       objectReference: {fileID: 454512115772462266}
     - target: {fileID: 9202247151114949220, guid: 8c9bfd0f9949b4ed0b1b7e6c4a039d83, type: 3}
       propertyPath: _ammo.count
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9202247151114949220, guid: 8c9bfd0f9949b4ed0b1b7e6c4a039d83, type: 3}
       propertyPath: _ammo.capacity

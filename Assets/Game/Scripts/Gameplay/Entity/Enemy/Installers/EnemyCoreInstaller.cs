@@ -50,7 +50,7 @@ namespace Game.Gameplay
                 entity.IsAlive() && gameContext.GetCharacter().IsAlive()));
 
             //Events:
-            entity.AddTakeDamageEvent(new BaseEvent<int>());
+            entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());
             entity.AddDeathEvent(new BaseEvent());
             entity.AddAttackingEvent(new BaseEvent());
         }

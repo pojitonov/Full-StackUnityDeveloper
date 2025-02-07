@@ -1,5 +1,3 @@
-//TODO: Uncomment me
-
 using System;
 using Atomic.Elements;
 using Atomic.Entities;
@@ -12,7 +10,7 @@ namespace Game.Gameplay
     public sealed class PainSoundBehaviour : IEntityInit, IEntityDispose
     {
         private Health _health;
-        private IReactive<int> _damageEvent;
+        private IReactive<DamageArgs> _damageEvent;
         private AudioSource _audioSource;
 
         private readonly Level[] _damageLevels;
@@ -35,7 +33,7 @@ namespace Game.Gameplay
             _damageEvent.Unsubscribe(OnDamageTaken);
         }
 
-        private void OnDamageTaken(int _)
+        private void OnDamageTaken(DamageArgs _)
         {
             this.PlaySound(_health.GetPercent());
         }

@@ -10,7 +10,7 @@ namespace Game.Gameplay
         private AudioSource _audioSource;
         private readonly AudioClip[] audioClips;
         private readonly List<AudioClip> availableClips = new();
-        private IReactive<int> _damageEvent;
+        private IReactive<DamageArgs> _damageEvent;
 
         public TakeDamageSoundBehaviour(AudioClip[] audioClips)
         {
@@ -30,7 +30,7 @@ namespace Game.Gameplay
             _damageEvent.Unsubscribe(OnDamageTaken);
         }
 
-        private void OnDamageTaken(int _)
+        private void OnDamageTaken(DamageArgs _)
         {
             if (this.availableClips.Count == 0)
                 this.availableClips.AddRange(audioClips);

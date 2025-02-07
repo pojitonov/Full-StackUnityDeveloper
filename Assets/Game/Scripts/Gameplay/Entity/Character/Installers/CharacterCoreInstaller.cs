@@ -43,7 +43,7 @@ namespace Game.Gameplay
             entity.AddBehaviour<BodyFallDisableBehaviour>();
             
             //Events:
-            entity.AddTakeDamageEvent(new BaseEvent<int>());
+            entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());
             entity.AddDeathEvent(new BaseEvent());
         }
     }

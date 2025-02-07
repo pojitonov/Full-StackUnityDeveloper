@@ -9,7 +9,7 @@ namespace Game.Gameplay
     {
         private CollisionEventReceiver _trigger;
         private IAction _destroyAction;
-        private IValue<int> _damage;
+        private IValue<DamageArgs> _damage;
         
         public void Init(in IEntity entity)
         {
@@ -27,6 +27,7 @@ namespace Game.Gameplay
 
         private void OnCollisionEntered(Collision other)
         {
+     
             if (other.TryGetEntity(out IEntity target) && target.TakeDamage(_damage.Value))
             {
                 _destroyAction.Invoke();

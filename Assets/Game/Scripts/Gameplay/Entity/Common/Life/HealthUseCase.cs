@@ -10,7 +10,7 @@ namespace Game.Gameplay
             return health.GetCurrent() > 0;
         }
 
-        public static bool TakeDamage(this IEntity target, in int amount)
+        public static bool TakeDamage(this IEntity target, in DamageArgs args)
         {
             var health = target.GetHealth();
             var currentHealth = health.GetCurrent();
@@ -21,8 +21,8 @@ namespace Game.Gameplay
             if (currentHealth < 0)
                 return false;
             
-            health.Reduce(amount);
-            target.GetTakeDamageEvent().Invoke(amount);
+            health.Reduce(args.damage);
+            target.GetTakeDamageEvent().Invoke(args);
             return true;
         }
 

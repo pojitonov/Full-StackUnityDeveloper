@@ -23,8 +23,8 @@ values:
 
 # Life
 - Health: Health
-- Damage: IValue<int>
-- TakeDamageEvent: IEvent<int>
+- Damage: IValue<DamageArgs>
+- TakeDamageEvent: IEvent<DamageArgs>
 - DeathEvent: IEvent
 - Lifetime: Cooldown
 - DestroyAction: IAction

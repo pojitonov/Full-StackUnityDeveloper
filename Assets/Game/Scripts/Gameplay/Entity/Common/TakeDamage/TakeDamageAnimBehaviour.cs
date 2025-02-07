@@ -8,7 +8,7 @@ namespace Game.Gameplay
     {
         private readonly int _hash;
         private Animator _animator;
-        private IReactive<int> _damageEvent;
+        private IReactive<DamageArgs> _damageEvent;
         
         public TakeDamageAnimBehaviour(string hash)
         {
@@ -27,7 +27,7 @@ namespace Game.Gameplay
             _damageEvent.Unsubscribe(OnDamageTaken);
         }
 
-        private void OnDamageTaken(int damage)
+        private void OnDamageTaken(DamageArgs _)
         {
             _animator.SetTrigger(_hash);
         }
