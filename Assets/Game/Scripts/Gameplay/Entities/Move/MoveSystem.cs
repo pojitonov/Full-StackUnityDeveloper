@@ -15,7 +15,7 @@ namespace Game
         {
             var deltaTime = Time.deltaTime;
             
-            foreach (int entity in _moveables.Value)
+            foreach (var entity in _moveables.Value)
             {
                 ref var moveDirection = ref _moveDirections.Value.Get(entity);
                 ref var moveSpeed = ref _moveSpeeds.Value.Get(entity);
