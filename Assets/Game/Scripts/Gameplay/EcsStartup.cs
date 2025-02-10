@@ -1,5 +1,6 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using Sirenix.OdinInspector;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -15,8 +16,8 @@ namespace Game
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
             _systems
-                .Add (new MoveSystem ())
-                .Add (new RotateSystem())
+                .Add(new MoveSystem())
+                .Add(new RotateSystem())
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
@@ -26,9 +27,6 @@ namespace Game
 
         private void Start()
         {
-            int entity = _world.NewEntity();
-            _world.GetPool<Position>().Add(entity).value = float3.zero;
-            _world.GetPool<Rotation>().Add(entity).value = quaternion.identity;
         }
 
         private void Update()
@@ -49,6 +47,21 @@ namespace Game
                 _world.Destroy();
                 _world = null;
             }
+        }
+
+        [Button]
+        private void CreateEntity(EscPrototype prefab, float3 position, quaternion rotation)
+        {
+            int entity = prefab.Create(_world);
+
+            _world.GetPool<Position>().Add(entity).value = position;
+            _world.GetPool<Rotation>().Add(entity).value = rotation;
+        }
+
+        [Button]
+        private void DeleteEntity(int entity)
+        {
+            _world.DelEntity(entity);
         }
     }
 }
