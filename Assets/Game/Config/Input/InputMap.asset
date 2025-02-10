@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18173ba256d2447399186f160c8d41bc, type: 3}
-  m_Name: Archer
+  m_Script: {fileID: 11500000, guid: a3225033c6754f479861640d00d8bc2e, type: 3}
+  m_Name: InputMap
   m_EditorClassIdentifier: 
-  _moveSpeed: 3
-  _rotationSpeed: 10
+  forward: 119
+  backward: 115
+  left: 97
+  right: 100

@@ -946,6 +946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _worldView: {fileID: 618146465}
+  _inputMap: {fileID: 11400000, guid: 1b70dc9b3eea2374eb531dcecf68149c, type: 2}
 --- !u!1001 &863194044
 PrefabInstance:
   m_ObjectHideFlags: 0

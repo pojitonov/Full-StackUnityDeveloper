@@ -1,3 +1,4 @@
+using Game.Context;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Sirenix.OdinInspector;
@@ -9,6 +10,8 @@ namespace Game
     public sealed class EcsStartup : MonoBehaviour
     {
         [SerializeField] private EcsWorldView _worldView;
+        [SerializeField] private InputMap _inputMap;
+        [SerializeField] private GameData _gameData;
         
         private EcsWorld _world;
         private IEcsSystems _systems;
@@ -16,16 +19,20 @@ namespace Game
         private void Awake()
         {
             _world = new EcsWorld();
-            _systems = new EcsSystems(_world);
+            _systems = new EcsSystems(_world, _gameData);
             _systems
-                    
+                //Input:
+                .Add(new InputSystem(_inputMap))
+                .Add(new PlayerMoveController())
+
                 //Game Logic:
+                .Add(new CharacterMoveSystem())
                 .Add(new MoveSystem())
                 .Add(new RotateSystem())
-                
+
                 //View:
                 .Add(new TransformViewSystem())
-                
+
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif

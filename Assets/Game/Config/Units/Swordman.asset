@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Swordman
   m_EditorClassIdentifier: 
   _moveSpeed: 3
-  _rotationSpeed: 0.2
+  _rotationSpeed: 10
