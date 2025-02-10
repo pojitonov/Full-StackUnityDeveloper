@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7781d0c30db446cb563ea3f56d9f2e7, type: 3}
-  m_Name: Headquarter
+  m_Script: {fileID: 11500000, guid: 18173ba256d2447399186f160c8d41bc, type: 3}
+  m_Name: Arrow
   m_EditorClassIdentifier: 
+  _moveSpeed: 3
   _rotationSpeed: 0.2

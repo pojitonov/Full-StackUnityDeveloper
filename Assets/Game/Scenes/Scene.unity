@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 618146465}
   - component: {fileID: 618146464}
   m_Layer: 0
-  m_Name: '[Entities]'
+  m_Name: '[EntityWorld]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -622,8 +622,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d4abdbb5ab1da4d8984c42e62348e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 0}
-  _catalogs: []
+  _container: {fileID: 1260314775}
+  _catalogs:
+  - {fileID: 11400000, guid: a8132ef09a7a80e40bd451d23e3bedca, type: 2}
 --- !u!114 &618146465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,8 +637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9a18d5e3903c04db780f7b5a78df6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _viewport: {fileID: 0}
-  _viewPool: {fileID: 0}
+  _viewport: {fileID: 895036509}
+  _viewPool: {fileID: 1260314776}
 --- !u!1001 &670880642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -944,6 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dec4bedda135814baaf270649578a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _worldView: {fileID: 618146465}
 --- !u!1001 &863194044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1057,8 +1059,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1260314775}
+  - component: {fileID: 1260314776}
   m_Layer: 0
-  m_Name: Pool
+  m_Name: ViewPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1079,6 +1082,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 618146463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1260314776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260314774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d4abdbb5ab1da4d8984c42e62348e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _container: {fileID: 1260314775}
+  _catalogs:
+  - {fileID: 11400000, guid: a8132ef09a7a80e40bd451d23e3bedca, type: 2}
 --- !u!1 &1263304699
 GameObject:
   m_ObjectHideFlags: 0

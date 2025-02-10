@@ -6,7 +6,7 @@ namespace Leopotam.EcsLite
 {
     [CreateAssetMenu(
         fileName = "EcsViewCatalog",
-        menuName = "Ecs/EcsViewCatalog"
+        menuName = "Game/View/EcsViewCatalog"
     )]
     public class EcsViewCatalog : ScriptableObject
     {

@@ -8,6 +8,8 @@ namespace Game
 {
     public sealed class EcsStartup : MonoBehaviour
     {
+        [SerializeField] private EcsWorldView _worldView;
+        
         private EcsWorld _world;
         private IEcsSystems _systems;
 
@@ -16,8 +18,14 @@ namespace Game
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
             _systems
+                    
+                //Game Logic:
                 .Add(new MoveSystem())
                 .Add(new RotateSystem())
+                
+                //View:
+                .Add(new TransformViewSystem())
+                
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
@@ -27,6 +35,7 @@ namespace Game
 
         private void Start()
         {
+            _worldView.Show(_world);
         }
 
         private void Update()

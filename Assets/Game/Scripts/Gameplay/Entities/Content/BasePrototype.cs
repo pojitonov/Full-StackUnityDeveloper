@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Game
 {
-    [CreateAssetMenu(fileName = "Headquarter", menuName = "Game/Entities/New Headquarter")]
-    public class HeadquarterPrototype : EscPrototype
+    [CreateAssetMenu(fileName = "Base", menuName = "Game/Entities/New Base")]
+    public class BasePrototype : EscPrototype
     {
         [SerializeField] float _rotationSpeed = 0.2f;
 
