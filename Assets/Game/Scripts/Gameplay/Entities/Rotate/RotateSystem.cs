@@ -18,8 +18,8 @@ namespace Game
             foreach (var entity in _rotatables.Value)
             {
                 ref Rotation rotation = ref _rotations.Value.Get(entity);
-                ref RotateSpeed speed = ref _rotateSpeeds.Value.Get(entity);
                 ref RotateDirection direction = ref _rotateDirections.Value.Get(entity);
+                ref RotateSpeed speed = ref _rotateSpeeds.Value.Get(entity);
 
                 RotateUseCase.RotateStep(ref rotation, in direction, in speed, in deltaTime);
             }

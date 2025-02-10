@@ -14,14 +14,14 @@ namespace Game
         public void Run(IEcsSystems systems)
         {
             var deltaTime = Time.deltaTime;
-            
+
             foreach (var entity in _moveables.Value)
             {
+                ref var position = ref _positions.Value.Get(entity);
                 ref var moveDirection = ref _moveDirections.Value.Get(entity);
                 ref var moveSpeed = ref _moveSpeeds.Value.Get(entity);
-                ref var position = ref _positions.Value.Get(entity);
 
-                position.value += moveDirection.value * moveSpeed.value * deltaTime;
+                MoveUseCase.MoveStep(ref position, in moveDirection, in moveSpeed, in deltaTime);
             }
         }
     }
