@@ -16,6 +16,7 @@ namespace Game
             _systems = new EcsSystems(_world);
             _systems
                 .Add (new MoveSystem ())
+                .Add (new RotateSystem())
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
