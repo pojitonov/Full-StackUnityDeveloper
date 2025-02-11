@@ -31,6 +31,8 @@ namespace SampleGame
                 .Add(new PlayerMoveController())
 
                 //Game Logic
+                .Add(new SpawnSystem())
+                .Add(new DespawnSystem())
                 .Add(new CharacterMoveSystem())
                 .Add(new MoveSystem())
                 .Add(new RotateSystem())

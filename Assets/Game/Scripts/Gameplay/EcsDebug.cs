@@ -1,32 +1,45 @@
 using Leopotam.EcsLite;
 using Sirenix.OdinInspector;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace SampleGame
 {
     public sealed class EcsDebug : MonoBehaviour
     {
-        private EcsWorld _world;
+        private IEcsSystems _ecsSystems;
 
-        private void Awake()
+        private void Start()
         {
-            _world = EcsAdmin.Systems.GetWorld();
+            _ecsSystems = EcsAdmin.Systems;
         }
 
         [Button]
-        private void CreateEntity(EcsPrototype prefab, float3 position, quaternion rotation)
+        public void SpawnEntity(SpawnRequest request)
         {
-            int entity = prefab.Create(_world);
-
-            _world.GetPool<Position>().Add(entity).value = position;
-            _world.GetPool<Rotation>().Add(entity).value = rotation;
+            _ecsSystems.GetWorld().GetEvent<SpawnRequest>().Fire(request);
         }
 
         [Button]
-        private void DeleteEntity(int entity)
+        public void DespawnEntity(DespawnRequest request)
         {
-            _world.DelEntity(entity);
+            EcsWorld eventWorld = _ecsSystems.GetWorld(EcsConsts.EventWorld);
+            int evt = eventWorld.NewEntity();
+            eventWorld.GetPool<DespawnRequest>().Add(evt) = request;
         }
+        
+        // [Button]
+        // private void CreateEntity(EcsPrototype prefab, float3 position, quaternion rotation, TeamType team)
+        // {
+        //     int entity = prefab.Create(_world);
+        //
+        //     _world.GetPool<Position>().Add(entity).value = position;
+        //     _world.GetPool<Rotation>().Add(entity).value = rotation;
+        // }
+        //
+        // [Button]
+        // private void DeleteEntity(int entity)
+        // {
+        //     _world.DelEntity(entity);
+        // }
     }
 }

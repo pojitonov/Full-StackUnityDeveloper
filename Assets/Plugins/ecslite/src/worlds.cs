@@ -22,7 +22,7 @@ namespace Leopotam.EcsLite {
     [Il2CppSetOption (Option.NullChecks, false)]
     [Il2CppSetOption (Option.ArrayBoundsChecks, false)]
 #endif
-    public class EcsWorld {
+    public partial class EcsWorld {
         // componentsCount, gen, c1, c2, ..., [next]
         short[] _entities;
         int _entitiesItemSize;

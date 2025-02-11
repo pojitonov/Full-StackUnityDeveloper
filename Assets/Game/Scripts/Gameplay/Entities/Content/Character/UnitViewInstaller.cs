@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SampleGame
 {
-    public sealed class CharacterViewInstaller : EcsViewInstaller
+    public sealed class UnitViewInstaller : EcsViewInstaller
     {
         [SerializeField] private Transform _transform;
 

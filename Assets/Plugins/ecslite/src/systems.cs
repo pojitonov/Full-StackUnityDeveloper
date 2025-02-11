@@ -43,6 +43,8 @@ namespace Leopotam.EcsLite {
         Dictionary<string, EcsWorld> GetAllNamedWorlds ();
         IEcsSystems Add (IEcsSystem system);
         List<IEcsSystem> GetAllSystems ();
+        
+        
         void Init ();
         void Run ();
         void Destroy ();
