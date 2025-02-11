@@ -2,15 +2,15 @@ using UnityEngine;
 
 namespace Leopotam.EcsLite
 {
-    public abstract class EscPrototype : ScriptableObject
+    public abstract class EcsPrototype : ScriptableObject
     {
-        public virtual string Name => name;
+        public virtual string Name => this.name;
 
         public int Create(in EcsWorld world)
         {
             int entity = world.NewEntity();
-            world.GetPool<EcsName>().Add(entity).value = Name;
-            Install(in world, in entity);
+            world.GetPool<EcsName>().Add(entity).value = this.Name;
+            this.Install(in world, in entity);
             return entity;
         }
 

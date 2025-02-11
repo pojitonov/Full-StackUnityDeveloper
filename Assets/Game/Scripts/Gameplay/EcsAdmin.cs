@@ -10,12 +10,12 @@ namespace SampleGame
 
         [SerializeField] private EcsWorldView _worldView;
         [SerializeField] private EcsSystemsFactory _systemsFactory;
-        // [SerializeField] private EcsBaker _baker;
+        [SerializeField] private EcsBaker _baker;
         
         private void Awake()
         {
             IEcsSystems systems = _systemsFactory.Create();
-            // _baker.BakeScene(systems.GetWorld());
+            _baker.BakeScene(systems.GetWorld());
 
             systems
                 .Inject()

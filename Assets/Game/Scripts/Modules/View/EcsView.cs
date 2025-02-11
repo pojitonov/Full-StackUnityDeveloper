@@ -7,7 +7,7 @@ namespace Leopotam.EcsLite
     [DisallowMultipleComponent]
     public class EcsView : MonoBehaviour
     {
-        public virtual string Name => Regex.Replace(this.name, @"\s*\(\d+\)$", "").Trim(); 
+        public virtual string Name => Regex.Replace(this.name, @"\s*\(.*?\)$", "").Trim();
         
         [SerializeField]
         private List<EcsViewInstaller> _installers;

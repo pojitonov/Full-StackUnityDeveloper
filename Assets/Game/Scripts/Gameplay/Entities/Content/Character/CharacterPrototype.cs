@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SampleGame
 {
     [CreateAssetMenu(fileName = "Character", menuName = "SampleGame/Entities/New Character")]
-    public class CharacterPrototype : EscPrototype
+    public class CharacterPrototype : EcsPrototype
     {
         [SerializeField] private float _moveSpeed = 3f;
         [SerializeField] float _rotationSpeed = 10f;

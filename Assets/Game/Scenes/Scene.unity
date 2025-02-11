@@ -291,12 +291,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &133736314 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2555614693673918622, guid: a82794b5cab41ef46a2ba26c65e32fc1,
-    type: 3}
-  m_PrefabInstance: {fileID: 423135267784322734}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &254118205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 815369288960148935, guid: 09a84d2719aac2546a75f1c2d3fd70ee,
@@ -334,6 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _worldView: {fileID: 618146465}
   _systemsFactory: {fileID: 11400000, guid: 763b606435b4edc4394216560ffa1929, type: 2}
+  _baker: {fileID: 1270005258}
 --- !u!4 &291071920
 Transform:
   m_ObjectHideFlags: 0
@@ -450,11 +445,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Swordman (Red)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1836327710282380834, guid: 9ca0f44a82b2cda45894da8cdfef5a2a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1836327710282380834, guid: 9ca0f44a82b2cda45894da8cdfef5a2a,
         type: 3}
@@ -768,11 +758,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Archer (Red)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459424580467092923, guid: a1d2498cac254b4419b179fc6586cce8,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5459424580467092923, guid: a1d2498cac254b4419b179fc6586cce8,
         type: 3}
@@ -1179,6 +1164,51 @@ Transform:
   - {fileID: 443259230}
   m_Father: {fileID: 800337253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1270005257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270005259}
+  - component: {fileID: 1270005258}
+  m_Layer: 0
+  m_Name: '[EcsBaker]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1270005258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270005257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b100fd27a35b439796e60951e5916bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prototypes: {fileID: 11400000, guid: c25ec097031100944be389360690ac84, type: 2}
+--- !u!4 &1270005259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270005257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1298357891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1277,11 +1307,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1263304700}
     m_Modifications:
-    - target: {fileID: 7825067770572622576, guid: 8dba26edee12f824d9ef4f530d1227ab,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7825067770572622576, guid: 8dba26edee12f824d9ef4f530d1227ab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1604,11 +1629,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4474693899073440109, guid: 39a24af20b8ad5d48b281e21d7fcc152,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4474693899073440109, guid: 39a24af20b8ad5d48b281e21d7fcc152,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1815,11 +1835,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Swordman (Red)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1836327710282380834, guid: 9ca0f44a82b2cda45894da8cdfef5a2a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1836327710282380834, guid: 9ca0f44a82b2cda45894da8cdfef5a2a,
         type: 3}
@@ -2099,12 +2114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2118521927 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1768524207985713763, guid: 09a84d2719aac2546a75f1c2d3fd70ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 6075334459726365621}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &423135267784322734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2113,11 +2122,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463166444}
     m_Modifications:
-    - target: {fileID: 3495723828963739675, guid: a82794b5cab41ef46a2ba26c65e32fc1,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3495723828963739675, guid: a82794b5cab41ef46a2ba26c65e32fc1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2168,27 +2172,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3938997385322254996, guid: a82794b5cab41ef46a2ba26c65e32fc1,
-        type: 3}
-      propertyPath: _name
-      value: Base (Blue)
-      objectReference: {fileID: 0}
     - target: {fileID: 7078650420259860604, guid: a82794b5cab41ef46a2ba26c65e32fc1,
         type: 3}
       propertyPath: m_Name
       value: Base (Blue)
       objectReference: {fileID: 0}
-    - target: {fileID: 8892893534178445372, guid: a82794b5cab41ef46a2ba26c65e32fc1,
-        type: 3}
-      propertyPath: _spawn.<Prefab>k__BackingField
-      value: 
-      objectReference: {fileID: 7179859359249452370, guid: 8dba26edee12f824d9ef4f530d1227ab,
-        type: 3}
-    - target: {fileID: 8892893534178445372, guid: a82794b5cab41ef46a2ba26c65e32fc1,
-        type: 3}
-      propertyPath: _spawn.<SpawnPoint>k__BackingField
-      value: 
-      objectReference: {fileID: 133736314}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2202,11 +2190,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463166444}
     m_Modifications:
-    - target: {fileID: 815369288960148935, guid: 09a84d2719aac2546a75f1c2d3fd70ee,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 815369288960148935, guid: 09a84d2719aac2546a75f1c2d3fd70ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2257,22 +2240,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 970993020397182792, guid: 09a84d2719aac2546a75f1c2d3fd70ee,
-        type: 3}
-      propertyPath: _name
-      value: Base (Red)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4664163290311034336, guid: 09a84d2719aac2546a75f1c2d3fd70ee,
-        type: 3}
-      propertyPath: _spawn.<Prefab>k__BackingField
-      value: 
-      objectReference: {fileID: 5619544350125505054, guid: 9ca0f44a82b2cda45894da8cdfef5a2a,
-        type: 3}
-    - target: {fileID: 4664163290311034336, guid: 09a84d2719aac2546a75f1c2d3fd70ee,
-        type: 3}
-      propertyPath: _spawn.<SpawnPoint>k__BackingField
-      value: 
-      objectReference: {fileID: 2118521927}
     - target: {fileID: 6480648308455456160, guid: 09a84d2719aac2546a75f1c2d3fd70ee,
         type: 3}
       propertyPath: m_Name
@@ -2297,16 +2264,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1263304700}
     m_Modifications:
-    - target: {fileID: 469904381149867921, guid: 8dba26edee12f824d9ef4f530d1227ab,
-        type: 3}
-      propertyPath: _spawn.<Parent>k__BackingField
-      value: 
-      objectReference: {fileID: 800337253}
-    - target: {fileID: 7825067770572622576, guid: 8dba26edee12f824d9ef4f530d1227ab,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7825067770572622576, guid: 8dba26edee12f824d9ef4f530d1227ab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2372,8 +2329,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 291071920}
-  - {fileID: 828447402}
   - {fileID: 618146463}
+  - {fileID: 1270005259}
+  - {fileID: 828447402}
   - {fileID: 2048587581}
   - {fileID: 1502192418}
   - {fileID: 800337253}

@@ -15,7 +15,7 @@ namespace SampleGame
         }
 
         [Button]
-        private void CreateEntity(EscPrototype prefab, float3 position, quaternion rotation)
+        private void CreateEntity(EcsPrototype prefab, float3 position, quaternion rotation)
         {
             int entity = prefab.Create(_world);
 
