@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: EcsSystemsFactory
   m_EditorClassIdentifier: 
   _inputMap: {fileID: 11400000, guid: 1b70dc9b3eea2374eb531dcecf68149c, type: 2}
+  _teamViewConfig: {fileID: 11400000, guid: 675abb6d7e75b8947bad8b0b5cce17e0, type: 2}

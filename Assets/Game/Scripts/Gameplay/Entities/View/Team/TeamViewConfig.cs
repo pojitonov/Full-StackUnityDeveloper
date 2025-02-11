@@ -6,8 +6,8 @@ using UnityEngine.Serialization;
 namespace SampleGame
 {
     [CreateAssetMenu(
-        fileName = "TeamTypeConfig",
-        menuName = "SampleGame/Common/New TeamTypeConfig"
+        fileName = "TeamViewConfig",
+        menuName = "SampleGame/Common/New TeamViewConfig"
     )]
     public sealed class TeamViewConfig : ScriptableObject
     {

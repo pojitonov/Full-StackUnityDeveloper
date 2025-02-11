@@ -11,7 +11,7 @@ namespace SampleGame
     public sealed class EcsSystemsFactory : ScriptableObject
     {
         [SerializeField] private InputMap _inputMap;
-        // [SerializeField] private TeamViewConfig _teamViewConfig;
+        [SerializeField] private TeamViewConfig _teamViewConfig;
         // [SerializeField] private EcsPrototype _projectilePrefab;
         // [SerializeField] private int _initialMoney = 100;
         
@@ -37,6 +37,7 @@ namespace SampleGame
 
                 //Rendering:
                 .Add(new TransformViewSystem())
+                .Add(new TeamViewSystem(_teamViewConfig))
 
                 //Clear:
 
