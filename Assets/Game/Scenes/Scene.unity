@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 618146465}
   - component: {fileID: 618146464}
   m_Layer: 0
-  m_Name: '[EntityWorld]'
+  m_Name: '[EcsWorld]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -912,7 +912,7 @@ GameObject:
   - component: {fileID: 828447402}
   - component: {fileID: 828447403}
   m_Layer: 0
-  m_Name: '[EntryPoint]'
+  m_Name: '[EcsStart]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2296,8 +2296,8 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 828447402}
+  - {fileID: 618146463}
   - {fileID: 1502192418}
   - {fileID: 800337253}
   - {fileID: 1758309460}
-  - {fileID: 828447402}
-  - {fileID: 618146463}
