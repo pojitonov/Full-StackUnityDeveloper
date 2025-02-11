@@ -1,7 +1,7 @@
 using System;
 using Unity.Mathematics;
 
-namespace Game.Context.Input
+namespace SampleGame
 {
     [Serializable]
     public struct InputData

@@ -1,6 +1,6 @@
 using Unity.Burst;
 
-namespace Game
+namespace SampleGame
 {
     [BurstCompile]
     public static class MoveUseCase

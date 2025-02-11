@@ -1,7 +1,7 @@
 using Unity.Burst;
 using Unity.Mathematics;
 
-namespace Game
+namespace SampleGame
 {
     [BurstCompile]
     public static class RotateUseCase

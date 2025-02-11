@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Game
+namespace SampleGame
 {
-    [CreateAssetMenu(fileName = "InputMap", menuName = "Game/New InputMap")]
+    [CreateAssetMenu(fileName = "InputMap", menuName = "SampleGame/New InputMap")]
     public sealed class InputMap : ScriptableObject
     {
         public KeyCode forward = KeyCode.W;

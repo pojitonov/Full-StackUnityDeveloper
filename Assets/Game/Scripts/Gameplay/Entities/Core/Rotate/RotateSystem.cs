@@ -2,7 +2,7 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace Game
+namespace SampleGame
 {
     public sealed class RotateSystem : IEcsRunSystem
     {

@@ -1,9 +1,8 @@
-using Game.Context;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Unity.Mathematics;
 
-namespace Game
+namespace SampleGame
 {
     public class PlayerMoveController : IEcsRunSystem
     {

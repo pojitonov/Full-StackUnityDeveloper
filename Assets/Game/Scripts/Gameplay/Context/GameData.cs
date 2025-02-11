@@ -1,7 +1,6 @@
 using System;
-using Game.Context.Input;
 
-namespace Game.Context
+namespace SampleGame
 {
     [Serializable]
     public sealed class GameData

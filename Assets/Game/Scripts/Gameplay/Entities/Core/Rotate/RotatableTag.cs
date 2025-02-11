@@ -1,6 +1,6 @@
 using System;
 
-namespace Game
+namespace SampleGame
 {
     [Serializable]
     public struct RotatableTag

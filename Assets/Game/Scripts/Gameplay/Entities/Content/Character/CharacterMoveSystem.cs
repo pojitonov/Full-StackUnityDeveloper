@@ -1,7 +1,7 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 
-namespace Game
+namespace SampleGame
 {
     public class CharacterMoveSystem : IEcsRunSystem
     {

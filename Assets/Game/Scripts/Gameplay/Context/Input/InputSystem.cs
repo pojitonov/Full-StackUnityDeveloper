@@ -1,10 +1,9 @@
-using Game.Context;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Game
+namespace SampleGame
 {
     public sealed class InputSystem : IEcsRunSystem
     {

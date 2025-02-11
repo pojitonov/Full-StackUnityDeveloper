@@ -2,9 +2,9 @@ using Leopotam.EcsLite;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Game
+namespace SampleGame
 {
-    [CreateAssetMenu(fileName = "Base", menuName = "Game/Entities/New Base")]
+    [CreateAssetMenu(fileName = "Base", menuName = "SampleGame/Entities/New Base")]
     public class BasePrototype : EscPrototype
     {
         [SerializeField] float _rotationSpeed = 10f;

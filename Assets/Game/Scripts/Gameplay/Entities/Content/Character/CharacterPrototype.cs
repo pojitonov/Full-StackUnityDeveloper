@@ -2,9 +2,9 @@ using Leopotam.EcsLite;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Game
+namespace SampleGame
 {
-    [CreateAssetMenu(fileName = "Character", menuName = "Game/Entities/New Character")]
+    [CreateAssetMenu(fileName = "Character", menuName = "SampleGame/Entities/New Character")]
     public class CharacterPrototype : EscPrototype
     {
         [SerializeField] private float _moveSpeed = 3f;

@@ -1,7 +1,7 @@
 using System;
 using Unity.Mathematics;
 
-namespace Game
+namespace SampleGame
 {
     [Serializable]
     public struct RotateDirection

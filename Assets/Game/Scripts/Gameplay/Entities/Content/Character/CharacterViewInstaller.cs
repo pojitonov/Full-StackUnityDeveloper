@@ -1,7 +1,7 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace Game
+namespace SampleGame
 {
     public sealed class CharacterViewInstaller : EcsViewInstaller
     {
