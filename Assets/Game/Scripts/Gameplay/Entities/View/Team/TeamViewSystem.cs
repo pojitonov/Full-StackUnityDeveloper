@@ -20,7 +20,14 @@ namespace SampleGame
             {
                 ref Renderer[] renderers = ref _views.Pools.Inc1.Get(entity).renderers;
                 ref TeamType teamType = ref _views.Pools.Inc2.Get(entity);
-                TeamViewUseCase.SetTeam(in renderers, in teamType, in _teamConfig);
+
+                TeamViewUseCase.SetTeam(
+                    in renderers, 
+                    in teamType, 
+                    in _teamConfig, 
+                    systems.GetWorld(), 
+                    entity
+                );
             }
         }
     }

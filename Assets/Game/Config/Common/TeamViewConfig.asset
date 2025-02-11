@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: TeamViewConfig
   m_EditorClassIdentifier: 
   _teams:
-  - type: 0
-    material: {fileID: 2100000, guid: 792a4bad9e08b8e41bfbd3f0b8aac1ab, type: 2}
   - type: 1
-    material: {fileID: 2100000, guid: 98a7fdcb4ebb44344b4afe0424d44b82, type: 2}
+    unitMaterial: {fileID: 2100000, guid: 98a7fdcb4ebb44344b4afe0424d44b82, type: 2}
+    baseMaterial: {fileID: 2100000, guid: a2085ab309c94a143a706621cd42e213, type: 2}
+  - type: 0
+    unitMaterial: {fileID: 2100000, guid: 792a4bad9e08b8e41bfbd3f0b8aac1ab, type: 2}
+    baseMaterial: {fileID: 2100000, guid: 4a8b820c98c7b4540bab4e4f3d70d7fb, type: 2}

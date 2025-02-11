@@ -31,17 +31,12 @@ namespace SampleGame
         {
             [FormerlySerializedAs("_team")]
             [SerializeField] private TeamType type;
-            [SerializeField] private Material material;
+            [SerializeField] private Material unitMaterial;
+            [SerializeField] private Material baseMaterial;
 
-            public Material Material
-            {
-                get { return this.material; }
-            }
-
-            public TeamType Type
-            {
-                get { return type; }
-            }
+            public TeamType Type => type;
+            public Material UnitMaterial => unitMaterial;
+            public Material BaseMaterial => baseMaterial;
 
             public int CameraDisplay
             {
