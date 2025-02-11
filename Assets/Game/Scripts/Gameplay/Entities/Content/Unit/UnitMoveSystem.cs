@@ -3,9 +3,9 @@ using Leopotam.EcsLite.Di;
 
 namespace SampleGame
 {
-    public class CharacterMoveSystem : IEcsRunSystem
+    public class UnitMoveSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<CharacterTag>> _characters;
+        private readonly EcsFilterInject<Inc<UnitTag>> _characters;
         private readonly EcsPoolInject<MoveDirection> _moveDirections;
         private readonly EcsPoolInject<RotateDirection> _rotateDirections;
         private readonly EcsPoolInject<UnitDirection> _unitDirections;

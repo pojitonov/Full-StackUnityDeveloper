@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SampleGame
 {
-    [CreateAssetMenu(fileName = "Character", menuName = "SampleGame/Entities/New Character")]
+    [CreateAssetMenu(fileName = "Unit", menuName = "SampleGame/Entities/New Unit")]
     public class CharacterPrototype : EcsPrototype
     {
         [SerializeField] private float _moveSpeed = 3f;
@@ -12,7 +12,7 @@ namespace SampleGame
 
         protected override void Install(in EcsWorld world, in int entity)
         {
-            world.GetPool<CharacterTag>().Add(entity);
+            world.GetPool<UnitTag>().Add(entity);
             world.GetPool<UnitDirection>().Add(entity);
             
             world.GetPool<MoveableTag>().Add(entity);

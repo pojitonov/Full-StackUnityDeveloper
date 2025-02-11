@@ -30,11 +30,8 @@ namespace SampleGame
         public sealed class TeamInfo
         {
             [FormerlySerializedAs("_team")]
-            [SerializeField]
-            private TeamType type;
-
-            [SerializeField]
-            private Material material;
+            [SerializeField] private TeamType type;
+            [SerializeField] private Material material;
 
             public Material Material
             {

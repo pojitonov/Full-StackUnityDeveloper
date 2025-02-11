@@ -16,10 +16,10 @@ namespace SampleGame
 
         public void Run(IEcsSystems systems)
         {
-            foreach (int entitiy in _views.Value)
+            foreach (int entity in _views.Value)
             {
-                ref Renderer[] renderers = ref _views.Pools.Inc1.Get(entitiy).renderers;
-                ref TeamType teamType = ref _views.Pools.Inc2.Get(entitiy);
+                ref Renderer[] renderers = ref _views.Pools.Inc1.Get(entity).renderers;
+                ref TeamType teamType = ref _views.Pools.Inc2.Get(entity);
                 TeamViewUseCase.SetTeam(in renderers, in teamType, in _teamConfig);
             }
         }

@@ -33,7 +33,7 @@ namespace SampleGame
                 //Game Logic
                 .Add(new SpawnSystem())
                 .Add(new DespawnSystem())
-                .Add(new CharacterMoveSystem())
+                .Add(new UnitMoveSystem())
                 .Add(new MoveSystem())
                 .Add(new RotateSystem())
 
