@@ -16,6 +16,8 @@ MonoBehaviour:
   - type: 1
     unitMaterial: {fileID: 2100000, guid: 98a7fdcb4ebb44344b4afe0424d44b82, type: 2}
     baseMaterial: {fileID: 2100000, guid: a2085ab309c94a143a706621cd42e213, type: 2}
+    bannerMaterial: {fileID: 2100000, guid: 5b3184522dc5e5041810df0af22f4b47, type: 2}
   - type: 0
     unitMaterial: {fileID: 2100000, guid: 792a4bad9e08b8e41bfbd3f0b8aac1ab, type: 2}
     baseMaterial: {fileID: 2100000, guid: 4a8b820c98c7b4540bab4e4f3d70d7fb, type: 2}
+    bannerMaterial: {fileID: 2100000, guid: f806521b69283c046a40f43fa2679d40, type: 2}

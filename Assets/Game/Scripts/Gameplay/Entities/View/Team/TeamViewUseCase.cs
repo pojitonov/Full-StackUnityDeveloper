@@ -5,16 +5,29 @@ namespace SampleGame
 {
     public static class TeamViewUseCase
     {
-        public static void SetTeam(in Renderer[] renderers, in TeamType teamType, in TeamViewConfig viewConfig, in EcsWorld world, in int entity)
+        private static Material _material;
+
+        public static void SetTeam(in Renderer[] renderers, in TeamType teamType, in TeamViewConfig viewConfig,
+            in EcsWorld world, in int entity)
         {
             TeamViewConfig.TeamInfo team = viewConfig.GetTeam(teamType);
 
-            bool isBase = world.GetPool<BaseTag>().Has(entity);
-            Material material = isBase ? team.BaseMaterial : team.UnitMaterial;
+            if (world.GetPool<BannerTag>().Has(entity))
+            {
+                _material = team.BannerMaterial;
+            }
+            else if (world.GetPool<UnitTag>().Has(entity))
+            {
+                _material = team.UnitMaterial;
+            }
+            else if (world.GetPool<BaseTag>().Has(entity))
+            {
+                _material = team.BaseMaterial;
+            }
 
             for (int i = 0, count = renderers.Length; i < count; i++)
             {
-                renderers[i].material = material;
+                renderers[i].material = _material;
             }
         }
     }

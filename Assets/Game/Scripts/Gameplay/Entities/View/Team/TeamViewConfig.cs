@@ -33,10 +33,12 @@ namespace SampleGame
             [SerializeField] private TeamType type;
             [SerializeField] private Material unitMaterial;
             [SerializeField] private Material baseMaterial;
+            [SerializeField] private Material bannerMaterial;
 
             public TeamType Type => type;
             public Material UnitMaterial => unitMaterial;
             public Material BaseMaterial => baseMaterial;
+            public Material BannerMaterial => bannerMaterial;
 
             public int CameraDisplay
             {
