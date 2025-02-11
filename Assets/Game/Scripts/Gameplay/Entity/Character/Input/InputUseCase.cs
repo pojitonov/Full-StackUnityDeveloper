@@ -15,7 +15,7 @@ namespace Game.Gameplay
         {
             _moveJoystick = joystick;
         }
-        
+
         public static void SetAttackJoystick(Joystick joystick)
         {
             _attackJoystick = joystick;
@@ -23,22 +23,8 @@ namespace Game.Gameplay
 
         public static Vector3 GetMoveDirection()
         {
-            Vector3 direction = Vector3.zero;
+            var direction = Vector3.zero;
 
-            // Keyboard input
-            if (Input.GetKey(KeyCode.W))
-                direction += Vector3.forward;
-
-            if (Input.GetKey(KeyCode.S))
-                direction += Vector3.back;
-
-            if (Input.GetKey(KeyCode.A))
-                direction += Vector3.left;
-
-            if (Input.GetKey(KeyCode.D))
-                direction += Vector3.right;
-
-            // Joystick input
             if (_moveJoystick && _moveJoystick.IsPressed)
             {
                 direction += new Vector3(_moveJoystick.Horizontal, 0, _moveJoystick.Vertical);
@@ -46,40 +32,33 @@ namespace Game.Gameplay
 
             return direction.normalized;
         }
-        
+
         public static void Attack(SceneEntity character, Cooldown cooldown)
         {
-            // Keyboard input
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                character.GetAttackAction().Invoke();
-            }
+            if (!_attackJoystick || !_attackJoystick.IsPressed) 
+                return;
+            
+            var direction = new Vector3(_attackJoystick.Horizontal, 0, _attackJoystick.Vertical).normalized;
 
-            // Joystick input
-            if (_attackJoystick && _attackJoystick.IsPressed)
+            if (direction.sqrMagnitude > 0.01f)
             {
-                var direction = new Vector3(_attackJoystick.Horizontal, 0, _attackJoystick.Vertical).normalized;
-                
-                if (direction.sqrMagnitude > 0.01f)
+                character.RotateTowards(direction, Time.deltaTime);
+
+                if (!_isFiring)
                 {
-                    character.RotateTowards(direction, Time.deltaTime);
-                    
-                    if (!_isFiring)
-                    {
-                        _isFiring = true;
-                        cooldown.Reset();
-                    }
+                    _isFiring = true;
+                    cooldown.Reset();
+                }
 
-                    if (cooldown.IsExpired())
-                    {
-                        character.GetAttackAction().Invoke();
-                        cooldown.Reset();
-                        _isFiring = false;
-                    }
-                    else
-                    {
-                        cooldown.Tick(Time.deltaTime);
-                    }
+                if (cooldown.IsExpired())
+                {
+                    character.GetAttackAction().Invoke();
+                    cooldown.Reset();
+                    _isFiring = false;
+                }
+                else
+                {
+                    cooldown.Tick(Time.deltaTime);
                 }
             }
         }
