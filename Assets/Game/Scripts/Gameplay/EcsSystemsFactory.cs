@@ -1,5 +1,4 @@
 using Leopotam.EcsLite;
-using Leopotam.EcsLite.ExtendedSystems;
 using UnityEngine;
 
 namespace SampleGame
@@ -13,14 +12,10 @@ namespace SampleGame
         [SerializeField] private InputMap _inputMap;
         [SerializeField] private TeamViewConfig _teamViewConfig;
         [SerializeField] private EcsPrototype _arrowPrefab;
-        // [SerializeField] private int _initialMoney = 100;
         
         public IEcsSystems Create()
         {
             EcsWorld world = new EcsWorld();
-            // world.AddSingleton(new InputData());
-            // world.AddSingleton(new PlayerData{money = _initialMoney});
-            
             EcsSystems systems = new EcsSystems(world, new GameData());
             
             systems.AddWorld(new EcsWorld(), EcsConsts.EventWorld);
@@ -43,6 +38,7 @@ namespace SampleGame
                 .Add(new UnitFireSystem(_arrowPrefab))
                 
                 .Add(new FireCooldownSystem())
+                .Add(new ArrowInitializeSystem())
 
                 //Rendering:
                 .Add(new TransformViewSystem())
