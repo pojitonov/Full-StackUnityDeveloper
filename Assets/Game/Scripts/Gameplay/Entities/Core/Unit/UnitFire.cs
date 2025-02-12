@@ -4,9 +4,8 @@ using Unity.Mathematics;
 namespace SampleGame
 {
     [Serializable]
-    public struct InputData
+    public struct UnitFire
     {
-        public float3 moveDirection;
-        public bool isFire;
+        public bool value;
     }
 }

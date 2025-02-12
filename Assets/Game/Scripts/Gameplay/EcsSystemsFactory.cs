@@ -12,7 +12,7 @@ namespace SampleGame
     {
         [SerializeField] private InputMap _inputMap;
         [SerializeField] private TeamViewConfig _teamViewConfig;
-        // [SerializeField] private EcsPrototype _projectilePrefab;
+        [SerializeField] private EcsPrototype _arrowPrefab;
         // [SerializeField] private int _initialMoney = 100;
         
         public IEcsSystems Create()
@@ -29,13 +29,17 @@ namespace SampleGame
                 //Input:
                 .Add(new InputSystem(_inputMap))
                 .Add(new PlayerMoveController())
+                .Add(new PlayerFireController())
 
                 //Game Logic
                 .Add(new SpawnSystem())
                 .Add(new DespawnSystem())
-                .Add(new UnitMoveSystem())
+                
                 .Add(new MoveSystem())
                 .Add(new RotateSystem())
+                
+                .Add(new UnitMoveSystem())
+                .Add(new UnitFireSystem(_arrowPrefab))
 
                 //Rendering:
                 .Add(new TransformViewSystem())

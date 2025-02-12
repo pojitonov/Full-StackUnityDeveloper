@@ -14,6 +14,7 @@ namespace SampleGame
         {
             world.GetPool<UnitTag>().Add(entity);
             world.GetPool<UnitDirection>().Add(entity);
+            world.GetPool<UnitFire>().Add(entity);
             
             world.GetPool<MoveableTag>().Add(entity);
             world.GetPool<MoveSpeed>().Add(entity).value = _moveSpeed;

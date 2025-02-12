@@ -23,7 +23,8 @@ namespace SampleGame
             {
                 inputData.moveDirection.z = -1;
             }
-            else if (Input.GetKey(_inputMap.left))
+
+            if (Input.GetKey(_inputMap.left))
             {
                 inputData.moveDirection.x = -1;
             }
@@ -31,6 +32,8 @@ namespace SampleGame
             {
                 inputData.moveDirection.x = 1;
             }
+
+            inputData.isFire = Input.GetKeyDown(_inputMap.fire);
         }
 
         public InputSystem(InputMap inputMap)
