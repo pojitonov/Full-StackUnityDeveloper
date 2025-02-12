@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd026e7f8da941bb8027962d6361f566, type: 3}
   m_Name: Arrow
   m_EditorClassIdentifier: 
+  _moveSpeed: 10
+  _lifetime: 3
+  _damage: 1

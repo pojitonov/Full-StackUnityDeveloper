@@ -3,40 +3,42 @@ using Leopotam.EcsLite.Di;
 
 namespace SampleGame
 {
-    public class UnitFireSystem : IEcsRunSystem
+    public sealed class UnitFireSystem : IEcsRunSystem
     {
-        private readonly EcsPrototype _arrowPrefab;
+        private readonly EcsWorldInject _world;
+        private readonly EcsPrototype _prefab;
         private readonly EcsFilterInject<Inc<UnitTag>> _units;
-        private readonly EcsPoolInject<UnitFire> _unitFires;
-        private readonly EcsPoolInject<Position> _positions;
-        private readonly EcsPoolInject<Rotation> _rotations;
-        private readonly EcsPoolInject<TeamType> _teamTypes;
+        private readonly EcsPoolInject<UnitFire> _fires;
+        private readonly EcsUseCaseInject<HealthUseCase> _healthUseCase;
+        private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
+        private readonly EcsEventInject<FireEvent> _fireEvents;
 
-        private readonly EcsWorldInject _eventWorld = EcsConsts.EventWorld;
-        private readonly EcsPoolInject<ArrowSpawnRequest> _spawnRequests = EcsConsts.EventWorld;
-
-        public UnitFireSystem(EcsPrototype arrowPrefab)
+        public UnitFireSystem(EcsPrototype prefab)
         {
-            _arrowPrefab = arrowPrefab;
+            _prefab = prefab;
         }
 
         public void Run(IEcsSystems systems)
         {
-            foreach (var entity in _units.Value)
-            {
-                ref var unitFires = ref _unitFires.Value.Get(entity);
-                if (!unitFires.value)
-                    continue;
+            foreach (int entity in _units.Value) 
+                Fire(entity);
+        }
 
-                var spawnRequest = _eventWorld.Value.NewEntity();
-                _spawnRequests.Value.Add(spawnRequest) = new ArrowSpawnRequest
-                {
-                    prefab = _arrowPrefab,
-                    position = _positions.Value.Get(entity).value,
-                    rotation = _rotations.Value.Get(entity).value,
-                    team = _teamTypes.Value.Get(entity)
-                };
-            }
+        private void Fire(int entity)
+        {
+            if (!_fires.Value.Get(entity).value)
+                return;
+
+            if (!_fireUseCase.Value.IsCooldownExpired(entity))
+                return;
+
+            if (!_healthUseCase.Value.Exists(entity))
+                return;
+
+            _fireUseCase.Value.Fire(entity, _prefab);
+            _fireUseCase.Value.ResetCooldown(entity);
+
+            _fireEvents.Value.Fire(new FireEvent {entity = _world.Value.PackEntity(entity)});
         }
     }
 }

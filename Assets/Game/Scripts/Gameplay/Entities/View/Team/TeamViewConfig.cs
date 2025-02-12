@@ -29,7 +29,6 @@ namespace SampleGame
         [Serializable]
         public sealed class TeamInfo
         {
-            [FormerlySerializedAs("_team")]
             [SerializeField] private TeamType type;
             [SerializeField] private Material unitMaterial;
             [SerializeField] private Material baseMaterial;
@@ -39,11 +38,6 @@ namespace SampleGame
             public Material UnitMaterial => unitMaterial;
             public Material BaseMaterial => baseMaterial;
             public Material BannerMaterial => bannerMaterial;
-
-            public int CameraDisplay
-            {
-                get { return (int) this.type - 1; }
-            }
         }
     }
 }

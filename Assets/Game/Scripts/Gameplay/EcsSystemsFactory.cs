@@ -34,12 +34,15 @@ namespace SampleGame
                 //Game Logic
                 .Add(new SpawnSystem())
                 .Add(new DespawnSystem())
+                .Add(new LifetimeSystem())
                 
                 .Add(new MoveSystem())
                 .Add(new RotateSystem())
                 
                 .Add(new UnitMoveSystem())
                 .Add(new UnitFireSystem(_arrowPrefab))
+                
+                .Add(new FireCooldownSystem())
 
                 //Rendering:
                 .Add(new TransformViewSystem())
