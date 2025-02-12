@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 3
   _rotationSpeed: 10
-  _health: 10
+  _health: 5
   _fireCooldown: 0.5

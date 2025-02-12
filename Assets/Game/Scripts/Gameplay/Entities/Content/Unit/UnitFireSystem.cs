@@ -8,7 +8,7 @@ namespace SampleGame
         private readonly EcsWorldInject _world;
         private readonly EcsPrototype _prefab;
         private readonly EcsFilterInject<Inc<UnitTag>> _units;
-        private readonly EcsPoolInject<UnitFire> _fires;
+        private readonly EcsPoolInject<CanFire> _fires;
         private readonly EcsUseCaseInject<HealthUseCase> _healthUseCase;
         private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
         private readonly EcsEventInject<FireEvent> _fireEvents;
@@ -20,7 +20,7 @@ namespace SampleGame
 
         public void Run(IEcsSystems systems)
         {
-            foreach (int entity in _units.Value) 
+            foreach (var entity in _units.Value) 
                 Fire(entity);
         }
 

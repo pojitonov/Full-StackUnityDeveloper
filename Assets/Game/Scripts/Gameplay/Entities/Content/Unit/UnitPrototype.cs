@@ -9,14 +9,16 @@ namespace SampleGame
     {
         [SerializeField] private float _moveSpeed = 3f;
         [SerializeField] float _rotationSpeed = 10f;
-        [SerializeField] private int _health = 10;
+        [SerializeField] private int _health = 5;
         [SerializeField] private float _fireCooldown = 0.5f;
 
         protected override void Install(in EcsWorld world, in int entity)
         {
             world.GetPool<UnitTag>().Add(entity);
+            world.GetPool<DeathTag>().Add(entity);
+            
             world.GetPool<UnitDirection>().Add(entity);
-            world.GetPool<UnitFire>().Add(entity);
+            world.GetPool<CanFire>().Add(entity);
             
             world.GetPool<MoveableTag>().Add(entity);
             world.GetPool<MoveSpeed>().Add(entity).value = _moveSpeed;
@@ -32,7 +34,7 @@ namespace SampleGame
                 max = _health
             };
             
-            world.GetPool<FireOffset>().Add(entity).value = new float3(0, 1, 1);
+            world.GetPool<FireOffset>().Add(entity).value = new float3(0, 0, 1.25f);
             world.GetPool<FireCooldown>().Add(entity) = new FireCooldown
             {
                 current = 0,

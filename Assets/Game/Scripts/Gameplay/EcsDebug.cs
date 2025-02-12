@@ -20,26 +20,11 @@ namespace SampleGame
         }
 
         [Button]
-        public void DespawnEntity(DespawnRequest request)
+        public void DestroyEntity(DestroyRequest request)
         {
             EcsWorld eventWorld = _ecsSystems.GetWorld(EcsConsts.EventWorld);
             int evt = eventWorld.NewEntity();
-            eventWorld.GetPool<DespawnRequest>().Add(evt) = request;
+            eventWorld.GetPool<DestroyRequest>().Add(evt) = request;
         }
-        
-        // [Button]
-        // private void CreateEntity(EcsPrototype prefab, float3 position, quaternion rotation, TeamType team)
-        // {
-        //     int entity = prefab.Create(_world);
-        //
-        //     _world.GetPool<Position>().Add(entity).value = position;
-        //     _world.GetPool<Rotation>().Add(entity).value = rotation;
-        // }
-        //
-        // [Button]
-        // private void DeleteEntity(int entity)
-        // {
-        //     _world.DelEntity(entity);
-        // }
     }
 }

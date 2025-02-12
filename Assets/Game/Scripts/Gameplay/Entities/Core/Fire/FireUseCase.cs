@@ -34,13 +34,13 @@ namespace SampleGame
 
         public bool IsCooldownExpired(in int entity)
         {
-            ref FireCooldown cooldown = ref _fireCooldown.Value.Get(entity);
+            ref var cooldown = ref _fireCooldown.Value.Get(entity);
             return cooldown.current <= 0;
         }
 
         public void ResetCooldown(int entity)
         {
-            ref FireCooldown cooldown = ref _fireCooldown.Value.Get(entity);
+            ref var cooldown = ref _fireCooldown.Value.Get(entity);
             cooldown.current = cooldown.duration;
         }
     }

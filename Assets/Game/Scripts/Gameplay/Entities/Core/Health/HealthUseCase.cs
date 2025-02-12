@@ -33,14 +33,6 @@ namespace SampleGame
                 return false;
             
             health.current = Math.Max(0, health.current - range);
-            
-            
-            
-            // this.OnStateChanged?.Invoke();
-            // this.OnHealthChanged?.Invoke(this.current);
-            //
-            // if (this.current == 0)
-            //     this.OnHealthEmpty?.Invoke();
 
             return true;
         }
