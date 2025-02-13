@@ -35,8 +35,8 @@ namespace SampleGame
             if (!_healthUseCase.Value.Exists(entity))
                 return;
 
-            // _fireUseCase.Value.Fire(entity, _prefab);
-            // _fireUseCase.Value.ResetCooldown(entity);
+            _fireUseCase.Value.Fire(entity, _prefab);
+            _fireUseCase.Value.ResetCooldown(entity);
 
             _fireEvents.Value.Fire(new FireEvent {entity = _world.Value.PackEntity(entity)});
         }

@@ -15,6 +15,11 @@ MonoBehaviour:
   _inputMap: {fileID: 11400000, guid: 1b70dc9b3eea2374eb531dcecf68149c, type: 2}
   _teamViewConfig: {fileID: 11400000, guid: 675abb6d7e75b8947bad8b0b5cce17e0, type: 2}
   _arrowPrefab: {fileID: 11400000, guid: 4b32b5be6ee1d994a97ee7f389ecf29f, type: 2}
-  _attackKey: Attack
-  _takeDamageKey: Take Damage
-  _moveKey: IsWalking
+  _attack: Attack
+  _takeDamage: Take Damage
+  _move: IsWalking
+  _unitTakeDamage: {fileID: 8300000, guid: 80b1313dc59709e4591e7700b3974be8, type: 3}
+  _baseTakeDamage: {fileID: 8300000, guid: 99e01eb694cf5b04c85a0b0d9794150b, type: 3}
+  _archerAttack: {fileID: 8300000, guid: 240baeffce55e5943bffbca94f5ad07a, type: 3}
+  _swordmanAttack: {fileID: 8300000, guid: 770df82df61f09e47b1335b927390e4a, type: 3}
+  _unitDeath: {fileID: 8300000, guid: ed555a8b5bc2920458d6da0a3738955f, type: 3}

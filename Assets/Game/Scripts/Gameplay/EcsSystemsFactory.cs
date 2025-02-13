@@ -12,9 +12,17 @@ namespace SampleGame
         [SerializeField] private InputMap _inputMap;
         [SerializeField] private TeamViewConfig _teamViewConfig;
         [SerializeField] private EcsPrototype _arrowPrefab;
-        [SerializeField] private string _attackKey = "Attack";
-        [SerializeField] private string _takeDamageKey = "Take Damage";
-        [SerializeField] private string _moveKey = "IsWalking";
+        
+        [Header("Animation Keys")]
+        [SerializeField] private string _attack = "Attack";
+        [SerializeField] private string _takeDamage = "Take Damage";
+        [SerializeField] private string _move = "IsWalking";
+        
+        [Header("Sound Clips")]
+        [SerializeField] private AudioClip _unitTakeDamage;
+        [SerializeField] private AudioClip _baseTakeDamage;
+        [SerializeField] private AudioClip _archerAttack;
+        [SerializeField] private AudioClip _swordmanAttack;
         
         public IEcsSystems Create()
         {
@@ -48,9 +56,14 @@ namespace SampleGame
                 //Rendering:
                 .Add(new TransformViewSystem())
                 .Add(new TeamViewSystem(_teamViewConfig))
-                .Add(new FireAnimSystem(_attackKey))
-                .Add(new TakeDamageAnimSystem(_takeDamageKey))
-                .Add(new MoveAnimSystem(_moveKey))
+                .Add(new FireAnimSystem(_attack))
+                .Add(new TakeDamageAnimSystem(_takeDamage))
+                .Add(new TakeDamageParticleSystem())
+                .Add(new MoveAnimSystem(_move))
+                
+                //Audio:
+                .Add(new TakeDamageUnitAudioSystem(_unitTakeDamage))
+                .Add(new TakeDamageBaseAudioSystem(_baseTakeDamage))
 
                 //Clear:
                 .Add(new ClearEventSystem<FireEvent>(world))
