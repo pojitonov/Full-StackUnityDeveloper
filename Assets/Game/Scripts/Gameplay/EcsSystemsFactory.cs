@@ -34,7 +34,7 @@ namespace SampleGame
 
                 //Input:
                 .Add(new InputSystem(_inputMap))
-                .Add(new PlayerMoveController())
+                // .Add(new PlayerMoveController())
                 .Add(new PlayerFireController())
 
                 //Game Logic
@@ -46,11 +46,13 @@ namespace SampleGame
                 .Add(new RotationSystem())
                 .Add(new DeathSystem())
                 
+                .Add(new UnitInitSystem())
                 .Add(new UnitMoveSystem())
                 .Add(new UnitRotateSystem())
                 .Add(new UnitFireSystem(_arrowPrefab))
-                
                 .Add(new FireCooldownSystem())
+                .Add(new UnitFindEnemiesSystem())
+                
                 .Add(new ArrowInitializeSystem())
                 .Add(new ArrowCollisionSystem())
 

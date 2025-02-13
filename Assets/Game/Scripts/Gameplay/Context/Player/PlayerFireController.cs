@@ -16,6 +16,7 @@ namespace SampleGame
                 var teamType = _teamTypes.Value.Get(entity);
                 if (teamType == TeamType.RED)
                     continue;
+                
                 ref CanFire fire = ref _units.Pools.Inc1.Get(entity);
                 fire.value = _gameData.Value.inputData.isFire;
             }
