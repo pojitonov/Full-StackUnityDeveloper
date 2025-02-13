@@ -19,6 +19,7 @@ namespace SampleGame
             
             world.GetPool<UnitDirection>().Add(entity);
             world.GetPool<CanFire>().Add(entity);
+            world.GetPool<Target>().Add(entity);
             
             world.GetPool<MoveableTag>().Add(entity);
             world.GetPool<MoveSpeed>().Add(entity).value = _moveSpeed;
@@ -36,7 +37,7 @@ namespace SampleGame
                 max = _health
             };
             
-            world.GetPool<FireOffset>().Add(entity).value = new float3(0, 1.3f, 2f);
+            world.GetPool<FireOffset>().Add(entity).value = new float3(0, 1.5f, 2f);
             world.GetPool<FireCooldown>().Add(entity) = new FireCooldown
             {
                 current = 0,

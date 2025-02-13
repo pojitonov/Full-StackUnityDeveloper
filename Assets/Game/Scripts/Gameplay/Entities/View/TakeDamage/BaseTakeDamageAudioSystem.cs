@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace SampleGame
 {
-    public sealed class TakeDamageUnitAudioSystem : IEcsRunSystem
+    public sealed class BaseTakeDamageAudioSystem : IEcsRunSystem
     {
         private readonly EcsWorldInject _world;
-        private readonly EcsPoolInject<UnitTag> _tag;
+        private readonly EcsPoolInject<BaseTag> _tag;
         private readonly EcsEventInject<TakeDamageEvent> _events;
         private readonly EcsPoolInject<AudioSourceView> _audioSource;
         private readonly AudioClip _audioClip;
 
-        public TakeDamageUnitAudioSystem(AudioClip audioClip)
+        public BaseTakeDamageAudioSystem(AudioClip audioClip)
         {
             _audioClip = audioClip;
         }

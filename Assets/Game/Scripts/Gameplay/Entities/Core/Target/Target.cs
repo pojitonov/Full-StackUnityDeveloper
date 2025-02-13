@@ -6,6 +6,6 @@ namespace SampleGame
     [Serializable]
     public struct Target
     {
-        public EcsPackedEntity value;
+        public int value;
     }
 }

@@ -4,28 +4,27 @@ using Unity.Mathematics;
 
 namespace SampleGame
 {
-    public class UnitFindEnemiesSystem : IEcsRunSystem
+    public class UnitTargetSystem : IEcsRunSystem
     {
         private const float MAX_DETECTION_RANGE = 100f;
 
-        private readonly EcsFilterInject<Inc<UnitDirection, TeamType, EcsName, StoppingDistance>> _movables;
+        private readonly EcsFilterInject<Inc<TeamType, Position, Target>> _units;
         private readonly EcsPoolInject<TeamType> _teamTypes;
         private readonly EcsPoolInject<Position> _positions;
-        private readonly EcsPoolInject<StoppingDistance> _stoppingDistances;
+        private readonly EcsPoolInject<Target> _targets;
 
         public void Run(IEcsSystems systems)
         {
-            foreach (var entity in _movables.Value)
+            foreach (var entity in _units.Value)
             {
                 var teamType = _teamTypes.Value.Get(entity);
                 var position = _positions.Value.Get(entity).value;
-                var stoppingDistance = _stoppingDistances.Value.Get(entity).value;
 
                 var enemy = FindClosestEnemy(entity, teamType, position);
-                if (enemy == -1) continue;
-
-                var direction = CalculateDirection(enemy, position, stoppingDistance);
-                SetDirection(entity, direction);
+                if (enemy != -1)
+                {
+                    SetTarget(entity, enemy);
+                }
             }
         }
 
@@ -34,7 +33,7 @@ namespace SampleGame
             float closestDistance = float.MaxValue;
             int closestEnemyEntity = -1;
 
-            foreach (var enemy in _movables.Value)
+            foreach (var enemy in _units.Value)
             {
                 if (entity == enemy) continue;
 
@@ -54,18 +53,10 @@ namespace SampleGame
             return closestEnemyEntity;
         }
 
-        private float3 CalculateDirection(int closestEnemyEntity, float3 position, float stoppingDistance)
+        private void SetTarget(int entity, int enemy)
         {
-            var closestEnemyPosition = _positions.Value.Get(closestEnemyEntity).value;
-            var direction = math.normalize(closestEnemyPosition - position);
-
-            return math.distance(position, closestEnemyPosition) > stoppingDistance ? direction : float3.zero;
-        }
-
-        private void SetDirection(int entity, float3 direction)
-        {
-            ref var unitDirection = ref _movables.Pools.Inc1.Get(entity);
-            unitDirection.value = direction;
+            ref var Target = ref _units.Pools.Inc3.Get(entity);
+            Target.value = enemy;
         }
     }
 }

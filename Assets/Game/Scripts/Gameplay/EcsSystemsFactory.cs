@@ -35,9 +35,12 @@ namespace SampleGame
                 //Input:
                 .Add(new InputSystem(_inputMap))
                 // .Add(new PlayerMoveController())
-                .Add(new PlayerFireController())
+                // .Add(new PlayerFireController())
 
                 //Game Logic
+                .Add(new UnitInitSystem())
+                .Add(new ArrowInitializeSystem())
+                
                 .Add(new SpawnSystem())
                 .Add(new DestroySystem())
                 .Add(new LifetimeSystem())
@@ -46,15 +49,15 @@ namespace SampleGame
                 .Add(new RotationSystem())
                 .Add(new DeathSystem())
                 
-                .Add(new UnitInitSystem())
+                .Add(new ArrowCollisionSystem())
+                
                 .Add(new UnitMoveSystem())
                 .Add(new UnitRotateSystem())
-                .Add(new UnitFireSystem(_arrowPrefab))
+                .Add(new UnitTargetSystem())
+                .Add(new UnitDirectionSystem())
+                .Add(new UnitFireReadySystem())
                 .Add(new FireCooldownSystem())
-                .Add(new UnitFindEnemiesSystem())
-                
-                .Add(new ArrowInitializeSystem())
-                .Add(new ArrowCollisionSystem())
+                .Add(new UnitFireSystem(_arrowPrefab))
 
                 //Rendering:
                 .Add(new TransformViewSystem())
@@ -65,8 +68,8 @@ namespace SampleGame
                 .Add(new MoveAnimSystem(_move))
                 
                 //Audio:
-                .Add(new TakeDamageUnitAudioSystem(_unitTakeDamage))
-                .Add(new TakeDamageBaseAudioSystem(_baseTakeDamage))
+                .Add(new UnitTakeDamageAudioSystem(_unitTakeDamage))
+                .Add(new BaseTakeDamageAudioSystem(_baseTakeDamage))
 
                 //Clear:
                 .Add(new ClearEventSystem<FireEvent>(world))
