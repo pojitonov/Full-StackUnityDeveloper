@@ -12,6 +12,9 @@ namespace SampleGame
         [SerializeField] private InputMap _inputMap;
         [SerializeField] private TeamViewConfig _teamViewConfig;
         [SerializeField] private EcsPrototype _arrowPrefab;
+        [SerializeField] private string _attackKey = "Attack";
+        [SerializeField] private string _takeDamageKey = "Take Damage";
+        [SerializeField] private string _moveKey = "IsWalking";
         
         public IEcsSystems Create()
         {
@@ -45,8 +48,13 @@ namespace SampleGame
                 //Rendering:
                 .Add(new TransformViewSystem())
                 .Add(new TeamViewSystem(_teamViewConfig))
+                .Add(new FireAnimSystem(_attackKey))
+                .Add(new TakeDamageAnimSystem(_takeDamageKey))
+                .Add(new MoveAnimSystem(_moveKey))
 
                 //Clear:
+                .Add(new ClearEventSystem<FireEvent>(world))
+                .Add(new ClearEventSystem<TakeDamageEvent>(world))
 
                 //Debug:
 #if UNITY_EDITOR
