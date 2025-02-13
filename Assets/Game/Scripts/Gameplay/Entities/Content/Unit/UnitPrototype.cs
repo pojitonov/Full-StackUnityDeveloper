@@ -26,7 +26,7 @@ namespace SampleGame
 
             world.GetPool<RotatableTag>().Add(entity);
             world.GetPool<RotateDirection>().Add(entity).value = new float3(0f, 0f, -1f);
-            world.GetPool<RotateSpeed>().Add(entity).value = _rotationSpeed;
+            world.GetPool<RotationSpeed>().Add(entity).value = _rotationSpeed;
             
             world.GetPool<Health>().Add(entity) = new Health
             {

@@ -3,7 +3,7 @@ using System;
 namespace SampleGame
 {
     [Serializable]
-    public struct RotateSpeed
+    public struct RotationSpeed
     {
         public float value;
     }

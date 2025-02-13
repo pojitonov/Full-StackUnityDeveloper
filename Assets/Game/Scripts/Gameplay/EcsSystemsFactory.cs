@@ -43,10 +43,11 @@ namespace SampleGame
                 .Add(new LifetimeSystem())
                 
                 .Add(new MoveSystem())
-                .Add(new RotateSystem())
+                .Add(new RotationSystem())
                 .Add(new DeathSystem())
                 
                 .Add(new UnitMoveSystem())
+                .Add(new UnitRotateSystem())
                 .Add(new UnitFireSystem(_arrowPrefab))
                 
                 .Add(new FireCooldownSystem())
