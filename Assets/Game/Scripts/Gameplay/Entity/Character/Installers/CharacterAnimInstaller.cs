@@ -18,19 +18,18 @@ namespace Game.Gameplay
         
         public override void Install(IEntity entity)
         {
-            //Data:
             entity.AddAnimator(_animator);
-            entity.AddAttackEvent(new BaseEvent());
             entity.AddAnimationEventReceiver(_animationReceiver);
             
-            //Behaviours:
+            //Attack:
+            entity.AddAttackEvent(new BaseEvent());
+            entity.AddAttackAction(new CharacterFireAction(entity));
+            
+            //AnimBehaviours:
             entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
             entity.AddBehaviour(new FireAnimBehaviour(_fireKey));
             entity.AddBehaviour(new TakeDamageAnimBehaviour(_damageKey));
             entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
-            
-            //Actions:
-            entity.AddAttackAction(new CharacterFireAction(entity));
         }
     }
 }

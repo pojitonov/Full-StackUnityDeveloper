@@ -13,19 +13,16 @@ namespace Game.Gameplay
         
         protected override void Install(IWeaponEntity entity)
         {
-            //Contexts:
             GameContext gameContext = GameContext.Instance;
             
-            //Data:
+            //Entity:
             entity.AddBulletPrefab(_bulletPrefab);
             entity.AddTransform(_firePoint);
             entity.AddAmmo(_ammo);
+            
+            //Attack:
             entity.AddAttackEvent(new BaseEvent());
-            
-            //Conditions:
             entity.AddAttackCondition(new BaseFunction<bool>(() => _ammo.Exists()));
-            
-            //Actions:
             entity.AddAttackAction(new PistolFireAction(entity, gameContext));
         }
     }

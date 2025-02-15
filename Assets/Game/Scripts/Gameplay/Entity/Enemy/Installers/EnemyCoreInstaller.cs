@@ -18,39 +18,40 @@ namespace Game.Gameplay
 
         public override void Install(IEntity entity)
         {
-            //Contexts:
             GameContext gameContext = GameContext.Instance;
 
-            //Data:
+            //Entity:
             entity.AddGameObject(_gameObject);
             entity.AddTransform(_center);
-            entity.AddHealth(_health);
-            entity.AddChasing(new BaseVariable<bool>(false));
+            entity.AddEnemyTag();
+            entity.AddDamageableTag();
+            
+            //Move:
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
-            entity.AddAngularSpeed(new Const<float>(_angularSpeed));
-            entity.AddTarget(gameContext.GetCharacter());
-            entity.AddDamageableTag();
-            entity.AddEnemyTag();
-
-            //Behaviours:
-            entity.AddBehaviour<DeathBehaviour>();
+            entity.AddChasing(new BaseVariable<bool>(false));
             entity.AddBehaviour<EnemyChasingBehaviour>();
+            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && gameContext.GetCharacter().IsAlive()));
+            
+            //Rotate:
+            entity.AddAngularSpeed(new Const<float>(_angularSpeed));
             entity.AddBehaviour<EnemyRotateBehaviour>();
-            entity.AddBehaviour(new AttackBehaviour(_attackRadius, _attackInterval));
-            entity.AddBehaviour(new HandAttackBehaviour(_attackRadius, _damage, _center));
+            entity.AddRotateCondition(new AndExpression(entity.IsAlive));
+            
+            //Life:
+            entity.AddHealth(_health);
+            entity.AddBehaviour<DeathBehaviour>();
+            entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());
+            entity.AddDeathEvent(new BaseEvent<DamageArgs>());
             entity.AddBehaviour<KillsCountBehaviour>();
             entity.AddBehaviour<BodyFallDisableBehaviour>();
 
-            //Conditions:
-            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && gameContext.GetCharacter().IsAlive()));
-            entity.AddRotateCondition(new AndExpression(entity.IsAlive));
-            entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && gameContext.GetCharacter().IsAlive()));
-
-            //Events:
-            entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());
-            entity.AddDeathEvent(new BaseEvent<DamageArgs>());
+            //Attack:
+            entity.AddTarget(gameContext.GetCharacter());
             entity.AddAttackingEvent(new BaseEvent());
+            entity.AddBehaviour(new AttackBehaviour(_attackRadius, _attackInterval));
+            entity.AddBehaviour(new HandAttackBehaviour(_attackRadius, _damage, _center));
+            entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && gameContext.GetCharacter().IsAlive()));
         }
     }
 }

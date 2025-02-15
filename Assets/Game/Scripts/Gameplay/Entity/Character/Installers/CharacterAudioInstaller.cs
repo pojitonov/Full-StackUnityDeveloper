@@ -15,10 +15,9 @@ namespace Game.Gameplay
 
         public override void Install(IEntity entity)
         {
-            //Data:
             entity.AddAudioSource(_audioSource);
             
-            //Behaviours:
+            //SoundBehaviours:
             entity.AddBehaviour(new PainSoundBehaviour(_painLevels));
             entity.AddBehaviour(new TakeDamageSoundBehaviour(_deathClips));
             entity.AddBehaviour(new BodyFallSoundBehaviour(_bodyFallClip));

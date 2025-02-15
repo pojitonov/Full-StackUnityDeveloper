@@ -14,31 +14,30 @@ namespace Game.Gameplay
 
         public override void Install(IEntity entity)
         {
-            //Contexts:
             GameContext gameContext = GameContext.Instance;
 
-            //Data:
+            //Entity:
             entity.AddTransform(transform);
             entity.AddGameObject(gameObject);
+            
+            //Move:
             entity.AddMoveDirection(new ReactiveVariable<Vector3>());
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
+            entity.WhenFixedUpdate(entity.MoveTowardsDirection);
+            
+            //Life:
             entity.AddDamage(new Const<DamageArgs>(new DamageArgs
             {
                 damage = _damage,
                 source = entity
             }));
-            entity.AddCollision(_collision);
             entity.AddLifetime(new Cooldown(_lifetime, _lifetime));
-
-            //Conditions:
-            entity.WhenFixedUpdate(entity.MoveTowardsDirection);
-
-            //Behaviours:
-            entity.AddBehaviour<BulletCollisionBehaviour>();
             entity.AddBehaviour<LifetimeBehaviour>();
-
-            //Actions:
             entity.AddDestroyAction(new BulletUnspawnAction(entity, gameContext));
+            
+            //Physics:
+            entity.AddCollision(_collision);
+            entity.AddBehaviour<BulletCollisionBehaviour>();
         }
     }
 }

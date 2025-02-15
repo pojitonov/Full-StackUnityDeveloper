@@ -13,10 +13,8 @@ namespace Game.Gameplay
 
         public override void Install(IEntity entity)
         {
-            //Data:
             entity.AddInteractableTag();
 
-            //Actions:
             entity.AddInteractAction(new BaseAction<IEntity>(character =>
             {
                 if (character.AddHealth(_healthAmount))

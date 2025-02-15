@@ -17,11 +17,10 @@ namespace Game.Gameplay
         
         public override void Install(IEntity entity)
         {
-            //Data:
             entity.AddAnimator(_animator);
             entity.AddAnimationEventReceiver(_animationReceiver);
 
-            //Behaviours:
+            //AnimBehaviours:
             entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
             entity.AddBehaviour(new AttackAnimBehaviour(_attackKey));
             entity.AddBehaviour(new TakeDamageAnimBehaviour(_damageKey));

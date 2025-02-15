@@ -1,6 +1,8 @@
 using Atomic.Elements;
 using Atomic.Entities;
 
+//TODO: Make a separate controller that will count dead zombies (9:00)
+// Do not attach this to zombies itself but have separate responsible for this
 namespace Game.Gameplay
 {
     public class KillsCountBehaviour : IEntityInit, IEntityDispose

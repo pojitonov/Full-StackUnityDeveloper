@@ -18,33 +18,37 @@ namespace Game.Gameplay
 
         public override void Install(IEntity entity)
         {
-            //Data:
+            //Entity:
             entity.AddGameObject(_gameObject);
             entity.AddTransform(_transform);
             entity.AddHealth(_health);
+            entity.AddTrigger(_trigger);
+
+            //Move:
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
+            entity.AddMoveCondition(new AndExpression(entity.IsAlive));
+            entity.AddBehaviour<MoveTowardsBehaviour>();
+
+            //Rotate:
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
+            entity.AddBehaviour<RotateTowardsBehaviour>();
+
+            //Life:
+            entity.AddDeathEvent(new BaseEvent<DamageArgs>());
+            entity.AddBehaviour<DeathBehaviour>();
+            entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());
+            entity.AddBehaviour<BodyFallDisableBehaviour>();
+
+            //Attack:
             entity.AddFireDelay(new Const<float>(_fireDelay));
-            entity.AddTrigger(_trigger);
             entity.AddWeapon(_weapon);
             entity.AddDamageableTag();
-            
-            //Conditions:
-            entity.AddMoveCondition(new AndExpression(entity.IsAlive));
-            entity.AddAttackCondition(new BaseFunction<bool>(() => 
+            entity.AddAttackCondition(new BaseFunction<bool>(() =>
                 entity.IsAlive() && entity.GetWeapon().GetAttackCondition().Invoke()));
 
-            //Behaviours:
-            entity.AddBehaviour<DeathBehaviour>();
-            entity.AddBehaviour<MoveTowardsBehaviour>();
-            entity.AddBehaviour<RotateTowardsBehaviour>();
+            //Interact:
             entity.AddBehaviour<InteractBehaviour>();
-            entity.AddBehaviour<BodyFallDisableBehaviour>();
-            
-            //Events:
-            entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());
-            entity.AddDeathEvent(new BaseEvent<DamageArgs>());
         }
     }
 }
