@@ -11,7 +11,7 @@ namespace Game
         
         private void Awake()
         {
-            _colliderEventsListener.OnEventTriggered += target => _damageComponent.TryApplyDamage(target);
+            _colliderEventsListener.OnEventTriggered += _damageComponent.TryApplyDamage;
             _healthComponent.OnDied += _deathComponent.TriggerDeath;
         }
 

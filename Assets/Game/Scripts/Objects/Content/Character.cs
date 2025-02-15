@@ -6,9 +6,7 @@ namespace Game
     {
         [SerializeField] private HealthComponent _healthComponent;
         [SerializeField] private LookAtComponent _lookAtComponent;
-        [SerializeField] private StandingComponent _standingComponent;
         [SerializeField] private GroundComponent _groundComponent;
-        [SerializeField] private InteractableComponent _interactableComponent;
         [SerializeField] private ColliderEventsListener _colliderEventsListener;
         [SerializeField] private MoveComponent _moveComponent;
         [SerializeField] private FlipComponent _flipComponent;
@@ -27,7 +25,7 @@ namespace Game
             _tossComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
             _jumpComponent.AddCondition(() => _healthComponent.IsAlive && _groundComponent.IsGrounded);
             _healthComponent.OnDied += _deathComponent.TriggerDeath;
-            _colliderEventsListener.OnEventTriggered += target => _damageComponent.TryApplyDamage(target);
+            _colliderEventsListener.OnEventTriggered += _damageComponent.TryApplyDamage;
         }
 
         private void OnDestroy()

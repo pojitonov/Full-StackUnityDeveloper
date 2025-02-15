@@ -16,13 +16,9 @@ namespace Game
         private void Awake()
         {
             _healthComponent.OnDied += _deathComponent.TriggerDeath;
-            _colliderEventsListener.OnEventTriggered += target => _damageComponent.TryApplyDamage(target);
-            _triggerEventsListener.OnEventTriggered += target => _damageComponent.TryApplyDamage(target);
-            _damageComponent.OnDamagedApplied += target =>
-            {
-                var forceDirection = -(transform.position - target.transform.position);
-                _forceComponent.ApplyForce(target, forceDirection);
-            };
+            _colliderEventsListener.OnEventTriggered += _damageComponent.TryApplyDamage;
+            _triggerEventsListener.OnEventTriggered += _damageComponent.TryApplyDamage;
+            _damageComponent.OnDamagedApplied += ApplyForceOnDamage;
         }
 
         private void OnDestroy()
@@ -30,7 +26,13 @@ namespace Game
             _healthComponent.OnDied -= _deathComponent.TriggerDeath;
             _colliderEventsListener.OnEventTriggered -= _damageComponent.TryApplyDamage;
             _triggerEventsListener.OnEventTriggered -= _damageComponent.TryApplyDamage;
-            _damageComponent.OnDamagedApplied -= _forceComponent.ApplyForce;
+            _damageComponent.OnDamagedApplied -= ApplyForceOnDamage;
+        }
+        
+        private void ApplyForceOnDamage(GameObject target)
+        {
+            var forceDirection = -(transform.position - target.transform.position);
+            _forceComponent.ApplyForce(target, forceDirection);
         }
     }
 }
