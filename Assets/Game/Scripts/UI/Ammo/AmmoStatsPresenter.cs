@@ -6,22 +6,17 @@ using UnityEngine;
 
 namespace Game.UI
 {
-    public class AmmoPresenter : Presenter
+    public class AmmoStatsPresenter : Presenter
     {
         [SerializeField] private StatView _view;
 
         private IGameContext _gameContext;
-        private IEntity _character;
         private Ammo _ammo;
-        
-        private float NormalizedValue => (float)(_ammo.Count - 0) / (_ammo.Capacity - 0);
         
         protected override void OnInit()
         {
             _gameContext = GameContext.Instance;
-            _character = _gameContext.GetCharacter();
-            _ammo = _character.GetWeapon().GetAmmo();
-            
+            _ammo = _gameContext.GetCharacter().GetWeapon().GetAmmo();
             UpdateView(_ammo.Count);
         }
 
@@ -43,7 +38,7 @@ namespace Game.UI
         private void UpdateView(int value)
         {
             _view.SetText(value.ToString("D2"));
-            _view.SetProgress(NormalizedValue);
+            _view.SetProgress(_ammo.GetPercent());
         }
     }
 }

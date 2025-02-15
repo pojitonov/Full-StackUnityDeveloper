@@ -271,7 +271,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3658062994602079031, guid: bb9df340cb33f417598dac977309d0e8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7851475853792278076}
+      addedObject: {fileID: 1641289938363775380}
   m_SourcePrefab: {fileID: 100100000, guid: bb9df340cb33f417598dac977309d0e8, type: 3}
 --- !u!224 &4210764043333932842 stripped
 RectTransform:
@@ -283,7 +283,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3658062994602079031, guid: bb9df340cb33f417598dac977309d0e8, type: 3}
   m_PrefabInstance: {fileID: 624785937421444124}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7851475853792278076
+--- !u!114 &1641289938363775380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,11 +292,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4210764043333932843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a194c2c1a3c045e98f1fa29ba586dccd, type: 3}
+  m_Script: {fileID: 11500000, guid: c0df8e815fe343999758619d7249ae54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 6418974468102304805}
-  _healthScreen: {fileID: 0}
 --- !u!114 &6418974468102304805 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5890541440053809209, guid: bb9df340cb33f417598dac977309d0e8, type: 3}
