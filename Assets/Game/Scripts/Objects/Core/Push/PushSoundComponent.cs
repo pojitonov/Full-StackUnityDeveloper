@@ -6,7 +6,7 @@ namespace Game
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
-        [SerializeField] private PushTossComponent _component;
+        [SerializeField] private PushComponent _component;
 
         private void OnEnable()
         {

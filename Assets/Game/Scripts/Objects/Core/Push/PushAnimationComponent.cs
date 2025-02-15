@@ -5,7 +5,7 @@ namespace Game
     public class PushAnimationComponent : MonoBehaviour
     {
         [SerializeField] private ParticleSystem _particleSource;
-        [SerializeField] private PushTossComponent _component;
+        [SerializeField] private PushComponent _component;
 
         private void OnEnable()
         {

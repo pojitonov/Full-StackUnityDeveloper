@@ -11,8 +11,8 @@ namespace Game
         [SerializeField] private MoveComponent _moveComponent;
         [SerializeField] private FlipComponent _flipComponent;
         [SerializeField] private JumpComponent _jumpComponent;
-        [SerializeField] private PushTossComponent _pushComponent;
-        [SerializeField] private PushTossComponent _tossComponent;
+        [SerializeField] private PushComponent _pushComponent;
+        [SerializeField] private PushComponent _tossComponent;
         [SerializeField] private DamageComponent _damageComponent;
         [SerializeField] private DeathComponent _deathComponent;
 

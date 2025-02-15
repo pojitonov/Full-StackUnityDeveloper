@@ -4,10 +4,9 @@ using UnityEngine;
 namespace Game
 {
     [RequireComponent(typeof(InteractableComponent))]
-    public class PushTossComponent : MonoBehaviour
+    public class PushComponent : MonoBehaviour
     {
         public event Action OnPushed;
-        public event Action OnTossed;
 
         private const int FORCE_MULTIPLIER = 100;
 
@@ -33,7 +32,7 @@ namespace Game
                 return;
 
             _cooldown.Reset();
-            (forceDirection != Vector2.up ? OnPushed : OnTossed)?.Invoke();
+            OnPushed?.Invoke();
 
             var target = _interactableComponent.GetInteractable(transform.position, lookAtDirection);
             if (!target) return;
