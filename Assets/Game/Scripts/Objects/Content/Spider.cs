@@ -5,8 +5,6 @@ namespace Game
     public sealed class Spider : MonoBehaviour
     {
         [SerializeField] private HealthComponent _healthComponent;
-        [SerializeField] private MoveComponent _moveComponent;
-        [SerializeField] private PatrolComponent _patrolComponent;
         [SerializeField] private ColliderEventsListener _colliderEventsListener;
         [SerializeField] private TriggerEventsListener _triggerEventsListener;
         [SerializeField] private DamageComponent _damageComponent;

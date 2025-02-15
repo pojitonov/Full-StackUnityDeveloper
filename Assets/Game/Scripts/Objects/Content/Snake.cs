@@ -6,7 +6,6 @@ namespace Game
     {
         [SerializeField] private HealthComponent _healthComponent;
         [SerializeField] private MoveComponent _moveComponent;
-        [SerializeField] private PatrolComponent _patrolComponent;
         [SerializeField] private FlipComponent _flipComponent;
         [SerializeField] private ColliderEventsListener _colliderEventsListener;
         [SerializeField] private TriggerEventsListener _triggerEventsListener;
