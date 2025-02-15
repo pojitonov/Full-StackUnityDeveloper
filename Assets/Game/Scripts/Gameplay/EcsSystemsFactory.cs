@@ -57,7 +57,7 @@ namespace SampleGame
                 .Add(new UnitDirectionSystem())
                 .Add(new UnitFireReadySystem())
                 .Add(new FireCooldownSystem())
-                .Add(new UnitFireSystem(_arrowPrefab))
+                // .Add(new UnitFireSystem(_arrowPrefab))
 
                 //Rendering:
                 .Add(new TransformViewSystem())
