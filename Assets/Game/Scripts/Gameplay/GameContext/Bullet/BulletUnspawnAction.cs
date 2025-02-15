@@ -3,12 +3,12 @@ using Atomic.Entities;
 
 namespace Game.Gameplay
 {
-    public class BulletSpawnAction : IAction
+    public class BulletUnspawnAction : IAction
     {
         private readonly IEntity _entity;
         private readonly IGameContext _context;
 
-        public BulletSpawnAction(IEntity entity, IGameContext context)
+        public BulletUnspawnAction(IEntity entity, IGameContext context)
         {
             _entity = entity;
             _context = context;

@@ -4,7 +4,7 @@ using Modules.Gameplay;
 
 namespace Game.Gameplay
 {
-    public class BulletLifetimeBehaviour : IEntityInit, IEntityFixedUpdate
+    public class LifetimeBehaviour : IEntityInit, IEntityFixedUpdate
     {
         private Cooldown _lifetime;
         private IAction _destroyAction;

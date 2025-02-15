@@ -2,7 +2,7 @@ using Atomic.Entities;
 
 namespace Game.Gameplay
 {
-    public static class WeaponUseCase
+    public static class PistolUseCase
     {
         public static bool AddAmmo(this IEntity character, in int amount)
         {

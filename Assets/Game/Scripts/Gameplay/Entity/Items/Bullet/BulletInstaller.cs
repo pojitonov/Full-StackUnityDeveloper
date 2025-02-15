@@ -35,10 +35,10 @@ namespace Game.Gameplay
 
             //Behaviours:
             entity.AddBehaviour<BulletCollisionBehaviour>();
-            entity.AddBehaviour<BulletLifetimeBehaviour>();
+            entity.AddBehaviour<LifetimeBehaviour>();
 
             //Actions:
-            entity.AddDestroyAction(new BulletSpawnAction(entity, gameContext));
+            entity.AddDestroyAction(new BulletUnspawnAction(entity, gameContext));
         }
     }
 }

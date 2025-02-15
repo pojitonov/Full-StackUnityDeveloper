@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public sealed class WeaponVisualInstaller : SceneEntityInstaller<IWeaponEntity>
+    public sealed class PistolVisualInstaller : SceneEntityInstaller<IWeaponEntity>
     {
         [SerializeField] private ParticleSystem _fireParticle;
         [SerializeField] private Transform _firePoint;

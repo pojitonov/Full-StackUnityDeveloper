@@ -34,5 +34,11 @@ namespace Game.Gameplay
             
             entity.MoveTowards(direction, deltaTime);
         }
+
+        public static void MoveTowardsPosition(this IEntity entity, in IEntity target, in float deltaTime)
+        {
+            entity.MoveTowardsPosition(target.GetTransform().position, deltaTime);
+
+        }
     }
 }

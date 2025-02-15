@@ -35,7 +35,7 @@ namespace Game.Gameplay
 
             //Behaviours:
             entity.AddBehaviour<DeathBehaviour>();
-            entity.AddBehaviour<EnemyMoveTowardsBehaviour>();
+            entity.AddBehaviour<EnemyChasingBehaviour>();
             entity.AddBehaviour<EnemyRotateBehaviour>();
             entity.AddBehaviour(new AttackBehaviour(_attackRadius, _attackInterval));
             entity.AddBehaviour(new HandAttackBehaviour(_attackRadius, _damage, _center));
@@ -43,11 +43,9 @@ namespace Game.Gameplay
             entity.AddBehaviour<BodyFallDisableBehaviour>();
 
             //Conditions:
-            entity.AddMoveCondition(new AndExpression(() =>
-                entity.IsAlive() && entity.GetChasing().Value && gameContext.GetCharacter().IsAlive()));
-            entity.AddRotateCondition(new AndExpression(() => entity.IsAlive() && entity.GetChasing().Value));
-            entity.AddAttackCondition(new AndExpression(() =>
-                entity.IsAlive() && gameContext.GetCharacter().IsAlive()));
+            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && gameContext.GetCharacter().IsAlive()));
+            entity.AddRotateCondition(new AndExpression(entity.IsAlive));
+            entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && gameContext.GetCharacter().IsAlive()));
 
             //Events:
             entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());

@@ -6,9 +6,10 @@ namespace Game.Gameplay
     {
         public void OnUpdate(in IEntity entity, in float deltaTime)
         {
+            if (!entity.GetChasing().Value) return;
+
             IEntity target = entity.GetTarget();
-            if (target == null)
-                return;
+            if (target == null) return;
             
             entity.RotateTowardsTarget(target, deltaTime);
         }

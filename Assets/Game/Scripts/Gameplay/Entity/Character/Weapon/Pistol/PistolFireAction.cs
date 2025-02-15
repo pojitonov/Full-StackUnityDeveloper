@@ -2,12 +2,12 @@ using Atomic.Elements;
 
 namespace Game.Gameplay
 {
-    public class WeaponFireAction : IAction
+    public class PistolFireAction : IAction
     {
         private readonly IWeaponEntity _entity;
         private readonly IGameContext _context;
 
-        public WeaponFireAction(IWeaponEntity entity, IGameContext context)
+        public PistolFireAction(IWeaponEntity entity, IGameContext context)
         {
             _entity = entity;
             _context = context;
