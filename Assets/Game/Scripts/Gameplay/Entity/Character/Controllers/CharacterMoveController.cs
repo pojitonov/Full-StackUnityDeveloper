@@ -1,23 +1,13 @@
-using Atomic.Entities;
-using Modules.Common;
-using UnityEngine;
+using Atomic.Contexts;
 
 namespace Game.Gameplay
 {
-    public class CharacterMoveController : MonoBehaviour
+    public class CharacterMoveController : IContextUpdate<GameContext>
     {
-        [SerializeField] private SceneEntity _character;
-        [SerializeField] private Joystick _joystick;
-
-        private void Awake()
+        public void OnUpdate(GameContext context, float deltaTime)
         {
-            InputUseCase.SetMoveJoystick(_joystick);
-        }
-        
-        private void Update()
-        {
-            var direction = InputUseCase.GetMoveDirection();
-            _character.GetMoveDirection().Value = direction;
+            var direction = InputUseCase.GetMoveDirection(context);
+            context.GetCharacter().GetMoveDirection().Value = direction;
         }
     }
 }

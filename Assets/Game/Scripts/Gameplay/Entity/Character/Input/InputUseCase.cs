@@ -11,23 +11,19 @@ namespace Game.Gameplay
         private static Joystick _attackJoystick;
         private static bool _isFiring;
 
-        public static void SetMoveJoystick(Joystick joystick)
-        {
-            _moveJoystick = joystick;
-        }
-
-        public static void SetAttackJoystick(Joystick joystick)
+     public static void SetAttackJoystick(Joystick joystick)
         {
             _attackJoystick = joystick;
         }
 
-        public static Vector3 GetMoveDirection()
+        public static Vector3 GetMoveDirection(GameContext context)
         {
             var direction = Vector3.zero;
+            var moveJoystick = context.GetMoveJoystick();
 
-            if (_moveJoystick && _moveJoystick.IsPressed)
+            if (moveJoystick && moveJoystick.IsPressed)
             {
-                direction += new Vector3(_moveJoystick.Horizontal, 0, _moveJoystick.Vertical);
+                direction += new Vector3(moveJoystick.Horizontal, 0, moveJoystick.Vertical);
             }
 
             return direction.normalized;

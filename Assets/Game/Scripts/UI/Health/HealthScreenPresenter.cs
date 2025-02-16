@@ -1,4 +1,3 @@
-using Atomic.Entities;
 using Atomic.Presenters;
 using Game.Gameplay;
 using Modules.Gameplay;

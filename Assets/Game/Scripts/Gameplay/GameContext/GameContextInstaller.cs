@@ -16,7 +16,6 @@ namespace Game.Gameplay
             
             _bulletSystemInstaller.Install(context);
             _characterSystemInstaller.Install(context);
-            _inputSystemInstaller.Install(context);
-        }
+            _inputSystemInstaller.Install(context); }
     }
 }
