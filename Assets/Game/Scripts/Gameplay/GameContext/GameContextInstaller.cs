@@ -12,10 +12,11 @@ namespace Game.Gameplay
 
         protected override void Install(IGameContext context)
         {
-            context.SetKills(new ReactiveInt());
+            context.AddKills(new ReactiveInt());
             
             _bulletSystemInstaller.Install(context);
             _characterSystemInstaller.Install(context);
-            _inputSystemInstaller.Install(context); }
+            _inputSystemInstaller.Install(context);
+        }
     }
 }

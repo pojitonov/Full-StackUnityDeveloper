@@ -26,4 +26,4 @@ values:
 # Input
 - MoveJoystick: Joystick
 - AttackJoystick: Joystick
-- IsFiring: IValue<bool>
+- IsAttacking: IVariable<bool>

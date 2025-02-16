@@ -1,27 +1,20 @@
-using Atomic.Entities;
-using Modules.Common;
+using Atomic.Contexts;
 using Modules.Gameplay;
-using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class CharacterAttackController : MonoBehaviour
+    public class CharacterAttackController : IContextInit<GameContext>, IContextUpdate<GameContext>
     {
-        [SerializeField] private SceneEntity _character;
-        [SerializeField] private Joystick _joystick;
+        private static Cooldown _cooldown;
 
-        private Cooldown _cooldown;
-
-        private void Awake()
+        public void Init(GameContext context)
         {
-            InputUseCase.SetAttackJoystick(_joystick);
-            
-            _cooldown = new Cooldown(_character.GetFireDelay().Value);
+            _cooldown = new Cooldown(context.GetCharacter().GetFireDelay().Value);
         }
 
-        private void Update()
+        public void OnUpdate(GameContext context, float deltaTime)
         {
-            InputUseCase.Attack(_character, _cooldown);
+            InputUseCase.Attack(context, deltaTime, _cooldown);
         }
     }
 }

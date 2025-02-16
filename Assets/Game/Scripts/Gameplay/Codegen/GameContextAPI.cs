@@ -22,7 +22,7 @@ namespace Game.Gameplay
 		public const int Kills = -291106651; // IReactiveVariable<int>
 		public const int MoveJoystick = -1686028204; // Joystick
 		public const int AttackJoystick = 1168591300; // Joystick
-		public const int IsFiring = 1842027070; // IValue<bool>
+		public const int IsAttacking = -1130678506; // IVariable<bool>
 
 
 		///Value Extensions
@@ -118,21 +118,21 @@ namespace Game.Gameplay
 		public static void SetAttackJoystick(this IGameContext obj, Joystick value) => obj.SetValue(AttackJoystick, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IValue<bool> GetIsFiring(this IGameContext obj) => obj.GetValue<IValue<bool>>(IsFiring);
+		public static IVariable<bool> GetIsAttacking(this IGameContext obj) => obj.GetValue<IVariable<bool>>(IsAttacking);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetIsFiring(this IGameContext obj, out IValue<bool> value) => obj.TryGetValue(IsFiring, out value);
+		public static bool TryGetIsAttacking(this IGameContext obj, out IVariable<bool> value) => obj.TryGetValue(IsAttacking, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddIsFiring(this IGameContext obj, IValue<bool> value) => obj.AddValue(IsFiring, value);
+		public static bool AddIsAttacking(this IGameContext obj, IVariable<bool> value) => obj.AddValue(IsAttacking, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasIsFiring(this IGameContext obj) => obj.HasValue(IsFiring);
+		public static bool HasIsAttacking(this IGameContext obj) => obj.HasValue(IsAttacking);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelIsFiring(this IGameContext obj) => obj.DelValue(IsFiring);
+		public static bool DelIsAttacking(this IGameContext obj) => obj.DelValue(IsAttacking);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetIsFiring(this IGameContext obj, IValue<bool> value) => obj.SetValue(IsFiring, value);
+		public static void SetIsAttacking(this IGameContext obj, IVariable<bool> value) => obj.SetValue(IsAttacking, value);
     }
 }
