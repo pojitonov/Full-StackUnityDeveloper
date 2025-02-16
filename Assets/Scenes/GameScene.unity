@@ -3590,7 +3590,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1572209155}
-  m_Father: {fileID: 1225762019}
+  m_Father: {fileID: 299060142}
   m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
 --- !u!114 &261950141
 MonoBehaviour:
@@ -4197,7 +4197,6 @@ GameObject:
   - component: {fileID: 299060141}
   - component: {fileID: 299060143}
   - component: {fileID: 299060139}
-  - component: {fileID: 299060144}
   m_Layer: 0
   m_Name: '[GameContext]'
   m_TagString: Untagged
@@ -4254,6 +4253,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 16435744}
+  - {fileID: 261950140}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &299060143
@@ -4268,32 +4268,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da552a7ff8a24477a41184d78d6c725c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSystemInstaller:
-    _bulletPrefab: {fileID: -7389732882356062355, guid: fc383e20fc5b342059ed5ab71e30da44, type: 3}
-    _container: {fileID: 16435744}
-  _characterSystemInstaller:
-    _character: {fileID: 9048405937420967253}
   _inputSystemInstaller:
     _moveJoystick: {fileID: 757640612756630601}
     _attackJoystick: {fileID: 7919524849257179007}
---- !u!114 &299060144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299060138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c7ec72f0dfc41099626eca8f3353622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  installOnAwake: 1
-  installInEditMode: 0
-  dontDestroyOnLoad: 0
-  initialParent: {fileID: 0}
-  installers: []
-  children: []
+  _characterSystemInstaller:
+    _character: {fileID: 9048405937420967253}
+  _bulletSystemInstaller:
+    _bulletPrefab: {fileID: -7389732882356062355, guid: fc383e20fc5b342059ed5ab71e30da44, type: 3}
+    _container: {fileID: 16435744}
 --- !u!1001 &310103933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15990,74 +15972,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &1225762018
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1225762019}
-  - component: {fileID: 1225762022}
-  - component: {fileID: 1225762023}
-  m_Layer: 0
-  m_Name: '[Context]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1225762019
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225762018}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 261950140}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1225762022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225762018}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f2414fcf5314631b6dda955bd109e3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  installOnAwake: 0
-  diEnabled: 1
-  contexts:
-  - {fileID: 0}
---- !u!114 &1225762023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225762018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c7ec72f0dfc41099626eca8f3353622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  installOnAwake: 1
-  installInEditMode: 0
-  dontDestroyOnLoad: 0
-  initialParent: {fileID: 0}
-  installers: []
-  children: []
 --- !u!1001 &1228514620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28052,10 +27966,9 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 299060142}
   - {fileID: 4616498620599230045}
   - {fileID: 9048405937420967252}
-  - {fileID: 299060142}
-  - {fileID: 1225762019}
   - {fileID: 1676091983}
   - {fileID: 548618061}
   - {fileID: 5764159610076527034}

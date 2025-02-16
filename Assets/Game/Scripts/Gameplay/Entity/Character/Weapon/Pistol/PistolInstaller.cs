@@ -21,9 +21,9 @@ namespace Game.Gameplay
             entity.AddAmmo(_ammo);
             
             //Attack:
-            entity.AddAttackEvent(new BaseEvent());
             entity.AddAttackCondition(new BaseFunction<bool>(() => _ammo.Exists()));
             entity.AddAttackAction(new PistolFireAction(entity, gameContext));
+            entity.AddAttackEvent(new BaseEvent());
         }
     }
 }

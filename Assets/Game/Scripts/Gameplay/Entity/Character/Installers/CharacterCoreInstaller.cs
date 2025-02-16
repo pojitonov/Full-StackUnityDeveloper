@@ -41,7 +41,7 @@ namespace Game.Gameplay
             entity.AddBehaviour<BodyFallDisableBehaviour>();
 
             //Attack:
-            entity.AddFireDelay(new Const<float>(_fireDelay));
+            entity.AddAttackDelay(new Const<float>(_fireDelay));
             entity.AddWeapon(_weapon);
             entity.AddDamageableTag();
             entity.AddAttackCondition(new BaseFunction<bool>(() =>

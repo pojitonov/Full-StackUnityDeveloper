@@ -1,5 +1,4 @@
 using Modules.Common;
-using Modules.Gameplay;
 using UnityEngine;
 
 namespace Game.Gameplay

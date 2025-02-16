@@ -12,7 +12,7 @@ namespace Game.Gameplay
         [SerializeField] private Health _health;
         [SerializeField] private float _moveSpeed = 3f;
         [SerializeField] private float _angularSpeed = 3f;
-        [SerializeField] private float _attackRadius = 1f;
+        [SerializeField] private float _stoppingDistance = 1f;
         [SerializeField] private float _attackInterval = 0.1f;
         [SerializeField] private int _damage = 10;
 
@@ -30,7 +30,7 @@ namespace Game.Gameplay
             //Move:
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
-            entity.AddChasing(new BaseVariable<bool>(false));
+            entity.AddIsChasing(new BaseVariable<bool>(false));
             entity.AddBehaviour<EnemyChasingBehaviour>();
             entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
             
@@ -48,9 +48,10 @@ namespace Game.Gameplay
             entity.AddBehaviour<BodyFallDisableBehaviour>();
 
             //Attack:
-            entity.AddAttackingEvent(new BaseEvent());
-            entity.AddBehaviour(new AttackBehaviour(_attackRadius, _attackInterval));
-            entity.AddBehaviour(new HandAttackBehaviour(_attackRadius, _damage, _center));
+            entity.AddAttackAction(new AttackAction(entity, entity.GetTarget(), _stoppingDistance));
+            entity.AddAttackEvent(new BaseEvent());
+            entity.AddBehaviour(new AttackBehaviour(_attackInterval));
+            entity.AddBehaviour(new HandAttackBehaviour(_stoppingDistance, _damage, _center));
             entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
         }
     }

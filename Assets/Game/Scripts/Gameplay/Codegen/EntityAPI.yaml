@@ -33,7 +33,7 @@ values:
 - MoveSpeed: IValue<float>
 - MoveCondition: IExpression<bool>
 - MoveDirection: IReactiveVariable<Vector3>
-- Chasing : IVariable<bool>
+- IsChasing : IVariable<bool>
 
 # Rotation
 - AngularSpeed: IValue<float>
@@ -42,11 +42,10 @@ values:
 # Attack
 - Weapon: IWeaponEntity
 - Target: IEntity
-- FireDelay: IValue<float>
+- AttackDelay: IValue<float>
 - AttackEvent: IEvent
 - AttackAction: IAction
 - AttackCondition: IFunction<bool>
-- AttackingEvent: IEvent
   
 # Interact
 - InteractAction: IAction<IEntity>

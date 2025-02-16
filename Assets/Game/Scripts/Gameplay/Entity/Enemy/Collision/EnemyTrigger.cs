@@ -13,7 +13,7 @@ namespace Game.Gameplay
         {
             foreach (var enemy in _enemies)
             {
-                enemy.GetChasing().Value = true;
+                enemy.GetIsChasing().Value = true;
             }
         }
 
@@ -21,7 +21,7 @@ namespace Game.Gameplay
         {
             foreach (var enemy in _enemies)
             {
-                enemy.GetChasing().Value = false;
+                enemy.GetIsChasing().Value = false;
             }
         }
     }

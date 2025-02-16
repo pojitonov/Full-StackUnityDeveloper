@@ -6,7 +6,7 @@ namespace Game.Gameplay
     {
         public void OnUpdate(in IEntity entity, in float deltaTime)
         {
-            if (!entity.GetChasing().Value) return;
+            if (!entity.GetIsChasing().Value) return;
 
             var target = entity.GetTarget();
             entity.MoveTowardsPosition(target, deltaTime);

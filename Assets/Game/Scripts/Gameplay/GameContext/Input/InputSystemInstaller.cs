@@ -21,7 +21,7 @@ namespace Game.Gameplay
             
             //Attack:
             context.AddAttackJoystick(_attackJoystick);
-            context.AddIsAttacking(new ReactiveBool());
+            context.AddIsAttacking(new BaseVariable<bool>());
             context.AddController<CharacterAttackController>();
         }
     }

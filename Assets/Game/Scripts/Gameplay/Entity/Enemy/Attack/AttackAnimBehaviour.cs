@@ -18,7 +18,7 @@ namespace Game.Gameplay
         public void Init(in IEntity entity)
         {
             _animator = entity.GetAnimator();
-            _isAttacking = entity.GetAttackingEvent();
+            _isAttacking = entity.GetAttackEvent();
             _isAttacking.Subscribe(OnAttack);
         }
 

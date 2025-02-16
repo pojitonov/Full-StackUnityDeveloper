@@ -12,7 +12,7 @@ namespace Game.Gameplay
         public void Init(GameContext context)
         {
             _character = context.GetCharacter();
-            _cooldown = new Cooldown(_character.GetFireDelay().Value);
+            _cooldown = new Cooldown(_character.GetAttackDelay().Value);
         }
 
         public void OnUpdate(GameContext context, float deltaTime)
