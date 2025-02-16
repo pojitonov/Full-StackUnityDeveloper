@@ -8,6 +8,7 @@ namespace Game.Gameplay
     {
         [SerializeField] private BulletSystemInstaller _bulletSystemInstaller;
         [SerializeField] private CharacterSystemInstaller _characterSystemInstaller;
+        [SerializeField] private InputSystemInstaller _inputSystemInstaller;
 
         protected override void Install(IGameContext context)
         {
@@ -15,6 +16,7 @@ namespace Game.Gameplay
             
             _bulletSystemInstaller.Install(context);
             _characterSystemInstaller.Install(context);
+            _inputSystemInstaller.Install(context);
         }
     }
 }

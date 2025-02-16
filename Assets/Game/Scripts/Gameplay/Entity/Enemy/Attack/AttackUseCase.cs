@@ -5,7 +5,7 @@ namespace Game.Gameplay
 {
     public static class AttackUseCase
     {
-        public static void Attack(this IEntity entity, in IEntity target, in Cooldown cooldown, in float attackRange,
+        public static void Attack(this IEntity entity, in IEntity target, in Cooldown cooldown, in float stoppingDistance,
             in float deltaTime)
         {
             if (target == null)
@@ -15,7 +15,7 @@ namespace Game.Gameplay
                 return;
 
             float distance = entity.GetDistance(target);
-            bool shouldAttack = distance < attackRange;
+            bool shouldAttack = distance < stoppingDistance;
 
             cooldown.Tick(deltaTime);
 

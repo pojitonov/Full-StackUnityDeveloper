@@ -25,13 +25,14 @@ namespace Game.Gameplay
             entity.AddTransform(_center);
             entity.AddEnemyTag();
             entity.AddDamageableTag();
+            entity.AddTarget(gameContext.GetCharacter());
             
             //Move:
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddChasing(new BaseVariable<bool>(false));
             entity.AddBehaviour<EnemyChasingBehaviour>();
-            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && gameContext.GetCharacter().IsAlive()));
+            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
             
             //Rotate:
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
@@ -47,11 +48,10 @@ namespace Game.Gameplay
             entity.AddBehaviour<BodyFallDisableBehaviour>();
 
             //Attack:
-            entity.AddTarget(gameContext.GetCharacter());
             entity.AddAttackingEvent(new BaseEvent());
             entity.AddBehaviour(new AttackBehaviour(_attackRadius, _attackInterval));
             entity.AddBehaviour(new HandAttackBehaviour(_attackRadius, _damage, _center));
-            entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && gameContext.GetCharacter().IsAlive()));
+            entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
         }
     }
 }

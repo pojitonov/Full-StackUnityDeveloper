@@ -11,8 +11,19 @@ imports:
 - Atomic.Contexts
 - Atomic.Entities
 - Atomic.Elements
+- Modules.Common
 
 values:
+# Pool
 - BulletPool: IEntityPool
+
+# Character
 - Character: IEntity
+
+# Stats
 - Kills: IReactiveVariable<int>
+
+# Input
+- MoveJoystick: Joystick
+- AttackJoystick: Joystick
+- IsFiring: IValue<bool>

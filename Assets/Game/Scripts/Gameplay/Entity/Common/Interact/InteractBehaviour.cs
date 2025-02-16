@@ -23,10 +23,7 @@ namespace Game.Gameplay
 
         private void OnTriggerEntered(Collider collider)
         {
-            if (collider.TryGetComponent(out IEntity other))
-            {
-                _entity.Interact(other);
-            }
+            _entity.Interact(collider);
         }
     }
 }
