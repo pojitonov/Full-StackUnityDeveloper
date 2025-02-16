@@ -6,7 +6,7 @@ namespace Game.Gameplay
     {
         public void OnUpdate(GameContext context, float deltaTime)
         {
-            var direction = InputUseCase.GetMoveDirection(context);
+            var direction = InputUseCase.GetDirection(context.GetMoveJoystick());
             context.GetCharacter().GetMoveDirection().Value = direction;
         }
     }
