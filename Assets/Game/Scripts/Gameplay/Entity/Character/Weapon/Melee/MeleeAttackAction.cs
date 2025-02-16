@@ -1,19 +1,25 @@
 using Atomic.Elements;
 using Atomic.Entities;
+using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class AttackAction : IAction
+    public class MeleeAttackAction : IAction
     {
         private readonly IEntity _entity;
         private readonly IEntity _target;
+        private readonly Transform _center;
         private readonly float _stoppingDistance;
-
-        public AttackAction(IEntity entity, IEntity target, float stoppingDistance)
+        private readonly int _damage;
+        private readonly LayerMask _layerMask = LayerMask.GetMask("Character");
+        
+        public MeleeAttackAction(IEntity entity, Transform center, float stoppingDistance, int damage)
         {
             _entity = entity;
-            _target = target;
+            _target = entity.GetTarget();
+            _center = center;
             _stoppingDistance = stoppingDistance;
+            _damage = damage;
         }
 
         public void Invoke()
@@ -27,7 +33,10 @@ namespace Game.Gameplay
             float distance = _entity.GetDistance(_target);
 
             if (distance < _stoppingDistance)
+            {
+                MeleeAttackUseCase.Attack(_entity, _center.position, _stoppingDistance, _damage, _layerMask);
                 _entity.GetAttackEvent().Invoke();
+            }
         }
     }
 }

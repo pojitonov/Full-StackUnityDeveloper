@@ -12,9 +12,11 @@ namespace Game.Gameplay
         [SerializeField] private Health _health;
         [SerializeField] private float _moveSpeed = 3f;
         [SerializeField] private float _angularSpeed = 3f;
+        
+        [SerializeField] private WeaponEntity _weapon;
         [SerializeField] private float _stoppingDistance = 1f;
-        [SerializeField] private float _attackInterval = 0.1f;
         [SerializeField] private int _damage = 10;
+        [SerializeField] private float _attackInterval = 0.1f;
 
         public override void Install(IEntity entity)
         {
@@ -47,11 +49,12 @@ namespace Game.Gameplay
             entity.AddBehaviour<BodyFallDisableBehaviour>();
 
             //Attack:
-            entity.AddAttackAction(new AttackAction(entity, entity.GetTarget(), _stoppingDistance));
+            entity.AddWeapon(_weapon);
+            entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
+            
+            entity.AddAttackAction(new MeleeAttackAction(entity, _center, _stoppingDistance, _damage));
             entity.AddAttackEvent(new BaseEvent());
             entity.AddBehaviour(new AttackBehaviour(_attackInterval));
-            entity.AddBehaviour(new HandAttackBehaviour(_stoppingDistance, _damage, _center));
-            entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
         }
     }
 }
