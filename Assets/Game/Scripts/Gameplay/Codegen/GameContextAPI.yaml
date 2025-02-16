@@ -17,8 +17,9 @@ values:
 # Pool
 - BulletPool: IEntityPool
 
-# Character
+# Units
 - Character: IEntity
+- EntityWorld: IEntityWorld
 
 # Stats
 - Kills: IReactiveVariable<int>

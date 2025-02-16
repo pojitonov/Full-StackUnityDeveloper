@@ -44,7 +44,6 @@ namespace Game.Gameplay
             entity.AddBehaviour<DeathBehaviour>();
             entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());
             entity.AddDeathEvent(new BaseEvent<DamageArgs>());
-            entity.AddBehaviour<KillsCountBehaviour>();
             entity.AddBehaviour<BodyFallDisableBehaviour>();
 
             //Attack:

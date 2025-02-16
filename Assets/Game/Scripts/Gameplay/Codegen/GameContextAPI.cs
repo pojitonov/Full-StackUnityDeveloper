@@ -19,6 +19,7 @@ namespace Game.Gameplay
 		///Values
 		public const int BulletPool = 1915726678; // IEntityPool
 		public const int Character = 294335127; // IEntity
+		public const int EntityWorld = 1757640864; // IEntityWorld
 		public const int Kills = -291106651; // IReactiveVariable<int>
 		public const int MoveJoystick = -1686028204; // Joystick
 		public const int AttackJoystick = 1168591300; // Joystick
@@ -62,6 +63,24 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetCharacter(this IGameContext obj, IEntity value) => obj.SetValue(Character, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IEntityWorld GetEntityWorld(this IGameContext obj) => obj.GetValue<IEntityWorld>(EntityWorld);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetEntityWorld(this IGameContext obj, out IEntityWorld value) => obj.TryGetValue(EntityWorld, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddEntityWorld(this IGameContext obj, IEntityWorld value) => obj.AddValue(EntityWorld, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasEntityWorld(this IGameContext obj) => obj.HasValue(EntityWorld);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelEntityWorld(this IGameContext obj) => obj.DelValue(EntityWorld);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetEntityWorld(this IGameContext obj, IEntityWorld value) => obj.SetValue(EntityWorld, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IReactiveVariable<int> GetKills(this IGameContext obj) => obj.GetValue<IReactiveVariable<int>>(Kills);
