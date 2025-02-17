@@ -15,9 +15,10 @@ namespace Game.Gameplay
         
         protected override void Install(IWeaponEntity entity)
         {
+            entity.AddRoot(_rootEntity);
             entity.AddTransform(_rootTransform);
             entity.AddAttackEvent(new BaseEvent());
-            entity.AddBehaviour(new AttackBehaviour(_rootEntity, _attackInterval, _stoppingDistance));
+            entity.AddBehaviour(new AttackBehaviour(_attackInterval, _stoppingDistance));
             entity.AddAttackAction(new MeleeAttackAction(entity, _stoppingDistance, _damage, _layerMask));
         }
     }

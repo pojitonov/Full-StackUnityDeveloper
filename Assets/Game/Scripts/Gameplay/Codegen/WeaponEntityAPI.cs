@@ -17,6 +17,7 @@ namespace Game.Gameplay
 		public const int Transform = -180157682; // Transform
 		public const int BulletPrefab = -918778767; // SceneEntity
 		public const int Ammo = 1337839892; // Ammo
+		public const int Root = -1228515739; // IEntity
 
 
 		///Value Extensions
@@ -74,5 +75,23 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetAmmo(this IWeaponEntity obj, Ammo value) => obj.SetValue(Ammo, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IEntity GetRoot(this IWeaponEntity obj) => obj.GetValue<IEntity>(Root);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetRoot(this IWeaponEntity obj, out IEntity value) => obj.TryGetValue(Root, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddRoot(this IWeaponEntity obj, IEntity value) => obj.AddValue(Root, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasRoot(this IWeaponEntity obj) => obj.HasValue(Root);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelRoot(this IWeaponEntity obj) => obj.DelValue(Root);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetRoot(this IWeaponEntity obj, IEntity value) => obj.SetValue(Root, value);
     }
 }

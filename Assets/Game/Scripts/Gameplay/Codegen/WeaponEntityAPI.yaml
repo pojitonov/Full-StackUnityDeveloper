@@ -14,3 +14,4 @@ values:
 - Transform: Transform
 - BulletPrefab: SceneEntity
 - Ammo: Ammo
+- Root: IEntity

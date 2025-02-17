@@ -9,12 +9,10 @@ namespace Game.Gameplay
     {
         private readonly Cooldown _cooldown;
         private readonly float _stoppingDistance;
-        private readonly SceneEntity _rootEntity;
 
-        public AttackBehaviour(SceneEntity rootEntity, float attackInterval, float stoppingDistance)
+        public AttackBehaviour(float attackInterval, float stoppingDistance)
         {
             _cooldown = new Cooldown(attackInterval);
-            _rootEntity = rootEntity;
             _stoppingDistance = stoppingDistance;
         }
 
@@ -36,7 +34,7 @@ namespace Game.Gameplay
 
         private void Attack(WeaponEntity entity)
         {
-            var target = _rootEntity.GetTarget();
+            var target = entity.GetRoot().GetTarget();
             if (target == null || !target.IsAlive()) return;
 
             var distance = entity.GetDistance(target);
