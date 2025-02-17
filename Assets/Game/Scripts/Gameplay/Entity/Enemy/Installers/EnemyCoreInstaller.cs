@@ -51,7 +51,6 @@ namespace Game.Gameplay
             //Attack:
             entity.AddWeapon(_weapon);
             entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
-            
             entity.AddAttackAction(new MeleeAttackAction(entity, _center, _stoppingDistance, _damage));
             entity.AddAttackEvent(new BaseEvent());
             entity.AddBehaviour(new AttackBehaviour(_attackInterval));

@@ -6,8 +6,6 @@ namespace Game.Gameplay
 {
     public sealed class EnemyAnimInstaller : SceneEntityInstaller
     {
-        private const string FIRE_EVENT = "fire_event";
-
         [SerializeField] private Animator _animator;
         [SerializeField] private string _movingKey = "IsMoving";
         [SerializeField] private string _attackKey = "Attack";

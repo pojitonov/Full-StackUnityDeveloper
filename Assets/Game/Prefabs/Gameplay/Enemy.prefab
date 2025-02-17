@@ -1766,8 +1766,10 @@ MonoBehaviour:
     max: 3
   _moveSpeed: 0.75
   _angularSpeed: 3
-  _attackInterval: 1
   _weapon: {fileID: 8742611157884860744}
+  _stoppingDistance: 1
+  _damage: 10
+  _attackInterval: 0.1
 --- !u!114 &6462368927767535755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2104,7 +2106,7 @@ MonoBehaviour:
   _attackKey: Attack
   _damageKey: TakeDamage
   _deathKey: TakeDamage
-  _animationReceiver: {fileID: 0}
+  _animationReceiver: {fileID: 2316574847488464730}
 --- !u!1 &7369059967829061964
 GameObject:
   m_ObjectHideFlags: 0
@@ -2822,7 +2824,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hand
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -691883661582223263, guid: 1d8166845e4d241e8afd28e8a9249ace, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2858,7 +2861,8 @@ MonoBehaviour:
   installOnAwake: 1
   installInEditMode: 0
   disposeValues: 1
-  installers: []
+  installers:
+  - {fileID: 6828773647442529756}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
 --- !u!114 &6828773647442529756
@@ -2873,9 +2877,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed571ebe81234877ba208650f9369ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
-  _stoppingDistance: 1
+  _rootEntity: {fileID: 501587286819408059}
   _center: {fileID: 2845756347370805700}
+  _attackInterval: 0.1
+  _stoppingDistance: 1
+  _damage: 10
 --- !u!1001 &4012628793975234114
 PrefabInstance:
   m_ObjectHideFlags: 0

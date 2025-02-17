@@ -8,7 +8,7 @@ namespace Game.Gameplay
     {
         private readonly int _hash;
         private Animator _animator;
-        private IEvent _isAttacking;
+        private IEvent _attackEvent;
 
         public AttackAnimBehaviour(string hash)
         {
@@ -18,13 +18,13 @@ namespace Game.Gameplay
         public void Init(in IEntity entity)
         {
             _animator = entity.GetAnimator();
-            _isAttacking = entity.GetAttackEvent();
-            _isAttacking.Subscribe(OnAttack);
+            _attackEvent = entity.GetAttackEvent();
+            _attackEvent.Subscribe(OnAttack);
         }
 
         public void Dispose(in IEntity entity)
         {
-            _isAttacking.Unsubscribe(OnAttack);
+            _attackEvent.Unsubscribe(OnAttack);
         }
 
         private void OnAttack()

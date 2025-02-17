@@ -11,7 +11,6 @@ namespace Game.Gameplay
         private readonly Transform _center;
         private readonly float _stoppingDistance;
         private readonly int _damage;
-        private readonly LayerMask _layerMask = LayerMask.GetMask("Character");
         
         public MeleeAttackAction(IEntity entity, Transform center, float stoppingDistance, int damage)
         {
@@ -30,11 +29,13 @@ namespace Game.Gameplay
             if (_entity.TryGetAttackCondition(out var condition) && !condition.Invoke())
                 return;
 
+
             float distance = _entity.GetDistance(_target);
+            LayerMask layerMask = 1 << _target.GetGameObject().layer;
 
             if (distance < _stoppingDistance)
             {
-                MeleeAttackUseCase.Attack(_entity, _center.position, _stoppingDistance, _damage, _layerMask);
+                MeleeAttackUseCase.Attack(_entity, _center.position, _stoppingDistance, _damage, layerMask);
                 _entity.GetAttackEvent().Invoke();
             }
         }

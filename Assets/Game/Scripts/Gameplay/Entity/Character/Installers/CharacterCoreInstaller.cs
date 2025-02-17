@@ -23,6 +23,7 @@ namespace Game.Gameplay
             entity.AddTransform(_transform);
             entity.AddHealth(_health);
             entity.AddTrigger(_trigger);
+            entity.AddDamageableTag();
 
             //Move:
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
@@ -41,9 +42,8 @@ namespace Game.Gameplay
             entity.AddBehaviour<BodyFallDisableBehaviour>();
 
             //Attack:
-            entity.AddAttackDelay(new Const<float>(_fireDelay));
             entity.AddWeapon(_weapon);
-            entity.AddDamageableTag();
+            entity.AddAttackDelay(new Const<float>(_fireDelay));
             entity.AddAttackCondition(new BaseFunction<bool>(() =>
                 entity.IsAlive() && entity.GetWeapon().GetAttackCondition().Invoke()));
 
