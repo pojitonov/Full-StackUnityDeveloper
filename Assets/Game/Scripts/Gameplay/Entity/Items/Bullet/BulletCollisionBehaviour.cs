@@ -28,10 +28,8 @@ namespace Game.Gameplay
         private void OnCollisionEntered(Collision other)
         {
      
-            if (other.TryGetEntity(out IEntity target) && target.TakeDamage(_damage.Value))
-            {
+            if (other.TryGetEntity(out IEntity target) && target.TakeDamage(_damage.Value)) 
                 _destroyAction.Invoke();
-            }
         }
     }
 }

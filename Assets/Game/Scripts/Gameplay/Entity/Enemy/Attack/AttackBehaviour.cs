@@ -37,8 +37,7 @@ namespace Game.Gameplay
         private void Attack(WeaponEntity entity)
         {
             var target = _rootEntity.GetTarget();
-            if (target == null) return;
-            if (!target.IsAlive()) return;
+            if (target == null || !target.IsAlive()) return;
 
             var distance = entity.GetDistance(target);
             if (distance < _stoppingDistance)

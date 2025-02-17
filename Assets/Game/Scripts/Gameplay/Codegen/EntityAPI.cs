@@ -14,6 +14,7 @@ namespace Game.Gameplay
 	{
 		///Tags
 		public const int Enemy = 979269037;
+		public const int Character = 294335127;
 		public const int Damageable = 563499515;
 		public const int Interactable = 1077199658;
 
@@ -57,6 +58,15 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool DelEnemyTag(this IEntity obj) => obj.DelTag(Enemy);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasCharacterTag(this IEntity obj) => obj.HasTag(Character);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddCharacterTag(this IEntity obj) => obj.AddTag(Character);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelCharacterTag(this IEntity obj) => obj.DelTag(Character);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasDamageableTag(this IEntity obj) => obj.HasTag(Damageable);

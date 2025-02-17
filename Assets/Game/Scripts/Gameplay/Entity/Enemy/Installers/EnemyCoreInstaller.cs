@@ -31,12 +31,12 @@ namespace Game.Gameplay
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddIsChasing(new BaseVariable<bool>(false));
             entity.AddBehaviour<EnemyChasingBehaviour>();
-            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive()));
+            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
 
             //Rotate:
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
             entity.AddBehaviour<EnemyRotateBehaviour>();
-            entity.AddRotateCondition(new AndExpression(entity.IsAlive));
+            entity.AddRotateCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
 
             //Life:
             entity.AddHealth(_health);

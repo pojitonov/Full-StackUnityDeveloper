@@ -11,8 +11,11 @@ namespace Game.Gameplay
 
         private void OnTriggerEnter(Collider other)
         {
+            // if (other.TryGetEntity(out var target) && !target.HasCharacterTag())
+
             foreach (var enemy in _enemies)
             {
+                // enemy.SetTarget(target);
                 enemy.GetIsChasing().Value = true;
             }
         }
@@ -21,6 +24,7 @@ namespace Game.Gameplay
         {
             foreach (var enemy in _enemies)
             {
+                // enemy.DelTarget();
                 enemy.GetIsChasing().Value = false;
             }
         }

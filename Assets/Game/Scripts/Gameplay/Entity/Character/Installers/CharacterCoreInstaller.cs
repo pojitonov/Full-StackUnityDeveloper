@@ -23,6 +23,7 @@ namespace Game.Gameplay
             entity.AddTransform(_transform);
             entity.AddHealth(_health);
             entity.AddTrigger(_trigger);
+            entity.AddCharacterTag();
             entity.AddDamageableTag();
 
             //Move:
