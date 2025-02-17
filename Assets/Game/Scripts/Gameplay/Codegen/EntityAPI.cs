@@ -21,6 +21,7 @@ namespace Game.Gameplay
 		///Values
 		public const int GameObject = 1482111001; // GameObject
 		public const int Transform = -180157682; // Transform
+		public const int Weapon = 1855955664; // IWeaponEntity
 		public const int Health = -915003867; // Health
 		public const int Damage = 375673178; // IValue<DamageArgs>
 		public const int TakeDamageEvent = 1486057413; // IEvent<DamageArgs>
@@ -33,7 +34,6 @@ namespace Game.Gameplay
 		public const int IsChasing = -1781152096; // IVariable<bool>
 		public const int AngularSpeed = -1089183267; // IValue<float>
 		public const int RotateCondition = 1109699557; // IExpression<bool>
-		public const int Weapon = 1855955664; // IWeaponEntity
 		public const int Target = 1103309514; // IEntity
 		public const int AttackDelay = 1610191294; // IValue<float>
 		public const int AttackEvent = -691201150; // IEvent
@@ -114,6 +114,24 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetTransform(this IEntity obj, Transform value) => obj.SetValue(Transform, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IWeaponEntity GetWeapon(this IEntity obj) => obj.GetValue<IWeaponEntity>(Weapon);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetWeapon(this IEntity obj, out IWeaponEntity value) => obj.TryGetValue(Weapon, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddWeapon(this IEntity obj, IWeaponEntity value) => obj.AddValue(Weapon, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasWeapon(this IEntity obj) => obj.HasValue(Weapon);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelWeapon(this IEntity obj) => obj.DelValue(Weapon);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetWeapon(this IEntity obj, IWeaponEntity value) => obj.SetValue(Weapon, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Health GetHealth(this IEntity obj) => obj.GetValue<Health>(Health);
@@ -330,24 +348,6 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetRotateCondition(this IEntity obj, IExpression<bool> value) => obj.SetValue(RotateCondition, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IWeaponEntity GetWeapon(this IEntity obj) => obj.GetValue<IWeaponEntity>(Weapon);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetWeapon(this IEntity obj, out IWeaponEntity value) => obj.TryGetValue(Weapon, out value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddWeapon(this IEntity obj, IWeaponEntity value) => obj.AddValue(Weapon, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasWeapon(this IEntity obj) => obj.HasValue(Weapon);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelWeapon(this IEntity obj) => obj.DelValue(Weapon);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetWeapon(this IEntity obj, IWeaponEntity value) => obj.SetValue(Weapon, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IEntity GetTarget(this IEntity obj) => obj.GetValue<IEntity>(Target);

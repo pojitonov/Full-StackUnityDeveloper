@@ -7,16 +7,19 @@ namespace Game.Gameplay
 {
     public sealed class EnemyCoreInstaller : SceneEntityInstaller
     {
+        private const string FIRE_EVENT = "fire_event";
+
         [SerializeField] private GameObject _gameObject;
         [SerializeField] private Transform _center;
         [SerializeField] private Health _health;
         [SerializeField] private float _moveSpeed = 3f;
         [SerializeField] private float _angularSpeed = 3f;
-        
-        [SerializeField] private WeaponEntity _weapon;
+
+        [SerializeField] private float _attackInterval = 1f;
         [SerializeField] private float _stoppingDistance = 1f;
         [SerializeField] private int _damage = 10;
-        [SerializeField] private float _attackInterval = 0.1f;
+        [SerializeField] private LayerMask _layerMask;
+
 
         public override void Install(IEntity entity)
         {
@@ -28,19 +31,19 @@ namespace Game.Gameplay
             entity.AddEnemyTag();
             entity.AddDamageableTag();
             entity.AddTarget(gameContext.GetCharacter());
-            
+
             //Move:
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddIsChasing(new BaseVariable<bool>(false));
             entity.AddBehaviour<EnemyChasingBehaviour>();
             entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
-            
+
             //Rotate:
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
             entity.AddBehaviour<EnemyRotateBehaviour>();
             entity.AddRotateCondition(new AndExpression(entity.IsAlive));
-            
+
             //Life:
             entity.AddHealth(_health);
             entity.AddBehaviour<DeathBehaviour>();
@@ -49,11 +52,10 @@ namespace Game.Gameplay
             entity.AddBehaviour<BodyFallDisableBehaviour>();
 
             //Attack:
-            entity.AddWeapon(_weapon);
-            entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
-            entity.AddAttackAction(new MeleeAttackAction(entity, _center, _stoppingDistance, _damage));
             entity.AddAttackEvent(new BaseEvent());
-            entity.AddBehaviour(new AttackBehaviour(_attackInterval));
+            entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
+            entity.AddBehaviour(new AttackBehaviour(_attackInterval, _stoppingDistance));
+            entity.AddAttackAction(new MeleeAttackAction(entity, _stoppingDistance, _damage, _layerMask));
         }
     }
 }

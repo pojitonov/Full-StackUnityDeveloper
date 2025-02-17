@@ -20,6 +20,7 @@ values:
 # Main
 - GameObject: GameObject
 - Transform: Transform
+- Weapon: IWeaponEntity
 
 # Life
 - Health: Health
@@ -40,7 +41,6 @@ values:
 - RotateCondition: IExpression<bool>
 
 # Attack
-- Weapon: IWeaponEntity
 - Target: IEntity
 - AttackDelay: IValue<float>
 - AttackEvent: IEvent
