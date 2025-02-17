@@ -5,23 +5,25 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class AttackBehaviour : IEntityInit, IEntityUpdate
+    public class AttackBehaviour : IEntityInit<WeaponEntity>, IEntityUpdate<WeaponEntity>
     {
         private readonly Cooldown _cooldown;
         private readonly float _stoppingDistance;
+        private readonly SceneEntity _rootEntity;
 
-        public AttackBehaviour(float attackInterval, float stoppingDistance)
+        public AttackBehaviour(SceneEntity rootEntity, float attackInterval, float stoppingDistance)
         {
+            _rootEntity = rootEntity;
             _cooldown = new Cooldown(attackInterval);
             _stoppingDistance = stoppingDistance;
         }
 
-        public void Init(in IEntity entity)
+        public void Init(WeaponEntity entity)
         {
             _cooldown.Reset();
         }
 
-        public void OnUpdate(in IEntity entity, in float deltaTime)
+        public void OnUpdate(WeaponEntity entity, in float deltaTime)
         {
             _cooldown.Tick(deltaTime);
 
@@ -32,9 +34,9 @@ namespace Game.Gameplay
             }
         }
 
-        private void Attack(IEntity entity)
+        private void Attack(WeaponEntity entity)
         {
-            var target = entity.GetTarget();
+            var target = _rootEntity.GetTarget();
             
             if (target == null || !target.IsAlive())
                 return;

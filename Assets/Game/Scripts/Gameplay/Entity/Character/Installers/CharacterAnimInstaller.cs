@@ -22,10 +22,12 @@ namespace Game.Gameplay
             //Attack:
             entity.AddAttackEvent(new BaseEvent());
             entity.AddAttackAction(new CharacterFireAction(entity));
-            
-            //AnimBehaviours:
-            entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
             entity.AddBehaviour(new FireAnimBehaviour(_fireKey));
+            
+            //Move:
+            entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
+            
+            //Damage:
             entity.AddBehaviour(new TakeDamageAnimBehaviour(_damageKey));
             entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
         }

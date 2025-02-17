@@ -7,20 +7,13 @@ namespace Game.Gameplay
 {
     public sealed class EnemyCoreInstaller : SceneEntityInstaller
     {
-        private const string FIRE_EVENT = "fire_event";
-
         [SerializeField] private GameObject _gameObject;
         [SerializeField] private Transform _center;
         [SerializeField] private Health _health;
         [SerializeField] private float _moveSpeed = 3f;
         [SerializeField] private float _angularSpeed = 3f;
-
-        [SerializeField] private float _attackInterval = 1f;
-        [SerializeField] private float _stoppingDistance = 1f;
-        [SerializeField] private int _damage = 10;
-        [SerializeField] private LayerMask _layerMask;
-
-
+        [SerializeField] private WeaponEntity _weapon;
+        
         public override void Install(IEntity entity)
         {
             GameContext gameContext = GameContext.Instance;
@@ -31,6 +24,7 @@ namespace Game.Gameplay
             entity.AddEnemyTag();
             entity.AddDamageableTag();
             entity.AddTarget(gameContext.GetCharacter());
+            entity.AddWeapon(_weapon);
 
             //Move:
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
@@ -50,12 +44,6 @@ namespace Game.Gameplay
             entity.AddTakeDamageEvent(new BaseEvent<DamageArgs>());
             entity.AddDeathEvent(new BaseEvent<DamageArgs>());
             entity.AddBehaviour<BodyFallDisableBehaviour>();
-
-            //Attack:
-            entity.AddAttackEvent(new BaseEvent());
-            entity.AddAttackCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
-            entity.AddBehaviour(new AttackBehaviour(_attackInterval, _stoppingDistance));
-            entity.AddAttackAction(new MeleeAttackAction(entity, _stoppingDistance, _damage, _layerMask));
         }
     }
 }

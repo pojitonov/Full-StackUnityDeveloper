@@ -11,7 +11,7 @@ namespace Game.Gameplay
         private readonly int _damage;
         private readonly LayerMask _layerMask;
 
-        public MeleeAttackAction(IEntity entity, float stoppingDistance, int damage, LayerMask layerMask)
+        public MeleeAttackAction(IWeaponEntity entity, float stoppingDistance, int damage, LayerMask layerMask)
         {
             _entity = entity;
             _stoppingDistance = stoppingDistance;

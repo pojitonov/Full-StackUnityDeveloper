@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1416792984943742102}
   - component: {fileID: 1877435912816137738}
+  - component: {fileID: 126138612326571662}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Melee
@@ -48,6 +49,25 @@ MonoBehaviour:
   installInEditMode: 0
   disposeValues: 1
   installers:
-  - {fileID: 0}
+  - {fileID: 126138612326571662}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
+--- !u!114 &126138612326571662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7223745350942996134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed571ebe81234877ba208650f9369ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackInterval: 1
+  _stoppingDistance: 1
+  _damage: 10
+  _rootTransform: {fileID: 1416792984943742102}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 512

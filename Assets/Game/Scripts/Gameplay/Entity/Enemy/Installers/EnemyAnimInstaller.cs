@@ -21,12 +21,16 @@ namespace Game.Gameplay
             entity.AddAnimator(_animator);
             entity.AddAnimationEventReceiver(_animationReceiver);
             
-            //AnimBehaviours:
+            //Move:
             entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
+            
+            //Attack:
             entity.AddBehaviour(new AttackAnimBehaviour(_attackKey));
+            entity.AddBehaviour(new AttackActionBehaviour(FIRE_EVENT));
+            
+            //Damage:
             entity.AddBehaviour(new TakeDamageAnimBehaviour(_damageKey));
             entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
-            entity.AddBehaviour(new AttackActionBehaviour(FIRE_EVENT));
         }
     }
 }

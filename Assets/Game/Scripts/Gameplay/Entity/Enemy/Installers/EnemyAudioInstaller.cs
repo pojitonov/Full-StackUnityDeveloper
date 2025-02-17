@@ -17,7 +17,6 @@ namespace Game.Gameplay
         {
             entity.AddAudioSource(_audioSource);
 
-            //SoundBehaviours:
             entity.AddBehaviour(new AttackSoundBehaviour(_attackClips));
             entity.AddBehaviour(new TakeDamageSoundBehaviour(_damageClips));
             entity.AddBehaviour(new BodyFallSoundBehaviour(_bodyFallClip));

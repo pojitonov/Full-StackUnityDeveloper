@@ -15,12 +15,12 @@ namespace Game.Gameplay
 
         public void Init(in IEntity entity)
         {
-            entity.GetAnimationEventReceiver().Subscribe(_eventName, entity.GetAttackAction().Invoke);
+            entity.GetAnimationEventReceiver().Subscribe(_eventName, entity.GetWeapon().GetAttackAction().Invoke);
         }
 
         public void Dispose(in IEntity entity)
         {
-            entity.GetAnimationEventReceiver().Unsubscribe(_eventName, entity.GetAttackAction().Invoke);
+            entity.GetAnimationEventReceiver().Unsubscribe(_eventName, entity.GetWeapon().GetAttackAction().Invoke);
         }
     }
 }
