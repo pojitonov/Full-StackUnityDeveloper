@@ -9,6 +9,8 @@ namespace Game.Gameplay
             if (!entity.GetIsChasing().Value) return;
 
             var target = entity.GetTarget();
+            if (target == null) return;
+
             entity.MoveTowardsPosition(target, deltaTime);
         }
     }

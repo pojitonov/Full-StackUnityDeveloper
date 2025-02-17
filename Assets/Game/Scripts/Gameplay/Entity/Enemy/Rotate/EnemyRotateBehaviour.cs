@@ -8,7 +8,7 @@ namespace Game.Gameplay
         {
             if (!entity.GetIsChasing().Value) return;
 
-            IEntity target = entity.GetTarget();
+            var target = entity.GetTarget();
             if (target == null) return;
             
             entity.RotateTowardsTarget(target, deltaTime);

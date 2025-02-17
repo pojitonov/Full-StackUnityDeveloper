@@ -26585,6 +26585,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthItem
       objectReference: {fileID: 0}
+    - target: {fileID: 5903764127141603557, guid: 7f2cbbbb3727c4e66b0b7159a8f9ca8a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

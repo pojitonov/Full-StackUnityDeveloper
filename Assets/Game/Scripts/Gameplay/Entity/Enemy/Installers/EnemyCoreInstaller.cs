@@ -21,17 +21,17 @@ namespace Game.Gameplay
             //Entity:
             entity.AddGameObject(_gameObject);
             entity.AddTransform(_center);
-            entity.AddEnemyTag();
-            entity.AddDamageableTag();
             entity.AddTarget(gameContext.GetCharacter());
             entity.AddWeapon(_weapon);
+            entity.AddEnemyTag();
+            entity.AddDamageableTag();
 
             //Move:
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddIsChasing(new BaseVariable<bool>(false));
             entity.AddBehaviour<EnemyChasingBehaviour>();
-            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
+            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive()));
 
             //Rotate:
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));

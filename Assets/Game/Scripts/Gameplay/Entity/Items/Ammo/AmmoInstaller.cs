@@ -22,6 +22,7 @@ namespace Game.Gameplay
                     _vfx.Play();
                     _audioSource.Play();
                     _visual.SetActive(false);
+                    entity.DelInteractableTag();
                 }
             }));
         }

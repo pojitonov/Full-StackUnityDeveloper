@@ -13,8 +13,8 @@ namespace Game.Gameplay
 
         public AttackBehaviour(SceneEntity rootEntity, float attackInterval, float stoppingDistance)
         {
-            _rootEntity = rootEntity;
             _cooldown = new Cooldown(attackInterval);
+            _rootEntity = rootEntity;
             _stoppingDistance = stoppingDistance;
         }
 
@@ -37,9 +37,8 @@ namespace Game.Gameplay
         private void Attack(WeaponEntity entity)
         {
             var target = _rootEntity.GetTarget();
-            
-            if (target == null || !target.IsAlive())
-                return;
+            if (target == null) return;
+            if (!target.IsAlive()) return;
 
             var distance = entity.GetDistance(target);
             if (distance < _stoppingDistance)
