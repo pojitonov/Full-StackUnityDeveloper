@@ -8,18 +8,21 @@ namespace Game.Gameplay
 {
     public class KillsCountController : IContextInit<GameContext>, IContextDispose<GameContext>
     {
-        private IEntityWorld _entityWorld;
         private IGameContext _gameContext;
         private readonly List<IReactive<DamageArgs>> _deathEvents = new();
+        private readonly List<SceneEntity> _entities;
 
+        public KillsCountController(List<SceneEntity> entities)
+        {
+            _entities = entities;
+        }
+        
         public void Init(GameContext context)
         {
             _gameContext = context;
-            _entityWorld = context.GetEntityWorld();
 
-            foreach (IEntity entity in _entityWorld.GetEntitiesWithTag(EntityAPI.Enemy))
+            foreach (IEntity entity in _entities)
             {
-                Debug.Log(entity.Name);
                 var deathEvent = entity.GetDeathEvent();
                 deathEvent.Subscribe(OnDeathHappens);
                 _deathEvents.Add(deathEvent);

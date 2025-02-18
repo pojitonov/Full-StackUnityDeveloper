@@ -4259,6 +4259,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da552a7ff8a24477a41184d78d6c725c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _statsSystemInstaller:
+    entities:
+    - {fileID: 2074083451}
+    - {fileID: 1127380555}
+    - {fileID: 2119793977}
+    - {fileID: 856499413}
+    - {fileID: 761039290}
+    - {fileID: 1293016459}
+    - {fileID: 683460839}
+    - {fileID: 1293755591}
+    - {fileID: 131314611}
+    - {fileID: 256725172}
   _inputSystemInstaller:
     _moveJoystick: {fileID: 757640612756630601}
     _attackJoystick: {fileID: 7919524849257179007}
@@ -8163,7 +8175,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 548618061}
-  - component: {fileID: 548618062}
   m_Layer: 0
   m_Name: '[Level]'
   m_TagString: Untagged
@@ -8189,22 +8200,6 @@ Transform:
   - {fileID: 279650649}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &548618062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 548618059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad3a3ede6b224e529f623d5ca96c67f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoRefresh: 1
-  unityName: 1
-  scanEntities: 1
-  includeInactiveOnScan: 0
 --- !u!1001 &555715225
 PrefabInstance:
   m_ObjectHideFlags: 0

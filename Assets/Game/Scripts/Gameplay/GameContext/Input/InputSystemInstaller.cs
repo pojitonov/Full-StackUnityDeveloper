@@ -14,7 +14,6 @@ namespace Game.Gameplay
         
         public void Install(IGameContext context)
         {
-            
             //Move:
             context.AddMoveJoystick(_moveJoystick);
             context.AddController<CharacterMoveController>();
