@@ -18,8 +18,8 @@ namespace Game.Gameplay
 
 		///Values
 		public const int BulletPool = 1915726678; // IEntityPool
-		public const int Character = 294335127; // IEntity
 		public const int EntityWorld = 1757640864; // IEntityWorld
+		public const int Character = 294335127; // IEntity
 		public const int Kills = -291106651; // IReactiveVariable<int>
 		public const int MoveJoystick = -1686028204; // Joystick
 		public const int AttackJoystick = 1168591300; // Joystick
@@ -47,24 +47,6 @@ namespace Game.Gameplay
 		public static void SetBulletPool(this IGameContext obj, IEntityPool value) => obj.SetValue(BulletPool, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IEntity GetCharacter(this IGameContext obj) => obj.GetValue<IEntity>(Character);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetCharacter(this IGameContext obj, out IEntity value) => obj.TryGetValue(Character, out value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddCharacter(this IGameContext obj, IEntity value) => obj.AddValue(Character, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasCharacter(this IGameContext obj) => obj.HasValue(Character);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelCharacter(this IGameContext obj) => obj.DelValue(Character);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetCharacter(this IGameContext obj, IEntity value) => obj.SetValue(Character, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IEntityWorld GetEntityWorld(this IGameContext obj) => obj.GetValue<IEntityWorld>(EntityWorld);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -81,6 +63,24 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetEntityWorld(this IGameContext obj, IEntityWorld value) => obj.SetValue(EntityWorld, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IEntity GetCharacter(this IGameContext obj) => obj.GetValue<IEntity>(Character);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetCharacter(this IGameContext obj, out IEntity value) => obj.TryGetValue(Character, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddCharacter(this IGameContext obj, IEntity value) => obj.AddValue(Character, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasCharacter(this IGameContext obj) => obj.HasValue(Character);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelCharacter(this IGameContext obj) => obj.DelValue(Character);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetCharacter(this IGameContext obj, IEntity value) => obj.SetValue(Character, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IReactiveVariable<int> GetKills(this IGameContext obj) => obj.GetValue<IReactiveVariable<int>>(Kills);

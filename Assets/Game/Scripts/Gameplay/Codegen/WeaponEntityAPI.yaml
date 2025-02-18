@@ -11,7 +11,7 @@ imports:
 - Modules.Gameplay
 
 values:
+- Root: IEntity
 - Transform: Transform
 - BulletPrefab: SceneEntity
 - Ammo: Ammo
-- Root: IEntity
