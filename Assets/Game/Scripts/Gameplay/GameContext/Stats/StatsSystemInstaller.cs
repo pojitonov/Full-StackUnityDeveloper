@@ -11,12 +11,12 @@ namespace Game.Gameplay
     [Serializable]
     public class StatsSystemInstaller : IContextInstaller<IGameContext>
     {
-        [SerializeField] private List<SceneEntity> entities;
+        [SerializeField] private List<SceneEntity> _enemies;
         
         public void Install(IGameContext context)
         {
             context.AddKills(new ReactiveInt());
-            context.AddController(new KillsCountController(entities));
+            context.AddController(new KillsCountController(_enemies));
         }
     }
 }

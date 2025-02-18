@@ -16,12 +16,10 @@ namespace Game.Gameplay
         
         public override void Install(IEntity entity)
         {
-            GameContext gameContext = GameContext.Instance;
-
             //Entity:
             entity.AddGameObject(_gameObject);
             entity.AddTransform(_center);
-            entity.AddTarget(gameContext.GetCharacter());
+            entity.AddTarget(new Entity());
             entity.AddWeapon(_weapon);
             entity.AddEnemyTag();
             entity.AddDamageableTag();
@@ -29,14 +27,13 @@ namespace Game.Gameplay
             //Move:
             entity.AddMoveSpeed(new Const<float>(_moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
-            entity.AddIsChasing(new BaseVariable<bool>(false));
-            entity.AddBehaviour<EnemyChasingBehaviour>();
-            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
+            entity.AddBehaviour<EnemyMoveBehaviour>();
+            entity.AddMoveCondition(new AndExpression(() => entity.IsAlive() && entity.HasTarget()));
 
             //Rotate:
             entity.AddAngularSpeed(new Const<float>(_angularSpeed));
             entity.AddBehaviour<EnemyRotateBehaviour>();
-            entity.AddRotateCondition(new AndExpression(() => entity.IsAlive() && entity.GetTarget().IsAlive()));
+            entity.AddRotateCondition(new AndExpression(() => entity.IsAlive() && entity.HasTarget()));
 
             //Life:
             entity.AddHealth(_health);

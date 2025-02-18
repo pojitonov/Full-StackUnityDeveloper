@@ -27,19 +27,9 @@ namespace Game.Gameplay
 
             if (_cooldown.IsExpired())
             {
-                Attack(entity);
+                AttackUseCase.Attack(entity, _stoppingDistance);
                 _cooldown.Reset();
             }
-        }
-
-        private void Attack(WeaponEntity entity)
-        {
-            var target = entity.GetRoot().GetTarget();
-            if (target == null || !target.IsAlive()) return;
-
-            var distance = entity.GetDistance(target);
-            if (distance < _stoppingDistance)
-                entity.GetAttackEvent().Invoke();
         }
     }
 }

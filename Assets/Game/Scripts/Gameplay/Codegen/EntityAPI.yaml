@@ -35,7 +35,6 @@ values:
 - MoveSpeed: IValue<float>
 - MoveCondition: IExpression<bool>
 - MoveDirection: IReactiveVariable<Vector3>
-- IsChasing : IVariable<bool>
 
 # Rotation
 - AngularSpeed: IValue<float>

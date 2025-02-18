@@ -7,6 +7,8 @@ namespace Game.Gameplay
     {
         public static Vector3 GetDirection(this IEntity entity, in IEntity target)
         {
+            if (!entity.HasTransform() || !target.HasTransform()) return Vector3.zero;
+            
             Vector3 currentPosition = entity.GetTransform().position;
             Vector3 targetPosition = target.GetTransform().position;
             Vector3 vectorToTarget = targetPosition - currentPosition;

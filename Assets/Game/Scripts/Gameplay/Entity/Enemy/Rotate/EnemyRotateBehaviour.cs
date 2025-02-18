@@ -2,12 +2,12 @@ using Atomic.Entities;
 
 namespace Game.Gameplay
 {
-    public class EnemyRotateBehaviour : IEntityUpdate
+    public sealed class EnemyRotateBehaviour : IEntityUpdate
     {
         public void OnUpdate(in IEntity entity, in float deltaTime)
         {
-            if (!entity.GetIsChasing().Value) return;
-
+            if (!entity.HasTarget()) return;
+            
             var target = entity.GetTarget();
             if (target == null) return;
             

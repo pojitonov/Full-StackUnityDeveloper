@@ -27,5 +27,17 @@ namespace Game.Gameplay
                 target.TakeDamage(damageArgs);
             }
         }
+        
+        public static void Attack(WeaponEntity entity, in float stoppingDistance)
+        {
+            if (!entity.HasTarget()) return;
+            var target = entity.GetRoot().GetTarget();
+
+            if (!target.IsAlive()) return;
+
+            var distance = entity.GetDistance(target);
+            if (distance < stoppingDistance)
+                entity.GetAttackEvent().Invoke();
+        }
     }
 }

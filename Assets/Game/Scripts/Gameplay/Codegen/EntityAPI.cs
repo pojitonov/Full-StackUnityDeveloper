@@ -32,7 +32,6 @@ namespace Game.Gameplay
 		public const int MoveSpeed = 526065662; // IValue<float>
 		public const int MoveCondition = 1466174948; // IExpression<bool>
 		public const int MoveDirection = -721923052; // IReactiveVariable<Vector3>
-		public const int IsChasing = -1781152096; // IVariable<bool>
 		public const int AngularSpeed = -1089183267; // IValue<float>
 		public const int RotateCondition = 1109699557; // IExpression<bool>
 		public const int Target = 1103309514; // IEntity
@@ -304,24 +303,6 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetMoveDirection(this IEntity obj, IReactiveVariable<Vector3> value) => obj.SetValue(MoveDirection, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IVariable<bool> GetIsChasing(this IEntity obj) => obj.GetValue<IVariable<bool>>(IsChasing);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetIsChasing(this IEntity obj, out IVariable<bool> value) => obj.TryGetValue(IsChasing, out value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddIsChasing(this IEntity obj, IVariable<bool> value) => obj.AddValue(IsChasing, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasIsChasing(this IEntity obj) => obj.HasValue(IsChasing);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelIsChasing(this IEntity obj) => obj.DelValue(IsChasing);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetIsChasing(this IEntity obj, IVariable<bool> value) => obj.SetValue(IsChasing, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IValue<float> GetAngularSpeed(this IEntity obj) => obj.GetValue<IValue<float>>(AngularSpeed);
