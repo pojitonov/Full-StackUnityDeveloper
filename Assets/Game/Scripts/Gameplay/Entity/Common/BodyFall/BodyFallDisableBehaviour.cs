@@ -24,7 +24,7 @@ namespace Game.Gameplay
         private void OnDeathHappens(DamageArgs _)
         {
             _entity.DelBehaviour<TakeDamageAnimBehaviour>();
-            _entity.DelBehaviour<AttackAnimBehaviour>();
+            _entity.DelBehaviour<EnemyAttackAnimBehaviour>();
             _entity.GetGameObject().GetComponent<Rigidbody>().isKinematic = true;
         }
     }

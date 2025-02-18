@@ -1767,6 +1767,8 @@ MonoBehaviour:
     max: 3
   _moveSpeed: 0.75
   _angularSpeed: 3
+  _attackDelay: 1
+  _stoppingDistance: 1
   _weapon: {fileID: 3376191085053756248}
 --- !u!114 &6462368927767535755
 MonoBehaviour:

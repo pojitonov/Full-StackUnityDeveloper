@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class AttackAnimBehaviour : IEntityInit, IEntityDispose
+    public class EnemyAttackAnimBehaviour : IEntityInit, IEntityDispose
     {
         private readonly int _hash;
         private Animator _animator;
         private IEvent _attackEvent;
 
-        public AttackAnimBehaviour(string hash)
+        public EnemyAttackAnimBehaviour(string hash)
         {
             _hash = Animator.StringToHash(hash);
         }
@@ -18,7 +18,7 @@ namespace Game.Gameplay
         public void Init(in IEntity entity)
         {
             _animator = entity.GetAnimator();
-            _attackEvent = entity.GetWeapon().GetAttackEvent();
+            _attackEvent = entity.GetAttackEvent();
             _attackEvent.Subscribe(OnAttack);
         }
 

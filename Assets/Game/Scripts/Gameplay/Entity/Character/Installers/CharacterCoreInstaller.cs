@@ -44,6 +44,8 @@ namespace Game.Gameplay
 
             //Attack:
             entity.AddWeapon(_weapon);
+            entity.AddAttackEvent(new BaseEvent());
+            entity.AddAttackAction(new CharacterFireAction(entity));
             entity.AddAttackDelay(new Const<float>(_fireDelay));
             entity.AddAttackCondition(new BaseFunction<bool>(() =>
                 entity.IsAlive() && entity.GetWeapon().GetAttackCondition().Invoke()));

@@ -6,8 +6,6 @@ namespace Game.Gameplay
 {
     public sealed class EnemyAnimInstaller : SceneEntityInstaller
     {
-        private const string FIRE_EVENT = "fire_event";
-
         [SerializeField] private Animator _animator;
         [SerializeField] private string _movingKey = "IsMoving";
         [SerializeField] private string _attackKey = "Attack";
@@ -25,8 +23,7 @@ namespace Game.Gameplay
             entity.AddBehaviour(new MoveAnimBehaviour(_movingKey));
             
             //Attack:
-            entity.AddBehaviour(new AttackAnimBehaviour(_attackKey));
-            entity.AddBehaviour(new AttackActionBehaviour(FIRE_EVENT));
+            entity.AddBehaviour(new EnemyAttackAnimBehaviour(_attackKey));
             
             //Damage:
             entity.AddBehaviour(new TakeDamageAnimBehaviour(_damageKey));

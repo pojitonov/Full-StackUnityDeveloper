@@ -7,13 +7,17 @@ namespace Game.Gameplay
 {
     public sealed class EnemyCoreInstaller : SceneEntityInstaller
     {
+        private const string FIRE_EVENT = "fire_event";
+        
         [SerializeField] private GameObject _gameObject;
         [SerializeField] private Transform _center;
         [SerializeField] private Health _health;
         [SerializeField] private float _moveSpeed = 3f;
         [SerializeField] private float _angularSpeed = 3f;
+        [SerializeField] private float _attackDelay = 1f;
+        [SerializeField] private float _stoppingDistance = 1f;
         [SerializeField] private WeaponEntity _weapon;
-        
+
         public override void Install(IEntity entity)
         {
             //Entity:
@@ -35,6 +39,13 @@ namespace Game.Gameplay
             entity.AddBehaviour<EnemyRotateBehaviour>();
             entity.AddRotateCondition(new AndExpression(() => entity.IsAlive() && entity.HasTarget()));
 
+            //Attack:
+            entity.AddAttackAction(new EnemyAttackAction(entity));
+            entity.AddAttackDelay(new Const<float>(_attackDelay));
+            entity.AddAttackCondition(new BaseFunction<bool>(() => entity.IsAlive() && entity.HasTarget()));
+            entity.AddBehaviour(new EnemyAttackBehaviour(FIRE_EVENT));
+            entity.AddAttackEvent(new BaseEvent());
+            
             //Life:
             entity.AddHealth(_health);
             entity.AddBehaviour<DeathBehaviour>();

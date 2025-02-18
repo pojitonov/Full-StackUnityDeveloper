@@ -6,7 +6,7 @@ namespace Game.Gameplay
 {
     public class MeleeAttackAction : IAction
     {
-        private readonly IEntity _entity;
+        private readonly IWeaponEntity _entity;
         private readonly float _stoppingDistance;
         private readonly int _damage;
         private readonly LayerMask _layerMask;
@@ -21,7 +21,7 @@ namespace Game.Gameplay
 
         public void Invoke()
         {
-            AttackUseCase.Attack(_entity, _stoppingDistance, _damage, _layerMask);
+            MeleeAttackUseCase.Attack(_entity, _stoppingDistance, _damage, _layerMask);
         }
     }
 }
