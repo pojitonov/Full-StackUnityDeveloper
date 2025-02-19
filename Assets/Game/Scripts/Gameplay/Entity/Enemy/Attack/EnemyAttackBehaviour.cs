@@ -9,8 +9,8 @@ namespace Game.Gameplay
         private Cooldown _cooldown;
         private readonly string _eventName;
         private float _attackDelay;
+        private IAction _attackAction;
         private readonly float _stoppingDistance;
-        private IAction _weaponAttachAction;
 
         public EnemyAttackBehaviour(string eventName, float stoppingDistance)
         {
@@ -20,17 +20,17 @@ namespace Game.Gameplay
 
         public void Init(in IEntity entity)
         {
-            _weaponAttachAction = entity.GetWeapon().GetAttackAction();
+            _attackAction = entity.GetWeapon().GetAttackAction();
             _attackDelay = entity.GetAttackDelay().Value;
             _cooldown = new Cooldown(_attackDelay);
             _cooldown.Reset();
 
-            entity.GetAnimationEventReceiver().Subscribe(_eventName, _weaponAttachAction.Invoke);
+            entity.GetAnimationEventReceiver().Subscribe(_eventName, _attackAction.Invoke);
         }
 
         public void Dispose(in IEntity entity)
         {
-            entity.GetAnimationEventReceiver().Unsubscribe(_eventName, _weaponAttachAction.Invoke);
+            entity.GetAnimationEventReceiver().Unsubscribe(_eventName, _attackAction.Invoke);
         }
 
         public void OnUpdate(in IEntity entity, in float deltaTime)

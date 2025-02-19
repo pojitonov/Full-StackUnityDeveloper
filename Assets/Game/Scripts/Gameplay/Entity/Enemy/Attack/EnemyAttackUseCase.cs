@@ -7,9 +7,6 @@ namespace Game.Gameplay
     {
         public static void Attack(IEntity entity, float deltaTime, float stoppingDistance, Cooldown cooldown)
         {
-            if (entity == null)
-                return;
-
             var target = entity.GetTarget();
             var distance = entity.GetDistance(target);
 
@@ -19,7 +16,7 @@ namespace Game.Gameplay
 
                 if (cooldown.IsExpired())
                     return;
-                
+
                 cooldown.Reset();
                 entity.GetAttackAction().Invoke();
             }
