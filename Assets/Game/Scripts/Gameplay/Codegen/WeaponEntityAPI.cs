@@ -19,7 +19,8 @@ namespace Game.Gameplay
 		public const int Transform = -180157682; // Transform
 		public const int BulletPrefab = -918778767; // SceneEntity
 		public const int Ammo = 1337839892; // Ammo
-		public const int AttackAction = 203766724; // IAction
+		public const int FireAction = 1186461126; // IAction
+		public const int MeleeAction = 1273347354; // IAction<float>
 
 
 		///Value Extensions
@@ -97,21 +98,39 @@ namespace Game.Gameplay
 		public static void SetAmmo(this IWeaponEntity obj, Ammo value) => obj.SetValue(Ammo, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IAction GetAttackAction(this IWeaponEntity obj) => obj.GetValue<IAction>(AttackAction);
+		public static IAction GetFireAction(this IWeaponEntity obj) => obj.GetValue<IAction>(FireAction);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetAttackAction(this IWeaponEntity obj, out IAction value) => obj.TryGetValue(AttackAction, out value);
+		public static bool TryGetFireAction(this IWeaponEntity obj, out IAction value) => obj.TryGetValue(FireAction, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddAttackAction(this IWeaponEntity obj, IAction value) => obj.AddValue(AttackAction, value);
+		public static bool AddFireAction(this IWeaponEntity obj, IAction value) => obj.AddValue(FireAction, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasAttackAction(this IWeaponEntity obj) => obj.HasValue(AttackAction);
+		public static bool HasFireAction(this IWeaponEntity obj) => obj.HasValue(FireAction);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelAttackAction(this IWeaponEntity obj) => obj.DelValue(AttackAction);
+		public static bool DelFireAction(this IWeaponEntity obj) => obj.DelValue(FireAction);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetAttackAction(this IWeaponEntity obj, IAction value) => obj.SetValue(AttackAction, value);
+		public static void SetFireAction(this IWeaponEntity obj, IAction value) => obj.SetValue(FireAction, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IAction<float> GetMeleeAction(this IWeaponEntity obj) => obj.GetValue<IAction<float>>(MeleeAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetMeleeAction(this IWeaponEntity obj, out IAction<float> value) => obj.TryGetValue(MeleeAction, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddMeleeAction(this IWeaponEntity obj, IAction<float> value) => obj.AddValue(MeleeAction, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasMeleeAction(this IWeaponEntity obj) => obj.HasValue(MeleeAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelMeleeAction(this IWeaponEntity obj) => obj.DelValue(MeleeAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetMeleeAction(this IWeaponEntity obj, IAction<float> value) => obj.SetValue(MeleeAction, value);
     }
 }

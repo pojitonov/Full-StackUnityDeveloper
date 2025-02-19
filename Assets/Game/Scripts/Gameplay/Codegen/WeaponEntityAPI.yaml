@@ -16,5 +16,7 @@ values:
 - Transform: Transform
 - BulletPrefab: SceneEntity
 - Ammo: Ammo
-- AttackAction: IAction
+- FireAction: IAction
+- MeleeAction: IAction<float>
+
 

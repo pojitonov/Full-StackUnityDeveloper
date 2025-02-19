@@ -48,7 +48,7 @@ namespace Game.Gameplay
         private void OnAttackAnimationEvent()
         {
             _cooldown.Reset();
-            _entity.GetWeapon().GetAttackAction().Invoke();
+            _entity.GetWeapon().GetMeleeAction().Invoke(_stoppingDistance);
             _isAttacking = false;
         }
     }

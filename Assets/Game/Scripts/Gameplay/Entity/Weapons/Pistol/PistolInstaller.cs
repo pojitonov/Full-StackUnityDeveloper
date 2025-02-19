@@ -22,7 +22,7 @@ namespace Game.Gameplay
             
             //Attack:
             entity.AddAttackCondition(new BaseFunction<bool>(() => _ammo.Exists()));
-            entity.AddAttackAction(new PistolFireAction(entity, gameContext));
+            entity.AddFireAction(new PistolFireAction(entity, gameContext));
             entity.AddAttackEvent(new BaseEvent());
         }
     }

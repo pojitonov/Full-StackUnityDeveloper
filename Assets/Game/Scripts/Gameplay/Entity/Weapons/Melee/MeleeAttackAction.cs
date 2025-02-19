@@ -3,24 +3,22 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class MeleeAttackAction : IAction
+    public class MeleeAttackAction : IAction<float>
     {
         private readonly IWeaponEntity _entity;
-        private readonly float _stoppingDistance;
         private readonly int _damage;
         private readonly LayerMask _layerMask;
 
-        public MeleeAttackAction(IWeaponEntity entity, float stoppingDistance, int damage, LayerMask layerMask)
+        public MeleeAttackAction(IWeaponEntity entity, int damage, LayerMask layerMask)
         {
             _entity = entity;
-            _stoppingDistance = stoppingDistance;
             _damage = damage;
             _layerMask = layerMask;
         }
 
-        public void Invoke()
+        public void Invoke(float stoppingDistance)
         {
-            _entity.Attack(_stoppingDistance, _damage, _layerMask);
+            _entity.Attack(stoppingDistance, _damage, _layerMask);
         }
     }
 }
