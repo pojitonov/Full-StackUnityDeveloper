@@ -1,23 +1,29 @@
-// using Atomic.Entities;
-// using UnityEngine;
-//
-// namespace Game.Gameplay
-// {
-//     public static class EnemyAttackUseCase
-//     {
-//         public static void Attack(in IEntity entity, in float stoppingDistance)
-//         {
-//             if (entity == null) 
-//                 return;
-//             
-//             if (!entity.HasTarget())
-//                 return;
-//
-//             var target = entity.GetTarget();
-//
-//             var distance = entity.GetDistance(target);
-//             if (distance < stoppingDistance)
-//                 entity.GetAttackEvent().Invoke();
-//         }
-//     }
-// }
+using Atomic.Entities;
+using Modules.Gameplay;
+using UnityEngine;
+
+namespace Game.Gameplay
+{
+    public static class EnemyAttackUseCase
+    {
+        public static void Attack(IEntity entity, float deltaTime, float stoppingDistance, Cooldown cooldown)
+        {
+            if (entity == null)
+                return;
+
+            var target = entity.GetTarget();
+            var distance = entity.GetDistance(target);
+
+            if (distance < stoppingDistance)
+            {
+                cooldown.Tick(deltaTime);
+
+                if (cooldown.IsExpired())
+                    return;
+                
+                cooldown.Reset();
+                entity.GetAttackAction().Invoke();
+            }
+        }
+    }
+}

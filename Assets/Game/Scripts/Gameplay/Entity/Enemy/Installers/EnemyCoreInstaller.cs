@@ -42,8 +42,8 @@ namespace Game.Gameplay
             //Attack:
             entity.AddAttackAction(new EnemyAttackAction(entity));
             entity.AddAttackDelay(new Const<float>(_attackDelay));
-            entity.AddAttackCondition(new BaseFunction<bool>(() => entity.IsAlive() && entity.HasTarget()));
-            entity.AddBehaviour(new EnemyAttackBehaviour(FIRE_EVENT));
+            entity.AddAttackCondition(new BaseFunction<bool>(() => entity.IsAlive() && entity.HasTarget() && entity.GetTarget().IsAlive()));
+            entity.AddBehaviour(new EnemyAttackBehaviour(FIRE_EVENT, _stoppingDistance));
             entity.AddAttackEvent(new BaseEvent());
             
             //Life:
