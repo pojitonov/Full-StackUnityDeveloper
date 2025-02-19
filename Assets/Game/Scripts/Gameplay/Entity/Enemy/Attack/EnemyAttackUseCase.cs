@@ -5,21 +5,17 @@ namespace Game.Gameplay
 {
     public static class EnemyAttackUseCase
     {
-        public static void Attack(IEntity entity, float deltaTime, float stoppingDistance, Cooldown cooldown)
+        public static bool CanAttack(this IEntity entity, in float stoppingDistance, in Cooldown cooldown)
         {
             var target = entity.GetTarget();
             var distance = entity.GetDistance(target);
-
-            if (distance < stoppingDistance)
+            
+            if (distance < stoppingDistance && cooldown.IsExpired())
             {
-                cooldown.Tick(deltaTime);
-
-                if (cooldown.IsExpired())
-                    return;
-
-                cooldown.Reset();
-                entity.GetAttackAction().Invoke();
+                return true;
             }
+
+            return false;
         }
     }
 }

@@ -6,6 +6,7 @@ using Atomic.Entities;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using Modules.Gameplay;
+using Atomic.Elements;
 
 namespace Game.Gameplay
 {
@@ -18,6 +19,7 @@ namespace Game.Gameplay
 		public const int Transform = -180157682; // Transform
 		public const int BulletPrefab = -918778767; // SceneEntity
 		public const int Ammo = 1337839892; // Ammo
+		public const int AttackAction = 203766724; // IAction
 
 
 		///Value Extensions
@@ -93,5 +95,23 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetAmmo(this IWeaponEntity obj, Ammo value) => obj.SetValue(Ammo, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IAction GetAttackAction(this IWeaponEntity obj) => obj.GetValue<IAction>(AttackAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetAttackAction(this IWeaponEntity obj, out IAction value) => obj.TryGetValue(AttackAction, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddAttackAction(this IWeaponEntity obj, IAction value) => obj.AddValue(AttackAction, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasAttackAction(this IWeaponEntity obj) => obj.HasValue(AttackAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelAttackAction(this IWeaponEntity obj) => obj.DelValue(AttackAction);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetAttackAction(this IWeaponEntity obj, IAction value) => obj.SetValue(AttackAction, value);
     }
 }

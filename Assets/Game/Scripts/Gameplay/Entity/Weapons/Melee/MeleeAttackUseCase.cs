@@ -5,7 +5,7 @@ namespace Game.Gameplay
 {
     public static class MeleeAttackUseCase
     {
-        public static void Attack(in IWeaponEntity entity, in float stoppingDistance, in int damage,
+        public static void Attack(this IWeaponEntity entity, in float stoppingDistance, in int damage,
             in LayerMask layerMask)
         {
             var position = entity.GetTransform().position;

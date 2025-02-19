@@ -1,4 +1,3 @@
-using Atomic.Elements;
 using Atomic.Entities;
 using Modules.Gameplay;
 
@@ -8,9 +7,9 @@ namespace Game.Gameplay
     {
         private Cooldown _cooldown;
         private readonly string _eventName;
-        private float _attackDelay;
-        private IAction _attackAction;
         private readonly float _stoppingDistance;
+        private IEntity _entity;
+        private bool _isAttacking;
 
         public EnemyAttackBehaviour(string eventName, float stoppingDistance)
         {
@@ -20,22 +19,37 @@ namespace Game.Gameplay
 
         public void Init(in IEntity entity)
         {
-            _attackAction = entity.GetWeapon().GetAttackAction();
-            _attackDelay = entity.GetAttackDelay().Value;
-            _cooldown = new Cooldown(_attackDelay);
+            _entity = entity;
+            _cooldown = new Cooldown(entity.GetAttackDelay().Value);
             _cooldown.Reset();
 
-            entity.GetAnimationEventReceiver().Subscribe(_eventName, _attackAction.Invoke);
+            entity.GetAnimationEventReceiver().Subscribe(_eventName, OnAttackAnimationEvent);
         }
 
         public void Dispose(in IEntity entity)
         {
-            entity.GetAnimationEventReceiver().Unsubscribe(_eventName, _attackAction.Invoke);
+            entity.GetAnimationEventReceiver().Unsubscribe(_eventName, OnAttackAnimationEvent);
         }
 
         public void OnUpdate(in IEntity entity, in float deltaTime)
         {
-            EnemyAttackUseCase.Attack(entity, deltaTime, _stoppingDistance, _cooldown);
+            _cooldown.Tick(deltaTime);
+            
+            if (_isAttacking)
+                return;
+
+            if (entity.CanAttack(_stoppingDistance, _cooldown))
+            {
+                entity.GetAttackAction().Invoke();
+                _isAttacking = true;
+            }
+        }
+
+        private void OnAttackAnimationEvent()
+        {
+            _cooldown.Reset();
+            _entity.GetWeapon().GetAttackAction().Invoke();
+            _isAttacking = false;
         }
     }
 }

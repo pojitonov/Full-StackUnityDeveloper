@@ -35,6 +35,7 @@ values:
 - MoveSpeed: IValue<float>
 - MoveCondition: IExpression<bool>
 - MoveDirection: IReactiveVariable<Vector3>
+- StoppingDistance: IValue<float>
 
 # Rotation
 - AngularSpeed: IValue<float>

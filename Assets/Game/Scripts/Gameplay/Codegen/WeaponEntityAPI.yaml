@@ -9,9 +9,12 @@ directory: Assets/Game/Scripts/Gameplay/Codegen
 imports:
 - UnityEngine
 - Modules.Gameplay
+- Atomic.Elements
 
 values:
 - Root: IEntity
 - Transform: Transform
 - BulletPrefab: SceneEntity
 - Ammo: Ammo
+- AttackAction: IAction
+

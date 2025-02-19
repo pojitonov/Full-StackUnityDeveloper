@@ -20,7 +20,7 @@ namespace Game.Gameplay
 
         public void Invoke()
         {
-            MeleeAttackUseCase.Attack(_entity, _stoppingDistance, _damage, _layerMask);
+            _entity.Attack(_stoppingDistance, _damage, _layerMask);
         }
     }
 }

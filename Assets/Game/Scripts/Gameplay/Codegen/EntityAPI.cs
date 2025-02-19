@@ -32,6 +32,7 @@ namespace Game.Gameplay
 		public const int MoveSpeed = 526065662; // IValue<float>
 		public const int MoveCondition = 1466174948; // IExpression<bool>
 		public const int MoveDirection = -721923052; // IReactiveVariable<Vector3>
+		public const int StoppingDistance = -1718740722; // IValue<float>
 		public const int AngularSpeed = -1089183267; // IValue<float>
 		public const int RotateCondition = 1109699557; // IExpression<bool>
 		public const int Target = 1103309514; // IEntity
@@ -303,6 +304,24 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetMoveDirection(this IEntity obj, IReactiveVariable<Vector3> value) => obj.SetValue(MoveDirection, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IValue<float> GetStoppingDistance(this IEntity obj) => obj.GetValue<IValue<float>>(StoppingDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetStoppingDistance(this IEntity obj, out IValue<float> value) => obj.TryGetValue(StoppingDistance, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddStoppingDistance(this IEntity obj, IValue<float> value) => obj.AddValue(StoppingDistance, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasStoppingDistance(this IEntity obj) => obj.HasValue(StoppingDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelStoppingDistance(this IEntity obj) => obj.DelValue(StoppingDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetStoppingDistance(this IEntity obj, IValue<float> value) => obj.SetValue(StoppingDistance, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IValue<float> GetAngularSpeed(this IEntity obj) => obj.GetValue<IValue<float>>(AngularSpeed);

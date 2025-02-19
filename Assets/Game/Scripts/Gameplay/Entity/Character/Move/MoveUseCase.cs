@@ -5,7 +5,7 @@ namespace Game.Gameplay
 {
     public static class MoveUseCase
     {
-        private const float STOPPING_OFFSET = 0.8f;
+        private const float STOPPING_OFFSET = 1f;
 
         public static void MoveTowards(this IEntity entity, in Vector3 direction, in float deltaTime)
         {
