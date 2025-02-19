@@ -1,8 +1,7 @@
+using System.Collections.Generic;
 using Atomic.Contexts;
 using Atomic.Elements;
 using Atomic.Entities;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Game.Gameplay
 {
