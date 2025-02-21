@@ -4,8 +4,6 @@
 
 using Atomic.Contexts;
 using System.Runtime.CompilerServices;
-using UnityEngine;
-using Atomic.Contexts;
 using Atomic.Entities;
 using Atomic.Elements;
 using Modules.Common;

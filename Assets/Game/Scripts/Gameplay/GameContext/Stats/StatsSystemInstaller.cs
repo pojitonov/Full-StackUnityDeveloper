@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Atomic.Contexts;
 using Atomic.Elements;
 using Atomic.Entities;
@@ -10,12 +9,13 @@ namespace Game.Gameplay
     [Serializable]
     public class StatsSystemInstaller : IContextInstaller<IGameContext>
     {
-        [SerializeField] private List<SceneEntity> _enemies;
+        [SerializeField] private SceneEntityWorld _entityWorld;
         
         public void Install(IGameContext context)
         {
+            context.AddEntityWorld(_entityWorld);
             context.AddKills(new ReactiveInt());
-            context.AddController(new KillsCountController(_enemies));
+            context.AddController(new KillsCountController());
         }
     }
 }

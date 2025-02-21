@@ -904,8 +904,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4cbb8723939a742fcb51cb82e1059928, type: 3}
   - {fileID: 8300000, guid: 3d4e74a0e14cb44f8b06b86fc2811df6, type: 3}
   - {fileID: 8300000, guid: bbb4b8eca821e43398bd4fd4c673a7e1, type: 3}
-  _meleeDamageClip: {fileID: 0}
-  _bulletDamageClip: {fileID: 0}
+  _meleeDamageClip: {fileID: 8300000, guid: 27c68b20ba4a5423fbf39c3f0eb4db38, type: 3}
+  _bulletDamageClip: {fileID: 8300000, guid: 9d3eb7466db37493ea798163778d02c3, type: 3}
 --- !u!1 &2158559186464018394
 GameObject:
   m_ObjectHideFlags: 0

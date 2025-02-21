@@ -7,8 +7,6 @@ className: GameContextAPI
 directory: Assets/Game/Scripts/Gameplay/Codegen
  
 imports:
-- UnityEngine
-- Atomic.Contexts
 - Atomic.Entities
 - Atomic.Elements
 - Modules.Common

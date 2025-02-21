@@ -5,32 +5,22 @@ using Atomic.Entities;
 
 namespace Game.Gameplay
 {
-    //TODO: Не смог получить Зомби из EntityWorld, поэтому использовал список
-    //Если раскоментировать Лог получаю NullReference (компонент EntityWorld висит на GameContext)
     public class KillsCountController : IContextInit<GameContext>, IContextDispose<GameContext>
     {
         private IEntityWorld _entityWorld;
         private IGameContext _gameContext;
         private readonly List<IReactive<DamageArgs>> _deathEvents = new();
-        private readonly List<SceneEntity> _enemies;
-
-        public KillsCountController(List<SceneEntity> enemies)
-        {
-            _enemies = enemies;
-        }
 
         public void Init(GameContext context)
         {
             _entityWorld = context.GetEntityWorld();
-            // Debug.Log(_entityWorld.EntityCount);
-
             _gameContext = context;
             Subscribe();
         }
 
         private void Subscribe()
         {
-            foreach (IEntity enemy in _enemies)
+            foreach (IEntity enemy in _entityWorld.GetEntitiesWithTag(EntityAPI.Enemy))
             {
                 var deathEvent = enemy.GetDeathEvent();
                 deathEvent.Subscribe(OnDeathHappens);
