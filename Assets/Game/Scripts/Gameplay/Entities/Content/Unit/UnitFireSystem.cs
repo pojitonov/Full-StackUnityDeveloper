@@ -8,7 +8,7 @@ namespace SampleGame
         private readonly EcsWorldInject _world;
         private readonly EcsPrototype _prefab;
         private readonly EcsFilterInject<Inc<UnitTag>> _units;
-        private readonly EcsPoolInject<CanFire> _fires;
+        private readonly EcsPoolInject<CanFire> _canFireUnits;
         private readonly EcsUseCaseInject<HealthUseCase> _healthUseCase;
         private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
         private readonly EcsEventInject<FireEvent> _fireEvents;
@@ -26,7 +26,7 @@ namespace SampleGame
 
         private void Fire(int entity)
         {
-            if (!_fires.Value.Get(entity).value)
+            if (!_canFireUnits.Value.Get(entity).value)
                 return;
 
             if (!_fireUseCase.Value.IsCooldownExpired(entity))

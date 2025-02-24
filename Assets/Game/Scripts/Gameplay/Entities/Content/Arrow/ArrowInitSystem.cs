@@ -3,7 +3,7 @@ using Leopotam.EcsLite.Di;
 
 namespace SampleGame
 {
-    public sealed class ArrowInitializeSystem : IEcsRunSystem
+    public sealed class ArrowInitSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<ArrowTag>, Exc<MoveEnabled>> _projectiles;
         

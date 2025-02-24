@@ -19,6 +19,9 @@ namespace SampleGame
                 if (_targets.Value.Get(entity).value < 0)
                     return;
                 
+                if (_targets.Value.Get(entity).value < 0)
+                    return;
+                
                 var position = _positions.Value.Get(entity).value;
                 var stoppingDistance = _stoppingDistances.Value.Get(entity).value;
                 var target = _targets.Value.Get(entity).value;

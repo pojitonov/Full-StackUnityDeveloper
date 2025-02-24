@@ -21,10 +21,8 @@ namespace SampleGame
                 var position = _positions.Value.Get(entity).value;
 
                 var enemy = FindClosestEnemy(entity, teamType, position);
-                if (enemy != -1)
-                {
+                if (enemy != -1) 
                     SetTarget(entity, enemy);
-                }
             }
         }
 
