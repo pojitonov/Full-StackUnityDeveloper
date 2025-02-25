@@ -41,14 +41,10 @@ namespace SampleGame
 
                 //GAME_LOGIC:
                 //Init:
-                .Add(new UnitInitSystem())
                 .Add(new ArrowInitSystem())
                 //Move:
                 .Add(new MoveSystem())
                 .Add(new RotationSystem())
-                //Spawn:
-                .Add(new SpawnSystem())
-                .Add(new DestroySystem())
                 //Lifetime:
                 .Add(new LifetimeSystem())
                 .Add(new DeathSystem())
@@ -56,12 +52,16 @@ namespace SampleGame
                 .Add(new UnitMoveSystem())
                 .Add(new UnitRotateSystem())
                 .Add(new UnitTargetSystem())
+                .Add(new UnitStoppingDistanceSystem())
                 .Add(new UnitDirectionSystem())
                 .Add(new UnitFireReadySystem())
                 .Add(new UnitFireSystem(_arrowPrefab))
                 .Add(new FireCooldownSystem())
                 //Arrow:
                 .Add(new ArrowCollisionSystem())
+                //Spawn:
+                .Add(new SpawnSystem())
+                .Add(new DestroySystem())
 
                 //RENDERING:
                 .Add(new TransformViewSystem())

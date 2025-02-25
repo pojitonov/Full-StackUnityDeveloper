@@ -6,7 +6,8 @@ namespace SampleGame
 {
     public class UnitFireReadySystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<UnitTag>> _units;
+        private readonly EcsWorldInject _world;
+        private readonly EcsFilterInject<Inc<UnitTag, Position, Target, StoppingDistance, CanFire>> _units;
         private readonly EcsPoolInject<Position> _positions;
         private readonly EcsPoolInject<Target> _targets;
         private readonly EcsPoolInject<StoppingDistance> _stoppingDistances;
@@ -16,17 +17,18 @@ namespace SampleGame
         {
             foreach (var entity in _units.Value)
             {
-                var position = _positions.Value.Get(entity).value;
-                var target = _targets.Value.Get(entity).value;
-                if (target < 0) continue;
+                ref var targetComp = ref _targets.Value.Get(entity);
+                if (!targetComp.target.Unpack(_world.Value, out int targetEntity)) 
+                {
+                    SetCanFire(entity, false);
+                    continue;
+                }
 
-                var targetPosition = _positions.Value.Get(target).value;
+                var position = _positions.Value.Get(entity).value;
+                var targetPosition = _positions.Value.Get(targetEntity).value;
                 var stoppingDistance = _stoppingDistances.Value.Get(entity).value;
 
-                if (math.distance(position, targetPosition) <= stoppingDistance)
-                    SetCanFire(entity, true);
-                else
-                    SetCanFire(entity, false);
+                SetCanFire(entity, math.distance(position, targetPosition) <= stoppingDistance);
             }
         }
 

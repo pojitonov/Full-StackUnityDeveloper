@@ -11,11 +11,13 @@ namespace SampleGame
         [SerializeField] float _rotationSpeed = 10f;
         [SerializeField] private int _health = 5;
         [SerializeField] private float _fireCooldown = 0.5f;
+        [SerializeField] private float _stoppingDistance = 2.5f;
 
         protected override void Install(in EcsWorld world, in int entity)
         {
             world.GetPool<UnitTag>().Add(entity);
             world.GetPool<DeathTag>().Add(entity);
+            world.GetPool<AttackableTag>().Add(entity);
             
             world.GetPool<UnitDirection>().Add(entity);
             world.GetPool<CanFire>().Add(entity);
@@ -29,7 +31,7 @@ namespace SampleGame
             world.GetPool<RotateDirection>().Add(entity).value = new float3(0f, 0f, -1f);
             world.GetPool<RotationSpeed>().Add(entity).value = _rotationSpeed;
             
-            world.GetPool<StoppingDistance>().Add(entity);
+            world.GetPool<StoppingDistance>().Add(entity).value = _stoppingDistance;
             
             world.GetPool<Health>().Add(entity) = new Health
             {
