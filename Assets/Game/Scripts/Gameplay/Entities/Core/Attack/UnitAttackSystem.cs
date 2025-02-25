@@ -1,0 +1,39 @@
+using Leopotam.EcsLite;
+using Leopotam.EcsLite.Di;
+
+namespace SampleGame
+{
+    public sealed class UnitAttackSystem : IEcsRunSystem
+    {
+        private readonly EcsWorldInject _world;
+        private readonly EcsPrototype _prefab;
+        private readonly EcsFilterInject<Inc<UnitTag>> _units;
+        private readonly EcsPoolInject<CanFire> _canFireUnits;
+        private readonly EcsUseCaseInject<HealthUseCase> _healthUseCase;
+        private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
+        private readonly EcsEventInject<FireEvent> _fireEvents;
+
+        public void Run(IEcsSystems systems)
+        {
+            foreach (var entity in _units.Value) 
+                Attack(entity);
+        }
+
+        private void Attack(int entity)
+        {
+            if (!_canFireUnits.Value.Get(entity).value)
+                return;
+
+            if (!_fireUseCase.Value.IsCooldownExpired(entity))
+                return;
+
+            if (!_healthUseCase.Value.Exists(entity))
+                return;
+
+            _fireUseCase.Value.Fire(entity, _prefab);
+            _fireUseCase.Value.ResetCooldown(entity);
+
+            _fireEvents.Value.Fire(new FireEvent {entity = _world.Value.PackEntity(entity)});
+        }
+    }
+}

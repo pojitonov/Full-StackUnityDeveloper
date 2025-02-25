@@ -6,7 +6,6 @@ namespace SampleGame
 {
     public sealed class FireAnimSystem : IEcsRunSystem
     {
-
         private readonly EcsEventInject<FireEvent> _events;
         private readonly EcsPoolInject<AnimatorView> _animators;
         private readonly EcsWorldInject _world;
@@ -32,6 +31,4 @@ namespace SampleGame
             }
         }
     }
-    
-    
 }

@@ -15,16 +15,17 @@ namespace SampleGame
 
         [Header("Animation Keys")]
         [SerializeField] private string _attack = "Attack";
-
         [SerializeField] private string _takeDamage = "Take Damage";
         [SerializeField] private string _move = "IsWalking";
 
         [Header("Sound Clips")]
         [SerializeField] private AudioClip _unitTakeDamage;
-
         [SerializeField] private AudioClip _baseTakeDamage;
         [SerializeField] private AudioClip _archerAttack;
         [SerializeField] private AudioClip _swordmanAttack;
+        
+        [Header("Animation Events")]
+        [SerializeField] private string _attackEvent = "OnAttackAnimation";
 
         public IEcsSystems Create()
         {
@@ -41,7 +42,9 @@ namespace SampleGame
 
                 //GAME_LOGIC:
                 //Init:
+                // .Add(new UnitInitSystem())
                 .Add(new ArrowInitSystem())
+                .Add(new AnimationEventInitSystem(_attackEvent))
                 //Move:
                 .Add(new MoveSystem())
                 .Add(new RotationSystem())
@@ -55,10 +58,10 @@ namespace SampleGame
                 .Add(new UnitStoppingDistanceSystem())
                 //Attack:
                 .Add(new UnitDirectionSystem())
+                // .Add(new UnitAttackSystem())
                 .Add(new UnitFireReadySystem())
                 .Add(new UnitFireSystem(_arrowPrefab))
                 .Add(new FireCooldownSystem())
-                .Add(new AttackAnimationEventSystem())
                 //Arrow:
                 .Add(new ArrowCollisionSystem())
                 //Spawn:
@@ -80,6 +83,7 @@ namespace SampleGame
                 //CLEAR:
                 .Add(new ClearEventSystem<FireEvent>(world))
                 .Add(new ClearEventSystem<TakeDamageEvent>(world))
+                .Add(new ClearEventSystem<OnAttackAnimationEvent>(world))
 
                 //DEBUG:
 #if UNITY_EDITOR

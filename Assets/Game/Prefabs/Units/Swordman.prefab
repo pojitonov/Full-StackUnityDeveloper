@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 525998094888833301}
   - component: {fileID: 5017831044509858569}
   - component: {fileID: 5666436945815654712}
+  - component: {fileID: 874659698778184218}
   m_Layer: 11
   m_Name: Swordman
   m_TagString: Untagged
@@ -276,6 +277,7 @@ MonoBehaviour:
   - {fileID: 525998094888833301}
   - {fileID: 5017831044509858569}
   - {fileID: 5666436945815654712}
+  - {fileID: 874659698778184218}
 --- !u!114 &6362605746139123824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +369,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 6069033681498753261}
+--- !u!114 &874659698778184218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692576747330127513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f51983d202b45d39e8b9fd3f7c3e8b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationEventReceiver: {fileID: 3356401067401795551}
+  _hashKey: OnAttackAnimation
 --- !u!1001 &3699895201114397584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2241,7 +2257,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1056776433217174395}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 155132, guid: bcc60fdbd3a37b44cbc0cb99db483477,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3356401067401795551}
   m_SourcePrefab: {fileID: 100100000, guid: bcc60fdbd3a37b44cbc0cb99db483477, type: 3}
 --- !u!4 &8692576747530105463 stripped
 Transform:
@@ -2255,6 +2275,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8692576747530256569}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8692576747530411333 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 155132, guid: bcc60fdbd3a37b44cbc0cb99db483477,
+    type: 3}
+  m_PrefabInstance: {fileID: 8692576747530256569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3356401067401795551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692576747530411333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a080ec5d834b4c78aef81c238ee8092e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &8692576747533439705 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 13734496, guid: bcc60fdbd3a37b44cbc0cb99db483477,
