@@ -53,10 +53,12 @@ namespace SampleGame
                 .Add(new UnitRotateSystem())
                 .Add(new UnitTargetSystem())
                 .Add(new UnitStoppingDistanceSystem())
+                //Attack:
                 .Add(new UnitDirectionSystem())
                 .Add(new UnitFireReadySystem())
                 .Add(new UnitFireSystem(_arrowPrefab))
                 .Add(new FireCooldownSystem())
+                .Add(new AttackAnimationEventSystem())
                 //Arrow:
                 .Add(new ArrowCollisionSystem())
                 //Spawn:
