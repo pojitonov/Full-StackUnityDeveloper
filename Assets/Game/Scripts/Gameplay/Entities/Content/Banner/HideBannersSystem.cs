@@ -5,10 +5,11 @@ namespace SampleGame
 {
     public sealed class HideBannersSystem : IEcsRunSystem
     {
+        private readonly EcsEventInject<DespawnRequest> _destroyRequests;
+        
         private readonly EcsWorldInject _world;
         private readonly EcsFilterInject<Inc<BannerTag, TeamType>> _banners;
         private readonly EcsFilterInject<Inc<BaseTag, TeamType>> _bases;
-        private readonly EcsEventInject<DestroyRequest> _destroyRequests;
 
         public void Run(IEcsSystems systems)
         {
@@ -29,7 +30,7 @@ namespace SampleGame
 
                 if (!hasBaseWithSameTeam)
                 {
-                    _destroyRequests.Value.Fire(new DestroyRequest { entity = bannerEntity });
+                    _destroyRequests.Value.Fire(new DespawnRequest { entity = bannerEntity });
                 }
             }
         }

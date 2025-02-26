@@ -6,19 +6,19 @@ namespace SampleGame
 {
     public class UnitDirectionSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<UnitTag, Position, Target, StoppingDistance, UnitDirection>> _units;
+        private readonly EcsWorldInject _world;
+        private readonly EcsFilterInject<Inc<UnitTag>> _units;
         private readonly EcsPoolInject<Position> _positions;
         private readonly EcsPoolInject<UnitDirection> _directions;
-        private readonly EcsPoolInject<Target> _targets;
         private readonly EcsPoolInject<StoppingDistance> _stoppingDistances;
-        private readonly EcsWorldInject _world;
+        private readonly EcsPoolInject<Target> _targets;
 
         public void Run(IEcsSystems systems)
         {
             foreach (var entity in _units.Value)
             {
-                ref var targetComp = ref _targets.Value.Get(entity);
-                if (!targetComp.target.Unpack(_world.Value, out int targetEntity)) 
+                ref var target = ref _targets.Value.Get(entity);
+                if (!target.target.Unpack(_world.Value, out int targetEntity)) 
                     continue;
 
                 var position = _positions.Value.Get(entity).value;

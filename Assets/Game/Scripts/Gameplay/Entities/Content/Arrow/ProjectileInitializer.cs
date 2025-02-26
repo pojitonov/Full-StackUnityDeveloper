@@ -1,9 +1,10 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 
 namespace SampleGame
 {
-    public sealed class ArrowInitSystem : IEcsRunSystem
+    public sealed class ProjectileInitializer : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<ArrowTag>, Exc<MoveEnabled>> _projectiles;
         

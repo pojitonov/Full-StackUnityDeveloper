@@ -6,8 +6,9 @@ namespace SampleGame
 {
     public sealed class UnitFireAnimationSystem : IEcsRunSystem
     {
-        private readonly EcsWorldInject _world;
         private readonly EcsEventInject<OnAnimationEvent> _events;
+        
+        private readonly EcsWorldInject _world;
         private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
         private readonly EcsPrototype _prefab;
 
@@ -23,7 +24,7 @@ namespace SampleGame
                 if (!animationEvent.entity.Unpack(_world.Value, out int entity))
                     continue;
                 
-                _fireUseCase.Value.Fire(entity, _prefab);
+                _fireUseCase.Value.FireProjectile(entity, _prefab);
             }
         }
     }

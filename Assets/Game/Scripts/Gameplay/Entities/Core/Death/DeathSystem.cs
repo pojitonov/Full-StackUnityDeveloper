@@ -5,15 +5,15 @@ namespace SampleGame
 {
     public sealed class DeathSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<DeathTag>> _entities;
+        private readonly EcsFilterInject<Inc<DeathTag>> _deathables;
         private readonly EcsUseCaseInject<HealthUseCase> _healthUseCase;
-        private readonly EcsEventInject<DestroyRequest> _destroyRequest;
+        private readonly EcsEventInject<DespawnRequest> _despawnRequest;
 
         public void Run(IEcsSystems systems)
         {
-            foreach (var entity in _entities.Value)
+            foreach (int entity in _deathables.Value)
                 if (!_healthUseCase.Value.Exists(entity))
-                    _destroyRequest.Value.Fire(new DestroyRequest {entity = entity});
+                    _despawnRequest.Value.Fire(new DespawnRequest {entity = entity});
         }
     }
 }

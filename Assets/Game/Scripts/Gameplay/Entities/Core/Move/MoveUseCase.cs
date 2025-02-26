@@ -42,13 +42,16 @@ namespace SampleGame
             ref Position position = ref _positions.Value.Get(entity);
             ref MoveDirection moveDirection = ref _moveDirections.Value.Get(entity);
             ref MoveSpeed moveSpeed = ref _moveSpeeds.Value.Get(entity);
-            
             MoveStep(ref position, in moveDirection, in moveSpeed, in deltaTime);
         }
 
         [BurstCompile]
-        public static void MoveStep(ref Position position, in MoveDirection moveDirection, in MoveSpeed moveSpeed,
-            in float deltaTime)
+        public static void MoveStep(
+            ref Position position,
+            in MoveDirection moveDirection,
+            in MoveSpeed moveSpeed,
+            in float deltaTime
+        )
         {
             position.value += moveDirection.value * moveSpeed.value * deltaTime;
         }

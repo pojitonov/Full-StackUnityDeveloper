@@ -3,14 +3,14 @@ using Leopotam.EcsLite.Di;
 
 namespace SampleGame
 {
-    public sealed class DestroySystem : IEcsRunSystem
+    public sealed class DespawnSystem : IEcsRunSystem
     {
-        private readonly EcsEventInject<DestroyRequest> _destroyRequests;
         private readonly EcsWorldInject _world;
+        private readonly EcsEventInject<DespawnRequest> _despawnRequests;
 
         public void Run(IEcsSystems systems)
         {
-            while (_destroyRequests.Value.Consume(out var request)) 
+            while (_despawnRequests.Value.Consume(out DespawnRequest request)) 
                 _world.Value.DelEntity(request.entity);
         }
     }

@@ -8,8 +8,7 @@ namespace SampleGame
     {
         [SerializeField] private int _health = 10;
         [SerializeField] private float _stoppingOffset = 3f;
-
-
+        
         protected override void Install(in EcsWorld world, in int entity)
         {
             world.GetPool<BaseTag>().Add(entity);

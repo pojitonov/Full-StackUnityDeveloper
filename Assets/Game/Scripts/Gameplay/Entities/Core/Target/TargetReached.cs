@@ -3,8 +3,7 @@
 // namespace SampleGame
 // {
 //     [Serializable]
-//     public struct TargetingBase
+//     public struct TargetReached
 //     {
-//         public float newStoppingDistance;
 //     }
 // }

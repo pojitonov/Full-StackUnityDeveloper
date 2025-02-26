@@ -6,8 +6,9 @@ namespace SampleGame
 {
     public class UnitTargetSystem : IEcsRunSystem
     {
-        private readonly EcsWorldInject _world;
         private readonly EcsEventInject<SetTargetEvent> _setTargetEvent;
+        
+        private readonly EcsWorldInject _world;
         private readonly EcsFilterInject<Inc<TeamType, Position, Target>> _units;
         private readonly EcsFilterInject<Inc<AttackableTag, Position, EcsName>> _attackables;
         private readonly EcsPoolInject<TeamType> _teamTypes;

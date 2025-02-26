@@ -3,7 +3,7 @@ using System;
 namespace SampleGame
 {
     [Serializable]
-    public struct DestroyRequest
+    public struct DespawnRequest
     {
         public int entity;
     }

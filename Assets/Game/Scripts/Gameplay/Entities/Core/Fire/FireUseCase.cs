@@ -1,7 +1,6 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace SampleGame
 {
@@ -11,15 +10,16 @@ namespace SampleGame
         private readonly EcsPoolInject<Rotation> _rotations;
         private readonly EcsPoolInject<TeamType> _teams;
         private readonly EcsPoolInject<FireOffset> _fireOffsets;
-        private readonly EcsPoolInject<Cooldown> _cooldown;
+        private readonly EcsPoolInject<FireCooldown> _fireCooldown;
+
         private readonly EcsEventInject<SpawnRequest> _spawnRequest;
 
-        public void Fire(in int entity, in EcsPrototype prefab)
+        public void FireProjectile(in int entity, in EcsPrototype projectile)
         {
             _spawnRequest.Value.Fire(new SpawnRequest
             {
-                prefab = prefab,
-                position = GetFirePoint(entity),
+                prefab = projectile,
+                position = this.GetFirePoint(entity),
                 rotation = _rotations.Value.Get(entity).value,
                 team = _teams.Value.Get(entity)
             });
@@ -35,13 +35,13 @@ namespace SampleGame
 
         public bool IsCooldownExpired(in int entity)
         {
-            ref var cooldown = ref _cooldown.Value.Get(entity);
+            ref FireCooldown cooldown = ref _fireCooldown.Value.Get(entity);
             return cooldown.current <= 0;
         }
 
         public void ResetCooldown(int entity)
         {
-            ref var cooldown = ref _cooldown.Value.Get(entity);
+            ref FireCooldown cooldown = ref _fireCooldown.Value.Get(entity);
             cooldown.current = cooldown.duration;
         }
     }

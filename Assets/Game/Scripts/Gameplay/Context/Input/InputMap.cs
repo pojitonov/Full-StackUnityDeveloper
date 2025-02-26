@@ -9,6 +9,6 @@ namespace SampleGame
         public KeyCode backward = KeyCode.S;
         public KeyCode left = KeyCode.A;
         public KeyCode right = KeyCode.D;
-        public KeyCode fire = KeyCode.Space;
+        public KeyCode fire = KeyCode.E;
     }
 }

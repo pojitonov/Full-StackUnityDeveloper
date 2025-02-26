@@ -40,7 +40,7 @@ namespace SampleGame
             };
             
             world.GetPool<FireOffset>().Add(entity).value = new float3(0f, 1.7f, 1f);
-            world.GetPool<Cooldown>().Add(entity) = new Cooldown
+            world.GetPool<FireCooldown>().Add(entity) = new FireCooldown
             {
                 current = 0,
                 duration = _fireCooldown

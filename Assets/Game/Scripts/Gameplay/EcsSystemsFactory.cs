@@ -1,4 +1,5 @@
 using Leopotam.EcsLite;
+using Leopotam.EcsLite.ExtendedSystems;
 using UnityEngine;
 
 namespace SampleGame
@@ -33,52 +34,52 @@ namespace SampleGame
             systems
 
                 //INPUT:
-                // .Add(new InputSystem(_inputMap))
-                // .Add(new PlayerMoveController())
-                // .Add(new PlayerFireController())
+                .Add(new InputSystem(_inputMap))
+                .Add(new PlayerMoveController())
+                .Add(new PlayerFireController())
 
                 //GAME_LOGIC:
-                //Init:
-                .Add(new ArrowInitSystem())
-                //Move:
-                .Add(new MoveSystem())
-                .Add(new RotationSystem())
-                //Create:
                 .Add(new SpawnSystem())
                 .Add(new LifetimeSystem())
-                //Unit:
-                .Add(new UnitMoveSystem())
-                .Add(new UnitRotateSystem())
-                .Add(new UnitTargetSystem())
-                .Add(new UnitDirectionSystem())
-                .Add(new UnitStoppingDistanceSystem())
-                //Attack:
-                .Add(new UnitFireReadySystem())
                 .Add(new FireCooldownSystem())
+                .Add(new DeathSystem())
+                .Add(new DespawnSystem())
+                .Add(new MoveSystem())
+                .Add(new RotationSystem())
+                
+                //Unit:
                 .Add(new UnitFireSystem())
                 .Add(new UnitFireAnimationSystem(_arrowPrefab))
-                //Destroy:
-                .Add(new DeathSystem())
-                .Add(new DestroySystem())
-                .Add(new ArrowCollisionSystem())
-                .Add(new HideBannersSystem())
+                .Add(new UnitMoveSystem())
+                .Add(new UnitRotateSystem())
+                // .Add(new UnitTargetSystem())
+                // .Add(new UnitFireReadySystem())
+                // .Add(new UnitDirectionSystem())
+                // .Add(new UnitStoppingDistanceSystem())
+                
+                //Projectile
+                .Add(new ProjectileInitializer())
+                .Add(new ProjectileCollisionSystem())
+                
+                //Other:
+                // .Add(new HideBannersSystem())
 
                 //RENDERING:
                 .Add(new TransformViewSystem())
-                .Add(new TeamViewSystem(_teamViewConfig))
-                .Add(new FireAnimSystem(_attack))
-                .Add(new TakeDamageAnimSystem(_takeDamage))
+                // .Add(new TeamViewSystem(_teamViewConfig))
+                // .Add(new MoveAnimSystem(_move))
+                // .Add(new TakeDamageAnimSystem(_takeDamage))
                 .Add(new TakeDamageParticleSystem())
-                .Add(new MoveAnimSystem(_move))
+                .Add(new FireAnimSystem(_attack))
 
                 //AUDIO:
-                .Add(new UnitTakeDamageAudioSystem(_unitTakeDamage))
-                .Add(new BaseTakeDamageAudioSystem(_baseTakeDamage))
+                // .Add(new UnitTakeDamageAudioSystem(_unitTakeDamage))
+                // .Add(new BaseTakeDamageAudioSystem(_baseTakeDamage))
 
                 //CLEAR:
-                .Add(new ClearEventSystem<OnFireEvent>(world))
-                .Add(new ClearEventSystem<OnTakeDamageEvent>(world))
-                .Add(new ClearEventSystem<OnAnimationEvent>(world))
+                .ClearEvents<OnAnimationEvent>()
+                .ClearEvents<OnFireEvent>()
+                .ClearEvents<OnTakeDamageEvent>()
 
                 //DEBUG:
 #if UNITY_EDITOR

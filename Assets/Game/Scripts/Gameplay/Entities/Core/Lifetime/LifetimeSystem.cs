@@ -7,7 +7,7 @@ namespace SampleGame
     public sealed class LifetimeSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<Lifetime>> _lifetimes;
-        private readonly EcsEventInject<DestroyRequest> _destroyRequests;
+        private readonly EcsEventInject<DespawnRequest> _despawnRequests;
 
         public void Run(IEcsSystems systems)
         {
@@ -17,7 +17,7 @@ namespace SampleGame
                 ref Lifetime lifetime = ref _lifetimes.Pools.Inc1.Get(entity);
                 lifetime.value -= deltaTime;
                 if (lifetime.value <= 0)
-                    _destroyRequests.Value.Fire(new DestroyRequest {entity = entity});
+                    _despawnRequests.Value.Fire(new DespawnRequest {entity = entity});
             }
         }
     }

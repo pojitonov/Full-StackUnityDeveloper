@@ -20,11 +20,11 @@ namespace SampleGame
         }
 
         [Button]
-        public void DestroyEntity(DestroyRequest request)
+        public void DestroyEntity(DespawnRequest request)
         {
             EcsWorld eventWorld = _ecsSystems.GetWorld(EcsConsts.EventWorld);
             int evt = eventWorld.NewEntity();
-            eventWorld.GetPool<DestroyRequest>().Add(evt) = request;
+            eventWorld.GetPool<DespawnRequest>().Add(evt) = request;
         }
     }
 }

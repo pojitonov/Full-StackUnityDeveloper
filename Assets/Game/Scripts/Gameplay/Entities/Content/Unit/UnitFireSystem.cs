@@ -6,12 +6,13 @@ namespace SampleGame
 {
     public sealed class UnitFireSystem : IEcsRunSystem
     {
+        private readonly EcsEventInject<OnFireEvent> _fireEvents;
+        
         private readonly EcsWorldInject _world;
         private readonly EcsFilterInject<Inc<UnitTag>> _units;
-        private readonly EcsPoolInject<CanFire> _canFireUnits;
+        private readonly EcsPoolInject<CanFire> _canFire;
         private readonly EcsUseCaseInject<HealthUseCase> _healthUseCase;
         private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
-        private readonly EcsEventInject<OnFireEvent> _fireEvents;
 
         public void Run(IEcsSystems systems)
         {
@@ -21,7 +22,7 @@ namespace SampleGame
 
         private void Fire(int entity)
         {
-            if (!_canFireUnits.Value.Get(entity).value)
+            if (!_canFire.Value.Get(entity).value)
                 return;
             
             if (!_fireUseCase.Value.IsCooldownExpired(entity))

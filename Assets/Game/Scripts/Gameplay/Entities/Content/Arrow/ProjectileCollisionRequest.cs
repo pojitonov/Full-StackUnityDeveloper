@@ -2,9 +2,9 @@ using Leopotam.EcsLite;
 
 namespace SampleGame
 {
-    public struct ArrowCollisionRequest
+    public struct ProjectileCollisionRequest
     {
-        public EcsPackedEntity prefab;
+        public EcsPackedEntity projectile;
         public EcsPackedEntity target;
     }
 }
