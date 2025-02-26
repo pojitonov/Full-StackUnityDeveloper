@@ -69,8 +69,8 @@ namespace SampleGame
                 .Add(new TeamViewSystem(_teamViewConfig))
                 .Add(new MoveAnimSystem(_move))
                 .Add(new TakeDamageAnimSystem(_takeDamage))
-                .Add(new TakeDamageParticleSystem())
                 .Add(new FireAnimSystem(_attack))
+                .Add(new TakeDamageParticleSystem())
 
                 //AUDIO:
                 .Add(new UnitTakeDamageAudioSystem(_unitTakeDamage))
