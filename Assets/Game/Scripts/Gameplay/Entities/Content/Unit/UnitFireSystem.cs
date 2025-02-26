@@ -1,22 +1,17 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 
 namespace SampleGame
 {
     public sealed class UnitFireSystem : IEcsRunSystem
     {
         private readonly EcsWorldInject _world;
-        private readonly EcsPrototype _prefab;
         private readonly EcsFilterInject<Inc<UnitTag>> _units;
         private readonly EcsPoolInject<CanFire> _canFireUnits;
         private readonly EcsUseCaseInject<HealthUseCase> _healthUseCase;
         private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
-        private readonly EcsEventInject<FireEvent> _fireEvents;
-
-        public UnitFireSystem(EcsPrototype prefab)
-        {
-            _prefab = prefab;
-        }
+        private readonly EcsEventInject<OnFireEvent> _fireEvents;
 
         public void Run(IEcsSystems systems)
         {
@@ -28,17 +23,15 @@ namespace SampleGame
         {
             if (!_canFireUnits.Value.Get(entity).value)
                 return;
-
+            
             if (!_fireUseCase.Value.IsCooldownExpired(entity))
                 return;
-
+            
             if (!_healthUseCase.Value.Exists(entity))
                 return;
-
-            _fireUseCase.Value.Fire(entity, _prefab);
+            
             _fireUseCase.Value.ResetCooldown(entity);
-
-            _fireEvents.Value.Fire(new FireEvent {entity = _world.Value.PackEntity(entity)});
+            _fireEvents.Value.Fire(new OnFireEvent {entity = _world.Value.PackEntity(entity)});
         }
     }
 }

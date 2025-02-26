@@ -6,13 +6,13 @@ namespace SampleGame
 {
     public sealed class TakeDamageParticleSystem : IEcsRunSystem
     {
-        private readonly EcsEventInject<TakeDamageEvent> _events;
+        private readonly EcsEventInject<OnTakeDamageEvent> _events;
         private readonly EcsPoolInject<ParticleSystemView> _particles;
         private readonly EcsWorldInject _world;
         
         void IEcsRunSystem.Run(IEcsSystems systems)
         {
-            foreach (TakeDamageEvent damageEvent in _events.Value)
+            foreach (OnTakeDamageEvent damageEvent in _events.Value)
             {
                 if (!damageEvent.target.Unpack(_world.Value, out int target))
                     continue;

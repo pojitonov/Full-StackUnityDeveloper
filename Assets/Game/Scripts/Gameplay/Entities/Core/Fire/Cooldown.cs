@@ -3,7 +3,7 @@ using System;
 namespace SampleGame
 {
     [Serializable]
-    public struct FireCooldown
+    public struct Cooldown
     {
         public float duration;
         public float current;

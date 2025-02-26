@@ -23,9 +23,6 @@ namespace SampleGame
         [SerializeField] private AudioClip _baseTakeDamage;
         [SerializeField] private AudioClip _archerAttack;
         [SerializeField] private AudioClip _swordmanAttack;
-        
-        [Header("Animation Events")]
-        [SerializeField] private string _attackEvent = "OnAttackAnimation";
 
         public IEcsSystems Create()
         {
@@ -42,31 +39,29 @@ namespace SampleGame
 
                 //GAME_LOGIC:
                 //Init:
-                // .Add(new UnitInitSystem())
                 .Add(new ArrowInitSystem())
-                .Add(new AnimationEventInitSystem(_attackEvent))
                 //Move:
                 .Add(new MoveSystem())
                 .Add(new RotationSystem())
-                //Lifetime:
+                //Create:
+                .Add(new SpawnSystem())
                 .Add(new LifetimeSystem())
-                .Add(new DeathSystem())
                 //Unit:
                 .Add(new UnitMoveSystem())
                 .Add(new UnitRotateSystem())
                 .Add(new UnitTargetSystem())
+                .Add(new UnitDirectionSystem())
                 .Add(new UnitStoppingDistanceSystem())
                 //Attack:
-                .Add(new UnitDirectionSystem())
-                // .Add(new UnitAttackSystem())
                 .Add(new UnitFireReadySystem())
-                .Add(new UnitFireSystem(_arrowPrefab))
                 .Add(new FireCooldownSystem())
-                //Arrow:
-                .Add(new ArrowCollisionSystem())
-                //Spawn:
-                .Add(new SpawnSystem())
+                .Add(new UnitFireSystem())
+                .Add(new UnitFireAnimationSystem(_arrowPrefab))
+                //Destroy:
+                .Add(new DeathSystem())
                 .Add(new DestroySystem())
+                .Add(new ArrowCollisionSystem())
+                .Add(new HideBannersSystem())
 
                 //RENDERING:
                 .Add(new TransformViewSystem())
@@ -81,9 +76,9 @@ namespace SampleGame
                 .Add(new BaseTakeDamageAudioSystem(_baseTakeDamage))
 
                 //CLEAR:
-                .Add(new ClearEventSystem<FireEvent>(world))
-                .Add(new ClearEventSystem<TakeDamageEvent>(world))
-                .Add(new ClearEventSystem<OnAttackAnimationEvent>(world))
+                .Add(new ClearEventSystem<OnFireEvent>(world))
+                .Add(new ClearEventSystem<OnTakeDamageEvent>(world))
+                .Add(new ClearEventSystem<OnAnimationEvent>(world))
 
                 //DEBUG:
 #if UNITY_EDITOR

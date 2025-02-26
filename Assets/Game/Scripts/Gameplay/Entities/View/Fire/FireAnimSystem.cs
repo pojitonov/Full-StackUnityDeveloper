@@ -6,7 +6,7 @@ namespace SampleGame
 {
     public sealed class FireAnimSystem : IEcsRunSystem
     {
-        private readonly EcsEventInject<FireEvent> _events;
+        private readonly EcsEventInject<OnFireEvent> _events;
         private readonly EcsPoolInject<AnimatorView> _animators;
         private readonly EcsWorldInject _world;
         private static int _hash;
@@ -18,15 +18,15 @@ namespace SampleGame
         
         void IEcsRunSystem.Run(IEcsSystems systems)
         {
-            foreach (FireEvent fireEvent in _events.Value)
+            foreach (OnFireEvent fireEvent in _events.Value)
             {
-                if (!fireEvent.entity.Unpack(_world.Value, out int target))
+                if (!fireEvent.entity.Unpack(_world.Value, out int entity))
                     continue;
 
-                if (!_animators.Value.Has(target)) 
+                if (!_animators.Value.Has(entity)) 
                     continue;
 
-                Animator animator = _animators.Value.Get(target).value;
+                Animator animator = _animators.Value.Get(entity).value;
                 animator.SetTrigger(_hash);
             }
         }

@@ -13910,7 +13910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 494462}
   - component: {fileID: 9563318}
-  - component: {fileID: 4547136366160582493}
+  - component: {fileID: 7254632807210596891}
   m_Layer: 11
   m_Name: TT_Archer
   m_TagString: Untagged
@@ -14016,7 +14016,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4547136366160582493
+--- !u!114 &7254632807210596891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14025,9 +14025,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 179124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a080ec5d834b4c78aef81c238ee8092e, type: 3}
+  m_Script: {fileID: 11500000, guid: 073d129b28344a0e9a6e28cde0af37a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _view: {fileID: 0}
 --- !u!1 &179126
 GameObject:
   m_ObjectHideFlags: 0

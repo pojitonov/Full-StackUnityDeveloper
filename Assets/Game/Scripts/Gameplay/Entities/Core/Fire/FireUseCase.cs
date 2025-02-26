@@ -1,6 +1,7 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace SampleGame
 {
@@ -10,7 +11,7 @@ namespace SampleGame
         private readonly EcsPoolInject<Rotation> _rotations;
         private readonly EcsPoolInject<TeamType> _teams;
         private readonly EcsPoolInject<FireOffset> _fireOffsets;
-        private readonly EcsPoolInject<FireCooldown> _cooldown;
+        private readonly EcsPoolInject<Cooldown> _cooldown;
         private readonly EcsEventInject<SpawnRequest> _spawnRequest;
 
         public void Fire(in int entity, in EcsPrototype prefab)

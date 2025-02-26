@@ -39,8 +39,8 @@ namespace SampleGame
                 max = _health
             };
             
-            world.GetPool<FireOffset>().Add(entity).value = new float3(0, 1.5f, 2f);
-            world.GetPool<FireCooldown>().Add(entity) = new FireCooldown
+            world.GetPool<FireOffset>().Add(entity).value = new float3(0f, 1.7f, 1f);
+            world.GetPool<Cooldown>().Add(entity) = new Cooldown
             {
                 current = 0,
                 duration = _fireCooldown

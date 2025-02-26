@@ -18,15 +18,15 @@ namespace SampleGame
             foreach (var entity in _units.Value)
             {
                 ref var targetComp = ref _targets.Value.Get(entity);
-                if (!targetComp.target.Unpack(_world.Value, out int targetEntity)) 
+                if (!targetComp.target.Unpack(_world.Value, out int target)) 
                 {
                     SetCanFire(entity, false);
                     continue;
                 }
 
                 var position = _positions.Value.Get(entity).value;
-                var targetPosition = _positions.Value.Get(targetEntity).value;
                 var stoppingDistance = _stoppingDistances.Value.Get(entity).value;
+                var targetPosition = _positions.Value.Get(target).value;
 
                 SetCanFire(entity, math.distance(position, targetPosition) <= stoppingDistance);
             }

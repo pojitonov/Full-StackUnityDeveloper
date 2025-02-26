@@ -8,7 +8,7 @@ namespace SampleGame
     {
         private readonly EcsWorldInject _world;
         private readonly EcsPoolInject<UnitTag> _tag;
-        private readonly EcsEventInject<TakeDamageEvent> _events;
+        private readonly EcsEventInject<OnTakeDamageEvent> _events;
         private readonly EcsPoolInject<AudioSourceView> _audioSource;
         private readonly AudioClip _audioClip;
 
@@ -19,7 +19,7 @@ namespace SampleGame
         
         void IEcsRunSystem.Run(IEcsSystems systems)
         {
-            foreach (TakeDamageEvent damageEvent in _events.Value)
+            foreach (OnTakeDamageEvent damageEvent in _events.Value)
             {
                 if (!damageEvent.target.Unpack(_world.Value, out int target))
                     continue;

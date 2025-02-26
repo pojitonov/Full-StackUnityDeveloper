@@ -2,7 +2,7 @@ using Leopotam.EcsLite;
 
 namespace SampleGame
 {
-    public struct TakeDamageEvent
+    public struct OnTakeDamageEvent
     {
         public EcsPackedEntity source;
         public EcsPackedEntity target;

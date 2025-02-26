@@ -4,7 +4,8 @@ using Leopotam.EcsLite;
 namespace SampleGame
 {
     [Serializable]
-    public struct OnAttackAnimationEvent
+    public struct OnAnimationEvent
     {
+        public EcsPackedEntity entity;
     }
 }

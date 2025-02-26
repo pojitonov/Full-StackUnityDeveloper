@@ -16,3 +16,4 @@ MonoBehaviour:
   _rotationSpeed: 10
   _health: 3
   _fireCooldown: 2
+  _stoppingDistance: 2.5
