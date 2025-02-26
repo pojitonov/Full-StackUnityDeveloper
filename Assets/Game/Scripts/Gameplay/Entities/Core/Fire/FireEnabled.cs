@@ -1,10 +1,9 @@
 using System;
-using Unity.Mathematics;
 
 namespace SampleGame
 {
     [Serializable]
-    public struct CanFire
+    public struct FireEnabled
     {
         public bool value;
     }

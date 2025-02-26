@@ -6,7 +6,7 @@ namespace SampleGame
 {
     public sealed class ProjectileInitializer : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<ArrowTag>, Exc<MoveEnabled>> _projectiles;
+        private readonly EcsFilterInject<Inc<ProjectileTag>, Exc<MoveEnabled>> _projectiles;
         
         private readonly EcsPoolInject<MoveDirection> _moveDirections;
         private readonly EcsPoolInject<MoveEnabled> _moveEnables;

@@ -19,7 +19,7 @@ namespace SampleGame
             _spawnRequest.Value.Fire(new SpawnRequest
             {
                 prefab = projectile,
-                position = this.GetFirePoint(entity),
+                position = GetFirePoint(entity),
                 rotation = _rotations.Value.Get(entity).value,
                 team = _teams.Value.Get(entity)
             });

@@ -8,10 +8,10 @@ namespace SampleGame
     {
         public static IEcsSystems Systems { get; private set; }
 
-        [SerializeField] private EcsWorldView _worldView;
         [SerializeField] private EcsSystemsFactory _systemsFactory;
         [SerializeField] private EcsBaker _baker;
-        
+        [SerializeField] private EcsWorldView _worldView;
+
         private void Awake()
         {
             IEcsSystems systems = _systemsFactory.Create();

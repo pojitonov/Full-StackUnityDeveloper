@@ -34,9 +34,9 @@ namespace SampleGame
             systems
 
                 //INPUT:
-                .Add(new InputSystem(_inputMap))
-                .Add(new PlayerMoveController())
-                .Add(new PlayerFireController())
+                // .Add(new InputSystem(_inputMap))
+                // .Add(new PlayerMoveController())
+                // .Add(new PlayerFireController())
 
                 //GAME_LOGIC:
                 .Add(new SpawnSystem())
@@ -49,32 +49,32 @@ namespace SampleGame
                 
                 //Unit:
                 .Add(new UnitFireSystem())
-                .Add(new UnitFireAnimationSystem(_arrowPrefab))
+                .Add(new UnitFireAnimSystem(_arrowPrefab))
                 .Add(new UnitMoveSystem())
                 .Add(new UnitRotateSystem())
-                // .Add(new UnitTargetSystem())
-                // .Add(new UnitFireReadySystem())
-                // .Add(new UnitDirectionSystem())
-                // .Add(new UnitStoppingDistanceSystem())
+                .Add(new UnitTargetSystem())
+                .Add(new UnitFireReadySystem())
+                .Add(new UnitDirectionSystem())
+                .Add(new UnitStoppingDistanceSystem())
                 
                 //Projectile
                 .Add(new ProjectileInitializer())
                 .Add(new ProjectileCollisionSystem())
                 
                 //Other:
-                // .Add(new HideBannersSystem())
+                .Add(new HideBannersSystem())
 
                 //RENDERING:
                 .Add(new TransformViewSystem())
-                // .Add(new TeamViewSystem(_teamViewConfig))
-                // .Add(new MoveAnimSystem(_move))
-                // .Add(new TakeDamageAnimSystem(_takeDamage))
+                .Add(new TeamViewSystem(_teamViewConfig))
+                .Add(new MoveAnimSystem(_move))
+                .Add(new TakeDamageAnimSystem(_takeDamage))
                 .Add(new TakeDamageParticleSystem())
                 .Add(new FireAnimSystem(_attack))
 
                 //AUDIO:
-                // .Add(new UnitTakeDamageAudioSystem(_unitTakeDamage))
-                // .Add(new BaseTakeDamageAudioSystem(_baseTakeDamage))
+                .Add(new UnitTakeDamageAudioSystem(_unitTakeDamage))
+                .Add(new BaseTakeDamageAudioSystem(_baseTakeDamage))
 
                 //CLEAR:
                 .ClearEvents<OnAnimationEvent>()

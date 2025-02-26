@@ -23,5 +23,10 @@ namespace SampleGame
 
             return true;
         }
+
+        public bool TakeDamage(in EcsPackedEntity target, in int damage, in EcsPackedEntity source)
+        {
+            return target.Unpack(_world.Value, out int entity) && TakeDamage(entity, damage, source);
+        }
     }
 }

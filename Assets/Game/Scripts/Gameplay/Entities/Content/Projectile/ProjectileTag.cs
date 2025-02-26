@@ -3,7 +3,7 @@ using System;
 namespace SampleGame
 {
     [Serializable]
-    public struct ArrowTag
+    public struct ProjectileTag
     {
     }
 }

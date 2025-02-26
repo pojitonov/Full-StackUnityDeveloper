@@ -6,7 +6,7 @@ namespace SampleGame
     public sealed class PlayerFireController : IEcsRunSystem
     {
         private readonly EcsSharedInject<GameData> _gameData;
-        private readonly EcsFilterInject<Inc<CanFire>> _units;
+        private readonly EcsFilterInject<Inc<FireEnabled>> _units;
         private readonly EcsPoolInject<TeamType> _teamTypes;
 
         public void Run(IEcsSystems systems)
@@ -17,8 +17,8 @@ namespace SampleGame
                 if (teamType == TeamType.RED)
                     continue;
                 
-                ref CanFire fire = ref _units.Pools.Inc1.Get(entity);
-                fire.value = _gameData.Value.inputData.isFire;
+                ref FireEnabled fireEnabled = ref _units.Pools.Inc1.Get(entity);
+                fireEnabled.value = _gameData.Value.inputData.isFire;
             }
         }
     }

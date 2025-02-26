@@ -10,7 +10,7 @@ namespace SampleGame
         
         private readonly EcsWorldInject _world;
         private readonly EcsFilterInject<Inc<UnitTag>> _units;
-        private readonly EcsPoolInject<CanFire> _canFire;
+        private readonly EcsPoolInject<FireEnabled> _canFire;
         private readonly EcsUseCaseInject<HealthUseCase> _healthUseCase;
         private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
 

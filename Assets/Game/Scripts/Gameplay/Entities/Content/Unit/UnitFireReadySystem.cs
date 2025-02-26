@@ -7,11 +7,11 @@ namespace SampleGame
     public class UnitFireReadySystem : IEcsRunSystem
     {
         private readonly EcsWorldInject _world;
-        private readonly EcsFilterInject<Inc<UnitTag, Position, Target, StoppingDistance, CanFire>> _units;
+        private readonly EcsFilterInject<Inc<UnitTag, Position, Target, StoppingDistance, FireEnabled>> _units;
         private readonly EcsPoolInject<Position> _positions;
         private readonly EcsPoolInject<Target> _targets;
         private readonly EcsPoolInject<StoppingDistance> _stoppingDistances;
-        private readonly EcsPoolInject<CanFire> _canFire;
+        private readonly EcsPoolInject<FireEnabled> _canFire;
 
         public void Run(IEcsSystems systems)
         {
