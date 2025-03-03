@@ -5,7 +5,7 @@ namespace Game.Gameplay
 {
     public class CharacterMoveController : IContextInit<GameContext>, IContextUpdate<GameContext>
     {
-        private static IEntity _character;
+        private IEntity _character;
 
         public void Init(GameContext context)
         {

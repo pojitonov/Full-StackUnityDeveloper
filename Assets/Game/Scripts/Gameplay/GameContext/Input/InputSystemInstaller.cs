@@ -16,12 +16,10 @@ namespace Game.Gameplay
         {
             //Move:
             context.AddMoveJoystick(_moveJoystick);
-            context.AddController<CharacterMoveController>();
             
             //Attack:
             context.AddAttackJoystick(_attackJoystick);
             context.AddIsAttacking(new BaseVariable<bool>());
-            context.AddController<CharacterAttackController>();
         }
     }
 }

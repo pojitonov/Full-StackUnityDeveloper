@@ -13,6 +13,8 @@ namespace Game.Gameplay
         public void Install(IGameContext context)
         {
             context.AddCharacter(_character);
+            context.AddController<CharacterMoveController>();
+            context.AddController<CharacterAttackController>();
         }
     }
 }

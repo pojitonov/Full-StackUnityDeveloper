@@ -44,11 +44,3 @@ namespace Game.Gameplay
         }
     }
 }
-
-// Log
-// NullReferenceException: Object reference not set to an instance of an object
-// Game.Gameplay.KillsCountController.Init (Game.Gameplay.GameContext context) (at Assets/Game/Scripts/Gameplay/Entity/Character/Controllers/KillsCountController.cs:26)
-// Atomic.Contexts.IContextInit`1[T].Atomic.Contexts.IContextInit.Init (Atomic.Contexts.IContext context) (at Assets/Plugins/Atomic/Context/Scripts/Behaviours/IContextInit.cs:11)
-// Atomic.Contexts.Context.Init () (at Assets/Plugins/Atomic/Context/Scripts/Contexts/Plain/Context_Lifecycle.cs:42)
-// Atomic.Contexts.SceneContext.Init () (at Assets/Plugins/Atomic/Context/Scripts/Contexts/Mono/SceneContext_Lifecycle.cs:53)
-// Atomic.Contexts.SceneContextRunner.Start () (at Assets/Plugins/Atomic/Context/Scripts/Contexts/Mono/SceneContextRunner.cs:57)

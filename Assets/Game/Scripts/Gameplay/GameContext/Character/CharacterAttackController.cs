@@ -6,8 +6,8 @@ namespace Game.Gameplay
 {
     public class CharacterAttackController : IContextInit<GameContext>, IContextUpdate<GameContext>
     {
-        private static IEntity _character;
-        private static Cooldown _cooldown;
+        private IEntity _character;
+        private Cooldown _cooldown;
 
         public void Init(GameContext context)
         {
