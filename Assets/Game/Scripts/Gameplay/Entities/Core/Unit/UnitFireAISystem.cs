@@ -7,7 +7,7 @@ namespace SampleGame
     public class UnitFireAISystem : IEcsRunSystem
     {
         private readonly EcsWorldInject _world;
-        private readonly EcsFilterInject<Inc<UnitTag, Position, Target, StoppingDistance, FireEnabled>> _units;
+        private readonly EcsFilterInject<Inc<UnitTag>> _units;
         private readonly EcsPoolInject<Position> _positions;
         private readonly EcsPoolInject<Target> _targets;
         private readonly EcsPoolInject<StoppingDistance> _stoppingDistances;
