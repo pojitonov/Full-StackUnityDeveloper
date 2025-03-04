@@ -7,15 +7,13 @@ namespace SampleGame
     public class BasePrototype : EcsPrototype
     {
         [SerializeField] private int _health = 10;
-        [SerializeField] private float _stoppingOffset = 3f;
         
         protected override void Install(in EcsWorld world, in int entity)
         {
             world.GetPool<BaseTag>().Add(entity);
             world.GetPool<DeathTag>().Add(entity);
             world.GetPool<AttackableTag>().Add(entity);
-
-            world.GetPool<StoppingOffset>().Add(entity).value = _stoppingOffset;
+            world.GetPool<Radius>().Add(entity).value = 3f;
             
             world.GetPool<Health>().Add(entity) = new Health
             {

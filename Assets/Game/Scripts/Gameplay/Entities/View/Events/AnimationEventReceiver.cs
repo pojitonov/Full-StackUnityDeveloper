@@ -27,8 +27,8 @@ namespace SampleGame
 
         private void OnAnimation()
         {
-            var animationEvent = EcsAdmin.Systems.GetWorld().GetEvent<OnAnimationEvent>();
-            animationEvent.Fire(new OnAnimationEvent { entity = _view.GetPackedEntity() });
+            var animationEvent = EcsAdmin.Systems.GetWorld().GetEvent<AnimationEvent>();
+            animationEvent.Fire(new AnimationEvent { entity = _view.GetPackedEntity() });
         }
 
         [UsedImplicitly]

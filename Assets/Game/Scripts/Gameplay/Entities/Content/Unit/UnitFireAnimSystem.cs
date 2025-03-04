@@ -6,7 +6,7 @@ namespace SampleGame
 {
     public sealed class UnitFireAnimSystem : IEcsRunSystem
     {
-        private readonly EcsEventInject<OnAnimationEvent> _events;
+        private readonly EcsEventInject<AnimationEvent> _events;
         
         private readonly EcsWorldInject _world;
         private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
@@ -19,7 +19,7 @@ namespace SampleGame
         
         void IEcsRunSystem.Run(IEcsSystems systems)
         {
-            foreach (OnAnimationEvent animationEvent in _events.Value)
+            foreach (AnimationEvent animationEvent in _events.Value)
             {
                 if (!animationEvent.entity.Unpack(_world.Value, out int entity))
                     continue;

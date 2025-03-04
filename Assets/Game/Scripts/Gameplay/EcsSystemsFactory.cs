@@ -48,14 +48,14 @@ namespace SampleGame
                 .Add(new RotationSystem())
                 
                 //Unit:
-                .Add(new UnitFireSystem())
+                .Add(new UnitFireRequestSystem())
                 .Add(new UnitFireAnimSystem(_arrowPrefab))
                 .Add(new UnitMoveSystem())
                 .Add(new UnitRotateSystem())
                 .Add(new UnitTargetSystem())
-                .Add(new UnitFireReadySystem())
+                .Add(new UnitFireAISystem())
                 .Add(new UnitDirectionSystem())
-                .Add(new UnitStoppingDistanceSystem())
+                // .Add(new UnitStoppingDistanceSystem())
                 
                 //Projectile
                 .Add(new ProjectileInitializer())
@@ -77,9 +77,9 @@ namespace SampleGame
                 .Add(new BaseTakeDamageAudioSystem(_baseTakeDamage))
 
                 //CLEAR:
-                .ClearEvents<OnAnimationEvent>()
-                .ClearEvents<OnFireEvent>()
-                .ClearEvents<OnTakeDamageEvent>()
+                .ClearEvents<AnimationEvent>()
+                .ClearEvents<FireEvent>()
+                .ClearEvents<TakeDamageEvent>()
 
                 //DEBUG:
 #if UNITY_EDITOR

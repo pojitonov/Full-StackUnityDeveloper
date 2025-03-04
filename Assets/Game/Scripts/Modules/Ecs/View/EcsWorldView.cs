@@ -17,9 +17,7 @@ namespace Leopotam.EcsLite
 
         private EcsWorld _world;
         private EcsPool<EcsName> _entityNames;
-
-        private readonly Queue<int> _entitiesToSpawn = new();
-        private readonly Queue<int> _entitiesToDespawn = new();
+        private EcsPool<EcsActive> _activeEntities;
 
         private bool _shown;
         
@@ -32,7 +30,11 @@ namespace Leopotam.EcsLite
             }
 
             _world = world ?? throw new ArgumentNullException(nameof(world));
+            if (!_world.IsAlive())
+                throw new Exception("World is destroyed!");
+
             _entityNames = _world.GetPool<EcsName>();
+            _activeEntities = _world.GetPool<EcsActive>();
             
             _world.AddEventListener(this);
             
@@ -55,40 +57,36 @@ namespace Leopotam.EcsLite
 
             _world.RemoveEventListener(this);
             
-            int[] entities = null;
-            int count = _world.GetAllEntities(ref entities);
-
-            for (int i = 0; i < count; i++) 
-                this.DespawnView(entities[i]);
+            foreach (EcsView view in _activeViews.Values)
+            {
+                view.Hide();
+                _viewPool.Return(view);
+            }
             
+            _activeViews.Clear();
+
             _world = null;
             _entityNames = null;
             _shown = false;
         }
 
-        void IEcsWorldEventListener.OnEntityCreated(int entity) => _entitiesToSpawn.Enqueue(entity);
+        void IEcsWorldEventListener.OnEntityChanged(int entity, short poolId, bool added)
+        {
+            if (_activeEntities.GetId() != poolId)
+                return;
 
-        void IEcsWorldEventListener.OnEntityDestroyed(int entity) => _entitiesToDespawn.Enqueue(entity);
+            if (added)
+                this.SpawnView(entity);
+            else
+                this.DespawnView(entity);
+        }
+
+        void IEcsWorldEventListener.OnEntityDestroyed(int entity) => this.DespawnView(entity);
 
         void IEcsWorldEventListener.OnWorldDestroyed(EcsWorld world) => this.Hide();
 
         protected virtual string GetEntityName(int entity) => _entityNames.Get(entity).value;
         
-        public void FixedUpdate()
-        {
-            if (!_shown)
-                return;
-
-            foreach (int entity in _entitiesToSpawn) 
-                this.SpawnView(entity);
-
-            foreach (int entity in _entitiesToDespawn) 
-                this.DespawnView(entity);
-            
-            _entitiesToSpawn.Clear();
-            _entitiesToDespawn.Clear();
-        }
-
         private void SpawnView(int entity)
         {
             string name = this.GetEntityName(entity);
@@ -101,14 +99,14 @@ namespace Leopotam.EcsLite
 
         private void DespawnView(int entity)
         {
-            if (!_activeViews.Remove(entity, out EcsView view))
-                return;
-
-            view.Hide();
-            _viewPool.Return(view);
+            if (_activeViews.Remove(entity, out EcsView view))
+            {
+                view.Hide();
+                _viewPool.Return(view);
+            }
         }
-
-        void IEcsWorldEventListener.OnEntityChanged(int entity, short poolId, bool added)
+        
+        void IEcsWorldEventListener.OnEntityCreated(int entity)
         {
             //Do nothing...
         }

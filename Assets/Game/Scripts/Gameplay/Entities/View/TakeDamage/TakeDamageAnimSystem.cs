@@ -6,7 +6,7 @@ namespace SampleGame
 {
     public sealed class TakeDamageAnimSystem : IEcsRunSystem
     {
-        private readonly EcsEventInject<OnTakeDamageEvent> _events;
+        private readonly EcsEventInject<TakeDamageEvent> _events;
         private readonly EcsPoolInject<AnimatorView> _animators;
         private readonly EcsWorldInject _world;
         private static int _hash;
@@ -18,7 +18,7 @@ namespace SampleGame
 
         void IEcsRunSystem.Run(IEcsSystems systems)
         {
-            foreach (OnTakeDamageEvent damageEvent in _events.Value)
+            foreach (TakeDamageEvent damageEvent in _events.Value)
             {
                 if (!damageEvent.target.Unpack(_world.Value, out int target))
                     continue;

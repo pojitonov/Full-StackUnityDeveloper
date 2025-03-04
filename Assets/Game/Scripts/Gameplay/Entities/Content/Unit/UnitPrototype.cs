@@ -18,6 +18,8 @@ namespace SampleGame
             world.GetPool<UnitTag>().Add(entity);
             world.GetPool<DeathTag>().Add(entity);
             world.GetPool<AttackableTag>().Add(entity);
+            world.GetPool<Radius>().Add(entity).value = 1f;
+            world.GetPool<StoppingDistance>().Add(entity).value = _stoppingDistance;
             
             world.GetPool<UnitDirection>().Add(entity);
             world.GetPool<FireEnabled>().Add(entity);
@@ -30,8 +32,6 @@ namespace SampleGame
             world.GetPool<RotatableTag>().Add(entity);
             world.GetPool<RotateDirection>().Add(entity).value = new float3(0f, 0f, -1f);
             world.GetPool<RotationSpeed>().Add(entity).value = _rotationSpeed;
-            
-            world.GetPool<StoppingDistance>().Add(entity).value = _stoppingDistance;
             
             world.GetPool<Health>().Add(entity) = new Health
             {
