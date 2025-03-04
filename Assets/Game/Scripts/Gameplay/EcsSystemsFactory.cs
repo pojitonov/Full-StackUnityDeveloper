@@ -55,7 +55,6 @@ namespace SampleGame
                 .Add(new UnitTargetSystem())
                 .Add(new UnitFireAISystem())
                 .Add(new UnitDirectionSystem())
-                // .Add(new UnitStoppingDistanceSystem())
                 
                 //Projectile
                 .Add(new ProjectileInitializer())

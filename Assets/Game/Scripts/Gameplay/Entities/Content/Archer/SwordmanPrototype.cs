@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace SampleGame
 {
-    [CreateAssetMenu(fileName = "Unit", menuName = "SampleGame/Entities/New Unit")]
-    public class UnitPrototype : EcsPrototype
+    [CreateAssetMenu(fileName = "Archer", menuName = "SampleGame/Entities/New Archer")]
+    public class ArcherPrototype : EcsPrototype
     {
         [SerializeField] private float _moveSpeed = 3f;
         [SerializeField] float _rotationSpeed = 10f;
         [SerializeField] private int _health = 5;
         [SerializeField] private float _fireCooldown = 1f;
-        [SerializeField] private float _stoppingDistance = 2.5f;
+        [SerializeField] private float _stoppingDistance = 10f;
 
         protected override void Install(in EcsWorld world, in int entity)
         {

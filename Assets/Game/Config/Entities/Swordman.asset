@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18173ba256d2447399186f160c8d41bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 82719b64f1744c4c9124f6d13f4096ec, type: 3}
   m_Name: Swordman
   m_EditorClassIdentifier: 
   _moveSpeed: 3
