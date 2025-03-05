@@ -62,6 +62,7 @@ namespace SampleGame
                 
                 //Other:
                 .Add(new HideBannersSystem())
+                .Add(new TeamWinSystem())
 
                 //RENDERING:
                 .Add(new TransformViewSystem())
