@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SampleGame
 {
-    public sealed class UnitFireAnimSystem : IEcsRunSystem
+    public sealed class UnitFireProjectileSystem : IEcsRunSystem
     {
         private readonly EcsEventInject<AnimationEvent> _events;
         
@@ -12,7 +12,7 @@ namespace SampleGame
         private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
         private readonly EcsPrototype _prefab;
 
-        public UnitFireAnimSystem(EcsPrototype prefab)
+        public UnitFireProjectileSystem(EcsPrototype prefab)
         {
             _prefab = prefab;
         }

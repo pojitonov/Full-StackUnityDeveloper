@@ -16,7 +16,7 @@ namespace SampleGame
                 !target.Unpack(_world.Value, out int targetId))
                 return false;
 
-            return this.Collide(projectileId, targetId);
+            return Collide(projectileId, targetId);
         }
         
         public bool Collide(in int projectile, in int target)

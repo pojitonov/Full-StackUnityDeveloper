@@ -49,11 +49,11 @@ namespace SampleGame
                 
                 //Unit:
                 .Add(new UnitFireRequestSystem())
-                .Add(new UnitFireAnimSystem(_arrowPrefab))
+                .Add(new UnitFireAISystem())
+                .Add(new UnitFireProjectileSystem(_arrowPrefab))
                 .Add(new UnitMoveSystem())
                 .Add(new UnitRotateSystem())
                 .Add(new UnitTargetSystem())
-                .Add(new UnitFireAISystem())
                 .Add(new UnitDirectionSystem())
                 
                 //Projectile
