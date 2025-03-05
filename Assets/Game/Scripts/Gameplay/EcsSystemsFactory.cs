@@ -48,13 +48,18 @@ namespace SampleGame
                 .Add(new RotationSystem())
                 
                 //Unit:
-                .Add(new UnitFireRequestSystem())
-                .Add(new UnitFireAISystem())
-                .Add(new UnitFireProjectileSystem(_arrowPrefab))
-                .Add(new UnitMoveSystem())
-                .Add(new UnitRotateSystem())
                 .Add(new UnitTargetSystem())
                 .Add(new UnitDirectionSystem())
+                .Add(new UnitMoveSystem())
+                .Add(new UnitRotateSystem())
+                .Add(new UnitFireRequestSystem())
+                .Add(new UnitFireAISystem())
+                .Add(new UnitFireSystem(_arrowPrefab))
+                
+                //Weapon:
+                // .Add(new WeaponFireSystem())
+                // .Add(new BowWeaponSystem())
+                // .Add(new MeleeWeaponSystem())     
                 
                 //Projectile
                 .Add(new ProjectileInitializer())

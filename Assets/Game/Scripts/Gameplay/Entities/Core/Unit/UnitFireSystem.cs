@@ -1,10 +1,9 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using UnityEngine;
 
 namespace SampleGame
 {
-    public sealed class UnitFireProjectileSystem : IEcsRunSystem
+    public sealed class UnitFireSystem : IEcsRunSystem
     {
         private readonly EcsEventInject<AnimationEvent> _events;
         
@@ -12,7 +11,7 @@ namespace SampleGame
         private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
         private readonly EcsPrototype _prefab;
 
-        public UnitFireProjectileSystem(EcsPrototype prefab)
+        public UnitFireSystem(EcsPrototype prefab)
         {
             _prefab = prefab;
         }

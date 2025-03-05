@@ -12,12 +12,14 @@ namespace SampleGame
         [SerializeField] private int _health = 5;
         [SerializeField] private float _fireCooldown = 1f;
         [SerializeField] private float _stoppingDistance = 10f;
+        [SerializeField] private EcsPrototype _arrowPrefab;
 
         protected override void Install(in EcsWorld world, in int entity)
         {
             world.GetPool<UnitTag>().Add(entity);
             world.GetPool<DeathTag>().Add(entity);
             world.GetPool<AttackableTag>().Add(entity);
+            
             world.GetPool<Radius>().Add(entity).value = 1f;
             world.GetPool<StoppingDistance>().Add(entity).value = _stoppingDistance;
             
@@ -45,6 +47,8 @@ namespace SampleGame
                 current = 0,
                 duration = _fireCooldown
             };
+            
+            // world.GetPool<BowWeapon>().Add(entity).projectile = _arrowPrefab;
         }
     }
 }

@@ -45,6 +45,8 @@ namespace SampleGame
                 current = 0,
                 duration = _fireCooldown
             };
+            
+            // world.GetPool<MeleeWeapon>().Add(entity);
         }
     }
 }
