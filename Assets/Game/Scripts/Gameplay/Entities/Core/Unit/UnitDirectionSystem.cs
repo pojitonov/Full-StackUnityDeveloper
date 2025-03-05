@@ -1,6 +1,5 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using Unity.Mathematics;
 
 namespace SampleGame
 {
@@ -8,10 +7,11 @@ namespace SampleGame
     {
         private readonly EcsWorldInject _world;
         private readonly EcsFilterInject<Inc<UnitTag>> _units;
+        private readonly EcsPoolInject<Target> _targets;
         private readonly EcsPoolInject<Position> _positions;
         private readonly EcsPoolInject<UnitDirection> _directions;
         private readonly EcsPoolInject<StoppingDistance> _stoppingDistances;
-        private readonly EcsPoolInject<Target> _targets;
+        private readonly EcsUseCaseInject<UnitDirectionUseCase> _directionUseCase;
 
         public void Run(IEcsSystems systems)
         {
@@ -24,22 +24,11 @@ namespace SampleGame
                 var position = _positions.Value.Get(entity).value;
                 var stoppingDistance = _stoppingDistances.Value.Get(entity).value;
                 var targetPosition = _positions.Value.Get(targetEntity).value;
-                var direction = CalculateDirection(position, targetPosition, stoppingDistance);
-                
-                SetDirection(entity, direction);
+
+                var direction = _directionUseCase.Value.CalculateDirection(position, targetPosition, stoppingDistance, targetEntity);
+
+                _directionUseCase.Value.SetDirection(entity, direction);
             }
-        }
-
-        private float3 CalculateDirection(float3 position, float3 targetPosition, float stoppingDistance)
-        {
-            var direction = math.normalize(targetPosition - position);
-            return math.distance(position, targetPosition) > stoppingDistance ? direction : float3.zero;
-        }
-
-        private void SetDirection(int entity, float3 direction)
-        {
-            ref var unitDirection = ref _directions.Value.Get(entity);
-            unitDirection.value = direction;
         }
     }
 }
