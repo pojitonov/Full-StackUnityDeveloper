@@ -1,5 +1,6 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using Unity.Mathematics;
 
 namespace SampleGame
 {
@@ -28,6 +29,9 @@ namespace SampleGame
                 var direction = _directionUseCase.Value.CalculateDirection(position, targetPosition, stoppingDistance, targetEntity);
 
                 _directionUseCase.Value.SetDirection(entity, direction);
+
+                var rotationDirection = math.normalize(targetPosition - position);
+                _directionUseCase.Value.SetRotationDirection(entity, rotationDirection);
             }
         }
     }

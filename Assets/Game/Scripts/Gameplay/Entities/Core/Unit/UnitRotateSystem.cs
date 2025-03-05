@@ -6,7 +6,7 @@ namespace SampleGame
     public sealed class UnitRotateSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<UnitTag>> _units;
-        private readonly EcsPoolInject<UnitDirection> _unitDirections;
+        private readonly EcsPoolInject<RotateDirection> _rotationDirections;
         private readonly EcsUseCaseInject<HealthUseCase> _healthUseCase;
         private readonly EcsUseCaseInject<RotateUseCase> _rotateUseCase;
 
@@ -16,9 +16,12 @@ namespace SampleGame
             {
                 bool healthExists = _healthUseCase.Value.Exists(entity);
                 _rotateUseCase.Value.SetEnabled(entity, healthExists);
-                
-                ref UnitDirection unitDirection = ref _unitDirections.Value.Get(entity);
-                _rotateUseCase.Value.SetDirection(entity, unitDirection.value);
+
+                if (_rotationDirections.Value.Has(entity))
+                {
+                    ref var rotationDirection = ref _rotationDirections.Value.Get(entity);
+                    _rotateUseCase.Value.SetDirection(entity, rotationDirection.value);
+                }
             }
         }
     }

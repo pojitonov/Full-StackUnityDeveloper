@@ -7,7 +7,8 @@ namespace SampleGame
     {
         private readonly EcsPoolInject<Radius> _radii;
         private readonly EcsPoolInject<UnitDirection> _directions;
-        
+        private readonly EcsPoolInject<RotateDirection> _rotationDirections;
+
         public float3 CalculateDirection(float3 position, float3 targetPosition, float stoppingDistance, int targetEntity)
         {
             float unitRadius = 0f;
@@ -24,6 +25,15 @@ namespace SampleGame
         {
             ref var unitDirection = ref _directions.Value.Get(entity);
             unitDirection.value = direction;
+        }
+
+        public void SetRotationDirection(int entity, float3 rotationDirection)
+        {
+            if (!_rotationDirections.Value.Has(entity))
+                _rotationDirections.Value.Add(entity);
+
+            ref var rotationDir = ref _rotationDirections.Value.Get(entity);
+            rotationDir.value = rotationDirection;
         }
     }
 }
