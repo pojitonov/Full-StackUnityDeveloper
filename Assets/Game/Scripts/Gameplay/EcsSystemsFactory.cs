@@ -56,8 +56,8 @@ namespace SampleGame
                 
                 //Weapon:
                 .Add(new FireMeleeSystem())
-                .Add(new FireProjectileSystem())
                 .Add(new ProjectileInitializer())
+                .Add(new FireProjectileSystem())
                 .Add(new ProjectileCollisionSystem())
                 
                 //Other:

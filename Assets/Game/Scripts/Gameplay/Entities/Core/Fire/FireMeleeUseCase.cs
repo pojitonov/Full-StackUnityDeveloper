@@ -11,9 +11,8 @@ namespace SampleGame
         private readonly EcsUseCaseInject<TakeDamageUseCase> _takeDamageUseCase;
         private readonly EcsUseCaseInject<TargetUseCase> _targetUseCase;
 
-        public void Fire(in int entity)
+        public void Fire(in int entity, in int damage)
         {
-            var damage = 1;
             var source = _world.Value.PackEntity(entity);
 
             foreach (int target in _enemies.Value)

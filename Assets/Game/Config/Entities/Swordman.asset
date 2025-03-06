@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Swordman
   m_EditorClassIdentifier: 
   _moveSpeed: 3
+  _stoppingDistance: 2.5
   _rotationSpeed: 10
   _health: 3
   _fireCooldown: 2
-  _stoppingDistance: 2.5
-  _weapon: {fileID: 11400000, guid: 2e3b9f535d5e7d5488e4a142837f39ed, type: 2}
+  _meleeDamage: 2

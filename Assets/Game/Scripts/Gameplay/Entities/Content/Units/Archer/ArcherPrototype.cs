@@ -7,12 +7,14 @@ namespace SampleGame
     [CreateAssetMenu(fileName = "Archer", menuName = "SampleGame/Entities/New Archer")]
     public class ArcherPrototype : EcsPrototype
     {
+        [Header("General")]
         [SerializeField] private float _moveSpeed = 3f;
+        [SerializeField] private float _stoppingDistance = 10f;
         [SerializeField] float _rotationSpeed = 10f;
         [SerializeField] private int _health = 5;
+        [Header("Weapons")]
         [SerializeField] private float _fireCooldown = 1f;
-        [SerializeField] private float _stoppingDistance = 10f;
-        [SerializeField] private ProjectilePrototype _projectilePrototype;
+        [SerializeField] private ProjectilePrototype _projectile;
 
         protected override void Install(in EcsWorld world, in int entity)
         {
@@ -50,7 +52,7 @@ namespace SampleGame
 
             world.GetPool<BowWeapon>().Add(entity) = new BowWeapon
             {
-                Projectile = _projectilePrototype
+                Projectile = _projectile
             };
         }
     }

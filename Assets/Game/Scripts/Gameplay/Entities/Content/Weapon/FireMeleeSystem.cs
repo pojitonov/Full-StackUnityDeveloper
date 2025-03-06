@@ -20,7 +20,8 @@ namespace SampleGame
                 if (!_meleeWeapons.Value.Has(entity))
                     continue;
 
-                _fireMeleeUseCase.Value.Fire(entity);
+                int damage = _meleeWeapons.Value.Get(entity).Damage;
+                _fireMeleeUseCase.Value.Fire(entity, damage);
             }
         }
     }

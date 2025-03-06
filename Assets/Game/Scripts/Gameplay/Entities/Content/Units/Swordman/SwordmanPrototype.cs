@@ -7,11 +7,14 @@ namespace SampleGame
     [CreateAssetMenu(fileName = "Swordman", menuName = "SampleGame/Entities/New Swordman")]
     public class SwordmanPrototype : EcsPrototype
     {
+        [Header("General")]
         [SerializeField] private float _moveSpeed = 3f;
+        [SerializeField] private float _stoppingDistance = 2.5f;
         [SerializeField] float _rotationSpeed = 10f;
         [SerializeField] private int _health = 3;
+        [Header("Weapons")]
         [SerializeField] private float _fireCooldown = 2f;
-        [SerializeField] private float _stoppingDistance = 2.5f;
+        [SerializeField] private int _meleeDamage = 2;
 
         protected override void Install(in EcsWorld world, in int entity)
         {
@@ -46,7 +49,10 @@ namespace SampleGame
                 duration = _fireCooldown
             };
 
-            world.GetPool<MeleeWeapon>().Add(entity) = new MeleeWeapon();
+            world.GetPool<MeleeWeapon>().Add(entity) = new MeleeWeapon
+            {
+                Damage = _meleeDamage
+            };
         }
     }
 }

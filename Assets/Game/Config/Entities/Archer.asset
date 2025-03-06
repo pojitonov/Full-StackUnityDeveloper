@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   _moveSpeed: 3
+  _stoppingDistance: 10
   _rotationSpeed: 10
   _health: 5
   _fireCooldown: 1
-  _stoppingDistance: 10
-  _projectilePrototype: {fileID: 11400000, guid: 4b32b5be6ee1d994a97ee7f389ecf29f,
-    type: 2}
+  _projectile: {fileID: 11400000, guid: 4b32b5be6ee1d994a97ee7f389ecf29f, type: 2}
