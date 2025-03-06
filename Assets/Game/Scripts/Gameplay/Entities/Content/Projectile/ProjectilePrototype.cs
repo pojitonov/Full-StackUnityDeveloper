@@ -1,6 +1,6 @@
 using Leopotam.EcsLite;
-using UnityEngine;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace SampleGame
 {

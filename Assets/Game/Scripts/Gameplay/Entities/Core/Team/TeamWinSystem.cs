@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace SampleGame
 {
