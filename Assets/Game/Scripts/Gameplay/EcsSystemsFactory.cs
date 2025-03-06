@@ -54,12 +54,10 @@ namespace SampleGame
                 .Add(new UnitRotateSystem())
                 .Add(new UnitFireRequestSystem())
                 .Add(new UnitFireAISystem())
-                .Add(new UnitFireSystem(_arrowPrefab))
+                // .Add(new UnitFireSystem(_arrowPrefab))
                 
                 //Weapon:
                 .Add(new WeaponFireSystem())
-                .Add(new BowWeaponSystem())
-                .Add(new MeleeWeaponSystem())     
                 
                 //Projectile
                 .Add(new ProjectileInitializer())

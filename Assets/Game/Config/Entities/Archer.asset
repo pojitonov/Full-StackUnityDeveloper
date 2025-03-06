@@ -17,4 +17,5 @@ MonoBehaviour:
   _health: 5
   _fireCooldown: 1
   _stoppingDistance: 10
-  _weapon: {fileID: 11400000, guid: 3da8e3b150dcd8c42aeabbaea09dda89, type: 2}
+  _projectilePrototype: {fileID: 11400000, guid: 4b32b5be6ee1d994a97ee7f389ecf29f,
+    type: 2}

@@ -20,11 +20,11 @@ namespace SampleGame
             world.GetPool<AttackableTag>().Add(entity);
             world.GetPool<Radius>().Add(entity).value = 1f;
             world.GetPool<StoppingDistance>().Add(entity).value = _stoppingDistance;
-            
+
             world.GetPool<UnitDirection>().Add(entity);
             world.GetPool<FireEnabled>().Add(entity);
             world.GetPool<Target>().Add(entity);
-            
+
             world.GetPool<MoveableTag>().Add(entity);
             world.GetPool<MoveSpeed>().Add(entity).value = _moveSpeed;
             world.GetPool<MoveDirection>().Add(entity).value = new float3(0f, 0f, 1f);
@@ -32,21 +32,24 @@ namespace SampleGame
             world.GetPool<RotatableTag>().Add(entity);
             world.GetPool<RotateDirection>().Add(entity).value = new float3(0f, 0f, -1f);
             world.GetPool<RotationSpeed>().Add(entity).value = _rotationSpeed;
-            
+
             world.GetPool<Health>().Add(entity) = new Health
             {
                 current = _health,
                 max = _health
             };
-            
+
             world.GetPool<FireOffset>().Add(entity).value = new float3(0f, 1.7f, 2f);
             world.GetPool<FireCooldown>().Add(entity) = new FireCooldown
             {
                 current = 0,
                 duration = _fireCooldown
             };
-            
-            // world.GetPool<MeleeWeapon>().Add(entity);
+
+            world.GetPool<Weapon>().Add(entity) = new Weapon
+            {
+                Type = WeaponType.Melee,
+            };
         }
     }
 }

@@ -8,7 +8,7 @@ namespace SampleGame
         private readonly EcsEventInject<AnimationEvent> _events;
         
         private readonly EcsWorldInject _world;
-        private readonly EcsUseCaseInject<FireUseCase> _fireUseCase;
+        private readonly EcsUseCaseInject<FireProjectileUseCase> _fireProjectileUseCase;
         private readonly EcsPrototype _prefab;
 
         public UnitFireSystem(EcsPrototype prefab)
@@ -23,7 +23,7 @@ namespace SampleGame
                 if (!animationEvent.entity.Unpack(_world.Value, out int entity))
                     continue;
                 
-                _fireUseCase.Value.FireProjectile(entity, _prefab);
+                _fireProjectileUseCase.Value.Fire(entity, _prefab);
             }
         }
     }

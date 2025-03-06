@@ -22,7 +22,7 @@ namespace SampleGame
         public bool Collide(in int projectile, in int target)
         {
             ref Damage damage = ref _damages.Value.Get(projectile);
-            EcsPackedEntity source = _world.Value.PackEntity(projectile);
+            var source = _world.Value.PackEntity(projectile);
 
             if (!_takeDamageUseCase.Value.TakeDamage(target, damage.value, source)) 
                 return false;

@@ -7,8 +7,9 @@ namespace SampleGame
     {
         private readonly EcsEventInject<AnimationEvent> _events;
         private readonly EcsWorldInject _world;
-        private readonly EcsPoolInject<WeaponTag> _weapons;
-        private readonly EcsPoolInject<FireWeaponEvent> _fireWeaponEvents;
+        private readonly EcsPoolInject<Weapon> _weapons;
+        private readonly EcsUseCaseInject<FireProjectileUseCase> _fireProjectileUseCase;
+        private readonly EcsUseCaseInject<FireMeleeUseCase> _fireMeleeUseCase;
 
         public void Run(IEcsSystems systems)
         {
@@ -20,10 +21,20 @@ namespace SampleGame
                 if (!_weapons.Value.Has(entity))
                     continue;
 
-                _fireWeaponEvents.Value.Add(entity);
+                ref var weapon = ref _weapons.Value.Get(entity);
+
+                switch (weapon.Type)
+                {
+                    case WeaponType.Bow:
+                        _fireProjectileUseCase.Value.Fire(entity, weapon.Projectile);
+                        break;
+
+                    case WeaponType.Melee:
+                        _fireMeleeUseCase.Value.Fire(entity);
+                        break;
+                }
             }
         }
     }
 
-    public struct FireWeaponEvent { }
 }
