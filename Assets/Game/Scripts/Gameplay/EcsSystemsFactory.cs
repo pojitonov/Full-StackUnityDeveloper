@@ -57,9 +57,9 @@ namespace SampleGame
                 .Add(new UnitFireSystem(_arrowPrefab))
                 
                 //Weapon:
-                // .Add(new WeaponFireSystem())
-                // .Add(new BowWeaponSystem())
-                // .Add(new MeleeWeaponSystem())     
+                .Add(new WeaponFireSystem())
+                .Add(new BowWeaponSystem())
+                .Add(new MeleeWeaponSystem())     
                 
                 //Projectile
                 .Add(new ProjectileInitializer())

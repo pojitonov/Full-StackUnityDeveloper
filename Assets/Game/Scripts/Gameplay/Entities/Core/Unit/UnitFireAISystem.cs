@@ -28,7 +28,6 @@ namespace SampleGame
                 var position = _positions.Value.Get(entity).value;
                 var stoppingDistance = _stoppingDistances.Value.Get(entity).value;
                 var targetPosition = _positions.Value.Get(target).value;
-
                 targetPosition = _targetUseCase.Value.AdjustTargetPosition(position, targetPosition, target);
 
                 SetCanFire(entity, math.distance(position, targetPosition) <= stoppingDistance);
