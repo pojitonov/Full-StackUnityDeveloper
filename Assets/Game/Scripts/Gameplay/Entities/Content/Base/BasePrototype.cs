@@ -6,7 +6,7 @@ namespace SampleGame
     [CreateAssetMenu(fileName = "Base", menuName = "SampleGame/Entities/New Base")]
     public class BasePrototype : EcsPrototype
     {
-        [SerializeField] private int _health = 10;
+        [SerializeField] private int _health = 30;
         
         protected override void Install(in EcsWorld world, in int entity)
         {

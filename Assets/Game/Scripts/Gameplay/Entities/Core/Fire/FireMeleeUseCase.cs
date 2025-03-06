@@ -1,3 +1,4 @@
+using System;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 
@@ -8,20 +9,22 @@ namespace SampleGame
         private readonly EcsWorldInject _world;
         private readonly EcsPoolInject<Position> _positions;
         private readonly EcsFilterInject<Inc<AttackableTag>> _enemies;
+        private readonly EcsPoolInject<Target> _targets;
         private readonly EcsUseCaseInject<TakeDamageUseCase> _takeDamageUseCase;
-        private readonly EcsUseCaseInject<TargetUseCase> _targetUseCase;
 
         public void Fire(in int entity, in int damage)
         {
             var source = _world.Value.PackEntity(entity);
 
-            foreach (int target in _enemies.Value)
-            {
-                if (target == entity)
-                    continue;
+            if (!_targets.Value.Has(entity))
+                return;
 
-                _takeDamageUseCase.Value.TakeDamage(target, damage, source);
-            }
+            var targetEntity = _targets.Value.Get(entity).target;
+
+            if (!targetEntity.Unpack(_world.Value, out int target))
+                return;
+
+            _takeDamageUseCase.Value.TakeDamage(target, damage, source);
         }
     }
 }
