@@ -1,18 +1,11 @@
-using System;
-
 namespace SampleGame
 {
-    [Serializable]
-    public struct Weapon
+    public struct BowWeapon
     {
-        public WeaponType Type;
-        public float AttackRadius;
         public ProjectilePrototype Projectile;
     }
 
-    public enum WeaponType
+    public struct MeleeWeapon
     {
-        Melee,
-        Bow
     }
 }

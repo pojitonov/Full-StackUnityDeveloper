@@ -46,10 +46,7 @@ namespace SampleGame
                 duration = _fireCooldown
             };
 
-            world.GetPool<Weapon>().Add(entity) = new Weapon
-            {
-                Type = WeaponType.Melee,
-            };
+            world.GetPool<MeleeWeapon>().Add(entity) = new MeleeWeapon();
         }
     }
 }

@@ -12,7 +12,6 @@ namespace SampleGame
     {
         [SerializeField] private InputMap _inputMap;
         [SerializeField] private TeamViewConfig _teamViewConfig;
-        [SerializeField] private EcsPrototype _arrowPrefab;
 
         [Header("Animation Keys")]
         [SerializeField] private string _attack = "Attack";
@@ -54,12 +53,10 @@ namespace SampleGame
                 .Add(new UnitRotateSystem())
                 .Add(new UnitFireRequestSystem())
                 .Add(new UnitFireAISystem())
-                // .Add(new UnitFireSystem(_arrowPrefab))
                 
                 //Weapon:
-                .Add(new WeaponFireSystem())
-                
-                //Projectile
+                .Add(new FireMeleeSystem())
+                .Add(new FireProjectileSystem())
                 .Add(new ProjectileInitializer())
                 .Add(new ProjectileCollisionSystem())
                 

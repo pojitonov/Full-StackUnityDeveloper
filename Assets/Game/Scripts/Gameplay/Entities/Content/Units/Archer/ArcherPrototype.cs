@@ -48,9 +48,8 @@ namespace SampleGame
                 duration = _fireCooldown
             };
 
-            world.GetPool<Weapon>().Add(entity) = new Weapon
+            world.GetPool<BowWeapon>().Add(entity) = new BowWeapon
             {
-                Type = WeaponType.Bow,
                 Projectile = _projectilePrototype
             };
         }

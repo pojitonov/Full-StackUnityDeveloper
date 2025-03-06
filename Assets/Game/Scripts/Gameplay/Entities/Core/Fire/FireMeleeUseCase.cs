@@ -1,6 +1,5 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using Unity.Mathematics;
 
 namespace SampleGame
 {
@@ -12,7 +11,7 @@ namespace SampleGame
         private readonly EcsUseCaseInject<TakeDamageUseCase> _takeDamageUseCase;
         private readonly EcsUseCaseInject<TargetUseCase> _targetUseCase;
 
-        public void Fire(int entity)
+        public void Fire(in int entity)
         {
             var damage = 1;
             var source = _world.Value.PackEntity(entity);
